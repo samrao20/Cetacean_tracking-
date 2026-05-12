@@ -353,7 +353,7 @@
               alt="${sp.common_name} (${sp.scientific_name})"
               class="w-full h-full object-cover"
               loading="lazy"
-              onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-[#6b7a8d] text-xs\'>Photo coming soon</div>'"
+              onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'absolute inset-0 flex items-center justify-center text-[#6b7a8d] text-xs\'>Photo coming soon</div>')"
             />
           </div>
           <!-- Card body -->
@@ -428,14 +428,16 @@
           <div class="md:col-span-1 space-y-6">
 
             <!-- Photo -->
-            <figure class="rounded-lg overflow-hidden bg-[#d4c9b4] aspect-[3/4]">
-              <img
-                src="${sp.photo}"
-                alt="${sp.common_name} (${sp.scientific_name}) illustration"
-                class="w-full h-full object-cover"
-                onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center text-[#6b7a8d] text-sm p-4 text-center\'>Photo placeholder<br><span class=\'text-xs mt-1\'>Image to be added</span></div>'"
-              />
-              <figcaption class="sr-only">${sp.common_name}</figcaption>
+            <figure class="rounded-lg overflow-hidden bg-[#d4c9b4]">
+              <div class="aspect-[4/3]">
+                <img
+                  src="${sp.photo}"
+                  alt="${sp.common_name} (${sp.scientific_name})"
+                  class="w-full h-full object-cover"
+                  onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center text-[#6b7a8d] text-sm p-4 text-center\'>Photo coming soon</div>'"
+                />
+              </div>
+              ${sp.photo_credit ? `<figcaption class="text-[10px] text-[#6b7a8d] px-2 py-1 bg-[#f5f0e8]">© ${sp.photo_credit}</figcaption>` : ''}
             </figure>
 
             <!-- Quick facts -->
