@@ -1,0 +1,431 @@
+{
+  "species": [
+    {
+      "slug": "spinner-dolphin",
+      "common_name": "Spinner Dolphin",
+      "scientific_name": "Stenella longirostris",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "20–200 (offshore aggregations can reach 1,000+)",
+      "length_m": "1.3–2.1",
+      "weight_kg": "23–79",
+      "diet": "Mesopelagic fish, squid, and shrimp; feeds at depth at night",
+      "behaviour": [
+        "Signature spinning leaps — up to 7 axial rotations per jump",
+        "Enthusiastic bow-riding and wake-riding",
+        "Large, energetic surface groups, often at dawn after night feeding"
+      ],
+      "maldives_distribution": "Most common cetacean in Maldivian waters; found throughout all atolls, particularly around lagoon channels and offshore reef slopes",
+      "best_months": [11, 12, 1, 2, 3, 4],
+      "best_months_note": "Year-round; calmer NE monsoon seas (Nov–Apr) improve sighting conditions",
+      "distinguishing_features": "Long, slender beak; tripartite colour pattern — dark grey cape, pale grey flanks, white belly; adult males have a distinctive post-anal keel and forward-canted dorsal fin",
+      "similar_species": [
+        "Pantropical spotted dolphin — adults heavily spotted, shorter beak, does not spin",
+        "Striped dolphin — vivid dark lateral stripe from eye to tail, different colour pattern"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "bottlenose-dolphin",
+      "common_name": "Bottlenose Dolphin",
+      "scientific_name": "Tursiops truncatus",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "2–15 (coastal); occasionally 100+ offshore",
+      "length_m": "1.9–4.0",
+      "weight_kg": "150–650",
+      "diet": "Fish, squid, and crustaceans; opportunistic and adaptable",
+      "behaviour": [
+        "Bow-riding and wake-riding",
+        "Tail-slapping and breaching",
+        "Complex social interactions; long-term individual bonds"
+      ],
+      "maldives_distribution": "Both coastal and offshore waters; tends to favour deeper channels and open ocean compared to Indo-Pacific bottlenose",
+      "best_months": [],
+      "best_months_note": "Year-round",
+      "distinguishing_features": "Robust, stocky body; short, stubby beak clearly demarcated from melon; uniform medium grey; larger and more powerfully built than Indo-Pacific bottlenose dolphin",
+      "similar_species": [
+        "Indo-Pacific bottlenose dolphin — smaller and more slender, adults develop ventral spots, longer rostrum, more coastal habits"
+      ],
+      "unverified": ["maldives_distribution"]
+    },
+    {
+      "slug": "indo-pacific-bottlenose-dolphin",
+      "common_name": "Indo-Pacific Bottlenose Dolphin",
+      "scientific_name": "Tursiops aduncus",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "4–15",
+      "length_m": "2.0–2.7",
+      "weight_kg": "160–230",
+      "diet": "Reef-associated fish and cephalopods",
+      "behaviour": [
+        "Bow-riding near reefs and vessels",
+        "Foraging in shallow sandy areas and reef slopes",
+        "More reef-associated than T. truncatus"
+      ],
+      "maldives_distribution": "Reef slopes, lagoons, and coastal channels throughout the atolls; more frequently encountered inshore than T. truncatus",
+      "best_months": [],
+      "best_months_note": "Year-round",
+      "distinguishing_features": "Smaller and more slender than common bottlenose; longer, more pointed rostrum; adults develop grey spots on pale belly; more association with reef habitat",
+      "similar_species": [
+        "Bottlenose dolphin — larger and more robust, unspotted, prefers deeper open water"
+      ],
+      "unverified": ["iucn_status", "maldives_distribution"]
+    },
+    {
+      "slug": "pantropical-spotted-dolphin",
+      "common_name": "Pantropical Spotted Dolphin",
+      "scientific_name": "Stenella attenuata",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "50–1,000+",
+      "length_m": "1.6–2.6",
+      "weight_kg": "90–120",
+      "diet": "Mesopelagic fish and squid",
+      "behaviour": [
+        "Fast swimmer; frequent high leaps",
+        "Bow-riding in large, fast-moving groups",
+        "Associates with tuna and seabirds offshore"
+      ],
+      "maldives_distribution": "Primarily offshore and pelagic waters across the archipelago",
+      "best_months": [],
+      "best_months_note": "TODO: verify — likely year-round offshore",
+      "distinguishing_features": "Calves unspotted; juveniles lightly spotted; adults heavily spotted on cape and belly; two-tone beak with pale tip and dark stripe to eye; distinct dark cape",
+      "similar_species": [
+        "Spinner dolphin — unspotted, longer beak, spinning behaviour",
+        "Striped dolphin — bold lateral stripe rather than spots"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "rissos-dolphin",
+      "common_name": "Risso's Dolphin",
+      "scientific_name": "Grampus griseus",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "3–30 (occasionally up to 100)",
+      "length_m": "2.6–3.8",
+      "weight_kg": "300–500",
+      "diet": "Almost exclusively squid and other cephalopods",
+      "behaviour": [
+        "Logging (resting motionless at surface)",
+        "Spyhopping and occasional breaching",
+        "Accumulate dense white scarring from squid beaks and social interactions — older adults can appear nearly white"
+      ],
+      "maldives_distribution": "Deep-water channels and offshore slopes; typically encountered in waters deeper than 400 m",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Robust body; bulbous, rounded head with a crease down the centre and no beak; heavy white scarring on grey/dark body; tall, falcate dorsal fin",
+      "similar_species": [
+        "Short-finned pilot whale — all-dark, bulbous head but lower profile, no scarring",
+        "False killer whale — elongated head, slender body, dark"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "frasers-dolphin",
+      "common_name": "Fraser's Dolphin",
+      "scientific_name": "Lagenodelphis hosei",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "100–1,000+",
+      "length_m": "2.3–2.7",
+      "weight_kg": "160–210",
+      "diet": "Deep-sea fish, squid, and crustaceans",
+      "behaviour": [
+        "Fast and energetic at surface",
+        "Rarely bow-rides",
+        "Creates significant surface disturbance in large groups"
+      ],
+      "maldives_distribution": "Deep offshore waters; a rare sighting in Maldivian records",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Stocky, robust body with small appendages relative to size; short but distinct beak; bold dark lateral stripe from eye to anus (broader and more conspicuous in adult males); pale pink to cream belly",
+      "similar_species": [
+        "Striped dolphin — more slender, distinctive blue-grey pattern with thinner stripe",
+        "Pantropical spotted dolphin — spots, more slender"
+      ],
+      "unverified": ["best_months", "maldives_distribution", "pod_size"]
+    },
+    {
+      "slug": "striped-dolphin",
+      "common_name": "Striped Dolphin",
+      "scientific_name": "Stenella coeruleoalba",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "25–500",
+      "length_m": "1.8–2.5",
+      "weight_kg": "90–150",
+      "diet": "Mesopelagic fish, squid, and crustaceans",
+      "behaviour": [
+        "Fast, acrobatic; frequent high-energy leaps",
+        "Bow-riding",
+        "Can be skittish and avoid vessels"
+      ],
+      "maldives_distribution": "Offshore and pelagic waters; an uncommon sighting in Maldivian records",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Vivid colour pattern: blue-grey back, white or pink belly, bold dark stripe from eye to anus, secondary 'accessory' stripe branching toward the flipper; very clean, high-contrast markings",
+      "similar_species": [
+        "Fraser's dolphin — broader stripe, stockier, shorter beak",
+        "Pantropical spotted dolphin — spotted rather than striped"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "rough-toothed-dolphin",
+      "common_name": "Rough-toothed Dolphin",
+      "scientific_name": "Steno bredanensis",
+      "type": "dolphin",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "10–20 (occasionally up to 100)",
+      "length_m": "2.1–2.8",
+      "weight_kg": "90–155",
+      "diet": "Fish, squid, and octopus",
+      "behaviour": [
+        "Distinctive surface 'skim' — head and beak lifted clear of the water at speed",
+        "Occasionally associates with other cetacean species",
+        "Generally less acrobatic than other dolphins"
+      ],
+      "maldives_distribution": "Offshore and pelagic waters; uncommon",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Unique reptilian-looking head — no crease between melon and beak, giving a cone-shaped profile; narrow, elongated beak; white to pinkish lips and belly with irregular blotching; dark cape",
+      "similar_species": [
+        "Bottlenose dolphin — distinct melon-beak crease, more robust, uniform grey"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "short-finned-pilot-whale",
+      "common_name": "Short-finned Pilot Whale",
+      "scientific_name": "Globicephala macrorhynchus",
+      "type": "whale",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "10–30 (occasionally up to 100)",
+      "length_m": "3.6–6.5",
+      "weight_kg": "1,000–4,000",
+      "diet": "Primarily squid; some fish",
+      "behaviour": [
+        "Logging — lying motionless at surface for extended periods",
+        "Tight, matriarchal social groups",
+        "Slow-moving and relatively approachable"
+      ],
+      "maldives_distribution": "Deep-water channels and offshore areas; reasonably regular sightings, particularly in deeper passages between atolls",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Bulbous, rounded melon head with no beak; all-dark (black to dark grey) with pale grey saddle patch behind dorsal fin and anchor-shaped chest patch; broad-based, low, falcate dorsal fin; short, sickle-shaped flippers",
+      "similar_species": [
+        "False killer whale — elongated, narrower head, more slender body, longer flippers with distinctive hump",
+        "Melon-headed whale — much smaller, pointed head"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "false-killer-whale",
+      "common_name": "False Killer Whale",
+      "scientific_name": "Pseudorca crassidens",
+      "type": "whale",
+      "iucn_status": "NT",
+      "iucn_label": "Near Threatened",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "10–40 (occasionally 200+)",
+      "length_m": "4.3–6.0",
+      "weight_kg": "400–2,000",
+      "diet": "Large fish, squid; occasionally other cetaceans",
+      "behaviour": [
+        "Active, fast swimmers; bow-riding and breaching",
+        "Known to share food with conspecifics and occasionally with humans",
+        "Socialise with bottlenose dolphins"
+      ],
+      "maldives_distribution": "Offshore waters; less commonly reported than pilot whales",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Slender, elongated dark grey to black body; distinctive S-curve or hump on leading edge of each flipper; small, rounded head with slight melon and indistinct beak; tall, falcate dorsal fin mid-body",
+      "similar_species": [
+        "Short-finned pilot whale — bulbous head, stouter body",
+        "Pygmy killer whale — much smaller, rounded head, white lips"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "melon-headed-whale",
+      "common_name": "Melon-headed Whale",
+      "scientific_name": "Peponocephala electra",
+      "type": "whale",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "100–1,500",
+      "length_m": "2.1–2.8",
+      "weight_kg": "160–275",
+      "diet": "Fish, squid, and shrimp",
+      "behaviour": [
+        "Fast, active; large groups create dramatic surface disturbance",
+        "Bow-riding in massed aggregations",
+        "Associated with mass stranding events"
+      ],
+      "maldives_distribution": "Offshore waters; can appear in very large groups",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Small, dark grey body; distinctly triangular, pointed head (visible from above); pointed, swept-back flippers; dark face mask; white to light grey lips; pale belly",
+      "similar_species": [
+        "Pygmy killer whale — rounder head, rounded flipper tips, broader build, white lips more pronounced",
+        "Fraser's dolphin — beak present, lateral stripe, more colourful"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "sperm-whale",
+      "common_name": "Sperm Whale",
+      "scientific_name": "Physeter macrocephalus",
+      "type": "whale",
+      "iucn_status": "VU",
+      "iucn_label": "Vulnerable",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "Females and young: 10–20; adult males: solitary or small bachelor groups",
+      "length_m": "11–18 (males); 8–12 (females)",
+      "weight_kg": "15,000–57,000",
+      "diet": "Giant and large squid; deep-sea fish",
+      "behaviour": [
+        "Deepest-diving mammal — dives to 2,000 m+ for 45–90 minutes",
+        "Distinctive bushy blow angled forward and to the left",
+        "Social females in matriarchal units; bulls solitary"
+      ],
+      "maldives_distribution": "Deep oceanic water around and between atolls; central and southern atolls are particularly noted for sightings",
+      "best_months": [],
+      "best_months_note": "TODO: verify — possibly more frequent during calmer NE monsoon",
+      "distinguishing_features": "Enormous squared-off head comprising up to one-third of body length; wrinkled, prune-like skin; tiny lower jaw set far back; single blowhole on left side of snout tip; triangular humps along rear of back rather than a dorsal fin",
+      "similar_species": [
+        "Distinctive at size — no other cetacean has this head shape"
+      ],
+      "unverified": ["best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "brydes-whale",
+      "common_name": "Bryde's Whale",
+      "scientific_name": "Balaenoptera brydei",
+      "type": "whale",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "Usually solitary or in pairs",
+      "length_m": "11.5–15.5",
+      "weight_kg": "12,000–20,000",
+      "diet": "Schooling fish (particularly sardines and anchovies), krill, and squid",
+      "behaviour": [
+        "Erratic, unpredictable surfacing and dive sequences",
+        "Lunge-feeding at or near the surface",
+        "May approach vessels or remain in one area for extended periods when feeding"
+      ],
+      "maldives_distribution": "Offshore waters; seasonal visitor — exact patterns in Maldives poorly documented",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Three prominent parallel ridges on rostrum (all other rorquals have one); relatively tall, sharply falcate dorsal fin; erratic breathing pattern; baleen is grey-black with grey-white bristles",
+      "similar_species": [
+        "Sei whale — one rostral ridge, more uniform dark baleen, smoother surfacing",
+        "Fin whale — much larger, asymmetric jaw coloration (right side white)"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "blue-whale",
+      "common_name": "Blue Whale",
+      "scientific_name": "Balaenoptera musculus",
+      "type": "whale",
+      "iucn_status": "EN",
+      "iucn_label": "Endangered",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "Usually solitary; occasionally in pairs",
+      "length_m": "24–33",
+      "weight_kg": "100,000–200,000",
+      "diet": "Almost exclusively krill (euphausiids)",
+      "behaviour": [
+        "Tall, columnar blow reaching 9 m",
+        "Long, flat rostrum visible before blow",
+        "Small dorsal fin appears only as animal arches to dive",
+        "Rarely flukes on a dive"
+      ],
+      "maldives_distribution": "Southern atolls (Addu, Huvadhu/Gaafu Dhaalu) are globally significant for a near-resident population; sightings also reported further north",
+      "best_months": [12, 1, 2, 3, 4],
+      "best_months_note": "December–April, centred on NE monsoon; peak Jan–Mar in southern atolls",
+      "distinguishing_features": "Largest animal ever recorded; pale mottled blue-grey skin (appears aquamarine underwater); broad, flat U-shaped rostrum with single ridge; tiny dorsal fin positioned very far back on body",
+      "similar_species": [
+        "Fin whale — smaller, asymmetric lower jaw (right side white), more prominent dorsal fin"
+      ],
+      "unverified": []
+    },
+    {
+      "slug": "dwarf-sperm-whale",
+      "common_name": "Dwarf Sperm Whale",
+      "scientific_name": "Kogia sima",
+      "type": "whale",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "1–10",
+      "length_m": "2.2–2.7",
+      "weight_kg": "135–275",
+      "diet": "Squid, fish, and shrimp",
+      "behaviour": [
+        "Inconspicuous — rises slowly and barely disturbs the surface",
+        "May release dark reddish-brown intestinal fluid when startled (as a defence mechanism)",
+        "Rarely bow-rides; generally avoids vessels"
+      ],
+      "maldives_distribution": "Offshore waters; rarely encountered — likely under-recorded due to cryptic behaviour",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Shark-like in overall appearance; false gill mark (light crescent) behind eye; box-shaped snout without the enormous head of the sperm whale; very small, slightly curved dorsal fin set well behind mid-body; pale underside",
+      "similar_species": [
+        "Pygmy sperm whale (Kogia breviceps) — very similar but slightly larger and more robust; dorsal fin proportionally smaller and set further back; TODO: verify distinguishing criteria"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
+    },
+    {
+      "slug": "pygmy-killer-whale",
+      "common_name": "Pygmy Killer Whale",
+      "scientific_name": "Feresa attenuata",
+      "type": "whale",
+      "iucn_status": "LC",
+      "iucn_label": "Least Concern",
+      "photo": "assets/img/species/placeholder.jpg",
+      "pod_size": "10–50",
+      "length_m": "2.1–2.6",
+      "weight_kg": "110–225",
+      "diet": "Fish, squid; possibly small cetaceans",
+      "behaviour": [
+        "Can be aggressive toward other small cetaceans and toward swimmers",
+        "Slow-moving and deliberate compared to other small delphinids",
+        "Rarely bow-rides"
+      ],
+      "maldives_distribution": "Rare; offshore waters — very few verified Maldivian records",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "All dark grey to black dorsal surface; conspicuous white lips and white to pale grey belly patch; rounded head with no beak; broad, rounded flipper tips (versus pointed in melon-headed whale)",
+      "similar_species": [
+        "Melon-headed whale — triangular pointed head, pointed flippers, larger pods",
+        "False killer whale — much larger, elongated head"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
+    }
+  ]
+}
