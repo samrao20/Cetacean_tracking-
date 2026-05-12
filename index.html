@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maldives Cetacean Tracker — Citizen Science Sightings</title>
+  <meta name="description" content="Track dolphin and whale sightings across the Maldives. Submit a sighting via WhatsApp and help build the first citizen-science cetacean database for the archipelago." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --navy:  #0a1628;
+      --sand:  #e8dcc8;
+      --coral: #c4614a;
+      --bg:    #f5f0e8;
+      --text:  #1a2438;
+      --muted: #6b7a8d;
+      --rule:  #d4c9b4;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+    }
+
+    /* ── Nav ── */
+    .site-nav a { transition: color 0.15s; }
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] { color: var(--coral); }
+
+    /* ── Hero video + animated gradient fallback ── */
+    .hero-bg {
+      background: linear-gradient(135deg, #0a1628 0%, #0d2240 30%, #0a3040 60%, #082030 100%);
+      background-size: 400% 400%;
+      animation: oceanShift 12s ease infinite;
+    }
+    @keyframes oceanShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── Scroll chevron ── */
+    .chevron-bounce {
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50%       { transform: translateY(8px); opacity: 1; }
+    }
+
+    /* ── Sighting cards ── */
+    .sighting-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .sighting-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(10,22,40,0.10);
+    }
+
+    /* ── How-it-works step ── */
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+    }
+
+    /* ── Species avatar circle ── */
+    .species-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--rule);
+      background: var(--sand);
+      flex-shrink: 0;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .species-avatar:hover {
+      transform: scale(1.08);
+      border-color: var(--coral);
+    }
+    .species-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .species-avatar .initials {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* ── Partner placeholder ── */
+    .partner-box {
+      background: #fff;
+      border: 1px dashed var(--rule);
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav sticky top-0 z-40 border-b border-[#d4c9b4] bg-[#f5f0e8]/95 backdrop-blur-sm" aria-label="Site navigation">
+  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+    <a href="index.html" class="font-['Fraunces'] text-lg font-semibold text-[#0a1628]">
+      Maldives Cetaceans
+    </a>
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1a2438]" role="list">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="species.html">Species</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="submit.html">Submit a sighting</a></li>
+    </ul>
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#0a1628]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#d4c9b4] bg-[#f5f0e8]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#1a2438]" role="list">
+      <li><a href="index.html" class="block py-1" aria-current="page">Home</a></li>
+      <li><a href="map.html" class="block py-1">Map</a></li>
+      <li><a href="species.html" class="block py-1">Species</a></li>
+      <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
+      <li><a href="about.html" class="block py-1">About</a></li>
+      <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden" aria-label="Hero">
+
+  <!-- Animated gradient fallback (always present behind video) -->
+  <div class="hero-bg absolute inset-0 z-0"></div>
+
+  <!-- Video background (plays if hero.mp4 exists) -->
+  <video
+    id="hero-video"
+    class="absolute inset-0 w-full h-full object-cover z-[1] opacity-0 transition-opacity duration-1000"
+    autoplay muted loop playsinline
+    aria-hidden="true"
+  >
+    <source src="assets/video/hero.mp4" type="video/mp4" />
+    <source src="assets/video/hero.webm" type="video/webm" />
+  </video>
+
+  <!-- Dark overlay for text legibility -->
+  <div class="absolute inset-0 z-[2] bg-[#0a1628]/55"></div>
+
+  <!-- Hero content -->
+  <div class="relative z-[3] text-center px-6 max-w-3xl mx-auto">
+    <p class="text-[#c4a882] text-xs font-semibold tracking-[0.2em] uppercase mb-6">
+      Maldives Citizen Science
+    </p>
+    <h1 class="font-['Fraunces'] text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+      Every sighting<br />
+      <em class="italic font-normal text-[#e8dcc8]">tells a story</em>
+    </h1>
+    <p class="text-[#b8c8d8] text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto">
+      Help us map dolphins and whales across the Maldivian archipelago.
+      One WhatsApp message builds the science.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
+        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540] transition-colors"
+        target="_blank" rel="noopener"
+      >
+        <!-- WhatsApp icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Report a sighting
+      </a>
+      <a
+        href="map.html"
+        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
+      >
+        Explore the map
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll chevron -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] chevron-bounce" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     RECENT SIGHTINGS
+══════════════════════════════════════ -->
+<section class="py-16 px-4" aria-labelledby="sightings-heading">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex items-baseline justify-between mb-8">
+      <h2 id="sightings-heading" class="text-2xl md:text-3xl font-semibold text-[#0a1628]">
+        Recent sightings
+      </h2>
+      <a href="map.html" class="text-sm text-[#c4614a] hover:underline font-medium">
+        View all on map →
+      </a>
+    </div>
+
+    <div id="sightings-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Populated by JS or shows empty/error state -->
+      <div class="col-span-full flex items-center justify-center py-12 text-[#6b7a8d] text-sm">
+        <svg class="animate-spin mr-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+        </svg>
+        Loading sightings…
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section class="py-16 px-4 bg-[#0a1628]" aria-labelledby="how-heading">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-12">
+      <h2 id="how-heading" class="text-2xl md:text-3xl font-semibold text-white mb-3">
+        How it works
+      </h2>
+      <p class="text-[#8fa3bb] max-w-lg mx-auto">
+        You spot, we verify, the science grows — all through a simple WhatsApp message.
+      </p>
+    </div>
+
+    <ol class="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
+
+      <li class="step-card rounded-xl p-6 relative">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#c4614a] text-white font-['Fraunces'] font-bold text-lg mb-4">1</span>
+        <h3 class="font-semibold text-[#0a1628] mb-2">Spot a cetacean</h3>
+        <p class="text-sm text-[#6b7a8d] leading-relaxed">
+          See a dolphin or whale? Open WhatsApp and send a message to our bot with a photo, your location, and what you saw.
+        </p>
+        <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Via WhatsApp
+        </div>
+      </li>
+
+      <li class="step-card rounded-xl p-6 relative">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#c4614a] text-white font-['Fraunces'] font-bold text-lg mb-4">2</span>
+        <h3 class="font-semibold text-[#0a1628] mb-2">We verify</h3>
+        <p class="text-sm text-[#6b7a8d] leading-relaxed">
+          Our team reviews each report — checking the species identification, location, and photo. Only verified sightings appear on the public map.
+        </p>
+        <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Expert reviewed
+        </div>
+      </li>
+
+      <li class="step-card rounded-xl p-6 relative">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#c4614a] text-white font-['Fraunces'] font-bold text-lg mb-4">3</span>
+        <h3 class="font-semibold text-[#0a1628] mb-2">Science grows</h3>
+        <p class="text-sm text-[#6b7a8d] leading-relaxed">
+          Your sighting joins the map, the dashboard, and the long-term record — helping researchers understand cetacean distribution across the atolls.
+        </p>
+        <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+          </svg>
+          On the map instantly
+        </div>
+      </li>
+
+    </ol>
+
+    <div class="text-center mt-10">
+      <a href="submit.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:bg-white/10 transition-colors">
+        Learn how to submit →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SPECIES TEASER
+══════════════════════════════════════ -->
+<section class="py-16 px-4" aria-labelledby="species-teaser-heading">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-10">
+      <h2 id="species-teaser-heading" class="text-2xl md:text-3xl font-semibold text-[#0a1628] mb-3">
+        16 species in Maldivian waters
+      </h2>
+      <p class="text-[#6b7a8d] max-w-md mx-auto text-sm">
+        From spinner dolphins to blue whales — the archipelago hosts one of the most diverse cetacean communities in the Indian Ocean.
+      </p>
+    </div>
+
+    <div id="species-teaser" class="flex flex-wrap justify-center gap-6">
+      <!-- Populated by JS from species.json -->
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="species.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0a1628] text-white text-sm font-medium hover:bg-[#132040] transition-colors">
+        View species guide →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PARTNERS
+══════════════════════════════════════ -->
+<section class="py-14 px-4 border-t border-[#d4c9b4]" aria-labelledby="partners-heading">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 id="partners-heading" class="text-sm font-semibold tracking-[0.15em] uppercase text-[#6b7a8d] mb-8">
+      Supported by
+    </h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
+      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
+      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
+      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="border-t border-[#d4c9b4] bg-[#0a1628] text-[#8fa3bb] text-sm">
+  <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-4 justify-between">
+    <p>Maldives Cetacean Citizen Science Project</p>
+    <nav aria-label="Footer navigation">
+      <ul class="flex gap-4" role="list">
+        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+        <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
+        <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     SCRIPTS — config.js guard must come first
+══════════════════════════════════════ -->
+<script src="config.js" onerror="void 0"></script>
+<script>
+  window.SUPABASE_URL      = window.SUPABASE_URL      || null;
+  window.SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || null;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Nav toggle ──────────────────────────────────────────────
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  // ── Hero video: fade in once it can play ────────────────────
+  const video = document.getElementById('hero-video');
+  if (video) {
+    video.addEventListener('canplay', () => {
+      video.style.opacity = '1';
+    }, { once: true });
+  }
+
+  // ── Species teaser ──────────────────────────────────────────
+  const TEASER_SLUGS = [
+    'spinner-dolphin',
+    'blue-whale',
+    'sperm-whale',
+    'short-finned-pilot-whale',
+    'bottlenose-dolphin',
+    'rissos-dolphin',
+  ];
+
+  fetch('species.json')
+    .then(r => r.json())
+    .then(data => {
+      const all     = data.species || [];
+      const teaser  = TEASER_SLUGS.map(slug => all.find(s => s.slug === slug)).filter(Boolean);
+      const container = document.getElementById('species-teaser');
+      container.innerHTML = teaser.map(s => {
+        const initials = s.common_name.split(' ').slice(0, 2).map(w => w[0]).join('');
+        return `
+          <a href="species.html#${s.slug}" class="flex flex-col items-center gap-2 group" aria-label="${s.common_name}">
+            <div class="species-avatar">
+              <img
+                src="${s.photo}"
+                alt="${s.common_name}"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+              />
+              <div class="initials" style="display:none;">${initials}</div>
+            </div>
+            <span class="text-xs text-center text-[#1a2438] group-hover:text-[#c4614a] transition-colors font-medium leading-tight max-w-[80px]">
+              ${s.common_name}
+            </span>
+          </a>`;
+      }).join('');
+    })
+    .catch(() => {
+      // species.json unreachable — teaser stays empty, page still works
+    });
+
+  // ── Recent sightings ────────────────────────────────────────
+  const container = document.getElementById('sightings-container');
+
+  function renderEmpty() {
+    container.innerHTML = `
+      <div class="col-span-full text-center py-14 border border-dashed border-[#d4c9b4] rounded-xl">
+        <p class="font-['Fraunces'] text-xl text-[#0a1628] mb-2">No verified sightings yet</p>
+        <p class="text-sm text-[#6b7a8d] mb-6">Be the first to report a cetacean sighting from the Maldives.</p>
+        <a href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#c4614a] text-white text-sm font-medium hover:bg-[#b05540] transition-colors"
+           target="_blank" rel="noopener">
+          Report via WhatsApp
+        </a>
+      </div>`;
+  }
+
+  function renderError() {
+    container.innerHTML = `
+      <div class="col-span-full text-center py-10 text-[#6b7a8d] text-sm">
+        Couldn't load sightings right now — check back soon.
+      </div>`;
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function renderSightings(rows) {
+    if (!rows || rows.length === 0) { renderEmpty(); return; }
+    container.innerHTML = rows.map(r => `
+      <article class="sighting-card rounded-xl p-5">
+        <div class="flex items-start justify-between gap-3 mb-3">
+          <div>
+            <p class="font-semibold text-[#0a1628] text-sm leading-snug">${r.species_name || 'Cetacean'}</p>
+            ${r.atoll ? `<p class="text-xs text-[#6b7a8d] mt-0.5">${r.atoll} Atoll</p>` : ''}
+          </div>
+          ${r.count_range ? `<span class="shrink-0 text-xs bg-[#f5f0e8] border border-[#d4c9b4] rounded-full px-2 py-0.5 text-[#6b7a8d]">${r.count_range}</span>` : ''}
+        </div>
+        <p class="text-xs text-[#6b7a8d]">${formatDate(r.sighting_date)}</p>
+      </article>`).join('');
+  }
+
+  async function loadSightings() {
+    if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) {
+      renderEmpty();
+      return;
+    }
+
+    try {
+      const { createClient } = supabase;
+      const client = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+
+      // Join species table to get the common name
+      const { data, error } = await client
+        .from('sightings')
+        .select('id, atoll, count_range, sighting_date, species:species_id(common_name)')
+        .eq('status', 'verified')
+        .order('sighting_date', { ascending: false })
+        .limit(6);
+
+      if (error) throw error;
+
+      const rows = (data || []).map(r => ({
+        ...r,
+        species_name: r.species?.common_name || null,
+      }));
+
+      renderSightings(rows);
+    } catch {
+      renderError();
+    }
+  }
+
+  loadSightings();
+
+})();
+</script>
+
+</body>
+</html>
