@@ -182,11 +182,60 @@
           <p class="text-[#c4614a] text-sm font-semibold tracking-widest uppercase mb-2">Field Guide</p>
           <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-3">Cetaceans of the Maldives</h1>
           <p class="text-[#b8c8d8] text-base md:text-lg max-w-2xl">
-            Sixteen species of dolphins and whales recorded in Maldivian waters — from the resident spinner
+            Twenty-two species of dolphins and whales recorded in Maldivian waters — from the resident spinner
             dolphin to blue whales feeding in the southern atolls.
           </p>
         </div>
       </header>
+
+      <!-- ── Whales vs Dolphins explainer ──────────────────────────────── -->
+      <section id="cetacean-explainer" class="border-b border-[#d4c9b4] bg-white" aria-labelledby="explainer-heading">
+        <div class="max-w-6xl mx-auto px-4 py-8 md:py-10">
+          <h2 id="explainer-heading" class="text-2xl md:text-3xl font-bold text-[#0a1628] mb-4">
+            Whales vs Dolphins — what's actually the difference?
+          </h2>
+          <div class="max-w-3xl space-y-4 text-[#1a2438] leading-relaxed">
+            <p>
+              All dolphins are whales — but not all whales are dolphins. The order Cetacea divides into two living
+              suborders: <em>Mysticeti</em> (the baleen whales, which filter-feed through plates of keratin) and
+              <em>Odontoceti</em> (the toothed whales, which hunt with teeth and use echolocation). Dolphins belong
+              to the family <em>Delphinidae</em>, which sits squarely inside Odontoceti. Taxonomically, a dolphin
+              is simply a type of toothed whale.
+            </p>
+            <p>
+              The practical shorthand — dolphins are small, beaked, and sociable; whales are large and solitary —
+              breaks down in the middle of the family tree. <em>Delphinidae</em> includes not only the classic
+              slender, beaked dolphins but also larger, beak-less animals that early whalers named by size rather
+              than ancestry. The result is that some of the most frequently sighted "whales" in the Maldives are,
+              scientifically, oceanic dolphins. At sea you can separate the major groups by a few reliable traits:
+              toothed whales (including all dolphins) have a single blowhole and use echolocation; baleen whales
+              have paired blowholes and no teeth. Smaller delphinids typically have a pronounced rostrum (beak),
+              a tall falcate dorsal fin, and travel in large, boisterous pods. Larger delphinids — pilot whales,
+              orca — lose the obvious beak and can exceed 6 m, which is why historical common names confused
+              them with the great whales.
+            </p>
+
+            <!-- Did-you-know callout -->
+            <div class="bg-[#e8dcc8] border-l-4 border-[#c4614a] rounded-r-lg px-5 py-4">
+              <p class="font-semibold text-[#0a1628] mb-1.5">Did you know?</p>
+              <p class="text-sm leading-relaxed">
+                The killer whale (<em>Orcinus orca</em>), short-finned pilot whale (<em>Globicephala macrorhynchus</em>),
+                false killer whale (<em>Pseudorca crassidens</em>), pygmy killer whale (<em>Feresa attenuata</em>),
+                and melon-headed whale (<em>Peponocephala electra</em>) are all members of family
+                <em>Delphinidae</em> — the same family as the spinner dolphin. The "whale" label is historical,
+                based on size, not taxonomy. On this page you'll find all five listed under the
+                <strong>Dolphins</strong> filter for exactly that reason.
+              </p>
+            </div>
+
+            <p class="text-sm text-[#6b7a8d]">
+              Of the twenty-two cetacean species recorded in Maldivian waters, most are odontocetes. The baleen
+              whales documented here — blue whale, Bryde's whale, and humpback whale — are in the minority, but
+              they include some of the most spectacular encounters the archipelago has to offer.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <!-- Filter + search bar -->
       <section class="sticky top-14 z-30 bg-[#f5f0e8]/95 backdrop-blur-sm border-b border-[#d4c9b4]" aria-label="Filter species">
@@ -366,9 +415,8 @@
             </div>
             <p class="text-xs italic text-[#6b7a8d] mb-3">${sp.scientific_name}</p>
             <div class="flex items-center gap-3 text-xs text-[#6b7a8d] border-t border-[#f0e9dd] pt-2.5">
-              <span title="Typical length"><span aria-hidden="true">↔</span> ${sp.length_m} m</span>
-              <span class="text-[#d4c9b4]">|</span>
-              <span title="Typical pod size"><span aria-hidden="true">●●</span> ${sp.type === 'whale' ? 'Whale' : 'Dolphin'}</span>
+              ${sp.length_m ? `<span title="Typical length"><span aria-hidden="true">↔</span> ${sp.length_m} m</span><span class="text-[#d4c9b4]">|</span>` : ''}
+              <span title="Family">${sp.family || (sp.type === 'whale' ? 'Whale' : 'Dolphin')}</span>
             </div>
           </div>
         </article>
@@ -444,18 +492,26 @@
             <div class="bg-white border border-[#d4c9b4] rounded-lg p-4 space-y-3 text-sm">
               <h3 class="font-semibold text-[#0a1628] text-xs uppercase tracking-wider mb-2">At a glance</h3>
 
+              ${sp.family ? `
+              <div class="flex justify-between gap-2">
+                <span class="text-[#6b7a8d]">Family</span>
+                <span class="font-medium text-right italic">${sp.family}</span>
+              </div>` : ''}
+              ${sp.length_m ? `
               <div class="flex justify-between gap-2">
                 <span class="text-[#6b7a8d]">Length</span>
                 <span class="font-medium text-right">${sp.length_m} m</span>
-              </div>
+              </div>` : ''}
+              ${sp.weight_kg ? `
               <div class="flex justify-between gap-2">
                 <span class="text-[#6b7a8d]">Weight</span>
                 <span class="font-medium text-right">${sp.weight_kg} kg</span>
-              </div>
+              </div>` : ''}
+              ${sp.pod_size ? `
               <div class="flex justify-between gap-2">
                 <span class="text-[#6b7a8d]">Pod size</span>
                 <span class="font-medium text-right leading-snug">${sp.pod_size}</span>
-              </div>
+              </div>` : ''}
 
               <hr class="border-[#e8dcc8]" />
 
@@ -478,38 +534,61 @@
               View sightings on map
             </a>
 
+            <!-- IWC Handbook link -->
+            ${sp.iwc_link ? `
+            <a
+              href="${sp.iwc_link}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg border border-[#0a1628] text-[#0a1628] text-sm font-semibold hover:bg-[#0a1628] hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c4614a]"
+            >
+              IWC Species Handbook ↗
+            </a>` : ''}
+
           </div>
 
           <!-- Right: Main content -->
           <div class="md:col-span-2 space-y-8">
 
+            <!-- Delphinidae note for whale-named dolphins -->
+            ${sp.delphinidae_flag ? `
+            <div class="bg-[#e8dcc8] border-l-4 border-[#c4614a] rounded-r-lg px-4 py-3 text-sm text-[#1a2438] leading-relaxed">
+              <strong>Taxonomic note:</strong> Despite the common name, this species is a member of family
+              <em>Delphinidae</em> — the oceanic dolphins. The "whale" label is historical, based on size,
+              not scientific classification.
+            </div>` : ''}
+
             <!-- Distribution -->
+            ${sp.maldives_distribution ? `
             <section aria-labelledby="dist-heading">
               <h2 id="dist-heading" class="text-lg font-semibold text-[#0a1628] mb-2 flex items-center gap-2">
                 In the Maldives ${maybeFlag('maldives_distribution')}
               </h2>
               <p class="text-[#1a2438] leading-relaxed">${sp.maldives_distribution}</p>
-            </section>
+            </section>` : ''}
 
             <!-- Distinguishing features -->
+            ${sp.distinguishing_features ? `
             <section aria-labelledby="id-heading">
               <h2 id="id-heading" class="text-lg font-semibold text-[#0a1628] mb-2">How to identify</h2>
               <p class="text-[#1a2438] leading-relaxed">${sp.distinguishing_features}</p>
-            </section>
+            </section>` : ''}
 
             <!-- Behaviour -->
+            ${behaviourItems ? `
             <section aria-labelledby="beh-heading">
               <h2 id="beh-heading" class="text-lg font-semibold text-[#0a1628] mb-2">Behaviour</h2>
               <ul class="space-y-1.5 text-[#1a2438]">
                 ${behaviourItems}
               </ul>
-            </section>
+            </section>` : ''}
 
             <!-- Diet -->
+            ${sp.diet ? `
             <section aria-labelledby="diet-heading">
               <h2 id="diet-heading" class="text-lg font-semibold text-[#0a1628] mb-2">Diet</h2>
               <p class="text-[#1a2438] leading-relaxed">${sp.diet}</p>
-            </section>
+            </section>` : ''}
 
             <!-- Similar species -->
             ${sp.similar_species && sp.similar_species.length > 0 ? `
