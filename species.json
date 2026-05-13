@@ -246,16 +246,24 @@
       "iucn_label": "Data Deficient",
       "photo": "assets/img/species/killer-whale.jpg",
       "photo_credit": null,
-      "pod_size": "",
+      "pod_size": "2–40; varies by ecotype (resident pods 5–25; transient 1–7)",
       "length_m": "4.9–9.8",
       "weight_kg": "1,400–9,000",
-      "diet": "",
-      "behaviour": [],
-      "maldives_distribution": "",
+      "diet": "Highly varied by ecotype — fish (especially tuna and shark in tropical waters), squid, marine mammals; highly opportunistic",
+      "behaviour": [
+        "Largest member of family Delphinidae; unmistakably patterned in jet-black and white",
+        "Highly intelligent with complex, family-specific vocalisations and culturally learned hunting techniques",
+        "Cooperative hunting in coordinated groups",
+        "Breaching, spyhopping, and tail-slapping common"
+      ],
+      "maldives_distribution": "Rare visitor to Indian Ocean waters; very few verified Maldivian records",
       "best_months": [],
-      "best_months_note": "TODO: fill in",
-      "distinguishing_features": "",
-      "similar_species": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Jet-black above, brilliant white eye patch behind and above eye, white belly and flanks; tall erect dorsal fin (up to 1.8 m in adult males, smaller and more curved in females); large rounded paddle-shaped flippers; pale grey saddle patch behind dorsal fin",
+      "similar_species": [
+        "False killer whale — uniform dark grey/black, much smaller, elongated narrow head, no white markings",
+        "Short-finned pilot whale — uniform dark with saddle patch, rounded bulbous melon, no white markings"
+      ],
       "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size"]
     },
     {
@@ -451,17 +459,24 @@
       "iucn_label": "Least Concern",
       "photo": "assets/img/species/humpback-whale.jpg",
       "photo_credit": null,
-      "pod_size": "Usually 1–3; feeding aggregations larger",
+      "pod_size": "Usually 1–3; feeding aggregations can exceed 20",
       "length_m": "12–16",
       "weight_kg": "25,000–40,000",
-      "diet": "",
-      "behaviour": [],
-      "maldives_distribution": "",
+      "diet": "Krill and small schooling fish (herring, capelin, sand lance); filter-feeds using baleen plates",
+      "behaviour": [
+        "Spectacular acrobatics — frequent breaching, lobtailing, and flipper-slapping",
+        "Males produce complex, haunting songs lasting up to 20 minutes",
+        "Long-distance seasonal migrations between high-latitude feeding grounds and tropical breeding areas"
+      ],
+      "maldives_distribution": "Seasonal visitor associated with the Arabian Sea population; documented passing through Indian Ocean atolls — exact timing and frequency in Maldivian waters poorly documented",
       "best_months": [],
-      "best_months_note": "TODO: fill in",
-      "distinguishing_features": "",
-      "similar_species": [],
-      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size"]
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Extraordinarily long, knobbly pectoral fins (up to one-third of body length, white below); tubercles (rounded bumps) on rostrum and jaw; broad, deeply notched tail flukes raised on each dive (underside pattern unique to each individual); small stubby dorsal fin on a raised hump; mostly black above with variable white below",
+      "similar_species": [
+        "Blue whale — much larger, tiny dorsal fin very far back, no long white flippers",
+        "Bryde's whale — three rostral ridges, no distinctive long flippers or notched flukes"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
     },
     {
       "slug": "sperm-whale",
@@ -533,14 +548,21 @@
       "pod_size": "1–7",
       "length_m": "5.5–7.0",
       "weight_kg": "2,100–3,000",
-      "diet": "",
-      "behaviour": [],
-      "maldives_distribution": "",
+      "diet": "Deep-sea squid and fish; one of the deepest-diving mammals on record (to 3,000 m+)",
+      "behaviour": [
+        "Cryptic and difficult to observe — surfaces briefly between extremely long dives",
+        "Dives can last over 2 hours — world record for any mammal",
+        "Generally avoids vessels; may be seen logging motionless at surface"
+      ],
+      "maldives_distribution": "Deep offshore waters; occasionally documented in the Indian Ocean — likely under-recorded due to deep-diving, cryptic behaviour",
       "best_months": [],
-      "best_months_note": "TODO: fill in",
-      "distinguishing_features": "",
-      "similar_species": [],
-      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size"]
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Short, goose-shaped beak; robust, spindle-shaped body; mature males often whitish on head and heavily scarred; colour varies from reddish-brown to grey; single pair of conical teeth at tip of lower jaw visible only in males; flattened forehead merges smoothly with beak",
+      "similar_species": [
+        "Blainville's beaked whale — more pronounced arch to lower jaw, laterally flattened teeth erupting at mid-jaw in males",
+        "Longman's beaked whale — more prominent rounded melon, more distinct beak, typically larger"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
     },
     {
       "slug": "longmans-beaked-whale",
@@ -552,17 +574,24 @@
       "iucn_label": "Data Deficient",
       "photo": "assets/img/species/longmans-beaked-whale.jpg",
       "photo_credit": null,
-      "pod_size": "",
-      "length_m": "",
+      "pod_size": "10–100 (tropical oceanic; forms larger groups than most beaked whales)",
+      "length_m": "5.5–8.0",
       "weight_kg": "",
-      "diet": "",
-      "behaviour": [],
-      "maldives_distribution": "",
+      "diet": "Presumed deep-water squid and fish",
+      "behaviour": [
+        "One of the rarest cetaceans — very few confirmed at-sea sightings worldwide",
+        "Thought to form larger groups than most beaked whales",
+        "Most records are from strandings; biology and behaviour remain poorly known"
+      ],
+      "maldives_distribution": "Indian Ocean distribution inferred from strandings and rare sightings; possible in Maldivian waters given its tropical Indian Ocean range",
       "best_months": [],
-      "best_months_note": "TODO: fill in",
-      "distinguishing_features": "",
-      "similar_species": [],
-      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size"]
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Relatively large beaked whale with a prominent rounded melon (bulging forehead); short but distinct beak; adults brownish-grey with paler belly; males have a single pair of conical teeth near the tip of the lower jaw; overall appearance at distance can suggest a large bottlenose dolphin",
+      "similar_species": [
+        "Cuvier's beaked whale — shorter, less distinct beak, no prominent melon bulge",
+        "Blainville's beaked whale — strongly arched lower jaw with teeth erupting at mid-jaw in males"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size", "length_m", "weight_kg"]
     },
     {
       "slug": "blainvilles-beaked-whale",
@@ -576,15 +605,22 @@
       "photo_credit": null,
       "pod_size": "1–7",
       "length_m": "4.5–6.0",
-      "weight_kg": "",
-      "diet": "",
-      "behaviour": [],
-      "maldives_distribution": "",
+      "weight_kg": "800–1,030",
+      "diet": "Deep-water squid and fish",
+      "behaviour": [
+        "Cryptic; surfaces briefly between deep dives regularly exceeding 1,000 m",
+        "Males heavily scarred from tooth raking during social interactions",
+        "Typically in small, quiet groups; generally avoids vessels"
+      ],
+      "maldives_distribution": "Deep offshore waters; among the most frequently recorded Mesoplodon species in the broader Indian Ocean — rare in Maldivian records",
       "best_months": [],
-      "best_months_note": "TODO: fill in",
-      "distinguishing_features": "",
-      "similar_species": [],
-      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size"]
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Most distinctive in males: a strongly arched lower jaw with two massive, forward-tilting teeth that protrude above the roofline and are often encrusted with barnacles; females and young have a subtler jaw arch and no visible teeth; dark blue-grey above, paler below; the rostrum contains the densest bone of any animal",
+      "similar_species": [
+        "Cuvier's beaked whale — goose-shaped beak, no arch in jaw, whitens on head with age",
+        "Deraniyagala's beaked whale — very similar overall; teeth positioned nearer the tip of the jaw; near-impossible to distinguish at sea without close observation"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution"]
     },
     {
       "slug": "deraniyagalas-beaked-whale",
@@ -597,16 +633,22 @@
       "photo": "assets/img/species/deraniyagalas-beaked-whale.jpg",
       "photo_credit": null,
       "pod_size": "",
-      "length_m": "",
+      "length_m": "4.5–5.0",
       "weight_kg": "",
-      "diet": "",
-      "behaviour": [],
-      "maldives_distribution": "",
+      "diet": "Presumed deep-water squid and fish",
+      "behaviour": [
+        "One of the least-known cetaceans on Earth; very few confirmed at-sea sightings",
+        "Most records are from strandings, including specimens from the Indian Ocean"
+      ],
+      "maldives_distribution": "Indian Ocean distribution documented by strandings from Sri Lanka and the broader region; possible in Maldivian deep waters given its tropical Indian Ocean range",
       "best_months": [],
-      "best_months_note": "TODO: fill in",
-      "distinguishing_features": "",
-      "similar_species": [],
-      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size"]
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Extremely similar to Blainville's beaked whale; males have a pair of teeth positioned near the tip of the lower jaw (further forward than in Blainville's); overall dark colouration with paler ventral surface; only formally described as a distinct species in 2014 — definitive field identification at sea is extremely difficult",
+      "similar_species": [
+        "Blainville's beaked whale — arch in lower jaw more pronounced, teeth positioned at mid-jaw; nearly identical at sea",
+        "Cuvier's beaked whale — shorter beak, less arch in jaw, whitening on head with age"
+      ],
+      "unverified": ["iucn_status", "best_months", "maldives_distribution", "pod_size", "length_m"]
     }
   ]
 }
