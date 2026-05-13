@@ -366,11 +366,11 @@
           <!-- Photo -->
           <div class="aspect-[4/3] bg-[#d4c9b4] overflow-hidden relative">
             <img
-              src="${sp.photo || '/assets/species/_placeholder.svg'}"
+              src="${sp.photo || 'assets/species/_placeholder.svg'}"
               alt="${sp.common_name} (${sp.scientific_name})"
               class="w-full h-full object-cover"
               loading="lazy"
-              onerror="this.onerror=null;this.src='/assets/species/_placeholder.svg';"
+              onerror="this.onerror=null;this.src='assets/species/_placeholder.svg';"
             />
             ${sp.photo_credit ? `<span class="absolute bottom-1 right-1 text-[9px] text-white/90 bg-black/40 px-1.5 py-0.5 rounded leading-tight">${sp.photo_credit}</span>` : ''}
           </div>
@@ -448,11 +448,11 @@
             <figure class="rounded-lg overflow-hidden bg-[#d4c9b4]">
               <div class="aspect-[4/3]">
                 <img
-                  src="${sp.photo || '/assets/species/_placeholder.svg'}"
+                  src="${sp.photo || 'assets/species/_placeholder.svg'}"
                   alt="${sp.common_name} (${sp.scientific_name})"
                   class="w-full h-full object-cover"
                   loading="lazy"
-                  onerror="this.onerror=null;this.src='/assets/species/_placeholder.svg';"
+                  onerror="this.onerror=null;this.src='assets/species/_placeholder.svg';"
                 />
               </div>
               ${sp.photo_credit ? `<figcaption class="text-[10px] text-[#6b7a8d] px-2 py-1 bg-[#f5f0e8]">© ${sp.photo_credit}</figcaption>` : ''}
