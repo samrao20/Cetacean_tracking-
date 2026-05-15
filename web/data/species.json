@@ -1,0 +1,276 @@
+[
+  {
+    "slug": "spinner-dolphin",
+    "common": "Spinner Dolphin",
+    "scientific": "Stenella longirostris",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#FF6B9D",
+    "idFeatures": [
+      "Long, slender beak",
+      "Tripartite grey/white colouration",
+      "Adult males have forward-canted dorsal fin and post-anal keel",
+      "Signature aerial spinning leaps"
+    ],
+    "behaviour": "Highly social and acrobatic; frequently bow-rides and performs spinning leaps. Forages at depth at night on mesopelagic fish and squid, often gathering in large resting groups near shallow reefs during the day."
+  },
+  {
+    "slug": "indo-pacific-bottlenose-dolphin",
+    "common": "Indo-Pacific Bottlenose Dolphin",
+    "scientific": "Tursiops aduncus",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#FFD93D",
+    "idFeatures": [
+      "Shorter, more pointed rostrum than common bottlenose",
+      "Adults develop grey spots on pale belly",
+      "Smaller and more slender than T. truncatus",
+      "Strong reef association"
+    ],
+    "behaviour": "Typically found in small resident groups around reef slopes and lagoon channels. More inshore and reef-associated than the common bottlenose dolphin; frequently observed foraging in sandy shallows."
+  },
+  {
+    "slug": "common-bottlenose-dolphin",
+    "common": "Common Bottlenose Dolphin",
+    "scientific": "Tursiops truncatus",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#F4A261",
+    "idFeatures": [
+      "Robust, stocky build",
+      "Distinct short beak",
+      "Uniform grey colouration"
+    ],
+    "behaviour": "Highly adaptable; occurs in both inshore and offshore habitats."
+  },
+  {
+    "slug": "pantropical-spotted-dolphin",
+    "common": "Pantropical Spotted Dolphin",
+    "scientific": "Stenella attenuata",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#06D6A0",
+    "idFeatures": [
+      "Heavy spotting on adults",
+      "Slender build",
+      "White-tipped beak"
+    ],
+    "behaviour": "Often associates with tuna; large schools in offshore waters."
+  },
+  {
+    "slug": "striped-dolphin",
+    "common": "Striped Dolphin",
+    "scientific": "Stenella coeruleoalba",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#118AB2",
+    "idFeatures": [
+      "Bold dark lateral stripe from eye to tail",
+      "Blue-grey cape",
+      "White or pink belly"
+    ],
+    "behaviour": "Prefers deep offshore waters; fast and acrobatic."
+  },
+  {
+    "slug": "rissos-dolphin",
+    "common": "Risso's Dolphin",
+    "scientific": "Grampus griseus",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#9D8DF1",
+    "idFeatures": [
+      "Rounded melon with no distinct beak",
+      "Heavily scarred grey body",
+      "Tall falcate dorsal fin"
+    ],
+    "behaviour": "Specialist squid predator; older individuals become almost white from scarring."
+  },
+  {
+    "slug": "frasers-dolphin",
+    "common": "Fraser's Dolphin",
+    "scientific": "Lagenodelphis hosei",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#EF476F",
+    "idFeatures": [
+      "Stocky build with small flippers",
+      "Dark lateral band",
+      "Short beak"
+    ],
+    "behaviour": "Deep-water species; seen in large fast-moving schools."
+  },
+  {
+    "slug": "rough-toothed-dolphin",
+    "common": "Rough-toothed Dolphin",
+    "scientific": "Steno bredanensis",
+    "category": "dolphin",
+    "iucnStatus": "Least Concern",
+    "color": "#FFC43D",
+    "idFeatures": [
+      "Cone-shaped head blending into beak without crease",
+      "White lips and spotted flanks",
+      "Pinkish-white belly patches"
+    ],
+    "behaviour": "Slow, gliding surface behaviour; often seen with head above water."
+  },
+  {
+    "slug": "sperm-whale",
+    "common": "Sperm Whale",
+    "scientific": "Physeter macrocephalus",
+    "category": "whale",
+    "iucnStatus": "Vulnerable",
+    "color": "#6A4C93",
+    "idFeatures": [
+      "Enormous squared-off head (one-third of body length)",
+      "Wrinkled dark grey skin",
+      "S-shaped blowhole offset to left",
+      "Flukes raised on deep dive"
+    ],
+    "behaviour": "Deep-diving predator; dives to over 1000 m for giant squid. Social groups of females and young; older males are largely solitary."
+  },
+  {
+    "slug": "blue-whale",
+    "common": "Blue Whale",
+    "scientific": "Balaenoptera musculus",
+    "category": "whale",
+    "iucnStatus": "Endangered",
+    "color": "#1982C4",
+    "idFeatures": [
+      "Largest animal on Earth",
+      "Mottled blue-grey colouration",
+      "Small dorsal fin set far back",
+      "Broad flat rostrum"
+    ],
+    "behaviour": "Solitary or in pairs; filter-feeds on krill. Produces the loudest sounds of any animal."
+  },
+  {
+    "slug": "brydes-whale",
+    "common": "Bryde's Whale",
+    "scientific": "Balaenoptera edeni",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#8AC926",
+    "idFeatures": [
+      "Three prominent ridges on rostrum",
+      "Sleek grey body",
+      "Falcate dorsal fin"
+    ],
+    "behaviour": "Erratic, unpredictable surface behaviour; feeds on fish and krill."
+  },
+  {
+    "slug": "humpback-whale",
+    "common": "Humpback Whale",
+    "scientific": "Megaptera novaeangliae",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#5F0F40",
+    "idFeatures": [
+      "Very long white pectoral fins",
+      "Knobbly tubercles on head",
+      "Distinctive fluke pattern unique to each individual"
+    ],
+    "behaviour": "Known for complex songs and acrobatic breaching. Migrates between tropical breeding and polar feeding grounds."
+  },
+  {
+    "slug": "short-finned-pilot-whale",
+    "common": "Short-finned Pilot Whale",
+    "scientific": "Globicephala macrorhynchus",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#4A4E69",
+    "idFeatures": [
+      "Bulbous melon",
+      "Broad-based recurved dorsal fin",
+      "Jet black with grey saddle patch",
+      "Short, sickle-shaped pectoral fins"
+    ],
+    "behaviour": "Highly social; travels in tight matrilineal pods. Prone to mass strandings. Deep diver."
+  },
+  {
+    "slug": "false-killer-whale",
+    "common": "False Killer Whale",
+    "scientific": "Pseudorca crassidens",
+    "category": "whale",
+    "iucnStatus": "Near Threatened",
+    "color": "#22223B",
+    "idFeatures": [
+      "All-black slender body",
+      "Distinctive hump midway on leading edge of flipper",
+      "Long narrow head with overhanging snout"
+    ],
+    "behaviour": "Cooperative hunter; shares food. Fast and sometimes bow-rides. Can hybridise with bottlenose dolphins."
+  },
+  {
+    "slug": "melon-headed-whale",
+    "common": "Melon-headed Whale",
+    "scientific": "Peponocephala electra",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#C9ADA7",
+    "idFeatures": [
+      "Triangular pointed head",
+      "Dark grey with white lips",
+      "Cape pattern from forehead to flank"
+    ],
+    "behaviour": "Highly gregarious; schools of hundreds. Fast swimmer; frequently leaps clear of water."
+  },
+  {
+    "slug": "pygmy-killer-whale",
+    "common": "Pygmy Killer Whale",
+    "scientific": "Feresa attenuata",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#9A8C98",
+    "idFeatures": [
+      "Rounded head with no beak",
+      "White lips and belly patch",
+      "Dark grey body with lighter flanks"
+    ],
+    "behaviour": "Poorly known; observed in small groups. Can be aggressive in captivity."
+  },
+  {
+    "slug": "dwarf-sperm-whale",
+    "common": "Dwarf Sperm Whale",
+    "scientific": "Kogia sima",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#B07156",
+    "idFeatures": [
+      "Very small (2–2.7 m)",
+      "False gill marking behind eye",
+      "Underslung lower jaw",
+      "Sharklike appearance"
+    ],
+    "behaviour": "Inconspicuous; often floats motionless at surface. Releases a cloud of reddish-brown faecal matter when startled."
+  },
+  {
+    "slug": "cuviers-beaked-whale",
+    "common": "Cuvier's Beaked Whale",
+    "scientific": "Ziphius cavirostris",
+    "category": "whale",
+    "iucnStatus": "Least Concern",
+    "color": "#B5838D",
+    "idFeatures": [
+      "Short goose-beak rostrum",
+      "Pale head in older males",
+      "Oval white scars on body",
+      "Small falcate dorsal fin set far back"
+    ],
+    "behaviour": "World record deep diver (>2900 m). Rarely seen; surfaces briefly between long dives."
+  },
+  {
+    "slug": "killer-whale",
+    "common": "Killer Whale",
+    "scientific": "Orcinus orca",
+    "category": "whale",
+    "iucnStatus": "Data Deficient",
+    "color": "#000000",
+    "idFeatures": [
+      "Unmistakable black and white pattern",
+      "Tall erect dorsal fin (up to 1.8 m in males)",
+      "White eye patch",
+      "Grey saddle patch"
+    ],
+    "behaviour": "Apex predator with complex culture; different ecotypes specialise on different prey. Highly intelligent."
+  }
+]
