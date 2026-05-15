@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4/dist/maplibre-gl.css" />
@@ -24,9 +24,9 @@
       --rule:  #d4c9b4;
     }
 
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow: hidden; }
 
-    .site-nav a { transition: color 0.15s; }
+    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
     .site-nav a:hover,
     .site-nav a[aria-current="page"] { color: var(--coral); }
 
@@ -113,8 +113,9 @@
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#d4c9b4] bg-[#f5f0e8]/95 backdrop-blur-sm" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="font-['Fraunces'] text-lg font-semibold text-[#0a1628]">
-      Maldives Cetaceans
+    <a href="index.html" class="flex flex-col leading-none group">
+      <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0a1628] tracking-tight group-hover:text-[#c4614a] transition-colors">Koamas</span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#6b7a8d] mt-0.5">Maldives Cetacean Watch</span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1a2438]" role="list">
       <li><a href="index.html">Home</a></li>
@@ -122,7 +123,11 @@
       <li><a href="species.html">Species</a></li>
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="submit.html">Submit a sighting</a></li>
+      <li>
+        <a href="submit.html" class="px-4 py-1.5 rounded-full bg-[#c4614a] text-white hover:bg-[#b05540] transition-colors text-xs font-semibold">
+          Submit a sighting
+        </a>
+      </li>
     </ul>
     <button id="nav-toggle" class="md:hidden p-2 rounded text-[#0a1628]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
