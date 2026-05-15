@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koamas — Maldives Cetacean Tracker</title>
   <meta name="description" content="Track dolphin and whale sightings across the Maldives. Submit a sighting via WhatsApp and help build the first citizen-science cetacean database for the archipelago." />
+  <meta property="og:title" content="Koamas — Maldives Cetacean Tracker" />
+  <meta property="og:description" content="Citizen science cetacean tracking across the Maldives. Every sighting builds the record." />
+  <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -28,10 +31,29 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Outfit', sans-serif;
     }
 
-    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; }
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      text-wrap: balance;
+    }
+
+    /* ── Skip to content ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 999;
+      background: var(--coral);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
 
     /* ── Brand top bar ── */
     .brand-bar {
@@ -40,7 +62,7 @@
     }
 
     /* ── Nav ── */
-    .site-nav a { transition: color 0.15s; }
+    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
     .site-nav a:hover,
     .site-nav a[aria-current="page"] { color: var(--coral); }
 
@@ -61,24 +83,28 @@
       50%       { transform: translateY(8px); opacity: 1; }
     }
 
+    /* ── Buttons ── */
+    .btn-primary {
+      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 4px 14px rgba(196,97,74,0.3);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 20px rgba(196,97,74,0.4); }
+    .btn-primary:active { transform: scale(0.98) translateY(1px); box-shadow: 0 2px 8px rgba(196,97,74,0.25); }
+
+    .btn-ghost {
+      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-ghost:active { transform: scale(0.98) translateY(1px); }
+
     /* ── Cards ── */
     .sighting-card {
       background: #fff;
       border: 1px solid var(--rule);
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
     }
     .sighting-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(10,22,40,0.10);
-    }
-    .step-card {
-      background: #fff;
-      border: 1px solid var(--rule);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .step-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(10,22,40,0.12);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(10,22,40,0.10), 0 2px 6px rgba(10,22,40,0.06);
     }
 
     /* ── Species avatar ── */
@@ -89,10 +115,10 @@
       border: 2px solid var(--rule);
       background: var(--sand);
       flex-shrink: 0;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.2s;
     }
     .species-avatar:hover {
-      transform: scale(1.1);
+      transform: scale(1.12);
       border-color: var(--coral);
       box-shadow: 0 4px 16px rgba(196,97,74,0.25);
     }
@@ -114,6 +140,8 @@
   </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <!-- Brand bar -->
 <div class="brand-bar" aria-hidden="true"></div>
@@ -179,22 +207,22 @@
   <!-- Bottom fade -->
   <div class="absolute bottom-0 inset-x-0 z-[2] h-40 bg-gradient-to-t from-[#0a1628]/50 to-transparent pointer-events-none"></div>
 
-  <div class="relative z-[3] text-center px-6 max-w-3xl mx-auto">
+  <div class="relative z-[3] w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-20 text-center md:text-left">
     <p class="text-[#c4a882] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
       Koamas · Citizen Science
     </p>
-    <h1 class="font-['Fraunces'] text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+    <h1 class="font-['Fraunces'] text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-6 max-w-2xl">
       Every sighting<br />
       <em class="italic font-normal text-[#e8dcc8]">tells a story</em>
     </h1>
-    <p class="text-[#b8c8d8] text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto">
+    <p class="text-[#b8c8d8] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
       Help us map dolphins and whales across the Maldivian archipelago.
       One WhatsApp message builds the science.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
       <a
         href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
-        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540] transition-colors shadow-lg shadow-[#c4614a]/20"
+        class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540]"
         target="_blank" rel="noopener"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -204,7 +232,7 @@
       </a>
       <a
         href="map.html"
-        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
+        class="btn-ghost inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/40 text-white font-semibold text-sm hover:bg-white/10"
       >
         Explore the map
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -225,13 +253,13 @@
 <!-- ══════════════════════════════════════
      RECENT SIGHTINGS
 ══════════════════════════════════════ -->
-<section class="py-16 px-4" aria-labelledby="sightings-heading">
+<section id="main-content" class="py-16 px-4" aria-labelledby="sightings-heading">
   <div class="max-w-6xl mx-auto">
 
     <div class="flex items-end justify-between mb-8">
       <div>
         <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#c4614a] mb-2">Live data</p>
-        <h2 id="sightings-heading" class="text-2xl md:text-3xl font-semibold text-[#0a1628]">
+        <h2 id="sightings-heading" class="text-2xl md:text-3xl font-semibold text-[#0a1628] tracking-tight">
           Recent sightings
         </h2>
       </div>
@@ -272,23 +300,20 @@
       </p>
     </div>
 
-    <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 relative" role="list">
+    <ol class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8" role="list">
 
-      <!-- Connector line on desktop -->
-      <div class="hidden md:block absolute top-10 left-[calc(16.66%+24px)] right-[calc(16.66%+24px)] h-px bg-[#c4614a]/25 z-0"></div>
-
-      <li class="step-card rounded-xl p-6 relative z-10">
-        <div class="w-11 h-11 rounded-full bg-[#c4614a]/10 border border-[#c4614a]/30 flex items-center justify-center mb-5">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4614a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <li class="relative border-t border-[#1e3050] pt-8">
+        <span class="font-['Fraunces'] text-8xl font-bold text-white/[0.05] leading-none select-none absolute top-6 right-0" aria-hidden="true">1</span>
+        <div class="w-10 h-10 rounded-lg bg-[#c4614a]/12 border border-[#c4614a]/25 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4614a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
         </div>
-        <span class="absolute top-5 right-5 font-['Fraunces'] text-4xl font-bold text-[#d4c9b4]/15 leading-none select-none">1</span>
-        <h3 class="font-semibold text-[#0a1628] mb-2">Spot a cetacean</h3>
-        <p class="text-sm text-[#6b7a8d] leading-relaxed">
+        <h3 class="font-['Fraunces'] text-xl font-semibold text-white tracking-tight mb-3">Spot a cetacean</h3>
+        <p class="text-sm text-[#8fa3bb] leading-relaxed">
           See a dolphin or whale? Open WhatsApp and send a message to our bot with a photo, your location, and what you saw.
         </p>
-        <div class="mt-5 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
+        <div class="mt-6 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
@@ -296,18 +321,18 @@
         </div>
       </li>
 
-      <li class="step-card rounded-xl p-6 relative z-10">
-        <div class="w-11 h-11 rounded-full bg-[#c4614a]/10 border border-[#c4614a]/30 flex items-center justify-center mb-5">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4614a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <li class="relative border-t border-[#1e3050] pt-8">
+        <span class="font-['Fraunces'] text-8xl font-bold text-white/[0.05] leading-none select-none absolute top-6 right-0" aria-hidden="true">2</span>
+        <div class="w-10 h-10 rounded-lg bg-[#c4614a]/12 border border-[#c4614a]/25 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4614a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </div>
-        <span class="absolute top-5 right-5 font-['Fraunces'] text-4xl font-bold text-[#d4c9b4]/15 leading-none select-none">2</span>
-        <h3 class="font-semibold text-[#0a1628] mb-2">We verify</h3>
-        <p class="text-sm text-[#6b7a8d] leading-relaxed">
+        <h3 class="font-['Fraunces'] text-xl font-semibold text-white tracking-tight mb-3">We verify</h3>
+        <p class="text-sm text-[#8fa3bb] leading-relaxed">
           Our team reviews each report — checking species identification, location, and photo. Only verified sightings appear on the public map.
         </p>
-        <div class="mt-5 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
+        <div class="mt-6 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
@@ -315,18 +340,18 @@
         </div>
       </li>
 
-      <li class="step-card rounded-xl p-6 relative z-10">
-        <div class="w-11 h-11 rounded-full bg-[#c4614a]/10 border border-[#c4614a]/30 flex items-center justify-center mb-5">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4614a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <li class="relative border-t border-[#1e3050] pt-8">
+        <span class="font-['Fraunces'] text-8xl font-bold text-white/[0.05] leading-none select-none absolute top-6 right-0" aria-hidden="true">3</span>
+        <div class="w-10 h-10 rounded-lg bg-[#c4614a]/12 border border-[#c4614a]/25 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4614a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
         </div>
-        <span class="absolute top-5 right-5 font-['Fraunces'] text-4xl font-bold text-[#d4c9b4]/15 leading-none select-none">3</span>
-        <h3 class="font-semibold text-[#0a1628] mb-2">Science grows</h3>
-        <p class="text-sm text-[#6b7a8d] leading-relaxed">
+        <h3 class="font-['Fraunces'] text-xl font-semibold text-white tracking-tight mb-3">Science grows</h3>
+        <p class="text-sm text-[#8fa3bb] leading-relaxed">
           Your sighting joins the map, the dashboard, and the long-term record — helping researchers understand cetacean distribution across the atolls.
         </p>
-        <div class="mt-5 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
+        <div class="mt-6 inline-flex items-center gap-1.5 text-xs text-[#c4614a] font-medium">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
           </svg>
@@ -389,7 +414,7 @@
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
         href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
-        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540] transition-colors"
+        class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540]"
         target="_blank" rel="noopener"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -399,7 +424,7 @@
       </a>
       <a
         href="about.html"
-        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
+        class="btn-ghost inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10"
       >
         About Koamas →
       </a>

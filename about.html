@@ -8,9 +8,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --navy:  #0a1628;
+      --sand:  #e8dcc8;
+      --coral: #c4614a;
+      --bg:    #f5f0e8;
+      --text:  #1a2438;
+      --muted: #6b7a8d;
+      --rule:  #d4c9b4;
+    }
 
   <style>
     :root {
@@ -28,10 +39,13 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Outfit', sans-serif;
     }
 
-    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; }
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      text-wrap: balance;
+    }
 
     /* ── Brand top bar ── */
     .brand-bar {
@@ -40,7 +54,7 @@
     }
 
     /* ── Nav ── */
-    .site-nav a { transition: color 0.15s; }
+    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
     .site-nav a:hover,
     .site-nav a[aria-current="page"] { color: var(--coral); }
 
@@ -49,8 +63,22 @@
       color: var(--text);
       line-height: 1.75;
       margin-bottom: 1rem;
+      max-width: 65ch;
     }
     .prose p:last-child { margin-bottom: 0; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 4px 14px rgba(196,97,74,0.3);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 20px rgba(196,97,74,0.4); }
+    .btn-primary:active { transform: scale(0.98) translateY(1px); }
+
+    .btn-ghost {
+      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-ghost:active { transform: scale(0.98) translateY(1px); }
   </style>
 </head>
 <body>
@@ -105,7 +133,7 @@
 <header class="bg-[#0a1628] text-white border-b border-[#1e3050]">
   <div class="max-w-3xl mx-auto px-4 py-12 md:py-16">
     <p class="text-[#c4614a] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Koamas</p>
-    <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">About the project</h1>
+    <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-4">About the project</h1>
     <p class="text-[#8fa3bb] text-base md:text-lg leading-relaxed max-w-xl">
       A citizen science initiative building the first long-term record of cetacean sightings across the Maldivian archipelago.
     </p>
@@ -210,51 +238,52 @@
       was developed by James, building on his cetacean research and fieldwork in the region.
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
 
       <!-- James -->
-      <article class="bg-white border border-[#d4c9b4] rounded-xl p-6">
-        <div class="w-14 h-14 rounded-full bg-[#e8dcc8] flex items-center justify-center mb-4" aria-hidden="true">
-          <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0a1628]">J</span>
+      <article class="group">
+        <div class="border-l-2 border-[#c4614a] pl-5 py-1">
+          <div class="w-12 h-12 rounded-full bg-[#e8dcc8] flex items-center justify-center mb-3" aria-hidden="true">
+            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0a1628]">J</span>
+          </div>
+          <h3 class="text-base font-bold text-[#0a1628] mb-0.5">James</h3>
+          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#c4614a] mb-3">Cetacean Biologist &amp; Founder</p>
+          <p class="text-sm text-[#6b7a8d] leading-relaxed">
+            A cetacean marine biologist and professional underwater photographer based in the Maldives.
+            Field experience across the Great Barrier Reef and the Crown-of-Thorns Starfish programme.
+            Closely involved in the Maldives Dolphin ID Project.
+          </p>
         </div>
-        <h3 class="text-base font-bold text-[#0a1628] mb-0.5">James</h3>
-        <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#c4614a] mb-4">Cetacean Biologist &amp; Founder</p>
-        <p class="text-sm text-[#6b7a8d] leading-relaxed">
-          A cetacean marine biologist and professional underwater photographer based in the Maldives.
-          Field experience across the Great Barrier Reef and the Crown-of-Thorns Starfish programme.
-          Closely involved in the Maldives Dolphin ID Project, with a focus on cetacean research and
-          marine conservation.
-        </p>
       </article>
 
       <!-- Samay -->
-      <article class="bg-white border border-[#d4c9b4] rounded-xl p-6">
-        <div class="w-14 h-14 rounded-full bg-[#e8dcc8] flex items-center justify-center mb-4" aria-hidden="true">
-          <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0a1628]">S</span>
+      <article class="group">
+        <div class="border-l-2 border-[#c4614a] pl-5 py-1">
+          <div class="w-12 h-12 rounded-full bg-[#e8dcc8] flex items-center justify-center mb-3" aria-hidden="true">
+            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0a1628]">S</span>
+          </div>
+          <h3 class="text-base font-bold text-[#0a1628] mb-0.5">Samay</h3>
+          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#c4614a] mb-3">Technical Lead</p>
+          <p class="text-sm text-[#6b7a8d] leading-relaxed">
+            Originally from Mumbai, Samay completed a Master's degree at James Cook University. His interest
+            in cetaceans developed during a placement in the Maldives. He leads the technical development of Koamas.
+          </p>
         </div>
-        <h3 class="text-base font-bold text-[#0a1628] mb-0.5">Samay</h3>
-        <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#c4614a] mb-4">Technical Lead</p>
-        <p class="text-sm text-[#6b7a8d] leading-relaxed">
-          Originally from Mumbai, Samay completed a Master's degree at James Cook University. His interest
-          in cetaceans developed during a professional placement in the Maldives. He leads the technical
-          development of Koamas, focusing on how sightings data is structured, processed, and used for
-          long-term analysis.
-        </p>
       </article>
 
       <!-- Jacob -->
-      <article class="bg-white border border-[#d4c9b4] rounded-xl p-6">
-        <div class="w-14 h-14 rounded-full bg-[#e8dcc8] flex items-center justify-center mb-4" aria-hidden="true">
-          <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0a1628]">J</span>
+      <article class="group">
+        <div class="border-l-2 border-[#c4614a] pl-5 py-1">
+          <div class="w-12 h-12 rounded-full bg-[#e8dcc8] flex items-center justify-center mb-3" aria-hidden="true">
+            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0a1628]">J</span>
+          </div>
+          <h3 class="text-base font-bold text-[#0a1628] mb-0.5">Jacob</h3>
+          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#c4614a] mb-3">Data &amp; Research</p>
+          <p class="text-sm text-[#6b7a8d] leading-relaxed">
+            From the United States, Jacob completed his Master's at James Cook University. He supports Koamas
+            through data management, ensuring sighting records are accurately maintained and usable for research.
+          </p>
         </div>
-        <h3 class="text-base font-bold text-[#0a1628] mb-0.5">Jacob</h3>
-        <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#c4614a] mb-4">Data &amp; Research</p>
-        <p class="text-sm text-[#6b7a8d] leading-relaxed">
-          From the United States, Jacob also completed his Master's at James Cook University. He supports
-          Koamas through data management and organisation, ensuring sightings records are accurately
-          maintained and usable for research. His wider focus is on coral reef ecosystems and how habitat
-          health connects to marine biodiversity.
-        </p>
       </article>
 
     </div>
@@ -329,7 +358,7 @@
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
         href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
-        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540] transition-colors"
+        class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#c4614a] text-white font-semibold text-sm hover:bg-[#b05540]"
         target="_blank" rel="noopener"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -339,7 +368,7 @@
       </a>
       <a
         href="submit.html"
-        class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
+        class="btn-ghost inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10"
       >
         How to submit →
       </a>

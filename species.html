@@ -7,7 +7,7 @@
   <meta name="description" content="Field guide to dolphins and whales recorded in Maldivian waters, with identification tips, ecology, and sighting data." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
@@ -25,10 +25,13 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Outfit', sans-serif;
     }
 
-    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; }
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      text-wrap: balance;
+    }
 
     /* ── Brand top bar ── */
     .brand-bar {
@@ -45,7 +48,7 @@
     .iucn-DD { background: #6b7280; color: #fff; }
 
     /* ── Nav ── */
-    .site-nav a { transition: color 0.15s; }
+    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
     .site-nav a:hover,
     .site-nav a[aria-current="page"] { color: var(--coral); }
 
@@ -53,12 +56,15 @@
     .species-card {
       background: #fff;
       border: 1px solid var(--rule);
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
       cursor: pointer;
     }
     .species-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(10,22,40,0.10);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(10,22,40,0.10), 0 2px 6px rgba(10,22,40,0.06);
+    }
+    .species-card:active {
+      transform: translateY(-1px) scale(0.99);
     }
     .species-card:focus-visible {
       outline: 2px solid var(--coral);
