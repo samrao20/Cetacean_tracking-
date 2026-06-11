@@ -12,23 +12,12 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
 
   <style>
-    :root {
-      --navy:  #0b3d33;
-      --sand:  #e3e9ea;
-      --coral: #059669;
-      --bg:    #f7fafa;
-      --text:  #1e2d2a;
-      --muted: #64747c;
-      --rule:  #d9e2e4;
-    }
-
-    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow: hidden; }
-
-    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
-    .site-nav a:hover,
-    .site-nav a[aria-current="page"] { color: var(--coral); }
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
+    body { overflow: hidden; }
 
     /* Map fills everything below the 3.5rem nav */
     #map-wrapper {
@@ -106,57 +95,10 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Tropical interactivity ── */
-    :root { --green: #059669; --lagoon: #5fc7d4; }
-
-    .site-nav ul a:not(.rounded-full) { position: relative; }
-    .site-nav ul a:not(.rounded-full)::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 2px;
-      border-radius: 1px;
-      background: linear-gradient(90deg, var(--green), var(--lagoon));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav ul a:not(.rounded-full):hover::after,
-    .site-nav ul a[aria-current="page"]:not(.rounded-full)::after { transform: scaleX(1); }
-
-    .nav-ico {
-      display: inline-block;
-      width: 0; opacity: 0;
-      margin-right: 0;
-      vertical-align: -2px;
-      color: var(--green);
-      transform: translateY(3px) scale(0.5);
-      transition: width 0.25s cubic-bezier(0.16,1,0.3,1), margin 0.25s cubic-bezier(0.16,1,0.3,1),
-                  opacity 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav a:hover .nav-ico,
-    .site-nav a[aria-current="page"] .nav-ico { width: 13px; opacity: 1; margin-right: 5px; transform: none; }
-    .site-nav a:hover .nav-ico-map { animation: pinBob 0.5s ease 0.15s; }
-    @keyframes pinBob {
-      0%, 100% { transform: none; }
-      40% { transform: translateY(-3px); }
-      70% { transform: translateY(1px); }
-    }
-    .nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
-    .site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s cubic-bezier(0.16,1,0.3,1) backwards; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
-    @keyframes barRise { from { transform: scaleY(0.2); } }
-
-    .site-nav a.rounded-full { transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-    .site-nav a.rounded-full:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5,150,105,0.3); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+    /* ── Result counter pop ── */
+    #result-count.pop { animation: countPop 0.35s var(--ease); }
+    @keyframes countPop {
+      50% { transform: scale(1.2); color: #5fc7d4; }
     }
   </style>
 </head>
@@ -166,8 +108,11 @@
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]/95 backdrop-blur-sm" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex flex-col leading-none group">
-      <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0b3d33] tracking-tight group-hover:text-[#059669] transition-colors">Koamas</span>
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a]" role="list">
@@ -177,7 +122,7 @@
       <li><a href="dashboard.html"><svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg>Dashboard</a></li>
       <li><a href="about.html">About</a></li>
       <li>
-        <a href="submit.html" class="px-4 py-1.5 rounded-full bg-[#059669] text-white hover:bg-[#047857] transition-colors text-xs font-semibold">
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
@@ -227,23 +172,25 @@
       <input type="date" id="date-from" class="f-ctrl" title="From date" />
       <input type="date" id="date-to"   class="f-ctrl" title="To date"   />
       <button id="heatmap-btn" class="f-ctrl" style="font-weight:500;">Heatmap</button>
+      <span id="result-count" style="display:inline-block;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.6);font-family:'Outfit',sans-serif;padding:0.28rem 0.35rem;white-space:nowrap;" aria-live="polite"></span>
       <button id="clear-btn"   style="display:none;background:none;border:none;color:rgba(255,255,255,0.45);font-size:0.7rem;font-family:'Inter',sans-serif;cursor:pointer;padding:0.28rem 0.5rem;border-radius:0.4rem;transition:color 0.15s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Clear</button>
     </div>
   </div>
 
   <!-- Empty state -->
   <div id="empty-state" style="display:none;position:absolute;inset:0;z-index:5;align-items:center;justify-content:center;pointer-events:none;">
-    <div style="background:rgba(255,255,255,0.93);backdrop-filter:blur(8px);border-radius:0.75rem;padding:1.25rem 2rem;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.1);">
-      <p style="font-family:'Fraunces',serif;font-size:1.05rem;color:#0b3d33;margin-bottom:0.2rem;">No sightings match your filters</p>
-      <p style="font-size:0.78rem;color:#64747c;">Try adjusting or clearing the filters above</p>
+    <div style="background:rgba(8,46,39,0.88);backdrop-filter:blur(10px);border:1px solid rgba(95,199,212,0.22);border-radius:0.85rem;padding:1.4rem 2.2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+      <span class="sonar-dot" style="margin-bottom:0.7rem;" aria-hidden="true"></span>
+      <p style="font-family:'Fraunces',serif;font-size:1.05rem;color:#fff;margin-bottom:0.2rem;">No sightings match your filters</p>
+      <p style="font-size:0.78rem;color:#a3bdb6;">Try adjusting or clearing the filters above</p>
     </div>
   </div>
 
   <!-- Error state -->
   <div id="error-state" style="display:none;position:absolute;inset:0;z-index:5;align-items:center;justify-content:center;pointer-events:none;">
-    <div style="background:rgba(255,255,255,0.93);backdrop-filter:blur(8px);border-radius:0.75rem;padding:1.25rem 2rem;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.1);pointer-events:auto;">
-      <p style="font-family:'Fraunces',serif;font-size:1.05rem;color:#0b3d33;margin-bottom:0.2rem;">Could not load sightings</p>
-      <p id="error-msg" style="font-size:0.78rem;color:#64747c;"></p>
+    <div style="background:rgba(8,46,39,0.88);backdrop-filter:blur(10px);border:1px solid rgba(95,199,212,0.22);border-radius:0.85rem;padding:1.4rem 2.2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.35);pointer-events:auto;">
+      <p style="font-family:'Fraunces',serif;font-size:1.05rem;color:#fff;margin-bottom:0.2rem;">Could not load sightings</p>
+      <p id="error-msg" style="font-size:0.78rem;color:#a3bdb6;"></p>
     </div>
   </div>
 
@@ -307,10 +254,23 @@
   // Constants
   // ─────────────────────────────────────────────────────────────────────────
   const MAPTILER_KEY = 'GMdyZmw23vuGhFSwySuP';
-  const MAP_STYLE    = 'https://api.maptiler.com/maps/ocean/style.json?key=' + MAPTILER_KEY;
+  // Immersive dark basemap, falling back to the original ocean style if
+  // the API key does not permit it (presentation only — same data).
+  const MAP_STYLE_DARK = 'https://api.maptiler.com/maps/dataviz-dark/style.json?key=' + MAPTILER_KEY;
+  const MAP_STYLE      = 'https://api.maptiler.com/maps/ocean/style.json?key=' + MAPTILER_KEY;
   const CENTER       = [73.2207, 3.2028];
   const ZOOM         = 6;
+  const INTRO_ZOOM   = 3.4;  // intro "dive" starting zoom
   const ROUND        = 0.05; // coordinate privacy rounding (~5 km)
+  const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  async function resolveStyle() {
+    try {
+      var r = await fetch(MAP_STYLE_DARK);
+      if (r.ok) return MAP_STYLE_DARK;
+    } catch (_) {}
+    return MAP_STYLE;
+  }
 
   const SPECIES_COLORS = {
     'spinner-dolphin':                 '#FF6B9D',
@@ -456,6 +416,35 @@
     map.getSource('sightings').setData(toGeoJSON(f));
     document.getElementById('empty-state').style.display = f.length === 0 ? 'flex' : 'none';
     document.getElementById('clear-btn').style.display   = anyFilter()    ? ''      : 'none';
+    updateCounter(f.length);
+    frameSightings(f);
+  }
+
+  // Animated result counter in the filter bar (visual only)
+  function updateCounter(n) {
+    var rc = document.getElementById('result-count');
+    if (!rc) return;
+    rc.textContent = n + ' shown';
+    rc.classList.remove('pop');
+    void rc.offsetWidth;
+    rc.classList.add('pop');
+  }
+
+  // Glide the camera to frame the filtered sightings (visual only)
+  function frameSightings(f) {
+    if (!f.length || !anyFilter() || REDUCE_MOTION) return;
+    var minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
+    f.forEach(function (s) {
+      var la = +s.lat, ln = +s.lng;
+      if (la < minLat) minLat = la;
+      if (la > maxLat) maxLat = la;
+      if (ln < minLng) minLng = ln;
+      if (ln > maxLng) maxLng = ln;
+    });
+    map.fitBounds(
+      [[minLng - 0.25, minLat - 0.25], [maxLng + 0.25, maxLat + 0.25]],
+      { duration: 1100, maxZoom: 9, padding: 60 }
+    );
   }
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -524,6 +513,8 @@
     btn.style.color      = heatmap ? 'white'   : '';
     if (map && map.isStyleLoaded()) {
       map.setLayoutProperty('sightings-circles', 'visibility', heatmap ? 'none'    : 'visible');
+      if (map.getLayer('sightings-pulse'))
+        map.setLayoutProperty('sightings-pulse', 'visibility', heatmap ? 'none'    : 'visible');
       map.setLayoutProperty('sightings-heat',    'visibility', heatmap ? 'visible' : 'none');
     }
     applyFilters();
@@ -544,6 +535,8 @@
     hb.style.background = ''; hb.style.color = '';
     if (map && map.isStyleLoaded()) {
       map.setLayoutProperty('sightings-circles', 'visibility', 'visible');
+      if (map.getLayer('sightings-pulse'))
+        map.setLayoutProperty('sightings-pulse', 'visibility', 'visible');
       map.setLayoutProperty('sightings-heat',    'visibility', 'none');
     }
     applyFilters();
@@ -557,7 +550,10 @@
 
     document.getElementById('p-common').textContent      = p.speciesCommon    || '';
     document.getElementById('p-scientific').textContent  = p.speciesScientific || '';
-    document.getElementById('p-photo').style.background  = color;
+    // Species photo over the colour band; falls back to the colour if the image is missing
+    document.getElementById('p-photo').style.background =
+      'linear-gradient(rgba(8,46,39,0.30), rgba(8,46,39,0.55)), ' +
+      'url("assets/img/species/' + (p.species || '') + '.jpg") center/cover, ' + color;
     document.getElementById('p-photo-label').textContent = p.speciesCommon    || '';
 
     var cta = document.getElementById('p-cta');
@@ -596,18 +592,30 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Map
   // ─────────────────────────────────────────────────────────────────────────
-  function initMap() {
+  function initMap(styleURL) {
     map = new maplibregl.Map({
       container: 'map',
-      style:     MAP_STYLE,
+      style:     styleURL,
       center:    CENTER,
-      zoom:      ZOOM,
+      zoom:      REDUCE_MOTION ? ZOOM : INTRO_ZOOM,
     });
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
 
     map.on('load', function () {
       map.addSource('sightings', { type: 'geojson', data: toGeoJSON(allSightings) });
+
+      // Sonar pulse halo beneath the markers (animated, visual only)
+      map.addLayer({
+        id:     'sightings-pulse',
+        type:   'circle',
+        source: 'sightings',
+        paint: {
+          'circle-color':   colorExpr(),
+          'circle-radius':  6,
+          'circle-opacity': 0.35,
+        },
+      });
 
       // Circle layer
       map.addLayer({
@@ -623,7 +631,7 @@
         },
       });
 
-      // Heatmap layer (hidden by default)
+      // Heatmap layer (hidden by default) — lagoon→white thermal ramp
       map.addLayer({
         id:     'sightings-heat',
         type:   'heatmap',
@@ -634,17 +642,23 @@
           'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
           'heatmap-color': [
             'interpolate', ['linear'], ['heatmap-density'],
-            0,   'rgba(33,102,172,0)',
-            0.2, '#67a9cf',
-            0.4, '#d1e5f0',
-            0.6, '#fddbc7',
-            0.8, '#ef8a62',
-            1,   '#b2182b',
+            0,    'rgba(11,61,51,0)',
+            0.25, 'rgba(5,150,105,0.55)',
+            0.5,  '#5fc7d4',
+            0.75, '#8fd6cb',
+            1,    '#ffffff',
           ],
           'heatmap-radius':  ['interpolate', ['linear'], ['zoom'], 0, 20, 9, 40],
           'heatmap-opacity': 0.8,
         },
       });
+
+      // Intro dive into the archipelago
+      if (!REDUCE_MOTION) {
+        map.flyTo({ center: CENTER, zoom: ZOOM, duration: 2800, essential: false });
+        startPulse();
+      }
+      updateCounter(allSightings.length);
 
       // Click → open side panel
       map.on('click', 'sightings-circles', function (e) {
@@ -661,8 +675,11 @@
         activePopup = new maplibregl.Popup({ closeButton: false, offset: 12 })
           .setLngLat(e.lngLat)
           .setHTML(
-            '<div style="font-weight:500;color:#0b3d33;font-size:0.8rem;">' + (p.speciesCommon || '') + '</div>' +
-            '<div style="color:#64747c;font-size:0.7rem;margin-top:0.1rem;">' + ((p.date || '').slice(0, 10)) + '</div>'
+            '<div style="display:flex;align-items:center;gap:0.4rem;font-weight:600;color:#0b3d33;font-size:0.8rem;">' +
+              '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>' +
+              (p.speciesCommon || '') +
+            '</div>' +
+            '<div style="color:#64747c;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll : '') + '</div>'
           )
           .addTo(map);
       });
@@ -676,14 +693,21 @@
     });
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // Nav toggle
-  // ─────────────────────────────────────────────────────────────────────────
-  document.getElementById('nav-toggle').addEventListener('click', function () {
-    var menu = document.getElementById('mobile-menu');
-    var open = menu.classList.toggle('hidden') === false;
-    this.setAttribute('aria-expanded', open);
-  });
+  // Animate the pulse halo radius/opacity in a slow sonar rhythm
+  function startPulse() {
+    var t0 = performance.now();
+    function tick(now) {
+      if (map && map.isStyleLoaded() && map.getLayer('sightings-pulse')) {
+        var k = ((now - t0) % 2600) / 2600;
+        map.setPaintProperty('sightings-pulse', 'circle-radius', 6 + k * 16);
+        map.setPaintProperty('sightings-pulse', 'circle-opacity', 0.38 * (1 - k));
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Mobile nav toggle is handled by the shared assets/koamas.js.
 
   // ─────────────────────────────────────────────────────────────────────────
   // Bootstrap
@@ -692,7 +716,7 @@
     try {
       allSightings = await loadSightings();
       buildFilterBar();
-      initMap();
+      initMap(await resolveStyle());
     } catch (err) {
       document.getElementById('loading').style.display = 'none';
       var es = document.getElementById('error-state');
