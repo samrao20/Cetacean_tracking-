@@ -52,7 +52,7 @@ There is also an unfinished Next.js app under `web/` that is not deployed. Do no
 ├── about.html          # Built — "What does Koamas mean?", methodology, privacy
 ├── map.html            # Built — full-screen MapLibre map with filter sidebar
 ├── dashboard.html      # Built — stats cards + Chart.js visualisations
-├── submit.html         # Planned — how-to guide + WhatsApp link + QR placeholder
+├── submit.html         # Built — how-to guide + WhatsApp link + QR placeholder
 ├── species.json        # Static species data (edit by hand — see schema below)
 └── assets/
     ├── img/species/    # Species photos (.jpg) used by index.html and map.html
