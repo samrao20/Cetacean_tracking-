@@ -11,41 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
 
   <style>
-    :root {
-      --navy:  #0b3d33;
-      --sand:  #e3e9ea;
-      --coral: #059669;
-      --bg:    #f7fafa;
-      --text:  #1e2d2a;
-      --muted: #64747c;
-      --rule:  #d9e2e4;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Fraunces', Georgia, serif;
-      text-wrap: balance;
-    }
-
-    /* ── Brand top bar ── */
-    .brand-bar {
-      height: 3px;
-      background: linear-gradient(90deg, #065f46 0%, var(--coral) 40%, #5fc7d4 70%, var(--coral) 100%);
-    }
-
-    /* ── Nav ── */
-    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
-    .site-nav a:hover,
-    .site-nav a[aria-current="page"] { color: var(--coral); }
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
 
     /* ── Prose body text ── */
     .prose p {
@@ -56,79 +26,11 @@
     }
     .prose p:last-child { margin-bottom: 0; }
 
-    /* ── Buttons ── */
-    .btn-primary {
-      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
-      box-shadow: 0 4px 14px rgba(5,150,105,0.3);
-    }
-    .btn-primary:hover { box-shadow: 0 6px 20px rgba(5,150,105,0.4); }
-    .btn-primary:active { transform: scale(0.98) translateY(1px); }
-
-    .btn-ghost {
-      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
-    }
-    .btn-ghost:active { transform: scale(0.98) translateY(1px); }
-
-    /* ── Tropical interactivity ── */
-    :root { --green: #059669; --lagoon: #5fc7d4; }
-
-    .site-nav ul a:not(.rounded-full) { position: relative; }
-    .site-nav ul a:not(.rounded-full)::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 2px;
-      border-radius: 1px;
-      background: linear-gradient(90deg, var(--green), var(--lagoon));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav ul a:not(.rounded-full):hover::after,
-    .site-nav ul a[aria-current="page"]:not(.rounded-full)::after { transform: scaleX(1); }
-
-    .nav-ico {
-      display: inline-block;
-      width: 0; opacity: 0;
-      margin-right: 0;
-      vertical-align: -2px;
-      color: var(--green);
-      transform: translateY(3px) scale(0.5);
-      transition: width 0.25s cubic-bezier(0.16,1,0.3,1), margin 0.25s cubic-bezier(0.16,1,0.3,1),
-                  opacity 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav a:hover .nav-ico,
-    .site-nav a[aria-current="page"] .nav-ico { width: 13px; opacity: 1; margin-right: 5px; transform: none; }
-    .site-nav a:hover .nav-ico-map { animation: pinBob 0.5s ease 0.15s; }
-    @keyframes pinBob {
-      0%, 100% { transform: none; }
-      40% { transform: translateY(-3px); }
-      70% { transform: translateY(1px); }
-    }
-    .nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
-    .site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s cubic-bezier(0.16,1,0.3,1) backwards; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
-    @keyframes barRise { from { transform: scaleY(0.2); } }
-
-    .site-nav a.rounded-full { transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-    .site-nav a.rounded-full:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5,150,105,0.3); }
-
-    .btn-primary:hover { transform: translateY(-2px); }
-    .btn-ghost:hover { transform: translateY(-2px); }
-
+    /* ── Team cards ── */
     .team-card > div {
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), border-color 0.25s;
+      transition: transform 0.25s var(--ease), border-color 0.25s;
     }
     .team-card:hover > div { transform: translateX(4px); border-color: var(--lagoon); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -141,8 +43,11 @@
 ══════════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]/95 backdrop-blur-sm" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex flex-col leading-none group">
-      <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0b3d33] tracking-tight group-hover:text-[#059669] transition-colors">Koamas</span>
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a] items-center" role="list">
@@ -152,7 +57,7 @@
       <li><a href="dashboard.html"><svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg>Dashboard</a></li>
       <li><a href="about.html" aria-current="page">About</a></li>
       <li>
-        <a href="submit.html" class="px-4 py-1.5 rounded-full bg-[#059669] text-white hover:bg-[#047857] transition-colors text-xs font-semibold">
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
@@ -180,15 +85,24 @@
 <!-- ══════════════════════════════════════
      PAGE HEADER
 ══════════════════════════════════════ -->
-<header class="bg-[#0b3d33] text-white border-b border-[#1d4f43]">
-  <div class="max-w-3xl mx-auto px-4 py-12 md:py-16">
-    <p class="text-[#059669] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Koamas</p>
-    <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-4">About the project</h1>
+<header class="dive-band text-white">
+  <div class="sonar-rings absolute -right-20 -top-24 opacity-60 hidden md:block" aria-hidden="true">
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
+      <circle cx="210" cy="210" r="76"  stroke="rgba(95,199,212,0.28)"/>
+      <circle cx="210" cy="210" r="142" stroke="rgba(95,199,212,0.16)"/>
+      <circle cx="210" cy="210" r="206" stroke="rgba(95,199,212,0.08)"/>
+    </svg>
+    <div class="sonar-sweep"></div>
+  </div>
+  <div class="max-w-3xl mx-auto px-4 py-14 md:py-20">
+    <p class="kicker text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas</p>
+    <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-5">About the project</h1>
     <p class="text-[#a3bdb6] text-base md:text-lg leading-relaxed max-w-xl">
       A citizen science initiative building the first long-term record of cetacean sightings across the Maldivian archipelago.
     </p>
   </div>
 </header>
+<div class="wave-divider flip bg-[#f7fafa]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
 
 <!-- ══════════════════════════════════════
      MAIN CONTENT
@@ -203,7 +117,7 @@
       <div class="h-px flex-1 bg-[#d9e2e4]"></div>
     </div>
 
-    <div class="bg-[#0b3d33] rounded-2xl px-8 py-10 text-center mb-8">
+    <div class="dive-band rounded-2xl px-8 py-12 text-center mb-8 shadow-[0_18px_44px_rgba(11,61,51,0.18)]">
       <p class="text-[#a3bdb6] text-xs font-semibold tracking-[0.2em] uppercase mb-3">ދިވެހި</p>
       <p class="font-['Fraunces'] text-5xl md:text-6xl italic font-semibold text-white mb-4 tracking-tight">Koamas</p>
       <p class="text-[#8fd6cb] text-lg font-medium">
@@ -396,7 +310,7 @@
   </section>
 
   <!-- ── Get involved ── -->
-  <section aria-labelledby="involved-heading" class="bg-[#0b3d33] rounded-2xl p-8 md:p-10 text-center">
+  <section aria-labelledby="involved-heading" class="dive-band rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,61,51,0.18)]">
     <p class="text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Get involved</p>
     <h2 id="involved-heading" class="font-['Fraunces'] text-2xl md:text-3xl font-semibold text-white mb-4">
       Every sighting counts
@@ -448,14 +362,7 @@
   </div>
 </footer>
 
-<script>
-  const toggle = document.getElementById('nav-toggle');
-  const menu   = document.getElementById('mobile-menu');
-  toggle.addEventListener('click', () => {
-    const open = menu.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', open);
-  });
-</script>
+<!-- Mobile nav toggle is handled by the shared assets/koamas.js -->
 
 </body>
 </html>
