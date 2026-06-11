@@ -146,16 +146,25 @@
   <div id="grid-view">
 
     <!-- Page header -->
-    <header class="border-b border-[#1d4f43] bg-[#0b3d33] text-white">
-      <div class="max-w-6xl mx-auto px-4 py-10 md:py-14">
-        <p class="text-[#059669] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Koamas · Field Guide</p>
-        <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-3">Cetaceans of the Maldives</h1>
+    <header class="dive-band text-white">
+      <div class="sonar-rings absolute -right-20 -top-24 opacity-60 hidden md:block" aria-hidden="true">
+        <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
+          <circle cx="210" cy="210" r="76"  stroke="rgba(95,199,212,0.28)"/>
+          <circle cx="210" cy="210" r="142" stroke="rgba(95,199,212,0.16)"/>
+          <circle cx="210" cy="210" r="206" stroke="rgba(95,199,212,0.08)"/>
+        </svg>
+        <div class="sonar-sweep"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 py-12 md:py-18">
+        <p class="kicker text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas · Field Guide</p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-4">Cetaceans of the Maldives</h1>
         <p class="text-[#a3bdb6] text-base md:text-lg max-w-2xl">
           Twenty-two species of dolphins and whales recorded in Maldivian waters — from the resident spinner
           dolphin to blue whales feeding in the southern atolls.
         </p>
       </div>
     </header>
+    <div class="wave-divider flip bg-[#f7fafa]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
 
     <!-- Filter + search bar -->
     <section class="sticky top-14 z-30 bg-[#f7fafa]/95 backdrop-blur-sm border-b border-[#d9e2e4]" aria-label="Filter species">
