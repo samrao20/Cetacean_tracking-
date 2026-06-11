@@ -14,61 +14,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
 
   <style>
-    :root {
-      --navy:  #0b3d33;
-      --sand:  #e3e9ea;
-      --coral: #059669;
-      --bg:    #f7fafa;
-      --text:  #1e2d2a;
-      --muted: #64747c;
-      --rule:  #d9e2e4;
-    }
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
 
-    html { scroll-behavior: smooth; }
-
+    /* Dark instrument page */
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
+      background:
+        radial-gradient(80% 50% at 85% 0%, rgba(95,199,212,0.06), transparent 60%),
+        radial-gradient(60% 45% at 8% 100%, rgba(5,150,105,0.08), transparent 60%),
+        linear-gradient(180deg, #0b3d33 0%, #093229 50%, #082e27 100%);
+      background-attachment: fixed;
+      color: var(--grey);
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Fraunces', Georgia, serif;
-      text-wrap: balance;
+    .panel-dark {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.10);
     }
-
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      z-index: 999;
-      background: var(--coral);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0 0 0.5rem 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: top 0.15s;
-    }
-    .skip-link:focus { top: 0; }
-
-    .brand-bar {
-      height: 3px;
-      background: linear-gradient(90deg, #065f46 0%, var(--coral) 40%, #5fc7d4 70%, var(--coral) 100%);
-    }
-
-    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
-    .site-nav a:hover,
-    .site-nav a[aria-current="page"] { color: var(--coral); }
+    .lift-card:hover { box-shadow: 0 16px 38px rgba(0,0,0,0.45); }
 
     /* Matrix */
     .matrix-table { border-collapse: collapse; }
     .matrix-table td,
-    .matrix-table th { border: 1px solid var(--rule); }
-    .matrix-species { background: white; font-weight: 500; }
-    .matrix-header  { background: white; }
+    .matrix-table th { border: 1px solid rgba(255,255,255,0.08); }
+    .matrix-species { background: #0c352d; font-weight: 500; }
+    .matrix-header  { background: #0c352d; }
 
     /* Skeleton pulse */
     @keyframes skel-pulse {
@@ -76,78 +49,6 @@
       50%       { opacity: 0.45; }
     }
     .skel { animation: skel-pulse 1.8s ease-in-out infinite; }
-
-    /* ── Tropical interactivity ── */
-    :root { --green: #059669; --lagoon: #5fc7d4; }
-
-    .site-nav ul a:not(.rounded-full) { position: relative; }
-    .site-nav ul a:not(.rounded-full)::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 2px;
-      border-radius: 1px;
-      background: linear-gradient(90deg, var(--green), var(--lagoon));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav ul a:not(.rounded-full):hover::after,
-    .site-nav ul a[aria-current="page"]:not(.rounded-full)::after { transform: scaleX(1); }
-
-    .nav-ico {
-      display: inline-block;
-      width: 0; opacity: 0;
-      margin-right: 0;
-      vertical-align: -2px;
-      color: var(--green);
-      transform: translateY(3px) scale(0.5);
-      transition: width 0.25s cubic-bezier(0.16,1,0.3,1), margin 0.25s cubic-bezier(0.16,1,0.3,1),
-                  opacity 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav a:hover .nav-ico,
-    .site-nav a[aria-current="page"] .nav-ico { width: 13px; opacity: 1; margin-right: 5px; transform: none; }
-    .site-nav a:hover .nav-ico-map { animation: pinBob 0.5s ease 0.15s; }
-    @keyframes pinBob {
-      0%, 100% { transform: none; }
-      40% { transform: translateY(-3px); }
-      70% { transform: translateY(1px); }
-    }
-    .nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
-    .site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s cubic-bezier(0.16,1,0.3,1) backwards; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
-    @keyframes barRise { from { transform: scaleY(0.2); } }
-
-    .site-nav a.rounded-full { transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-    .site-nav a.rounded-full:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5,150,105,0.3); }
-
-    .lift-card {
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s;
-    }
-    .lift-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--green), var(--lagoon));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-      z-index: 1;
-    }
-    .lift-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(11,61,51,0.08); }
-    .lift-card:hover::before { transform: scaleX(1); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -162,8 +63,11 @@
 ═══════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]/95 backdrop-blur-sm" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex flex-col leading-none group">
-      <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0b3d33] tracking-tight group-hover:text-[#059669] transition-colors">Koamas</span>
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a] items-center" role="list">
@@ -173,7 +77,7 @@
       <li><a href="dashboard.html" aria-current="page"><svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg>Dashboard</a></li>
       <li><a href="about.html">About</a></li>
       <li>
-        <a href="submit.html" class="px-4 py-1.5 rounded-full bg-[#059669] text-white hover:bg-[#047857] transition-colors text-xs font-semibold">
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
@@ -201,22 +105,30 @@
 <!-- ═══════════════════════════════════
      PAGE HEADER
 ═══════════════════════════════════ -->
-<header class="border-b border-[#d9e2e4] bg-white" id="main-content">
-  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<header class="relative overflow-hidden border-b border-white/10" id="main-content">
+  <div class="sonar-rings absolute -right-16 -top-24 opacity-50 hidden md:block" aria-hidden="true">
+    <svg width="360" height="360" viewBox="0 0 360 360" fill="none">
+      <circle cx="180" cy="180" r="66"  stroke="rgba(95,199,212,0.26)"/>
+      <circle cx="180" cy="180" r="124" stroke="rgba(95,199,212,0.14)"/>
+      <circle cx="180" cy="180" r="176" stroke="rgba(95,199,212,0.07)"/>
+    </svg>
+    <div class="sonar-sweep"></div>
+  </div>
+  <div class="relative max-w-6xl mx-auto px-4 py-12 md:py-14 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
     <div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-2">Data overview</p>
-      <h1 class="font-['Fraunces'] text-3xl md:text-4xl font-semibold text-[#0b3d33] tracking-tight mb-2">
+      <p class="kicker text-xs font-semibold tracking-[0.18em] uppercase text-[#8fd6cb] mb-3">Data overview</p>
+      <h1 class="font-['Fraunces'] text-4xl md:text-5xl font-semibold text-white tracking-tight mb-2">
         Maldives cetacean sightings
       </h1>
-      <p class="text-sm text-[#64747c]" id="last-updated-text">All verified sightings on record</p>
+      <p class="text-sm text-[#a3bdb6]" id="last-updated-text">All verified sightings on record</p>
     </div>
     <div class="flex items-center gap-3 shrink-0">
-      <span id="demo-badge" class="hidden text-[11px] text-[#64747c] border border-[#d9e2e4] rounded-full px-3 py-1">
+      <span id="demo-badge" class="hidden text-[11px] text-[#a3bdb6] border border-white/20 rounded-full px-3 py-1">
         Sample data — connect Supabase for live figures
       </span>
       <button
         id="csv-btn"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d9e2e4] bg-white text-sm font-medium text-[#1e2d2a] hover:border-[#059669] hover:text-[#059669] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-sm font-medium text-[#e3e9ea] hover:border-[#5fc7d4] hover:text-[#5fc7d4] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         disabled
         aria-label="Download sightings as CSV"
       >
@@ -236,24 +148,24 @@
 ═══════════════════════════════════ -->
 <section aria-labelledby="stats-heading">
   <h2 id="stats-heading" class="sr-only">Key statistics</h2>
-  <div class="bg-white border-b border-[#d9e2e4]">
+  <div class="border-b border-white/10 bg-white/[0.03]">
     <div class="max-w-6xl mx-auto px-4">
-      <dl id="stats-strip" class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#d9e2e4]">
+      <dl id="stats-strip" class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/10">
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-14 bg-[#e3e9ea] rounded mb-2"></div>
-          <div class="h-3 w-28 bg-[#eef3f3] rounded"></div>
+          <div class="h-9 w-14 bg-white/10 rounded mb-2"></div>
+          <div class="h-3 w-28 bg-white/5 rounded"></div>
         </div>
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-10 bg-[#e3e9ea] rounded mb-2"></div>
-          <div class="h-3 w-24 bg-[#eef3f3] rounded"></div>
+          <div class="h-9 w-10 bg-white/10 rounded mb-2"></div>
+          <div class="h-3 w-24 bg-white/5 rounded"></div>
         </div>
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-8 bg-[#e3e9ea] rounded mb-2"></div>
-          <div class="h-3 w-32 bg-[#eef3f3] rounded"></div>
+          <div class="h-9 w-8 bg-white/10 rounded mb-2"></div>
+          <div class="h-3 w-32 bg-white/5 rounded"></div>
         </div>
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-12 bg-[#e3e9ea] rounded mb-2"></div>
-          <div class="h-3 w-24 bg-[#eef3f3] rounded"></div>
+          <div class="h-9 w-12 bg-white/10 rounded mb-2"></div>
+          <div class="h-3 w-24 bg-white/5 rounded"></div>
         </div>
       </dl>
     </div>
@@ -268,50 +180,50 @@
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
 
     <!-- Species frequency -->
-    <div class="lift-card bg-white rounded-xl border border-[#d9e2e4] p-6 flex flex-col">
+    <div class="lift-card panel-dark rounded-xl p-6 flex flex-col">
       <div class="mb-5">
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-1">By species</p>
-        <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b3d33]">Sightings per species</h3>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fd6cb] mb-1">By species</p>
+        <h3 class="font-['Fraunces'] text-lg font-semibold text-white">Sightings per species</h3>
       </div>
       <div id="species-chart-wrap" class="relative flex-1" style="min-height:300px;">
         <!-- skeleton -->
         <div id="species-skel" class="absolute inset-0 flex flex-col justify-end gap-2.5 skel pr-1">
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef3f3] rounded shrink-0 text-right"></div><div class="h-5 bg-[#e3e9ea] rounded" style="width:82%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef3f3] rounded shrink-0"></div><div class="h-5 bg-[#e3e9ea] rounded" style="width:58%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef3f3] rounded shrink-0"></div><div class="h-5 bg-[#e3e9ea] rounded" style="width:41%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef3f3] rounded shrink-0"></div><div class="h-5 bg-[#e3e9ea] rounded" style="width:22%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef3f3] rounded shrink-0"></div><div class="h-5 bg-[#e3e9ea] rounded" style="width:14%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef3f3] rounded shrink-0"></div><div class="h-5 bg-[#e3e9ea] rounded" style="width:8%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0 text-right"></div><div class="h-5 bg-white/10 rounded" style="width:82%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:58%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:41%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:22%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:14%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:8%"></div></div>
         </div>
         <canvas id="species-chart" class="hidden" aria-label="Horizontal bar chart of sightings per species"></canvas>
         <div id="species-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
-          <p class="font-['Fraunces'] text-base text-[#0b3d33]">No sightings yet</p>
-          <p class="text-xs text-[#64747c]">Data will appear here once sightings are logged.</p>
+          <p class="font-['Fraunces'] text-base text-white">No sightings yet</p>
+          <p class="text-xs text-[#a3bdb6]">Data will appear here once sightings are logged.</p>
         </div>
       </div>
     </div>
 
     <!-- Monthly trend -->
-    <div class="lift-card bg-white rounded-xl border border-[#d9e2e4] p-6 flex flex-col">
+    <div class="lift-card panel-dark rounded-xl p-6 flex flex-col">
       <div class="mb-5">
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-1">Seasonal pattern</p>
-        <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b3d33]">Sightings by month</h3>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fd6cb] mb-1">Seasonal pattern</p>
+        <h3 class="font-['Fraunces'] text-lg font-semibold text-white">Sightings by month</h3>
       </div>
       <div id="monthly-chart-wrap" class="relative flex-1" style="min-height:220px;">
         <!-- skeleton -->
         <div id="monthly-skel" class="absolute inset-0 skel overflow-hidden rounded">
           <svg width="100%" height="100%" viewBox="0 0 300 180" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165 L300 180 L0 180 Z" fill="#e3e9ea" opacity="0.55"/>
-            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165" fill="none" stroke="#d9e2e4" stroke-width="1.5"/>
+            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165 L300 180 L0 180 Z" fill="rgba(255,255,255,0.10)" opacity="0.55"/>
+            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
           </svg>
         </div>
         <canvas id="monthly-chart" class="hidden" aria-label="Area chart of sightings by month"></canvas>
         <div id="monthly-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
-          <p class="font-['Fraunces'] text-base text-[#0b3d33]">Not enough data yet</p>
-          <p class="text-xs text-[#64747c]">Seasonal patterns will emerge as the dataset grows.</p>
+          <p class="font-['Fraunces'] text-base text-white">Not enough data yet</p>
+          <p class="text-xs text-[#a3bdb6]">Seasonal patterns will emerge as the dataset grows.</p>
         </div>
       </div>
-      <p class="text-xs text-[#64747c] mt-3">All verified sightings bucketed by calendar month across all years.</p>
+      <p class="text-xs text-[#a3bdb6] mt-3">All verified sightings bucketed by calendar month across all years.</p>
     </div>
 
   </div>
@@ -320,37 +232,37 @@
 <!-- ═══════════════════════════════════
      NOTABLE SIGHTINGS
 ═══════════════════════════════════ -->
-<section class="py-12 px-4 border-t border-[#d9e2e4]" aria-labelledby="notable-heading">
+<section class="py-12 px-4 border-t border-white/10" aria-labelledby="notable-heading">
   <div class="max-w-6xl mx-auto">
 
     <div class="mb-6">
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-2">Recent notable encounters</p>
-      <h2 id="notable-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b3d33] mb-1">
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fd6cb] mb-2">Recent notable encounters</p>
+      <h2 id="notable-heading" class="font-['Fraunces'] text-2xl font-semibold text-white mb-1">
         Uncommon species recently logged
       </h2>
-      <p class="text-sm text-[#64747c]">
+      <p class="text-sm text-[#a3bdb6]">
         Sightings of species beyond the three most frequently recorded — the long tail that makes the dataset ecologically interesting.
       </p>
     </div>
 
     <div id="notable-feed" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="bg-white rounded-xl border border-[#d9e2e4] p-5 skel" aria-hidden="true">
-        <div class="h-4 w-36 bg-[#e3e9ea] rounded mb-2"></div>
-        <div class="h-3 w-24 bg-[#eef3f3] rounded mb-4"></div>
-        <div class="h-3 w-full bg-[#eef3f3] rounded mb-1.5"></div>
-        <div class="h-3 w-3/4 bg-[#eef3f3] rounded"></div>
+      <div class="panel-dark rounded-xl p-5 skel" aria-hidden="true">
+        <div class="h-4 w-36 bg-white/10 rounded mb-2"></div>
+        <div class="h-3 w-24 bg-white/5 rounded mb-4"></div>
+        <div class="h-3 w-full bg-white/5 rounded mb-1.5"></div>
+        <div class="h-3 w-3/4 bg-white/5 rounded"></div>
       </div>
-      <div class="bg-white rounded-xl border border-[#d9e2e4] p-5 skel" aria-hidden="true">
-        <div class="h-4 w-32 bg-[#e3e9ea] rounded mb-2"></div>
-        <div class="h-3 w-20 bg-[#eef3f3] rounded mb-4"></div>
-        <div class="h-3 w-full bg-[#eef3f3] rounded mb-1.5"></div>
-        <div class="h-3 w-2/3 bg-[#eef3f3] rounded"></div>
+      <div class="panel-dark rounded-xl p-5 skel" aria-hidden="true">
+        <div class="h-4 w-32 bg-white/10 rounded mb-2"></div>
+        <div class="h-3 w-20 bg-white/5 rounded mb-4"></div>
+        <div class="h-3 w-full bg-white/5 rounded mb-1.5"></div>
+        <div class="h-3 w-2/3 bg-white/5 rounded"></div>
       </div>
-      <div class="bg-white rounded-xl border border-[#d9e2e4] p-5 skel" aria-hidden="true">
-        <div class="h-4 w-40 bg-[#e3e9ea] rounded mb-2"></div>
-        <div class="h-3 w-28 bg-[#eef3f3] rounded mb-4"></div>
-        <div class="h-3 w-full bg-[#eef3f3] rounded mb-1.5"></div>
-        <div class="h-3 w-1/2 bg-[#eef3f3] rounded"></div>
+      <div class="panel-dark rounded-xl p-5 skel" aria-hidden="true">
+        <div class="h-4 w-40 bg-white/10 rounded mb-2"></div>
+        <div class="h-3 w-28 bg-white/5 rounded mb-4"></div>
+        <div class="h-3 w-full bg-white/5 rounded mb-1.5"></div>
+        <div class="h-3 w-1/2 bg-white/5 rounded"></div>
       </div>
     </div>
 
@@ -360,11 +272,11 @@
 <!-- ═══════════════════════════════════
      MAP CTA
 ═══════════════════════════════════ -->
-<div class="px-4 pb-12 border-t border-[#d9e2e4] pt-0">
+<div class="px-4 pb-12 border-t border-white/10 pt-0">
   <div class="max-w-6xl mx-auto">
     <a
       href="map.html"
-      class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0b3d33] rounded-xl px-8 py-6 group hover:bg-[#0e4a3d] transition-colors mt-0 -mt-px"
+      class="flex flex-col sm:flex-row items-center justify-between gap-4 panel-dark rounded-xl px-8 py-6 group hover:border-[#5fc7d4]/60 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all mt-0 -mt-px"
     >
       <div>
         <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fd6cb] mb-1">Interactive map</p>
@@ -384,60 +296,60 @@
 <!-- ═══════════════════════════════════
      SPECIES × ATOLL MATRIX
 ═══════════════════════════════════ -->
-<section class="py-12 px-4 border-t border-[#d9e2e4]" aria-labelledby="matrix-heading">
+<section class="py-12 px-4 border-t border-white/10" aria-labelledby="matrix-heading">
   <div class="max-w-6xl mx-auto">
 
     <div class="mb-6">
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-2">Coverage matrix</p>
-      <h2 id="matrix-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b3d33] mb-1">
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fd6cb] mb-2">Coverage matrix</p>
+      <h2 id="matrix-heading" class="font-['Fraunces'] text-2xl font-semibold text-white mb-1">
         Species × atoll
       </h2>
-      <p class="text-sm text-[#64747c] max-w-2xl">
+      <p class="text-sm text-[#a3bdb6] max-w-2xl">
         Verified sighting count per species per atoll. Blank cells are coverage gaps — useful for planning where to direct future survey effort.
       </p>
     </div>
 
     <!-- skeleton -->
-    <div id="matrix-skel" class="bg-white rounded-xl border border-[#d9e2e4] overflow-hidden skel">
+    <div id="matrix-skel" class="panel-dark rounded-xl overflow-hidden skel">
       <div class="p-5 space-y-3">
-        <div class="flex gap-3 pb-2 border-b border-[#eef3f3]">
-          <div class="h-3 w-32 bg-[#eef3f3] rounded shrink-0"></div>
+        <div class="flex gap-3 pb-2 border-b border-white/10">
+          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
-            <div class="h-3 bg-[#e3e9ea] rounded flex-1"></div>
-            <div class="h-3 bg-[#e3e9ea] rounded flex-1"></div>
-            <div class="h-3 bg-[#e3e9ea] rounded flex-1"></div>
-            <div class="h-3 bg-[#e3e9ea] rounded flex-1"></div>
-            <div class="h-3 bg-[#e3e9ea] rounded flex-1"></div>
+            <div class="h-3 bg-white/10 rounded flex-1"></div>
+            <div class="h-3 bg-white/10 rounded flex-1"></div>
+            <div class="h-3 bg-white/10 rounded flex-1"></div>
+            <div class="h-3 bg-white/10 rounded flex-1"></div>
+            <div class="h-3 bg-white/10 rounded flex-1"></div>
           </div>
         </div>
         <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-[#eef3f3] rounded shrink-0"></div>
+          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
             <div class="h-6 bg-[#059669] rounded flex-1 opacity-75"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
-            <div class="h-6 bg-[#7fd0b0] rounded flex-1"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
-            <div class="h-6 bg-[#cdeee2] rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#059669]/60 rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#5fc7d4]/30 rounded flex-1"></div>
           </div>
         </div>
         <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-[#eef3f3] rounded shrink-0"></div>
+          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
-            <div class="h-6 bg-[#7fd0b0] rounded flex-1 opacity-60"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#059669]/60 rounded flex-1 opacity-60"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
             <div class="h-6 bg-[#059669] rounded flex-1 opacity-50"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
           </div>
         </div>
         <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-[#eef3f3] rounded shrink-0"></div>
+          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
-            <div class="h-6 bg-[#cdeee2] rounded flex-1"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
-            <div class="h-6 bg-[#f7fafa] border border-[#d9e2e4] rounded flex-1"></div>
-            <div class="h-6 bg-[#7fd0b0] rounded flex-1 opacity-70"></div>
+            <div class="h-6 bg-[#5fc7d4]/30 rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#059669]/60 rounded flex-1 opacity-70"></div>
           </div>
         </div>
       </div>
@@ -446,24 +358,24 @@
     <!-- populated by JS -->
     <div id="matrix-render" class="hidden overflow-x-auto -mx-4 px-4 pb-2"></div>
 
-    <div id="matrix-empty" class="hidden bg-white rounded-xl border border-[#d9e2e4] p-10 text-center">
-      <p class="font-['Fraunces'] text-base text-[#0b3d33] mb-1">No sightings to display</p>
-      <p class="text-xs text-[#64747c]">The matrix will populate as sightings are recorded.</p>
+    <div id="matrix-empty" class="hidden panel-dark rounded-xl p-10 text-center">
+      <p class="font-['Fraunces'] text-base text-white mb-1">No sightings to display</p>
+      <p class="text-xs text-[#a3bdb6]">The matrix will populate as sightings are recorded.</p>
     </div>
 
     <!-- Legend -->
     <div id="matrix-legend" class="hidden mt-4 flex items-center flex-wrap gap-x-5 gap-y-2">
-      <span class="text-xs text-[#64747c] font-medium">Sightings:</span>
-      <span class="flex items-center gap-1.5 text-xs text-[#64747c]">
-        <span class="inline-block w-4 h-4 rounded bg-[#f7fafa] border border-[#d9e2e4]"></span> 0
+      <span class="text-xs text-[#a3bdb6] font-medium">Sightings:</span>
+      <span class="flex items-center gap-1.5 text-xs text-[#a3bdb6]">
+        <span class="inline-block w-4 h-4 rounded bg-white/5 border border-white/10"></span> 0
       </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#64747c]">
-        <span class="inline-block w-4 h-4 rounded bg-[#cdeee2]"></span> 1
+      <span class="flex items-center gap-1.5 text-xs text-[#a3bdb6]">
+        <span class="inline-block w-4 h-4 rounded bg-[#5fc7d4]/30"></span> 1
       </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#64747c]">
-        <span class="inline-block w-4 h-4 rounded bg-[#7fd0b0]"></span> 2–4
+      <span class="flex items-center gap-1.5 text-xs text-[#a3bdb6]">
+        <span class="inline-block w-4 h-4 rounded bg-[#059669]/60"></span> 2–4
       </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#64747c]">
+      <span class="flex items-center gap-1.5 text-xs text-[#a3bdb6]">
         <span class="inline-block w-4 h-4 rounded bg-[#059669]"></span> 5+
       </span>
     </div>
@@ -476,7 +388,7 @@
 <!-- ═══════════════════════════════════
      FOOTER
 ═══════════════════════════════════ -->
-<footer class="border-t border-[#1d4f43] bg-[#0b3d33] text-[#a3bdb6] text-sm">
+<footer class="border-t border-white/10 text-[#a3bdb6] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
       <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas</p>
@@ -509,21 +421,32 @@
 (function () {
   'use strict';
 
-  // ── Nav toggle ──────────────────────────────────────────────
-  const navToggle = document.getElementById('nav-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  navToggle.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('hidden') === false;
-    navToggle.setAttribute('aria-expanded', String(open));
-  });
+  // Mobile nav toggle is handled by the shared assets/koamas.js.
 
-  // ── Chart.js defaults ──────────────────────────────────────
+  const REDUCE_MOTION = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Chart.js defaults (dark instrument theme) ──────────────
   Chart.defaults.font.family = "'Outfit', sans-serif";
-  Chart.defaults.color = '#64747c';
+  Chart.defaults.color = '#a3bdb6';
+  Chart.defaults.animation = REDUCE_MOTION ? false : { duration: 900, easing: 'easeOutQuart' };
 
-  const RULE_COLOR = '#d9e2e4';
+  const RULE_COLOR = 'rgba(255,255,255,0.10)';
   const CORAL      = '#059669';
-  const CORAL_DARK = '#047857';
+  const LAGOON     = '#5fc7d4';
+
+  // Animated count-up for the stat numbers (visual only)
+  function countUp(el, target) {
+    if (REDUCE_MOTION || !target) { el.textContent = target; return; }
+    const t0 = performance.now(), dur = 1100;
+    function step(now) {
+      let k = Math.min(1, (now - t0) / dur);
+      k = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(target * k);
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
 
   const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -615,10 +538,11 @@
     ];
 
     document.getElementById('stats-strip').innerHTML = STATS.map(s => `
-      <div class="px-6 py-8 transition-colors hover:bg-[#f2f7f6]">
-        <dd class="font-['Fraunces'] text-4xl md:text-5xl font-semibold text-[#0b3d33] tabular-nums mb-1">${s.value}</dd>
-        <dt class="text-xs font-medium tracking-[0.12em] uppercase text-[#64747c]">${s.label}</dt>
+      <div class="px-6 py-8 transition-colors hover:bg-white/5">
+        <dd class="font-['Fraunces'] text-4xl md:text-5xl font-semibold text-white tabular-nums mb-1" data-count="${s.value}">0</dd>
+        <dt class="text-xs font-medium tracking-[0.12em] uppercase text-[#a3bdb6]">${s.label}</dt>
       </div>`).join('');
+    document.querySelectorAll('#stats-strip [data-count]').forEach(el => countUp(el, +el.dataset.count));
 
     if (source === 'demo') {
       document.getElementById('demo-badge').classList.remove('hidden');
@@ -663,7 +587,7 @@
         datasets: [{
           data: values,
           backgroundColor: bgs,
-          hoverBackgroundColor: CORAL_DARK,
+          hoverBackgroundColor: LAGOON,
           borderRadius: 3,
           borderSkipped: false,
         }],
@@ -689,7 +613,7 @@
           y: {
             grid: { display: false },
             border: { display: false },
-            ticks: { font: { size: 11 }, color: '#1e2d2a' },
+            ticks: { font: { size: 11 }, color: '#e3e9ea' },
           },
         },
       },
@@ -724,15 +648,16 @@
         datasets: [{
           data: monthly,
           fill: true,
-          backgroundColor: 'rgba(5,150,105,0.10)',
-          borderColor: CORAL,
+          backgroundColor: 'rgba(95,199,212,0.14)',
+          borderColor: LAGOON,
           borderWidth: 2,
           tension: 0.4,
           pointRadius: 4,
-          pointBackgroundColor: CORAL,
-          pointBorderColor: '#fff',
+          pointBackgroundColor: LAGOON,
+          pointBorderColor: '#0b3d33',
           pointBorderWidth: 1.5,
           pointHoverRadius: 6,
+          pointHoverBackgroundColor: '#ffffff',
         }],
       },
       options: {
@@ -769,9 +694,9 @@
 
     if (rows.length === 0) {
       feed.innerHTML = `
-        <div class="col-span-full py-12 text-center border border-dashed border-[#d9e2e4] rounded-xl">
-          <p class="font-['Fraunces'] text-base text-[#0b3d33] mb-1">No sightings yet</p>
-          <p class="text-xs text-[#64747c]">Check back once sightings have been verified.</p>
+        <div class="col-span-full py-12 text-center border border-dashed border-white/15 rounded-xl">
+          <p class="font-['Fraunces'] text-base text-white mb-1">No sightings yet</p>
+          <p class="text-xs text-[#a3bdb6]">Check back once sightings have been verified.</p>
         </div>`;
       return;
     }
@@ -786,9 +711,9 @@
 
     if (notable.length === 0) {
       feed.innerHTML = `
-        <div class="col-span-full py-12 text-center border border-dashed border-[#d9e2e4] rounded-xl">
-          <p class="font-['Fraunces'] text-base text-[#0b3d33] mb-1">All recent records are common species</p>
-          <p class="text-xs text-[#64747c]">Notable encounters will appear here as the dataset grows.</p>
+        <div class="col-span-full py-12 text-center border border-dashed border-white/15 rounded-xl">
+          <p class="font-['Fraunces'] text-base text-white mb-1">All recent records are common species</p>
+          <p class="text-xs text-[#a3bdb6]">Notable encounters will appear here as the dataset grows.</p>
         </div>`;
       return;
     }
@@ -798,18 +723,18 @@
       const countText = r.count > 0 ? `${r.count} ind.` : null;
       const mapHref   = `map.html?species=${encodeURIComponent(r.species_slug)}`;
       return `
-        <article class="bg-white rounded-xl border border-[#d9e2e4] p-5 flex flex-col gap-3 hover:border-[#8fd6cb] transition-colors">
+        <article class="panel-dark rounded-xl p-5 flex flex-col gap-3 hover:border-[#8fd6cb] transition-colors">
           <div>
-            <p class="font-semibold text-[#0b3d33] text-sm leading-snug">${r.species_name}</p>
-            <div class="flex items-center gap-2 mt-1 text-xs text-[#64747c] flex-wrap">
+            <p class="font-semibold text-white text-sm leading-snug">${r.species_name}</p>
+            <div class="flex items-center gap-2 mt-1 text-xs text-[#a3bdb6] flex-wrap">
               ${r.atoll  ? `<span>${r.atoll}</span>` : ''}
-              ${r.atoll && r.date ? `<span class="text-[#d9e2e4]">·</span>` : ''}
+              ${r.atoll && r.date ? `<span class="text-white/25">·</span>` : ''}
               ${r.date   ? `<span>${formatDate(r.date)}</span>` : ''}
-              ${countText ? `<span class="ml-auto bg-[#f7fafa] border border-[#d9e2e4] rounded-full px-2 py-0.5">${countText}</span>` : ''}
+              ${countText ? `<span class="ml-auto bg-white/5 border border-white/10 rounded-full px-2 py-0.5">${countText}</span>` : ''}
             </div>
           </div>
-          ${snippet ? `<p class="text-xs text-[#64747c] leading-relaxed">${snippet}</p>` : ''}
-          <a href="${mapHref}" class="text-xs font-medium text-[#059669] hover:underline mt-auto">
+          ${snippet ? `<p class="text-xs text-[#a3bdb6] leading-relaxed">${snippet}</p>` : ''}
+          <a href="${mapHref}" class="text-xs font-medium text-[#5fc7d4] hover:underline mt-auto">
             View on map →
           </a>
         </article>`;
@@ -848,19 +773,19 @@
     });
 
     function cellBg(n) {
-      if (!n) return '#f7fafa';
-      if (n === 1) return '#cdeee2';
-      if (n <= 4)  return '#7fd0b0';
+      if (!n) return 'rgba(255,255,255,0.03)';
+      if (n === 1) return 'rgba(95,199,212,0.28)';
+      if (n <= 4)  return 'rgba(5,150,105,0.55)';
       return CORAL;
     }
-    function cellFg(n) { return n >= 5 ? '#fff' : '#1e2d2a'; }
+    function cellFg(n) { return n ? '#ffffff' : 'rgba(227,233,234,0.45)'; }
 
     const shortAtoll = a => a.replace(' Atoll', '');
 
-    const thead = `<tr class="border-b border-[#d9e2e4]">
-      <th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#64747c] uppercase tracking-wide whitespace-nowrap">Species</th>
-      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#64747c] text-center whitespace-nowrap">${shortAtoll(a)}</th>`).join('')}
-      <th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#64747c] text-center whitespace-nowrap border-l border-[#d9e2e4]">Total</th>
+    const thead = `<tr class="border-b border-white/15">
+      <th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#a3bdb6] uppercase tracking-wide whitespace-nowrap">Species</th>
+      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#a3bdb6] text-center whitespace-nowrap">${shortAtoll(a)}</th>`).join('')}
+      <th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#a3bdb6] text-center whitespace-nowrap border-l border-white/15">Total</th>
     </tr>`;
 
     const tbody = speciesList.map(sp => {
@@ -871,15 +796,15 @@
         const fg = cellFg(n);
         return `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || ''}</td>`;
       }).join('');
-      return `<tr class="border-b border-[#e8efee] hover:bg-[#f2f7f6] transition-colors">
-        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#1e2d2a] whitespace-nowrap">${sp}</td>
+      return `<tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#e3e9ea] whitespace-nowrap">${sp}</td>
         ${cells}
-        <td class="px-3 py-2 text-[0.72rem] font-semibold text-[#0b3d33] text-center border-l border-[#d9e2e4]">${total}</td>
+        <td class="px-3 py-2 text-[0.72rem] font-semibold text-white text-center border-l border-white/15">${total}</td>
       </tr>`;
     }).join('');
 
     renderEl.innerHTML = `
-      <div class="bg-white rounded-xl border border-[#d9e2e4] overflow-hidden">
+      <div class="panel-dark rounded-xl overflow-hidden">
         <table class="matrix-table w-full text-left" role="grid" aria-label="Species by atoll sighting counts">
           <thead>${thead}</thead>
           <tbody>${tbody}</tbody>
