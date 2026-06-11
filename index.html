@@ -539,19 +539,42 @@
   }
 
   async function loadSightings() {
-    if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) { renderEmpty(); return; }
+    if (window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
+      try {
+        const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+        const { data, error } = await client
+          .from('sightings')
+          .select('id, atoll, count_range, sighting_date, species:species_id(common_name)')
+          .eq('status', 'verified')
+          .order('sighting_date', { ascending: false })
+          .limit(6);
+        if (error) throw error;
+        renderSightings((data || []).map(r => ({ ...r, species_name: r.species?.common_name || null })));
+      } catch {
+        renderError();
+      }
+      return;
+    }
+
+    // Local static fallback — same path map.html and dashboard.html use.
+    // Normalise the local schema (speciesCommon/date/groupSize, atoll
+    // including the " Atoll" suffix) to the renderer's field names.
     try {
-      const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-      const { data, error } = await client
-        .from('sightings')
-        .select('id, atoll, count_range, sighting_date, species:species_id(common_name)')
-        .eq('status', 'verified')
-        .order('sighting_date', { ascending: false })
-        .limit(6);
-      if (error) throw error;
-      renderSightings((data || []).map(r => ({ ...r, species_name: r.species?.common_name || null })));
+      const res = await fetch('data/sightings.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const rows = await res.json();
+      renderSightings(rows
+        .slice()
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 6)
+        .map(r => ({
+          species_name:  r.speciesCommon || 'Cetacean',
+          atoll:         (r.atoll || '').replace(/ Atoll$/, ''),
+          count_range:   r.groupSize != null ? String(r.groupSize) : '',
+          sighting_date: r.date,
+        })));
     } catch {
-      renderError();
+      renderEmpty();
     }
   }
 
