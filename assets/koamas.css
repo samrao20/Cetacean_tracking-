@@ -65,12 +65,13 @@ h1, h2, h3, h4 {
 @keyframes brandShift { to { background-position: 200% 0; } }
 
 /* ── Navigation ────────────────────────────────────────────── */
+/* Nav is fully opaque (no translucency/blur — animated page headers
+   were showing through and flickering). Scroll state adds shadow only. */
 .site-nav {
-  transition: background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: box-shadow 0.3s var(--ease);
 }
 .site-nav.scrolled {
-  background-color: rgba(247,250,250,0.97) !important;
-  box-shadow: 0 1px 0 var(--rule), 0 6px 22px rgba(11,61,51,0.07);
+  box-shadow: 0 1px 0 var(--rule), 0 6px 22px rgba(11,61,51,0.10);
 }
 
 .site-nav a { transition: color 0.2s var(--ease); }
