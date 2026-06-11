@@ -592,6 +592,24 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Map
   // ─────────────────────────────────────────────────────────────────────────
+  // Brighten land vs water on the dark basemap so the atolls read
+  // clearly (presentation only; runs only when the dark style loaded).
+  function improveBasemapContrast() {
+    var layers = (map.getStyle().layers || []);
+    layers.forEach(function (l) {
+      var id = (l.id || '').toLowerCase();
+      try {
+        if (l.type === 'background') {
+          map.setPaintProperty(l.id, 'background-color', '#2b352f');
+        } else if (l.type === 'fill' && /water|ocean|sea|river|lake/.test(id)) {
+          map.setPaintProperty(l.id, 'fill-color', '#0b3540');
+        } else if (l.type === 'fill' && /land|earth|island/.test(id)) {
+          map.setPaintProperty(l.id, 'fill-color', '#2b352f');
+        }
+      } catch (_) {}
+    });
+  }
+
   function initMap(styleURL) {
     map = new maplibregl.Map({
       container: 'map',
@@ -603,6 +621,8 @@
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
 
     map.on('load', function () {
+      if (styleURL === MAP_STYLE_DARK) improveBasemapContrast();
+
       map.addSource('sightings', { type: 'geojson', data: toGeoJSON(allSightings) });
 
       // Sonar pulse halo beneath the markers (animated, visual only)

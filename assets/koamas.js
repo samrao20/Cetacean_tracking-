@@ -25,8 +25,12 @@
   function initScrolledHeader() {
     var nav = document.querySelector('.site-nav');
     if (!nav) return;
+    // Hysteresis: separate on/off thresholds so the class can't
+    // rapid-toggle (and flicker) around a single boundary.
     var update = function () {
-      nav.classList.toggle('scrolled', window.scrollY > 8);
+      var y = window.scrollY;
+      if (y > 24) nav.classList.add('scrolled');
+      else if (y < 6) nav.classList.remove('scrolled');
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
