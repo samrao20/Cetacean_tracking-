@@ -9,35 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
   <style>
-    :root {
-      --navy:  #0b3d33;
-      --sand:  #e3e9ea;
-      --coral: #059669;
-      --bg:    #f7fafa;
-      --text:  #1e2d2a;
-      --muted: #64747c;
-      --rule:  #d9e2e4;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Fraunces', Georgia, serif;
-      text-wrap: balance;
-    }
-
-    /* ── Brand top bar ── */
-    .brand-bar {
-      height: 3px;
-      background: linear-gradient(90deg, #065f46 0%, var(--coral) 40%, #5fc7d4 70%, var(--coral) 100%);
-    }
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
 
     /* ── IUCN status badge colours ── */
     .iucn-LC { background: #2d6a4f; color: #fff; }
@@ -46,30 +21,6 @@
     .iucn-EN { background: #b91c1c; color: #fff; }
     .iucn-CR { background: #7f1d1d; color: #fff; }
     .iucn-DD { background: #6b7280; color: #fff; }
-
-    /* ── Nav ── */
-    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
-    .site-nav a:hover,
-    .site-nav a[aria-current="page"] { color: var(--coral); }
-
-    /* ── Species card ── */
-    .species-card {
-      background: #fff;
-      border: 1px solid var(--rule);
-      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
-      cursor: pointer;
-    }
-    .species-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(11,61,51,0.10), 0 2px 6px rgba(11,61,51,0.06);
-    }
-    .species-card:active {
-      transform: translateY(-1px) scale(0.99);
-    }
-    .species-card:focus-visible {
-      outline: 2px solid var(--coral);
-      outline-offset: 2px;
-    }
 
     /* ── Month bar ── */
     .month-cell {
@@ -105,9 +56,9 @@
     }
 
     /* ── Detail view transitions ── */
-    #detail-view { animation: fadeIn 0.2s ease; }
+    #detail-view { animation: fadeIn 0.3s var(--ease, ease); }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -116,92 +67,28 @@
       border: 1px solid var(--rule);
       background: #fff;
       color: var(--muted);
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease),
+                  border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
     }
+    .filter-pill:hover { transform: translateY(-1px); }
     .filter-pill.active,
     .filter-pill:hover {
-      background: var(--navy);
       color: #fff;
-      border-color: var(--navy);
+      border-color: transparent;
+      background: var(--grad);
+      box-shadow: 0 4px 12px rgba(5,150,105,0.28);
     }
     .filter-pill:focus-visible {
-      outline: 2px solid var(--coral);
+      outline: 2px solid var(--green);
       outline-offset: 2px;
     }
 
     /* ── Search input ── */
+    #search-input { transition: width 0.25s var(--ease), border-color 0.2s, box-shadow 0.2s; }
     #search-input:focus {
-      outline: 2px solid var(--coral);
-      outline-offset: 0;
-      border-color: var(--coral);
-    }
-
-    /* ── Tropical interactivity ── */
-    :root { --green: #059669; --lagoon: #5fc7d4; }
-
-    .site-nav ul a:not(.rounded-full) { position: relative; }
-    .site-nav ul a:not(.rounded-full)::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 2px;
-      border-radius: 1px;
-      background: linear-gradient(90deg, var(--green), var(--lagoon));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav ul a:not(.rounded-full):hover::after,
-    .site-nav ul a[aria-current="page"]:not(.rounded-full)::after { transform: scaleX(1); }
-
-    .nav-ico {
-      display: inline-block;
-      width: 0; opacity: 0;
-      margin-right: 0;
-      vertical-align: -2px;
-      color: var(--green);
-      transform: translateY(3px) scale(0.5);
-      transition: width 0.25s cubic-bezier(0.16,1,0.3,1), margin 0.25s cubic-bezier(0.16,1,0.3,1),
-                  opacity 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav a:hover .nav-ico,
-    .site-nav a[aria-current="page"] .nav-ico { width: 13px; opacity: 1; margin-right: 5px; transform: none; }
-    .site-nav a:hover .nav-ico-map { animation: pinBob 0.5s ease 0.15s; }
-    @keyframes pinBob {
-      0%, 100% { transform: none; }
-      40% { transform: translateY(-3px); }
-      70% { transform: translateY(1px); }
-    }
-    .nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
-    .site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s cubic-bezier(0.16,1,0.3,1) backwards; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
-    @keyframes barRise { from { transform: scaleY(0.2); } }
-
-    .site-nav a.rounded-full { transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-    .site-nav a.rounded-full:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5,150,105,0.3); }
-
-    .species-card:hover { border-color: var(--green); }
-    .species-card img { transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); }
-    .species-card:hover img { transform: scale(1.06); }
-
-    .filter-pill:hover { transform: translateY(-1px); }
-    .filter-pill { transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s; }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal.in { opacity: 1; transform: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .reveal { opacity: 1; transform: none; }
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(5,150,105,0.16);
     }
   </style>
 </head>
@@ -213,8 +100,11 @@
 <!-- ══ NAVIGATION ══════════════════════════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]/95 backdrop-blur-sm" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex flex-col leading-none group">
-      <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0b3d33] tracking-tight group-hover:text-[#059669] transition-colors">Koamas</span>
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a] items-center" role="list">
@@ -224,7 +114,7 @@
       <li><a href="dashboard.html"><svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg>Dashboard</a></li>
       <li><a href="about.html">About</a></li>
       <li>
-        <a href="submit.html" class="px-4 py-1.5 rounded-full bg-[#059669] text-white hover:bg-[#047857] transition-colors text-xs font-semibold">
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
@@ -415,13 +305,13 @@
 
     grid.innerHTML = filtered.map(sp => `
       <article
-        class="species-card reveal rounded-lg overflow-hidden"
+        class="species-card reveal"
         role="listitem"
         tabindex="0"
         data-slug="${sp.slug}"
         aria-label="${sp.common_name} — ${sp.scientific_name}"
       >
-        <div class="aspect-[4/3] bg-[#d9e2e4] overflow-hidden relative">
+        <div class="species-card__media aspect-[4/3] bg-[#d9e2e4]">
           <img
             src="${sp.photo}"
             alt="${sp.common_name} (${sp.scientific_name})"
@@ -429,6 +319,12 @@
             loading="lazy"
             onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'absolute inset-0 flex items-center justify-center text-[#64747c] text-xs\'>Photo coming soon</div>')"
           />
+          <span class="species-card__type">${sp.type === 'whale' ? 'Whale' : 'Dolphin'}</span>
+          <div class="species-card__overlay" aria-hidden="true"></div>
+          <span class="species-card__cta" aria-hidden="true">
+            View species
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4"/></svg>
+          </span>
         </div>
         <div class="p-4">
           <div class="flex items-start justify-between gap-2 mb-1">
@@ -447,13 +343,14 @@
       </article>
     `).join('');
 
-    grid.querySelectorAll('.species-card').forEach((card, i) => {
+    grid.querySelectorAll('.species-card').forEach(card => {
       card.addEventListener('click', () => openDetail(card.dataset.slug));
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(card.dataset.slug); }
       });
-      setTimeout(() => card.classList.add('in'), 30 + Math.min(i, 14) * 45);
     });
+    if (window.Koamas) window.Koamas.revealIn(grid);
+    else grid.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
   }
 
   function renderDetail() {
@@ -641,13 +538,7 @@
 
     document.getElementById('back-btn').addEventListener('click', closeDetail);
 
-    const navToggle  = document.getElementById('nav-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    navToggle.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden', isOpen);
-      navToggle.setAttribute('aria-expanded', String(!isOpen));
-    });
+    // Mobile nav toggle is handled by the shared assets/koamas.js.
 
     window.addEventListener('popstate', () => {
       const slug = location.hash.replace('#', '');

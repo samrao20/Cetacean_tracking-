@@ -1,0 +1,315 @@
+/* ============================================================
+   Koamas — shared design system
+   Loaded by every page after the Tailwind CDN script.
+   Source of truth for tokens, nav, footer, buttons, cards,
+   the reveal system, and the reduced-motion guard.
+   No build step — plain CSS.
+   ============================================================ */
+
+:root {
+  /* Tropical Lagoon palette */
+  --teal:       #0b3d33;
+  --teal-2:     #0c4136;
+  --teal-3:     #0d4a3e;
+  --teal-deep:  #082e27;
+  --grey:       #e3e9ea;
+  --green:      #059669;
+  --green-dark: #047857;
+  --lagoon:     #5fc7d4;
+  --bg:         #f7fafa;
+  --text:       #1e2d2a;
+  --muted:      #64747c;
+  --rule:       #d9e2e4;
+
+  /* Legacy aliases retained so existing inline rules keep working */
+  --navy:  var(--teal);
+  --sand:  var(--grey);
+  --coral: var(--green);
+
+  --grad:       linear-gradient(135deg, var(--green) 0%, var(--lagoon) 100%);
+  --grad-soft:  linear-gradient(135deg, rgba(5,150,105,0.12), rgba(95,199,212,0.12));
+
+  --shadow-sm:  0 1px 2px rgba(11,61,51,0.06), 0 2px 6px rgba(11,61,51,0.05);
+  --shadow-md:  0 6px 18px rgba(11,61,51,0.10), 0 2px 6px rgba(11,61,51,0.06);
+  --shadow-lg:  0 18px 44px rgba(11,61,51,0.16), 0 6px 14px rgba(11,61,51,0.08);
+  --glow-green: 0 8px 26px rgba(5,150,105,0.34);
+
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-h: 3.5rem;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  text-wrap: balance;
+}
+
+::selection { background: rgba(95,199,212,0.32); color: var(--teal); }
+
+/* ── Brand top bar ─────────────────────────────────────────── */
+.brand-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-dark) 0%, var(--green) 40%, var(--lagoon) 70%, var(--green) 100%);
+  background-size: 200% 100%;
+  animation: brandShift 9s linear infinite;
+}
+@keyframes brandShift { to { background-position: 200% 0; } }
+
+/* ── Navigation ────────────────────────────────────────────── */
+.site-nav {
+  transition: background-color 0.3s var(--ease), box-shadow 0.3s var(--ease),
+              backdrop-filter 0.3s var(--ease);
+}
+.site-nav.scrolled {
+  background-color: rgba(247,250,250,0.82) !important;
+  box-shadow: 0 1px 0 var(--rule), 0 6px 22px rgba(11,61,51,0.07);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+.site-nav a { transition: color 0.2s var(--ease); }
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { color: var(--green); }
+
+/* Brand wordmark — gradient ink on hover */
+.nav-logo {
+  background-image: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 100%;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+.nav-logo-wrap { position: relative; display: inline-block; }
+.nav-logo-wrap:hover .nav-logo { opacity: 1; }
+.nav-logo-wrap:hover .nav-logo-base { opacity: 0; }
+.nav-logo-base { transition: opacity 0.25s var(--ease); }
+
+/* Sliding gradient underline for primary nav links */
+.site-nav ul a:not(.nav-cta) { position: relative; }
+.site-nav ul a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -5px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.site-nav ul a:not(.nav-cta):hover::after,
+.site-nav ul a[aria-current="page"]:not(.nav-cta)::after { transform: scaleX(1); }
+
+/* Slide-in animated icons on Map / Dashboard links */
+.nav-ico {
+  display: inline-block;
+  width: 0; opacity: 0;
+  margin-right: 0;
+  vertical-align: -2px;
+  color: var(--green);
+  transform: translateY(3px) scale(0.5);
+  transition: width 0.28s var(--ease), margin 0.28s var(--ease),
+              opacity 0.2s, transform 0.28s var(--ease);
+}
+.site-nav a:hover .nav-ico,
+.site-nav a[aria-current="page"] .nav-ico { width: 13px; opacity: 1; margin-right: 5px; transform: none; }
+.site-nav a:hover .nav-ico-map { animation: pinBob 0.55s ease 0.12s; }
+@keyframes pinBob {
+  0%, 100% { transform: none; }
+  40% { transform: translateY(-3px); }
+  70% { transform: translateY(1px); }
+}
+.nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
+.site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s var(--ease) backwards; }
+.site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
+.site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
+@keyframes barRise { from { transform: scaleY(0.2); } }
+
+/* Submit pill — gradient with sheen + glow */
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(5,150,105,0.25);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.6s var(--ease);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: var(--glow-green); color: #fff; }
+.nav-cta:hover::before { left: 130%; }
+
+/* Mobile menu drop-in */
+#mobile-menu:not(.hidden) { animation: menuDrop 0.28s var(--ease); }
+@keyframes menuDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+#mobile-menu a { transition: color 0.2s var(--ease), padding-left 0.2s var(--ease); }
+#mobile-menu a:hover { color: var(--green); padding-left: 0.35rem; }
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  box-shadow: 0 4px 14px rgba(5,150,105,0.3);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.6s var(--ease);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(5,150,105,0.42); }
+.btn-primary:hover::before { left: 140%; }
+.btn-primary:active { transform: translateY(0) scale(0.98); box-shadow: 0 3px 10px rgba(5,150,105,0.3); }
+
+.btn-ghost { transition: transform 0.2s var(--ease), background-color 0.2s, border-color 0.2s; }
+.btn-ghost:hover { transform: translateY(-2px); }
+.btn-ghost:active { transform: translateY(0) scale(0.98); }
+
+/* ── Footer link affordance ────────────────────────────────── */
+footer a { transition: color 0.2s var(--ease); }
+
+/* ── Generic content card ──────────────────────────────────── */
+.sighting-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.sighting-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(5,150,105,0.35);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Species card (guide grid) ─────────────────────────────── */
+.species-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.species-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(5,150,105,0.4);
+  box-shadow: var(--shadow-lg);
+}
+.species-card:active { transform: translateY(-2px) scale(0.99); }
+.species-card:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.species-card__media { position: relative; overflow: hidden; }
+.species-card__media img { transition: transform 0.5s var(--ease); will-change: transform; }
+.species-card:hover .species-card__media img { transform: scale(1.08); }
+
+.species-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,61,51,0.55) 0%, rgba(11,61,51,0.05) 38%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.species-card:hover .species-card__overlay { opacity: 1; }
+
+.species-card__cta {
+  position: absolute;
+  left: 0.7rem; bottom: 0.7rem;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; color: #fff;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.species-card:hover .species-card__cta { opacity: 1; transform: none; }
+
+.species-card__type {
+  position: absolute;
+  top: 0.6rem; left: 0.6rem;
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  border-radius: 9999px;
+  color: #fff;
+  background: rgba(11,61,51,0.45);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* ── Species avatar (homepage teaser) ──────────────────────── */
+.species-avatar {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--rule);
+  background: var(--grey);
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease), border-color 0.25s, box-shadow 0.3s var(--ease);
+}
+.species-avatar img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s var(--ease); }
+.group:hover .species-avatar { transform: translateY(-4px) scale(1.06); border-color: var(--green); box-shadow: var(--glow-green); }
+.group:hover .species-avatar img { transform: scale(1.1); }
+.species-avatar .initials {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--teal);
+}
+
+/* ── Scroll reveal ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Skip link ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%; left: 1rem;
+  z-index: 999;
+  background: var(--green);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-size: 0.85rem; font-weight: 600;
+  transition: top 0.15s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
