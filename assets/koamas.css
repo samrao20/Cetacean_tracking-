@@ -229,7 +229,7 @@ footer a { transition: color 0.2s var(--ease); }
 .species-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(11,61,51,0.55) 0%, rgba(11,61,51,0.05) 38%, transparent 60%);
+  background: linear-gradient(to top, rgba(8,46,39,0.92) 0%, rgba(8,46,39,0.78) 28%, rgba(11,61,51,0.30) 62%, transparent 85%);
   opacity: 0;
   transition: opacity 0.35s var(--ease);
 }
@@ -246,6 +246,29 @@ footer a { transition: color 0.2s var(--ease); }
   transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
 }
 .species-card:hover .species-card__cta { opacity: 1; transform: none; }
+
+/* "Did you know?" fun fact, derived from species data, revealed on hover */
+.species-card__fact {
+  position: absolute;
+  left: 0.7rem; right: 0.7rem; bottom: 2.4rem;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s var(--ease) 0.05s, transform 0.35s var(--ease) 0.05s;
+}
+.species-card:hover .species-card__fact { opacity: 1; transform: none; }
+.species-card__fact-label {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--lagoon);
+  margin-bottom: 0.2rem;
+}
+.species-card__fact-text {
+  display: block;
+  font-size: 0.74rem; line-height: 1.35; font-weight: 500;
+  text-shadow: 0 1px 6px rgba(8,46,39,0.7);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
 
 .species-card__type {
   position: absolute;

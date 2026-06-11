@@ -297,6 +297,23 @@
     }
   }
 
+  // Derive a card "fun fact" from existing species data — the first
+  // behaviour bullet, else the first sentence of distinguishing_features.
+  // No new content authored; purely surfaces species.json fields.
+  function funFact(sp) {
+    if (Array.isArray(sp.behaviour) && sp.behaviour.length) return sp.behaviour[0];
+    if (sp.distinguishing_features) {
+      const first = sp.distinguishing_features.split(/(?<=[.;])\s/)[0];
+      if (first && first.length <= 140) return first;
+    }
+    return '';
+  }
+
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
   function renderGrid() {
     const filtered = filterSpecies();
     const grid     = document.getElementById('species-grid');
@@ -330,6 +347,14 @@
           />
           <span class="species-card__type">${sp.type === 'whale' ? 'Whale' : 'Dolphin'}</span>
           <div class="species-card__overlay" aria-hidden="true"></div>
+          ${funFact(sp) ? `
+          <div class="species-card__fact" aria-hidden="true">
+            <span class="species-card__fact-label">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+              Did you know?
+            </span>
+            <span class="species-card__fact-text">${escapeHTML(funFact(sp))}</span>
+          </div>` : ''}
           <span class="species-card__cta" aria-hidden="true">
             View species
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4"/></svg>
