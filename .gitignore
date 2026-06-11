@@ -1,0 +1,5 @@
+# Local runtime/tooling state
+.claude-flow/
+
+# Local Supabase credentials (never commit)
+config.js
