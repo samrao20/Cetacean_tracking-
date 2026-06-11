@@ -131,8 +131,8 @@ Helper scripts (run once if needed):
 
 - Brand name: Koamas (use in nav logo, page titles, footer)
 - Fonts: Fraunces (headings, serif) + Outfit (body, sans) — loaded from Google Fonts. **Not Inter.**
-- Palette: deep navy `#0a1628`, sand `#e8dcc8`, coral accent `#c4614a`, background `#f5f0e8`, muted text `#6b7a8d`, rule `#d4c9b4`
-- 3px coral brand bar at top of every page (`<div class="brand-bar">`)
+- Palette ("Tropical Lagoon"): deep teal `#0b3d33`, cetacean grey `#e3e9ea`, tropical green accent `#059669` (hover `#047857`), lagoon blue accent `#5fc7d4`, background `#f7fafa`, text `#1e2d2a`, muted text `#64747c`, rule `#d9e2e4`. Legacy CSS variable names (`--navy`, `--sand`, `--coral`) are retained but now hold these values; `--green` and `--lagoon` are also defined.
+- 3px green→lagoon gradient brand bar at top of every page (`<div class="brand-bar">`)
 - Nav logo: Koamas in italic Fraunces with "Maldives Cetacean Watch" tagline
 - Scientific-publication aesthetic — restrained, editorial, not SaaS-flashy
 - Mobile-first; map sidebar collapses to bottom sheet on small screens
