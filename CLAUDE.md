@@ -8,6 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Hosted on GitHub Pages — must work as static files with no server or build step.**
 
+## Guardrails — load-bearing, do not alter
+
+These are safe to restyle but must not change in behaviour. UI/redesign work has full freedom over markup, CSS, and animation, but must leave the following intact:
+
+- **WhatsApp routing.** Every `https://wa.me/...?text=...` link and its pre-filled message. The number is currently the placeholder `00000000000` — preserve it verbatim (do not "fix" or invent a real number); it is swapped in elsewhere when the bot goes live. Sightings are submitted only through this bot, never through a form on this site.
+- **Informational text.** The 22-species guide content (`species.json`), the "How it works" steps, and the About-page copy are the dataset, not filler. Restyle freely; do not reword, summarise, or drop entries. After any redesign, the rendered text must be byte-identical (extract page text and diff against the previous commit to confirm).
+- **Data layer.** Supabase query shapes, the `status = 'verified'` filter, the Supabase→local field normalisation, and the local-JSON fallback path. Breaking any of these silently empties the map/dashboard.
+- **Coordinate rounding** to 0.05 at render time (privacy — see Key Decisions), and the **`submitter_phone_hash` never rendered** rule.
+
+When in doubt, treat anything under Data Flow, JavaScript Conventions, and Key Decisions below as behaviour to preserve, and confine changes to presentation.
+
 ## Tech Stack
 
 - Plain HTML + vanilla JS (no framework, no build tool)
@@ -136,7 +147,15 @@ Helper scripts (run once if needed):
 - Nav logo: Koamas in italic Fraunces with "Maldives Cetacean Watch" tagline
 - Scientific-publication aesthetic — restrained, editorial, not SaaS-flashy
 - Mobile-first; map sidebar collapses to bottom sheet on small screens
-- Each page shares the same nav and footer markup (no templating — copy manually)
+- Each page shares the same nav and footer markup (no templating — copy manually). A change to nav or footer must be applied to all five built pages by hand, or they drift.
+
+### Interactivity conventions
+
+Animation/interaction styles are defined per-page in each `<style>` block (no shared stylesheet — keep them in sync the same way nav/footer are):
+
+- Nav links use a sliding green→lagoon underline (`::after` scaleX). Map and Dashboard links carry an inline `.nav-ico` SVG (`.nav-ico-map` pin / `.nav-ico-chart` bars) that slides in and animates on hover; the icon also shows on the active page as a "you are here" marker.
+- Buttons and cards lift on hover (`translateY`) with a soft green glow; species cards zoom their photo and tint their border. JS-rendered lists (sightings, species teaser/grid) fade in with a staggered `.reveal` → `.reveal.in` class toggle applied in the render callback.
+- Every page ends its style block with a `prefers-reduced-motion: reduce` guard that neutralises animations and transitions. Any new animation must remain covered by it.
 
 ### Skills
 

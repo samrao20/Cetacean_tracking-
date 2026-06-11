@@ -14,57 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
 
   <style>
-    :root {
-      --navy:  #0b3d33;
-      --sand:  #e3e9ea;
-      --coral: #059669;
-      --bg:    #f7fafa;
-      --text:  #1e2d2a;
-      --muted: #64747c;
-      --rule:  #d9e2e4;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Fraunces', Georgia, serif;
-      text-wrap: balance;
-    }
-
-    /* ── Skip to content ── */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      z-index: 999;
-      background: var(--coral);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0 0 0.5rem 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: top 0.15s;
-    }
-    .skip-link:focus { top: 0; }
-
-    /* ── Brand top bar ── */
-    .brand-bar {
-      height: 3px;
-      background: linear-gradient(90deg, #065f46 0%, var(--coral) 40%, #5fc7d4 70%, var(--coral) 100%);
-    }
-
-    /* ── Nav ── */
-    .site-nav a { transition: color 0.2s cubic-bezier(0.16,1,0.3,1); }
-    .site-nav a:hover,
-    .site-nav a[aria-current="page"] { color: var(--coral); }
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
 
     /* ── Hero ── */
     .hero-bg {
@@ -77,56 +31,31 @@
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    /* Cinematic depth layers over the hero video */
+    .hero-vignette {
+      background:
+        radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(8,46,39,0.45) 100%),
+        linear-gradient(180deg, rgba(11,61,51,0.30) 0%, transparent 30%, transparent 60%, rgba(8,46,39,0.65) 100%);
+    }
+    .hero-rays {
+      background: radial-gradient(60% 90% at 70% -10%, rgba(95,199,212,0.18), transparent 60%);
+      mix-blend-mode: screen;
+      animation: rayDrift 14s ease-in-out infinite alternate;
+    }
+    @keyframes rayDrift {
+      from { transform: translateX(-3%) scale(1.05); opacity: 0.7; }
+      to   { transform: translateX(3%)  scale(1.1);  opacity: 1; }
+    }
+    .hero-fade-up { opacity: 0; transform: translateY(20px); animation: heroUp 0.9s var(--ease, cubic-bezier(0.16,1,0.3,1)) forwards; }
+    .hero-fade-up.d1 { animation-delay: 0.1s; }
+    .hero-fade-up.d2 { animation-delay: 0.25s; }
+    .hero-fade-up.d3 { animation-delay: 0.4s; }
+    @keyframes heroUp { to { opacity: 1; transform: none; } }
+
     .chevron-bounce { animation: bounce 2s ease-in-out infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); opacity: 0.7; }
       50%       { transform: translateY(8px); opacity: 1; }
-    }
-
-    /* ── Buttons ── */
-    .btn-primary {
-      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
-      box-shadow: 0 4px 14px rgba(5,150,105,0.3);
-    }
-    .btn-primary:hover { box-shadow: 0 6px 20px rgba(5,150,105,0.4); }
-    .btn-primary:active { transform: scale(0.98) translateY(1px); box-shadow: 0 2px 8px rgba(5,150,105,0.25); }
-
-    .btn-ghost {
-      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
-    }
-    .btn-ghost:active { transform: scale(0.98) translateY(1px); }
-
-    /* ── Cards ── */
-    .sighting-card {
-      background: #fff;
-      border: 1px solid var(--rule);
-      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
-    }
-    .sighting-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(11,61,51,0.10), 0 2px 6px rgba(11,61,51,0.06);
-    }
-
-    /* ── Species avatar ── */
-    .species-avatar {
-      width: 76px; height: 76px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid var(--rule);
-      background: var(--sand);
-      flex-shrink: 0;
-      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.2s;
-    }
-    .species-avatar:hover {
-      transform: scale(1.12);
-      border-color: var(--coral);
-      box-shadow: 0 4px 16px rgba(5,150,105,0.25);
-    }
-    .species-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .species-avatar .initials {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--navy);
     }
 
     /* ── Partner placeholder ── */
@@ -140,68 +69,9 @@
     }
     .partner-box:hover { border-color: var(--lagoon); color: var(--text); }
 
-    /* ── Tropical interactivity ── */
-    :root { --green: #059669; --lagoon: #5fc7d4; }
-
-    .site-nav ul a:not(.rounded-full) { position: relative; }
-    .site-nav ul a:not(.rounded-full)::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 2px;
-      border-radius: 1px;
-      background: linear-gradient(90deg, var(--green), var(--lagoon));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav ul a:not(.rounded-full):hover::after,
-    .site-nav ul a[aria-current="page"]:not(.rounded-full)::after { transform: scaleX(1); }
-
-    .nav-ico {
-      display: inline-block;
-      width: 0; opacity: 0;
-      margin-right: 0;
-      vertical-align: -2px;
-      color: var(--green);
-      transform: translateY(3px) scale(0.5);
-      transition: width 0.25s cubic-bezier(0.16,1,0.3,1), margin 0.25s cubic-bezier(0.16,1,0.3,1),
-                  opacity 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .site-nav a:hover .nav-ico,
-    .site-nav a[aria-current="page"] .nav-ico { width: 13px; opacity: 1; margin-right: 5px; transform: none; }
-    .site-nav a:hover .nav-ico-map { animation: pinBob 0.5s ease 0.15s; }
-    @keyframes pinBob {
-      0%, 100% { transform: none; }
-      40% { transform: translateY(-3px); }
-      70% { transform: translateY(1px); }
-    }
-    .nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
-    .site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s cubic-bezier(0.16,1,0.3,1) backwards; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
-    .site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
-    @keyframes barRise { from { transform: scaleY(0.2); } }
-
-    .site-nav a.rounded-full { transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-    .site-nav a.rounded-full:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5,150,105,0.3); }
-
-    .btn-primary:hover { transform: translateY(-2px); }
-    .btn-ghost:hover { transform: translateY(-2px); }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal.in { opacity: 1; transform: none; }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .reveal { opacity: 1; transform: none; }
+      .hero-fade-up { animation: none; opacity: 1; transform: none; }
+      .hero-rays { animation: none; }
     }
   </style>
 </head>
@@ -217,8 +87,11 @@
 ══════════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]/95 backdrop-blur-sm" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex flex-col leading-none group">
-      <span class="font-['Fraunces'] text-xl font-semibold italic text-[#0b3d33] tracking-tight group-hover:text-[#059669] transition-colors">Koamas</span>
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a] items-center" role="list">
@@ -228,7 +101,7 @@
       <li><a href="dashboard.html"><svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg>Dashboard</a></li>
       <li><a href="about.html">About</a></li>
       <li>
-        <a href="submit.html" class="px-4 py-1.5 rounded-full bg-[#059669] text-white hover:bg-[#047857] transition-colors text-xs font-semibold">
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
@@ -268,24 +141,24 @@
     <source src="https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.2-assets/WhatsApp.Video.2026-05-15.at.10.41.51.mp4" type="video/mp4" />
   </video>
 
-  <!-- Overlay -->
-  <div class="absolute inset-0 z-[2] bg-[#0b3d33]/58"></div>
-  <!-- Bottom fade -->
-  <div class="absolute bottom-0 inset-x-0 z-[2] h-40 bg-gradient-to-t from-[#0b3d33]/50 to-transparent pointer-events-none"></div>
+  <!-- Light rays -->
+  <div class="hero-rays absolute inset-0 z-[1] pointer-events-none" aria-hidden="true"></div>
+  <!-- Cinematic vignette + gradient depth -->
+  <div class="hero-vignette absolute inset-0 z-[2] pointer-events-none" aria-hidden="true"></div>
 
   <div class="relative z-[3] w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-20 text-center md:text-left">
-    <p class="text-[#8fd6cb] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
+    <p class="hero-fade-up text-[#8fd6cb] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
       Koamas · Citizen Science
     </p>
-    <h1 class="font-['Fraunces'] text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-6 max-w-2xl">
+    <h1 class="hero-fade-up d1 font-['Fraunces'] text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-6 max-w-2xl">
       Every sighting<br />
       <em class="italic font-normal text-[#e3e9ea]">tells a story</em>
     </h1>
-    <p class="text-[#c3d8da] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+    <p class="hero-fade-up d2 text-[#c3d8da] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
       Help us map dolphins and whales across the Maldivian archipelago.
       One WhatsApp message builds the science.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+    <div class="hero-fade-up d3 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
       <a
         href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
         class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#059669] text-white font-semibold text-sm hover:bg-[#047857]"
@@ -550,25 +423,17 @@
 (function () {
   'use strict';
 
-  // ── Nav toggle ──────────────────────────────────────────────
-  const toggle = document.getElementById('nav-toggle');
-  const menu   = document.getElementById('mobile-menu');
-  toggle.addEventListener('click', () => {
-    const open = menu.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', open);
-  });
+  // Nav toggle, scroll-aware header, and scroll reveals are handled
+  // by the shared assets/koamas.js. Use Koamas.revealIn() for lists
+  // rendered after load.
+  const staggerReveal = (parent) =>
+    (window.Koamas ? window.Koamas.revealIn(parent)
+                   : parent.querySelectorAll('.reveal').forEach(el => el.classList.add('in')));
 
   // ── Hero video fade-in ──────────────────────────────────────
   const video = document.getElementById('hero-video');
   if (video) {
     video.addEventListener('canplay', () => { video.style.opacity = '1'; }, { once: true });
-  }
-
-  // ── Staggered card reveal (visual only) ─────────────────────
-  function staggerReveal(parent) {
-    parent.querySelectorAll('.reveal').forEach((el, i) => {
-      setTimeout(() => el.classList.add('in'), 40 + Math.min(i, 14) * 55);
-    });
   }
 
   // ── Species teaser ──────────────────────────────────────────
