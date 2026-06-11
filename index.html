@@ -146,13 +146,25 @@
   <!-- Cinematic vignette + gradient depth -->
   <div class="hero-vignette absolute inset-0 z-[2] pointer-events-none" aria-hidden="true"></div>
 
+  <!-- Sonar rings -->
+  <div class="sonar-rings absolute -right-28 top-1/2 -translate-y-1/2 z-[2] hidden lg:block opacity-70" aria-hidden="true">
+    <svg width="560" height="560" viewBox="0 0 560 560" fill="none">
+      <circle cx="280" cy="280" r="86"  stroke="rgba(95,199,212,0.30)"/>
+      <circle cx="280" cy="280" r="160" stroke="rgba(95,199,212,0.18)"/>
+      <circle cx="280" cy="280" r="232" stroke="rgba(95,199,212,0.10)"/>
+      <circle cx="280" cy="280" r="276" stroke="rgba(95,199,212,0.05)"/>
+      <circle cx="280" cy="280" r="4" fill="rgba(95,199,212,0.6)"/>
+    </svg>
+    <div class="sonar-sweep"></div>
+  </div>
+
   <div class="relative z-[3] w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-20 text-center md:text-left">
-    <p class="hero-fade-up text-[#8fd6cb] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
+    <p class="hero-fade-up kicker text-[#8fd6cb] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
       Koamas · Citizen Science
     </p>
-    <h1 class="hero-fade-up d1 font-['Fraunces'] text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-6 max-w-2xl">
+    <h1 class="hero-fade-up d1 font-['Fraunces'] text-6xl sm:text-7xl md:text-8xl font-bold text-white leading-[0.98] tracking-tight mb-7 max-w-3xl">
       Every sighting<br />
-      <em class="italic font-normal text-[#e3e9ea]">tells a story</em>
+      <em class="text-grad italic font-normal">tells a story</em>
     </h1>
     <p class="hero-fade-up d2 text-[#c3d8da] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
       Help us map dolphins and whales across the Maldivian archipelago.
@@ -197,8 +209,8 @@
 
     <div class="flex items-end justify-between mb-8">
       <div>
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-2">Live data</p>
-        <h2 id="sightings-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] tracking-tight">
+        <p class="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.18em] uppercase text-[#059669] mb-2"><span class="sonar-dot" aria-hidden="true"></span> Live data</p>
+        <h2 id="sightings-heading" class="text-3xl md:text-4xl font-semibold text-[#0b3d33] tracking-tight">
           Recent sightings
         </h2>
       </div>
@@ -226,12 +238,13 @@
 <!-- ══════════════════════════════════════
      HOW IT WORKS
 ══════════════════════════════════════ -->
-<section class="py-16 px-4 bg-[#0b3d33]" aria-labelledby="how-heading">
+<div class="wave-divider bg-[#f7fafa]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#0b3d33"/></svg></div>
+<section class="dive-band py-20 px-4" aria-labelledby="how-heading">
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-12">
-      <p class="text-[#059669] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The process</p>
-      <h2 id="how-heading" class="text-2xl md:text-3xl font-semibold text-white mb-3">
+      <p class="text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The process</p>
+      <h2 id="how-heading" class="text-3xl md:text-4xl font-semibold text-white mb-3">
         How it works
       </h2>
       <p class="text-[#a3bdb6] max-w-lg mx-auto">
@@ -241,9 +254,9 @@
 
     <ol class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8" role="list">
 
-      <li class="relative border-t border-[#1d4f43] pt-8">
+      <li class="step-card relative border-t border-[#1d4f43] pt-8">
         <span class="font-['Fraunces'] text-8xl font-bold text-white/[0.05] leading-none select-none absolute top-6 right-0" aria-hidden="true">1</span>
-        <div class="w-10 h-10 rounded-lg bg-[#059669]/12 border border-[#059669]/25 flex items-center justify-center mb-5">
+        <div class="step-ico w-12 h-12 rounded-xl flex items-center justify-center mb-5">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
@@ -260,9 +273,9 @@
         </div>
       </li>
 
-      <li class="relative border-t border-[#1d4f43] pt-8">
+      <li class="step-card relative border-t border-[#1d4f43] pt-8">
         <span class="font-['Fraunces'] text-8xl font-bold text-white/[0.05] leading-none select-none absolute top-6 right-0" aria-hidden="true">2</span>
-        <div class="w-10 h-10 rounded-lg bg-[#059669]/12 border border-[#059669]/25 flex items-center justify-center mb-5">
+        <div class="step-ico w-12 h-12 rounded-xl flex items-center justify-center mb-5">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
@@ -279,9 +292,9 @@
         </div>
       </li>
 
-      <li class="relative border-t border-[#1d4f43] pt-8">
+      <li class="step-card relative border-t border-[#1d4f43] pt-8">
         <span class="font-['Fraunces'] text-8xl font-bold text-white/[0.05] leading-none select-none absolute top-6 right-0" aria-hidden="true">3</span>
-        <div class="w-10 h-10 rounded-lg bg-[#059669]/12 border border-[#059669]/25 flex items-center justify-center mb-5">
+        <div class="step-ico w-12 h-12 rounded-xl flex items-center justify-center mb-5">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
@@ -308,6 +321,7 @@
 
   </div>
 </section>
+<div class="wave-divider flip bg-[#eef3f3]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
 
 <!-- ══════════════════════════════════════
      SPECIES TEASER
@@ -317,7 +331,7 @@
 
     <div class="text-center mb-10">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#059669] mb-3">Field guide</p>
-      <h2 id="species-teaser-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] mb-3">
+      <h2 id="species-teaser-heading" class="text-3xl md:text-4xl font-semibold text-[#0b3d33] mb-3">
         22 species in Maldivian waters
       </h2>
       <p class="text-[#64747c] max-w-md mx-auto text-sm">
@@ -341,10 +355,18 @@
 <!-- ══════════════════════════════════════
      CTA BAND
 ══════════════════════════════════════ -->
-<section class="py-16 px-4 bg-[#0b3d33]" aria-labelledby="cta-heading">
+<div class="wave-divider bg-[#eef3f3]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,36 C260,10 520,52 780,28 C1040,6 1260,48 1440,30 L1440,60 L0,60 Z" fill="#0b3d33"/></svg></div>
+<section class="dive-band py-20 px-4" aria-labelledby="cta-heading">
+  <div class="sonar-rings absolute -left-24 -bottom-24 opacity-50 hidden md:block" aria-hidden="true">
+    <svg width="380" height="380" viewBox="0 0 380 380" fill="none">
+      <circle cx="190" cy="190" r="70"  stroke="rgba(95,199,212,0.26)"/>
+      <circle cx="190" cy="190" r="130" stroke="rgba(95,199,212,0.14)"/>
+      <circle cx="190" cy="190" r="186" stroke="rgba(95,199,212,0.07)"/>
+    </svg>
+  </div>
   <div class="max-w-2xl mx-auto text-center">
     <p class="text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Be part of the science</p>
-    <h2 id="cta-heading" class="font-['Fraunces'] text-2xl md:text-3xl font-semibold text-white mb-4">
+    <h2 id="cta-heading" class="font-['Fraunces'] text-3xl md:text-4xl font-semibold text-white mb-4">
       Your sighting matters
     </h2>
     <p class="text-[#a3bdb6] text-base mb-8 leading-relaxed max-w-lg mx-auto">
@@ -371,10 +393,12 @@
   </div>
 </section>
 
+<div class="wave-divider flip bg-[#f7fafa]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,36 C260,10 520,52 780,28 C1040,6 1260,48 1440,30 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
+
 <!-- ══════════════════════════════════════
      PARTNERS
 ══════════════════════════════════════ -->
-<section class="py-14 px-4 border-t border-[#d9e2e4]" aria-labelledby="partners-heading">
+<section class="py-14 px-4" aria-labelledby="partners-heading">
   <div class="max-w-4xl mx-auto text-center">
     <h2 id="partners-heading" class="text-xs font-semibold tracking-[0.18em] uppercase text-[#64747c] mb-8">
       Supported by
