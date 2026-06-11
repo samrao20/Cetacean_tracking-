@@ -411,13 +411,42 @@
   }
 
   function applyFilters() {
-    if (!map || !map.isStyleLoaded()) return;
+    if (!map || !map.getSource('sightings')) return;
     var f = filtered();
     map.getSource('sightings').setData(toGeoJSON(f));
     document.getElementById('empty-state').style.display = f.length === 0 ? 'flex' : 'none';
     document.getElementById('clear-btn').style.display   = anyFilter()    ? ''      : 'none';
     updateCounter(f.length);
+    syncURL();
     frameSightings(f);
+  }
+
+  // ── Shareable links: filters ⇄ URL query string ─────────────────────────
+  function syncURL() {
+    var q = new URLSearchParams();
+    if (activeSpecies.size) q.set('species', Array.from(activeSpecies).join(','));
+    if (selAtoll)           q.set('atoll', selAtoll);
+    if (dateFrom)           q.set('from', dateFrom);
+    if (dateTo)             q.set('to', dateTo);
+    var s = q.toString();
+    history.replaceState(null, '', s ? '?' + s : location.pathname);
+  }
+
+  function applyParamsFromURL() {
+    var q = new URLSearchParams(location.search);
+    (q.get('species') || '').split(',').filter(Boolean).forEach(function (slug) {
+      var btn = document.querySelector('.sp-chip[data-slug="' + (window.CSS && CSS.escape ? CSS.escape(slug) : slug) + '"]');
+      if (btn && !activeSpecies.has(slug)) toggleChip(btn);
+    });
+    var atoll = q.get('atoll') || '';
+    if (atoll) {
+      selAtoll = atoll;
+      document.getElementById('atoll-sel').value = atoll;
+    }
+    var from = q.get('from') || '';
+    var to   = q.get('to')   || '';
+    if (from) { dateFrom = from; document.getElementById('date-from').value = from; }
+    if (to)   { dateTo   = to;   document.getElementById('date-to').value   = to; }
   }
 
   // Animated result counter in the filter bar (visual only)
@@ -673,12 +702,16 @@
         },
       });
 
-      // Intro dive into the archipelago
+      // Apply any filters that arrived via the URL (shareable links);
+      // also sets the data, counter, and camera framing.
+      applyFilters();
+
+      // Intro dive into the archipelago (skipped when a shared link is
+      // already framing specific sightings)
       if (!REDUCE_MOTION) {
-        map.flyTo({ center: CENTER, zoom: ZOOM, duration: 2800, essential: false });
+        if (!anyFilter()) map.flyTo({ center: CENTER, zoom: ZOOM, duration: 2800, essential: false });
         startPulse();
       }
-      updateCounter(allSightings.length);
 
       // Click → open side panel
       map.on('click', 'sightings-circles', function (e) {
@@ -736,6 +769,7 @@
     try {
       allSightings = await loadSightings();
       buildFilterBar();
+      applyParamsFromURL();
       initMap(await resolveStyle());
     } catch (err) {
       document.getElementById('loading').style.display = 'none';
