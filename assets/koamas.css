@@ -184,6 +184,12 @@ a:hover > .nav-mark { transform: rotate(-7deg) scale(1.07); }
    mid-sweep resets it off-screen instead of sweeping visibly backwards. */
 .nav-cta:hover::before { animation: sheenSweep 0.6s var(--ease) forwards; }
 @keyframes sheenSweep { to { left: -120%; } }
+/* Pill text stays white in every state — the generic
+   `.site-nav a:hover / [aria-current="page"]` mint rule otherwise
+   outranks `.nav-cta` and tints it. */
+.site-nav a.nav-cta,
+.site-nav a.nav-cta:hover,
+.site-nav a.nav-cta[aria-current="page"] { color: #fff; }
 
 /* Mobile menu drop-in */
 #mobile-menu:not(.hidden) { animation: menuDrop 0.28s var(--ease); }
