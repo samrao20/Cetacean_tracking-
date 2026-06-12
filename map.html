@@ -621,19 +621,28 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Map
   // ─────────────────────────────────────────────────────────────────────────
-  // Brighten land vs water on the dark basemap so the atolls read
-  // clearly (presentation only; runs only when the dark style loaded).
-  function improveBasemapContrast() {
+  // Basemap contrast pass (presentation only). On the dark style, land is
+  // brightened so the atolls read against near-black water. On the light
+  // ocean fallback the default land is so pale that the tiny Maldivian
+  // islands vanish into the cyan — there, land is darkened instead and
+  // coastlines are inked so even sub-pixel islets keep an outline.
+  function improveBasemapContrast(isDark) {
+    var landFill    = isDark ? '#2b352f' : '#69836f';
+    var landOutline = isDark ? '#2b352f' : '#46604f';
     var layers = (map.getStyle().layers || []);
     layers.forEach(function (l) {
       var id = (l.id || '').toLowerCase();
       try {
         if (l.type === 'background') {
-          map.setPaintProperty(l.id, 'background-color', '#2b352f');
+          if (isDark) map.setPaintProperty(l.id, 'background-color', '#2b352f');
         } else if (l.type === 'fill' && /water|ocean|sea|river|lake/.test(id)) {
-          map.setPaintProperty(l.id, 'fill-color', '#0b3540');
-        } else if (l.type === 'fill' && /land|earth|island/.test(id)) {
-          map.setPaintProperty(l.id, 'fill-color', '#2b352f');
+          if (isDark) map.setPaintProperty(l.id, 'fill-color', '#0b3540');
+        } else if (l.type === 'fill' && /land|earth|island|sand/.test(id)) {
+          map.setPaintProperty(l.id, 'fill-color', landFill);
+          map.setPaintProperty(l.id, 'fill-outline-color', landOutline);
+        } else if (l.type === 'line' && /coast/.test(id)) {
+          map.setPaintProperty(l.id, 'line-color', landOutline);
+          map.setPaintProperty(l.id, 'line-width', 1.1);
         }
       } catch (_) {}
     });
@@ -650,7 +659,7 @@
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
 
     map.on('load', function () {
-      if (styleURL === MAP_STYLE_DARK) improveBasemapContrast();
+      improveBasemapContrast(styleURL === MAP_STYLE_DARK);
 
       map.addSource('sightings', { type: 'geojson', data: toGeoJSON(allSightings) });
 
