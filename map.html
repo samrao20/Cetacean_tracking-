@@ -88,11 +88,51 @@
     /* ── MapLibre popup ─────────────────────────────── */
     .maplibregl-popup-content {
       padding: 0.55rem 0.8rem;
-      border-radius: 0.5rem;
+      border-radius: 0.65rem;
+      border: 1px solid rgba(27,58,77,0.12);
+      background: #fffdf9;
       box-shadow: 0 4px 16px rgba(0,0,0,0.14);
       font-family: 'Outfit', sans-serif;
     }
-    .maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: white; }
+    .maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: #fffdf9; }
+
+    /* ── Basemap toggle ─────────────────────────────── */
+    .bm-btn {
+      border: none;
+      background: none;
+      color: rgba(255,255,255,0.65);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.32rem 0.7rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .bm-btn:hover { color: #fff; }
+    .bm-btn.on { background: #059669; color: #fff; }
+
+    /* ── Toast (share feedback) ─────────────────────── */
+    #toast {
+      position: absolute;
+      bottom: 1.7rem; left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      z-index: 40;
+      background: rgba(8,46,39,0.92);
+      color: #eafef6;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(95,199,212,0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      max-width: 86%;
+      overflow-wrap: anywhere;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -176,6 +216,8 @@
       <input type="date" id="date-from" class="f-ctrl" title="From date" />
       <input type="date" id="date-to"   class="f-ctrl" title="To date"   />
       <button id="heatmap-btn" class="f-ctrl" style="font-weight:500;">Heatmap</button>
+      <button id="latest-btn" class="f-ctrl" style="font-weight:500;" title="Fly to the most recent sighting">Latest</button>
+      <button id="share-btn" class="f-ctrl" style="font-weight:500;" title="Copy a shareable link to this view">Share</button>
       <span id="result-count" style="display:inline-block;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.6);font-family:'Outfit',sans-serif;padding:0.28rem 0.35rem;white-space:nowrap;" aria-live="polite"></span>
       <button id="clear-btn"   style="display:none;background:none;border:none;color:rgba(255,255,255,0.45);font-size:0.7rem;font-family:'Inter',sans-serif;cursor:pointer;padding:0.28rem 0.5rem;border-radius:0.4rem;transition:color 0.15s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Clear</button>
     </div>
@@ -202,14 +244,14 @@
   <aside id="side-panel" aria-label="Sighting details">
     <!-- Drag handle (mobile only) -->
     <div style="display:flex;justify-content:center;padding:0.55rem 0 0.1rem;flex-shrink:0;">
-      <div style="width:2.5rem;height:0.22rem;border-radius:9999px;background:#e5e7eb;"></div>
+      <div style="width:2.5rem;height:0.22rem;border-radius:9999px;background:#d8efe4;"></div>
     </div>
 
     <!-- Header -->
     <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:0.9rem 1.2rem 0.7rem;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
       <div>
         <h2 id="p-common"    style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#0b3d33;line-height:1.3;"></h2>
-        <p  id="p-scientific" style="font-size:0.75rem;font-style:italic;color:#9ca3af;margin-top:0.15rem;"></p>
+        <p  id="p-scientific" style="font-size:0.75rem;font-style:italic;color:#64747c;margin-top:0.15rem;"></p>
       </div>
       <button onclick="closePanel()" style="margin-left:0.6rem;padding:0.3rem;border-radius:9999px;border:none;background:none;cursor:pointer;color:#9ca3af;flex-shrink:0;" title="Close panel" aria-label="Close panel">
         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -235,6 +277,16 @@
     </div>
   </aside>
 
+  <!-- Basemap toggle -->
+  <div id="basemap-toggle" role="group" aria-label="Basemap style" style="position:absolute;left:1rem;bottom:1.6rem;z-index:10;display:flex;background:rgba(11,61,51,0.88);backdrop-filter:blur(10px);border-radius:9999px;padding:0.25rem;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+    <button class="bm-btn on" data-style="lagoon">Lagoon</button>
+    <button class="bm-btn" data-style="deep">Deep</button>
+    <button class="bm-btn" data-style="sat">Satellite</button>
+  </div>
+
+  <!-- Toast (share feedback) -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
   <!-- Panel backdrop (mobile tap-to-close) -->
   <div id="p-backdrop" onclick="closePanel()" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,0.28);z-index:15;"></div>
 
@@ -258,22 +310,37 @@
   // Constants
   // ─────────────────────────────────────────────────────────────────────────
   const MAPTILER_KEY = 'GMdyZmw23vuGhFSwySuP';
-  // Immersive dark basemap, falling back to the original ocean style if
-  // the API key does not permit it (presentation only — same data).
+  // Three basemaps: Lagoon (light ocean, default), Deep (dark — hidden if
+  // the key can't load it), Satellite (Esri World Imagery raster).
   const MAP_STYLE_DARK = 'https://api.maptiler.com/maps/dataviz-dark/style.json?key=' + MAPTILER_KEY;
   const MAP_STYLE      = 'https://api.maptiler.com/maps/ocean/style.json?key=' + MAPTILER_KEY;
+  const SAT_STYLE = {
+    version: 8,
+    glyphs: 'https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=' + MAPTILER_KEY,
+    sources: {
+      esri: {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        maxzoom: 18,
+        attribution: 'Imagery © Esri, Maxar, Earthstar Geographics',
+      },
+    },
+    layers: [{ id: 'esri-imagery', type: 'raster', source: 'esri' }],
+  };
+  const BASEMAPS = { lagoon: MAP_STYLE, deep: MAP_STYLE_DARK, sat: SAT_STYLE };
   const CENTER       = [73.2207, 3.2028];
   const ZOOM         = 6;
   const INTRO_ZOOM   = 3.4;  // intro "dive" starting zoom
   const ROUND        = 0.05; // coordinate privacy rounding (~5 km)
   const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  async function resolveStyle() {
+  async function probeDeepStyle() {
     try {
       var r = await fetch(MAP_STYLE_DARK);
-      if (r.ok) return MAP_STYLE_DARK;
+      return r.ok;
     } catch (_) {}
-    return MAP_STYLE;
+    return false;
   }
 
   const SPECIES_COLORS = {
@@ -309,6 +376,11 @@
   let selAtoll      = '';
   let dateFrom      = '';
   let dateTo        = '';
+  let styleKey      = 'lagoon';   // 'lagoon' | 'deep' | 'sat'
+  let islandsGeo    = null;       // local island polygons (data/maldives-islands.geojson)
+  let atollsGeo     = null;       // local atoll polygons + names
+  let latestId      = null;       // id of the most recent sighting (pulse target)
+  let hoveredAtoll  = null;
 
   // ─────────────────────────────────────────────────────────────────────────
   // Utilities
@@ -339,10 +411,12 @@
     return {
       type: 'FeatureCollection',
       features: sightings.map(function(s) {
+        var gsMatch = String(s.groupSize == null ? '' : s.groupSize).match(/\d+/);
         return {
           type: 'Feature',
           geometry: { type: 'Point', coordinates: [+s.lng, +s.lat] },
           properties: {
+            gs:               gsMatch ? +gsMatch[0] : 3,
             id:               s.id,
             species:          s.species,
             speciesCommon:    s.speciesCommon,
@@ -417,7 +491,9 @@
   function applyFilters() {
     if (!map || !map.getSource('sightings')) return;
     var f = filtered();
-    map.getSource('sightings').setData(toGeoJSON(f));
+    var geo = toGeoJSON(f);
+    map.getSource('sightings').setData(geo);
+    if (map.getSource('sightings-cl')) map.getSource('sightings-cl').setData(geo);
     document.getElementById('empty-state').style.display = f.length === 0 ? 'flex' : 'none';
     document.getElementById('clear-btn').style.display   = anyFilter()    ? ''      : 'none';
     updateCounter(f.length);
@@ -432,6 +508,7 @@
     if (selAtoll)           q.set('atoll', selAtoll);
     if (dateFrom)           q.set('from', dateFrom);
     if (dateTo)             q.set('to', dateTo);
+    if (styleKey !== 'lagoon') q.set('view', styleKey);
     var s = q.toString();
     history.replaceState(null, '', s ? '?' + s : location.pathname);
   }
@@ -451,6 +528,8 @@
     var to   = q.get('to')   || '';
     if (from) { dateFrom = from; document.getElementById('date-from').value = from; }
     if (to)   { dateTo   = to;   document.getElementById('date-to').value   = to; }
+    var view = q.get('view') || '';
+    if (view && BASEMAPS[view]) styleKey = view;
   }
 
   // Animated result counter in the filter bar (visual only)
@@ -521,7 +600,23 @@
     document.getElementById('date-from').addEventListener('change', function() { dateFrom = this.value; applyFilters(); });
     document.getElementById('date-to').addEventListener('change',   function() { dateTo   = this.value; applyFilters(); });
     document.getElementById('heatmap-btn').addEventListener('click', toggleHeatmap);
+    document.getElementById('latest-btn').addEventListener('click',  goLatest);
+    document.getElementById('share-btn').addEventListener('click',   shareLink);
     document.getElementById('clear-btn').addEventListener('click',   clearFilters);
+    document.querySelectorAll('.bm-btn').forEach(function (b) {
+      b.addEventListener('click', function () { setBasemap(this.dataset.style); });
+    });
+  }
+
+  // Show/hide point vs heatmap layers according to the heatmap toggle
+  function refreshLayerVisibility() {
+    if (!map || !map.isStyleLoaded()) return;
+    var pts = heatmap ? 'none' : 'visible';
+    ['sightings-circles', 'sightings-pulse', 'sightings-clusters', 'sightings-cluster-count'].forEach(function (id) {
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', pts);
+    });
+    if (map.getLayer('sightings-heat'))
+      map.setLayoutProperty('sightings-heat', 'visibility', heatmap ? 'visible' : 'none');
   }
 
   function toggleChip(btn) {
@@ -544,12 +639,7 @@
     var btn = document.getElementById('heatmap-btn');
     btn.style.background = heatmap ? '#059669' : '';
     btn.style.color      = heatmap ? 'white'   : '';
-    if (map && map.isStyleLoaded()) {
-      map.setLayoutProperty('sightings-circles', 'visibility', heatmap ? 'none'    : 'visible');
-      if (map.getLayer('sightings-pulse'))
-        map.setLayoutProperty('sightings-pulse', 'visibility', heatmap ? 'none'    : 'visible');
-      map.setLayoutProperty('sightings-heat',    'visibility', heatmap ? 'visible' : 'none');
-    }
+    refreshLayerVisibility();
     applyFilters();
   }
 
@@ -566,13 +656,40 @@
     document.getElementById('date-to').value    = '';
     var hb = document.getElementById('heatmap-btn');
     hb.style.background = ''; hb.style.color = '';
-    if (map && map.isStyleLoaded()) {
-      map.setLayoutProperty('sightings-circles', 'visibility', 'visible');
-      if (map.getLayer('sightings-pulse'))
-        map.setLayoutProperty('sightings-pulse', 'visibility', 'visible');
-      map.setLayoutProperty('sightings-heat',    'visibility', 'none');
-    }
+    refreshLayerVisibility();
     applyFilters();
+  }
+
+  // ── Latest sighting / share-link actions ────────────────────────────────
+  function goLatest() {
+    if (!map || !allSightings.length) return;
+    var s = allSightings.slice().sort(function (a, b) {
+      return String(b.date || '').localeCompare(String(a.date || ''));
+    })[0];
+    var c = [+s.lng, +s.lat];
+    if (REDUCE_MOTION) map.jumpTo({ center: c, zoom: 9.5 });
+    else map.flyTo({ center: c, zoom: 9.5, duration: 1600 });
+    openPanel(s);
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._h);
+    showToast._h = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  function shareLink() {
+    var url = location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(
+        function () { showToast('Link copied'); },
+        function () { showToast(url); }
+      );
+    } else {
+      showToast(url);
+    }
   }
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -606,7 +723,7 @@
     rows.forEach(function(r) {
       dl.innerHTML +=
         '<div>' +
-        '<dt style="font-size:0.66rem;font-weight:500;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;">' + r[0] + '</dt>' +
+        '<dt style="font-size:0.66rem;font-weight:500;color:#64747c;text-transform:uppercase;letter-spacing:0.05em;">' + r[0] + '</dt>' +
         '<dd style="margin-top:0.12rem;font-size:0.8rem;color:#0b3d33;line-height:1.5;">' + r[1] + '</dd>' +
         '</div>';
     });
@@ -663,71 +780,292 @@
     });
   }
 
-  function initMap(styleURL) {
+  // ── Local overlay data: islands + atolls ────────────────────────────────
+  // Committed in /data so the archipelago renders identically on every
+  // basemap, instead of depending on third-party tiles that omit the
+  // smaller islands at overview zooms. Island data © geoBoundaries (CC BY).
+  let atollBboxes = {};
+
+  function geomBbox(g) {
+    var b = [180, 90, -180, -90];
+    (function walk(c) {
+      if (typeof c[0] === 'number') {
+        if (c[0] < b[0]) b[0] = c[0];
+        if (c[1] < b[1]) b[1] = c[1];
+        if (c[0] > b[2]) b[2] = c[0];
+        if (c[1] > b[3]) b[3] = c[1];
+      } else { c.forEach(walk); }
+    })(g.coordinates);
+    return b;
+  }
+
+  async function loadOverlays() {
+    try {
+      var rs = await Promise.all([
+        fetch('data/maldives-islands.geojson'),
+        fetch('data/maldives-atolls.geojson'),
+      ]);
+      if (rs[0].ok) islandsGeo = await rs[0].json();
+      if (rs[1].ok) {
+        atollsGeo = await rs[1].json();
+        atollsGeo.features.forEach(function (f) {
+          atollBboxes[f.properties.name] = geomBbox(f.geometry);
+        });
+      }
+    } catch (_) { /* overlays are an enhancement — the map works without them */ }
+  }
+
+  // Overlay colours tuned per basemap
+  function overlayPalette() {
+    if (styleKey === 'sat')  return { fillOp: 0.18, line: '#ffffff', lineW: 0.7, halo: 'rgba(255,255,255,0.35)', ring: 'rgba(255,255,255,0.30)', label: '#ffffff', labelHalo: 'rgba(0,20,30,0.55)' };
+    if (styleKey === 'deep') return { fillOp: 0.92, line: '#0c2a3a', lineW: 0.8, halo: 'rgba(244,236,215,0.30)', ring: 'rgba(255,255,255,0.22)', label: '#cfe7e2', labelHalo: 'rgba(8,30,40,0.75)' };
+    return                          { fillOp: 0.95, line: '#16324c', lineW: 0.8, halo: 'rgba(27,58,77,0.28)',   ring: 'rgba(27,58,77,0.30)',   label: '#16324c', labelHalo: 'rgba(255,255,255,0.85)' };
+  }
+
+  function addOverlayLayers() {
+    var pal = overlayPalette();
+    if (atollsGeo && !map.getSource('mdv-atolls')) {
+      map.addSource('mdv-atolls', { type: 'geojson', data: atollsGeo, generateId: true });
+      map.addLayer({
+        id: 'atoll-fill', type: 'fill', source: 'mdv-atolls',
+        paint: {
+          'fill-color': '#f4ecd7',
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.16, 0.07],
+        },
+      });
+      map.addLayer({
+        id: 'atoll-ring', type: 'line', source: 'mdv-atolls',
+        paint: { 'line-color': pal.ring, 'line-width': 1, 'line-dasharray': [2, 2] },
+      });
+    }
+    if (islandsGeo && !map.getSource('mdv-islands')) {
+      map.addSource('mdv-islands', { type: 'geojson', data: islandsGeo });
+      map.addLayer({ id: 'island-halo', type: 'line', source: 'mdv-islands',
+        paint: { 'line-color': pal.halo, 'line-width': 3.5, 'line-blur': 2 } });
+      map.addLayer({ id: 'island-fill', type: 'fill', source: 'mdv-islands',
+        paint: { 'fill-color': '#f4ecd7', 'fill-opacity': pal.fillOp } });
+      map.addLayer({ id: 'island-line', type: 'line', source: 'mdv-islands',
+        paint: { 'line-color': pal.line, 'line-width': pal.lineW } });
+    }
+    if (atollsGeo && !map.getLayer('atoll-label')) {
+      try {
+        map.addLayer({
+          id: 'atoll-label', type: 'symbol', source: 'mdv-atolls',
+          layout: {
+            'text-field': ['get', 'name'],
+            'text-font': ['Noto Sans Italic'],
+            'text-size': ['interpolate', ['linear'], ['zoom'], 5, 10, 9, 13],
+            'text-letter-spacing': 0.08,
+            'text-transform': 'uppercase',
+          },
+          paint: { 'text-color': pal.label, 'text-halo-color': pal.labelHalo, 'text-halo-width': 1.1, 'text-opacity': 0.85 },
+        });
+      } catch (_) { /* glyphs unavailable — labels are optional */ }
+    }
+  }
+
+  function addSightingLayers() {
+    var data = toGeoJSON(filtered());
+    map.addSource('sightings',    { type: 'geojson', data: data });
+    map.addSource('sightings-cl', { type: 'geojson', data: data, cluster: true, clusterRadius: 42, clusterMaxZoom: 8 });
+
+    // Heatmap layer (hidden by default) — lagoon→white thermal ramp
+    map.addLayer({
+      id:     'sightings-heat',
+      type:   'heatmap',
+      source: 'sightings',
+      layout: { visibility: 'none' },
+      paint: {
+        'heatmap-weight':    1,
+        'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
+        'heatmap-color': [
+          'interpolate', ['linear'], ['heatmap-density'],
+          0,    'rgba(11,61,51,0)',
+          0.25, 'rgba(5,150,105,0.55)',
+          0.5,  '#5fc7d4',
+          0.75, '#8fd6cb',
+          1,    '#ffffff',
+        ],
+        'heatmap-radius':  ['interpolate', ['linear'], ['zoom'], 0, 20, 9, 40],
+        'heatmap-opacity': 0.8,
+      },
+    });
+
+    // Sonar pulse halo on the most recent sighting only (animated)
+    map.addLayer({
+      id:     'sightings-pulse',
+      type:   'circle',
+      source: 'sightings',
+      filter: ['==', ['get', 'id'], latestId === null ? '' : latestId],
+      paint: {
+        'circle-color':   colorExpr(),
+        'circle-radius':  6,
+        'circle-opacity': 0.35,
+      },
+    });
+
+    // Cluster bubbles + counts (declusters from zoom 9)
+    map.addLayer({
+      id:     'sightings-clusters',
+      type:   'circle',
+      source: 'sightings-cl',
+      filter: ['has', 'point_count'],
+      paint: {
+        'circle-color':        '#0b3d33',
+        'circle-radius':       ['step', ['get', 'point_count'], 14, 10, 18, 25, 23],
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#5fc7d4',
+        'circle-opacity':      0.88,
+      },
+    });
+    try {
+      map.addLayer({
+        id:     'sightings-cluster-count',
+        type:   'symbol',
+        source: 'sightings-cl',
+        filter: ['has', 'point_count'],
+        layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': ['Noto Sans Regular'], 'text-size': 11 },
+        paint:  { 'text-color': '#eafef6' },
+      });
+    } catch (_) { /* glyphs unavailable — counts are optional */ }
+
+    // Individual sightings — radius scales gently with group size
+    var sizeExpr = ['interpolate', ['linear'], ['coalesce', ['get', 'gs'], 3], 1, 4, 40, 8];
+    map.addLayer({
+      id:     'sightings-circles',
+      type:   'circle',
+      source: 'sightings-cl',
+      filter: ['!', ['has', 'point_count']],
+      paint: {
+        'circle-radius':       ['interpolate', ['linear'], ['zoom'], 4, ['*', 0.9, sizeExpr], 10, ['*', 1.5, sizeExpr]],
+        'circle-color':        colorExpr(),
+        'circle-stroke-width': 1.5,
+        'circle-stroke-color': '#ffffff',
+        'circle-opacity':      0.92,
+      },
+    });
+  }
+
+  // ── Basemap switching ────────────────────────────────────────────────────
+  function updateBasemapButtons() {
+    document.querySelectorAll('.bm-btn').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.style === styleKey);
+    });
+  }
+
+  function setBasemap(key) {
+    if (!map || !BASEMAPS[key] || key === styleKey) return;
+    styleKey = key;
+    updateBasemapButtons();
+    syncURL();
+    map.setStyle(BASEMAPS[key]);  // the 'style.load' handler rebuilds everything
+  }
+
+  // Map an overlay atoll name onto the sightings' atoll dropdown values
+  function atollFilterValue(name) {
+    var opts = Array.prototype.map.call(document.getElementById('atoll-sel').options, function (o) { return o.value; });
+    if (opts.indexOf(name + ' Atoll') !== -1) return name + ' Atoll';
+    var special = { 'Alif Alif': 'Ari Atoll', 'Alif Dhaalu': 'Ari Atoll' };
+    if (special[name] && opts.indexOf(special[name]) !== -1) return special[name];
+    return '';
+  }
+
+  // Layer-scoped handlers survive setStyle, so these are wired only once.
+  function wireMapEvents() {
+    // Click → open side panel
+    map.on('click', 'sightings-circles', function (e) {
+      if (!e.features || !e.features.length) return;
+      openPanel(e.features[0].properties);
+    });
+
+    // Hover popup
+    map.on('mouseenter', 'sightings-circles', function (e) {
+      map.getCanvas().style.cursor = 'pointer';
+      if (!e.features || !e.features.length) return;
+      var p = e.features[0].properties;
+      if (activePopup) activePopup.remove();
+      activePopup = new maplibregl.Popup({ closeButton: false, offset: 12 })
+        .setLngLat(e.lngLat)
+        .setHTML(
+          '<div style="display:flex;align-items:center;gap:0.4rem;font-weight:600;color:#16324c;font-size:0.8rem;font-family:\'Fraunces\',serif;">' +
+            '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>' +
+            (p.speciesCommon || '') +
+          '</div>' +
+          '<div style="color:#64747c;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll : '') + '</div>'
+        )
+        .addTo(map);
+    });
+
+    map.on('mouseleave', 'sightings-circles', function () {
+      map.getCanvas().style.cursor = '';
+      if (activePopup) { activePopup.remove(); activePopup = null; }
+    });
+
+    // Clusters: click to expand
+    map.on('click', 'sightings-clusters', function (e) {
+      var f = e.features && e.features[0];
+      if (!f) return;
+      map.getSource('sightings-cl').getClusterExpansionZoom(f.properties.cluster_id).then(function (z) {
+        map.easeTo({ center: f.geometry.coordinates, zoom: z + 0.4, duration: REDUCE_MOTION ? 0 : 700 });
+      }).catch(function () {});
+    });
+    map.on('mouseenter', 'sightings-clusters', function () { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', 'sightings-clusters', function () { map.getCanvas().style.cursor = ''; });
+
+    // Atolls: hover tint + click to zoom (and filter when names align)
+    map.on('mousemove', 'atoll-fill', function (e) {
+      if (!e.features || !e.features.length) return;
+      if (hoveredAtoll !== null) map.setFeatureState({ source: 'mdv-atolls', id: hoveredAtoll }, { hover: false });
+      hoveredAtoll = e.features[0].id;
+      map.setFeatureState({ source: 'mdv-atolls', id: hoveredAtoll }, { hover: true });
+    });
+    map.on('mouseleave', 'atoll-fill', function () {
+      if (hoveredAtoll !== null) map.setFeatureState({ source: 'mdv-atolls', id: hoveredAtoll }, { hover: false });
+      hoveredAtoll = null;
+    });
+    map.on('click', 'atoll-fill', function (e) {
+      // Sightings/clusters on top take priority over the atoll underneath
+      var lays = ['sightings-circles', 'sightings-clusters'].filter(function (l) { return map.getLayer(l); });
+      if (lays.length && map.queryRenderedFeatures(e.point, { layers: lays }).length) return;
+      var f = e.features && e.features[0];
+      if (!f) return;
+      var name = f.properties.name || '';
+      var b = atollBboxes[name];
+      if (b) map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 56, duration: REDUCE_MOTION ? 0 : 1100, maxZoom: 10.5 });
+      var v = atollFilterValue(name);
+      if (v && v !== selAtoll) {
+        selAtoll = v;
+        document.getElementById('atoll-sel').value = v;
+        applyFilters();
+      }
+    });
+  }
+
+  function initMap() {
     map = new maplibregl.Map({
       container: 'map',
-      style:     styleURL,
+      style:     BASEMAPS[styleKey],
       center:    CENTER,
       zoom:      REDUCE_MOTION ? ZOOM : INTRO_ZOOM,
+      attributionControl: { compact: true, customAttribution: 'Island data © geoBoundaries (CC BY 4.0)' },
     });
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+    map.addControl(new maplibregl.FullscreenControl(), 'bottom-right');
+    map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: false } }), 'bottom-right');
 
-    map.on('load', function () {
-      improveBasemapContrast(styleURL === MAP_STYLE_DARK);
+    // Runs on the initial style AND after every basemap switch — setStyle
+    // wipes all sources/layers, so everything is rebuilt here.
+    map.on('style.load', function () {
+      try { if (styleKey !== 'sat') improveBasemapContrast(styleKey === 'deep'); } catch (_) {}
+      addOverlayLayers();
+      addSightingLayers();
+      refreshLayerVisibility();
+    });
 
-      map.addSource('sightings', { type: 'geojson', data: toGeoJSON(allSightings) });
-
-      // Sonar pulse halo beneath the markers (animated, visual only)
-      map.addLayer({
-        id:     'sightings-pulse',
-        type:   'circle',
-        source: 'sightings',
-        paint: {
-          'circle-color':   colorExpr(),
-          'circle-radius':  6,
-          'circle-opacity': 0.35,
-        },
-      });
-
-      // Circle layer
-      map.addLayer({
-        id:     'sightings-circles',
-        type:   'circle',
-        source: 'sightings',
-        paint: {
-          'circle-radius':       ['interpolate', ['linear'], ['zoom'], 4, 5, 10, 9],
-          'circle-color':        colorExpr(),
-          'circle-stroke-width': 1.5,
-          'circle-stroke-color': '#ffffff',
-          'circle-opacity':      0.9,
-        },
-      });
-
-      // Heatmap layer (hidden by default) — lagoon→white thermal ramp
-      map.addLayer({
-        id:     'sightings-heat',
-        type:   'heatmap',
-        source: 'sightings',
-        layout: { visibility: 'none' },
-        paint: {
-          'heatmap-weight':    1,
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
-          'heatmap-color': [
-            'interpolate', ['linear'], ['heatmap-density'],
-            0,    'rgba(11,61,51,0)',
-            0.25, 'rgba(5,150,105,0.55)',
-            0.5,  '#5fc7d4',
-            0.75, '#8fd6cb',
-            1,    '#ffffff',
-          ],
-          'heatmap-radius':  ['interpolate', ['linear'], ['zoom'], 0, 20, 9, 40],
-          'heatmap-opacity': 0.8,
-        },
-      });
-
+    map.once('load', function () {
       // Apply any filters that arrived via the URL (shareable links);
-      // also sets the data, counter, and camera framing.
+      // also sets the counter, empty state, and camera framing.
       applyFilters();
 
       // Intro dive into the archipelago (skipped when a shared link is
@@ -737,35 +1075,7 @@
         startPulse();
       }
 
-      // Click → open side panel
-      map.on('click', 'sightings-circles', function (e) {
-        if (!e.features || !e.features.length) return;
-        openPanel(e.features[0].properties);
-      });
-
-      // Hover popup
-      map.on('mouseenter', 'sightings-circles', function (e) {
-        map.getCanvas().style.cursor = 'pointer';
-        if (!e.features || !e.features.length) return;
-        var p = e.features[0].properties;
-        if (activePopup) activePopup.remove();
-        activePopup = new maplibregl.Popup({ closeButton: false, offset: 12 })
-          .setLngLat(e.lngLat)
-          .setHTML(
-            '<div style="display:flex;align-items:center;gap:0.4rem;font-weight:600;color:#0b3d33;font-size:0.8rem;">' +
-              '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>' +
-              (p.speciesCommon || '') +
-            '</div>' +
-            '<div style="color:#64747c;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll : '') + '</div>'
-          )
-          .addTo(map);
-      });
-
-      map.on('mouseleave', 'sightings-circles', function () {
-        map.getCanvas().style.cursor = '';
-        if (activePopup) { activePopup.remove(); activePopup = null; }
-      });
-
+      wireMapEvents();
       document.getElementById('loading').style.display = 'none';
     });
   }
@@ -791,10 +1101,21 @@
   // ─────────────────────────────────────────────────────────────────────────
   (async function () {
     try {
-      allSightings = await loadSightings();
+      var boot = await Promise.all([loadSightings(), loadOverlays(), probeDeepStyle()]);
+      allSightings = boot[0];
+      var deepOk   = boot[2];
+      latestId = (allSightings.slice().sort(function (a, b) {
+        return String(b.date || '').localeCompare(String(a.date || ''));
+      })[0] || {}).id || null;
       buildFilterBar();
       applyParamsFromURL();
-      initMap(await resolveStyle());
+      if (!deepOk) {
+        if (styleKey === 'deep') styleKey = 'lagoon';
+        var db = document.querySelector('.bm-btn[data-style="deep"]');
+        if (db) db.style.display = 'none';
+      }
+      updateBasemapButtons();
+      initMap();
     } catch (err) {
       document.getElementById('loading').style.display = 'none';
       var es = document.getElementById('error-state');
