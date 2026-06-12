@@ -96,6 +96,13 @@
     }
     .maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: #fffdf9; }
 
+    /* ── Collapsible filter bar ─────────────────────── */
+    /* Collapsed (default on small screens): only the Filters button and
+       the result counter stay visible, so the map isn't buried under
+       species chips on a phone. */
+    #filter-bar.collapsed > *:not(#filter-toggle):not(#result-count) { display: none !important; }
+    #filter-bar.collapsed #filter-toggle-chev { transform: rotate(-90deg); }
+
     /* ── Basemap toggle ─────────────────────────────── */
     .bm-btn {
       border: none;
@@ -161,9 +168,9 @@
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6]" role="list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="map.html" aria-current="page"><svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>Map</a></li>
+      <li><a href="map.html" aria-current="page">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
       <li><a href="species.html">Species</a></li>
-      <li><a href="dashboard.html"><svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg>Dashboard</a></li>
+      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
       <li><a href="about.html">About</a></li>
       <li>
         <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
@@ -210,6 +217,11 @@
   <!-- Filter bar -->
   <div style="position:absolute;top:1rem;left:1rem;right:1rem;z-index:10;pointer-events:none;">
     <div id="filter-bar" style="pointer-events:auto;background:rgba(11,61,51,0.88);backdrop-filter:blur(10px);border-radius:0.75rem;padding:0.6rem 0.85rem;display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.22);">
+      <button id="filter-toggle" class="f-ctrl" aria-expanded="true" aria-controls="filter-bar" style="font-weight:600;display:inline-flex;align-items:center;gap:0.35rem;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M7 12h10M10 19h4"/></svg>
+        Filters
+        <svg id="filter-toggle-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
       <div id="species-chips" style="display:flex;flex-wrap:wrap;gap:0.3rem;"></div>
       <div id="f-div" style="display:none;width:1px;height:1rem;background:rgba(255,255,255,0.18);flex-shrink:0;"></div>
       <select id="atoll-sel" class="f-ctrl"><option value="">All atolls</option></select>
@@ -606,6 +618,19 @@
     document.querySelectorAll('.bm-btn').forEach(function (b) {
       b.addEventListener('click', function () { setBasemap(this.dataset.style); });
     });
+
+    // Collapsible filter bar — starts collapsed on small screens so the
+    // species chips don't bury the map on a phone.
+    var fbar = document.getElementById('filter-bar');
+    var ftog = document.getElementById('filter-toggle');
+    function setFilterCollapsed(c) {
+      fbar.classList.toggle('collapsed', c);
+      ftog.setAttribute('aria-expanded', String(!c));
+    }
+    ftog.addEventListener('click', function () {
+      setFilterCollapsed(!fbar.classList.contains('collapsed'));
+    });
+    setFilterCollapsed(window.innerWidth < 640);
   }
 
   // Show/hide point vs heatmap layers according to the heatmap toggle
