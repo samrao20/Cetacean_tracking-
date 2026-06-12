@@ -6,6 +6,7 @@
   <title>About — Koamas</title>
   <meta name="description" content="Koamas is a citizen science project tracking dolphin and whale sightings across the Maldives. Learn what Koamas means, how we work, and how to get involved." />
 
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -43,12 +44,15 @@
 ══════════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex flex-col leading-none">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="assets/img/logo.svg" alt="" aria-hidden="true" class="nav-mark" width="30" height="38" />
+      <span class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
         <span class="nav-logo-base text-[#eafef6]">Koamas</span>
         <span class="nav-logo" aria-hidden="true">Koamas</span>
       </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fd6cb] mt-0.5">Maldives Cetacean Watch</span>
+    </span>
     </a>
     <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6] items-center" role="list">
       <li><a href="index.html">Home</a></li>

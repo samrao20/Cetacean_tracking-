@@ -81,6 +81,14 @@ h1, h2, h3, h4 {
 .site-nav a:hover,
 .site-nav a[aria-current="page"] { color: var(--mint); }
 
+/* Fingerprint-dolphin mark beside the wordmark */
+.nav-mark {
+  width: 30px; height: auto;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease);
+}
+a:hover > .nav-mark { transform: rotate(-7deg) scale(1.07); }
+
 /* Brand wordmark — gradient ink on hover */
 .nav-logo {
   background-image: var(--grad);
