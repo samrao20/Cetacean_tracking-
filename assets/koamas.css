@@ -165,6 +165,10 @@ a:hover > .nav-mark { transform: rotate(-7deg) scale(1.07); }
 /* Submit pill — gradient with sheen + glow */
 .nav-cta {
   position: relative;
+  /* inline-block, not inline: overflow:hidden doesn't apply to inline
+     boxes, so the sheen band would paint outside the pill (and hang
+     past the viewport edge at rest, adding horizontal scroll). */
+  display: inline-block;
   overflow: hidden;
   background: var(--grad);
   color: #fff;
