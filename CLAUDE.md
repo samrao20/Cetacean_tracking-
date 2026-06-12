@@ -47,6 +47,8 @@ There is also an unfinished Next.js app under `web/` that is not deployed. Do no
 /
 ├── config.js           # Supabase URL + anon key (NOT committed — create locally)
 ├── data/sightings.json # Static fallback sighting data for development/offline use
+├── data/maldives-islands.geojson # Island polygons drawn as a map overlay (geoBoundaries, CC BY 4.0 — keep the attribution in map.html)
+├── data/maldives-atolls.geojson  # Atoll polygons + names: rings, labels, click-to-zoom on the map
 ├── index.html          # Built — hero video, recent sightings, how-it-works, species teaser
 ├── species.html        # Built — species guide rendered from species.json
 ├── about.html          # Built — "What does Koamas mean?", methodology, privacy
