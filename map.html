@@ -6,7 +6,7 @@
   <title>Sightings Map — Maldives Cetacean Tracker</title>
   <meta name="description" content="Explore verified dolphin and whale sightings across the Maldives on an interactive map." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link rel="icon" type="image/png" href="assets/img/koamas-favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -110,7 +110,7 @@
 <nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex items-center gap-2.5">
-      <img src="assets/img/logo.svg" alt="" aria-hidden="true" class="nav-mark" width="30" height="38" />
+      <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
         <span class="nav-logo-base text-[#eafef6]">Koamas</span>
@@ -627,25 +627,36 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Basemap contrast pass (presentation only). On the dark style, land is
   // brightened so the atolls read against near-black water. On the light
-  // ocean fallback the default land is so pale that the tiny Maldivian
-  // islands vanish into the cyan — there, land is darkened instead and
-  // coastlines are inked so even sub-pixel islets keep an outline.
+  // ocean style, land is inked deep navy against the cyan water.
+  // Crucial detail: in OpenMapTiles-pattern styles land often has NO fill
+  // layer at all — the background layer IS the land base, and the ocean
+  // is painted on top as water/bathymetry fills. Tiny islands then show
+  // as pale background gaps in the water fill. So when no land fill
+  // exists, the background must be inked instead, or the islands stay
+  // invisible.
   function improveBasemapContrast(isDark) {
-    var landFill    = isDark ? '#2b352f' : '#69836f';
-    var landOutline = isDark ? '#2b352f' : '#46604f';
+    var WATER = /water|ocean|sea|river|lake|bathy/;
+    var LAND  = /land|earth|island|sand/;
+    var landInk = isDark ? '#2b352f' : '#1b3a4d';
     var layers = (map.getStyle().layers || []);
+    var hasLandFill = layers.some(function (l) {
+      return l.type === 'fill' && LAND.test((l.id || '').toLowerCase());
+    });
     layers.forEach(function (l) {
       var id = (l.id || '').toLowerCase();
       try {
         if (l.type === 'background') {
-          if (isDark) map.setPaintProperty(l.id, 'background-color', '#2b352f');
-        } else if (l.type === 'fill' && /water|ocean|sea|river|lake/.test(id)) {
+          // No land fill anywhere → the background is the land base;
+          // ink it. If land fills exist, the background is likely the
+          // ocean itself — leave it alone on the light style.
+          if (isDark || !hasLandFill) map.setPaintProperty(l.id, 'background-color', landInk);
+        } else if (l.type === 'fill' && WATER.test(id)) {
           if (isDark) map.setPaintProperty(l.id, 'fill-color', '#0b3540');
-        } else if (l.type === 'fill' && /land|earth|island|sand/.test(id)) {
-          map.setPaintProperty(l.id, 'fill-color', landFill);
-          map.setPaintProperty(l.id, 'fill-outline-color', landOutline);
+        } else if (l.type === 'fill' && LAND.test(id)) {
+          map.setPaintProperty(l.id, 'fill-color', landInk);
+          map.setPaintProperty(l.id, 'fill-outline-color', landInk);
         } else if (l.type === 'line' && /coast/.test(id)) {
-          map.setPaintProperty(l.id, 'line-color', landOutline);
+          map.setPaintProperty(l.id, 'line-color', landInk);
           map.setPaintProperty(l.id, 'line-width', 1.1);
         }
       } catch (_) {}
