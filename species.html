@@ -98,16 +98,16 @@
 <div class="brand-bar" aria-hidden="true"></div>
 
 <!-- ══ NAVIGATION ══════════════════════════════════════════════════════ -->
-<nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]" aria-label="Site navigation">
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo-base text-[#eafef6]">Koamas</span>
         <span class="nav-logo" aria-hidden="true">Koamas</span>
       </span>
-      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fd6cb] mt-0.5">Maldives Cetacean Watch</span>
     </a>
-    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a] items-center" role="list">
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6] items-center" role="list">
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html"><svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>Map</a></li>
       <li><a href="species.html" aria-current="page">Species</a></li>
@@ -119,7 +119,7 @@
         </a>
       </li>
     </ul>
-    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#0b3d33]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eafef6]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -127,8 +127,8 @@
       </svg>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[#d9e2e4] bg-[#f7fafa]">
-    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#1e2d2a]" role="list">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d4f43] bg-[#0b3d33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d9efe6]" role="list">
       <li><a href="index.html" class="block py-1">Home</a></li>
       <li><a href="map.html" class="block py-1">Map</a></li>
       <li><a href="species.html" class="block py-1" aria-current="page">Species</a></li>
@@ -164,10 +164,10 @@
         </p>
       </div>
     </header>
-    <div class="wave-divider flip bg-[#f7fafa]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
+    <div class="wave-divider flip bg-[#edfaf4]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
 
     <!-- Filter + search bar -->
-    <section class="sticky top-14 z-30 bg-[#f7fafa] border-b border-[#d9e2e4]" aria-label="Filter species">
+    <section class="sticky top-14 z-30 bg-[#edfaf4] border-b border-[#cbe7da]" aria-label="Filter species">
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-2 items-center">
         <div class="flex gap-2" role="group" aria-label="Filter by type">
           <button class="filter-pill active text-xs font-semibold px-3 py-1.5 rounded-full" data-filter="all">All</button>
@@ -181,7 +181,7 @@
             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
           </svg>
           <input id="search-input" type="search" placeholder="Search species…" aria-label="Search species by name"
-            class="pl-8 pr-3 py-1.5 text-sm border border-[#d9e2e4] rounded-full bg-white w-48 focus:w-64 transition-all" />
+            class="pl-8 pr-3 py-1.5 text-sm border border-[#cbe7da] rounded-full bg-white w-48 focus:w-64 transition-all" />
         </div>
       </div>
     </section>
@@ -208,7 +208,7 @@
   <!-- ── Detail view ───────────────────────────────────────────────── -->
   <div id="detail-view" class="hidden">
 
-    <div class="border-b border-[#d9e2e4] bg-[#f7fafa]">
+    <div class="border-b border-[#cbe7da] bg-[#edfaf4]">
       <div class="max-w-4xl mx-auto px-4 py-3">
         <button id="back-btn" class="inline-flex items-center gap-1.5 text-sm text-[#64747c] hover:text-[#059669] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#059669] rounded">
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -337,7 +337,7 @@
         data-slug="${sp.slug}"
         aria-label="${sp.common_name} — ${sp.scientific_name}"
       >
-        <div class="species-card__media aspect-[4/3] bg-[#d9e2e4]">
+        <div class="species-card__media aspect-[4/3] bg-[#cbe7da]">
           <img
             src="${sp.photo}"
             alt="${sp.common_name} (${sp.scientific_name})"
@@ -370,7 +370,7 @@
           <p class="text-xs italic text-[#64747c] mb-3">${sp.scientific_name}</p>
           <div class="flex items-center gap-3 text-xs text-[#64747c] border-t border-[#e8efee] pt-2.5">
             <span title="Typical length"><span aria-hidden="true">↔</span> ${sp.length_m} m</span>
-            <span class="text-[#d9e2e4]">|</span>
+            <span class="text-[#cbe7da]">|</span>
             <span>${sp.type === 'whale' ? 'Whale' : 'Dolphin'}</span>
           </div>
         </div>
@@ -412,12 +412,12 @@
     ).join('');
 
     document.getElementById('detail-content').innerHTML = `
-      <div class="border-b border-[#d9e2e4] pb-6 mb-8">
+      <div class="border-b border-[#cbe7da] pb-6 mb-8">
         <div class="flex flex-wrap items-center gap-3 mb-2">
           <span class="iucn-${sp.iucn_status} text-xs font-bold px-2 py-0.5 rounded" title="IUCN Red List status: ${sp.iucn_label}">
             IUCN ${sp.iucn_status} — ${sp.iucn_label}
           </span>
-          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-[#e3e9ea] text-[#64747c] capitalize">${sp.type}</span>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-[#d8efe4] text-[#64747c] capitalize">${sp.type}</span>
           ${unverified.has('iucn_status') ? '<span class="unverified-flag" title="IUCN status needs verification">verify</span>' : ''}
         </div>
         <h1 class="text-3xl md:text-4xl font-bold text-[#0b3d33] mb-1">${sp.common_name}</h1>
@@ -428,7 +428,7 @@
 
         <div class="md:col-span-1 space-y-6">
 
-          <figure class="rounded-lg overflow-hidden bg-[#d9e2e4]">
+          <figure class="rounded-lg overflow-hidden bg-[#cbe7da]">
             <div class="aspect-[4/3]">
               <img
                 src="${sp.photo}"
@@ -437,10 +437,10 @@
                 onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center text-[#64747c] text-sm p-4 text-center\'>Photo coming soon</div>'"
               />
             </div>
-            ${sp.photo_credit ? `<figcaption class="text-[10px] text-[#64747c] px-2 py-1 bg-[#f7fafa]">© ${sp.photo_credit}</figcaption>` : ''}
+            ${sp.photo_credit ? `<figcaption class="text-[10px] text-[#64747c] px-2 py-1 bg-[#edfaf4]">© ${sp.photo_credit}</figcaption>` : ''}
           </figure>
 
-          <div class="bg-white border border-[#d9e2e4] rounded-lg p-4 space-y-3 text-sm">
+          <div class="bg-white border border-[#cbe7da] rounded-lg p-4 space-y-3 text-sm">
             <h3 class="font-semibold text-[#0b3d33] text-xs uppercase tracking-wider mb-2">At a glance</h3>
             <div class="flex justify-between gap-2">
               <span class="text-[#64747c]">Length</span>
@@ -454,7 +454,7 @@
               <span class="text-[#64747c]">Pod size</span>
               <span class="font-medium text-right leading-snug">${sp.pod_size}</span>
             </div>
-            <hr class="border-[#e3e9ea]" />
+            <hr class="border-[#d8efe4]" />
             <div>
               <p class="text-[#64747c] mb-1.5">Best months ${maybeFlag('best_months')}</p>
               ${monthBar}
@@ -499,7 +499,7 @@
           </section>
 
           ${sp.similar_species && sp.similar_species.length > 0 ? `
-          <section aria-labelledby="sim-heading" class="bg-[#e3e9ea]/50 border border-[#d9e2e4] rounded-lg p-4">
+          <section aria-labelledby="sim-heading" class="bg-[#d8efe4]/50 border border-[#cbe7da] rounded-lg p-4">
             <h2 id="sim-heading" class="text-base font-semibold text-[#0b3d33] mb-3">Telling it apart</h2>
             <ul class="space-y-2 text-[#1e2d2a]">${similarItems}</ul>
           </section>` : ''}

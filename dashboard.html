@@ -60,16 +60,16 @@
 <!-- ═══════════════════════════════════
      NAV
 ═══════════════════════════════════ -->
-<nav class="site-nav sticky top-0 z-40 border-b border-[#d9e2e4] bg-[#f7fafa]" aria-label="Site navigation">
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#0b3d33]">Koamas</span>
+        <span class="nav-logo-base text-[#eafef6]">Koamas</span>
         <span class="nav-logo" aria-hidden="true">Koamas</span>
       </span>
-      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#64747c] mt-0.5">Maldives Cetacean Watch</span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fd6cb] mt-0.5">Maldives Cetacean Watch</span>
     </a>
-    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#1e2d2a] items-center" role="list">
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6] items-center" role="list">
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html"><svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>Map</a></li>
       <li><a href="species.html">Species</a></li>
@@ -81,7 +81,7 @@
         </a>
       </li>
     </ul>
-    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#0b3d33]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eafef6]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -89,8 +89,8 @@
       </svg>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[#d9e2e4] bg-[#f7fafa]">
-    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#1e2d2a]" role="list">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d4f43] bg-[#0b3d33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d9efe6]" role="list">
       <li><a href="index.html" class="block py-1">Home</a></li>
       <li><a href="map.html" class="block py-1">Map</a></li>
       <li><a href="species.html" class="block py-1">Species</a></li>
@@ -127,7 +127,7 @@
       </span>
       <button
         id="csv-btn"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-sm font-medium text-[#e3e9ea] hover:border-[#5fc7d4] hover:text-[#5fc7d4] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-sm font-medium text-[#d8efe4] hover:border-[#5fc7d4] hover:text-[#5fc7d4] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         disabled
         aria-label="Download sightings as CSV"
       >
@@ -612,7 +612,7 @@
           y: {
             grid: { display: false },
             border: { display: false },
-            ticks: { font: { size: 11 }, color: '#e3e9ea' },
+            ticks: { font: { size: 11 }, color: '#d8efe4' },
           },
         },
       },
@@ -796,7 +796,7 @@
         return `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || ''}</td>`;
       }).join('');
       return `<tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
-        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#e3e9ea] whitespace-nowrap">${sp}</td>
+        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#d8efe4] whitespace-nowrap">${sp}</td>
         ${cells}
         <td class="px-3 py-2 text-[0.72rem] font-semibold text-white text-center border-l border-white/15">${total}</td>
       </tr>`;
