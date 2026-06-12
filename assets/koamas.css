@@ -83,7 +83,7 @@ h1, h2, h3, h4 {
 
 /* Fingerprint-dolphin mark beside the wordmark */
 .nav-mark {
-  width: 30px; height: auto;
+  width: 22px; height: auto;
   flex-shrink: 0;
   transition: transform 0.35s var(--ease);
 }
