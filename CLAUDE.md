@@ -8,6 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Hosted on GitHub Pages — must work as static files with no server or build step.**
 
+## Guardrails — load-bearing, do not alter
+
+These are safe to restyle but must not change in behaviour. UI/redesign work has full freedom over markup, CSS, and animation, but must leave the following intact:
+
+- **WhatsApp routing.** Every `https://wa.me/...?text=...` link and its pre-filled message. The number is currently the placeholder `00000000000` — preserve it verbatim (do not "fix" or invent a real number); it is swapped in elsewhere when the bot goes live. Sightings are submitted only through this bot, never through a form on this site.
+- **Informational text.** The 22-species guide content (`species.json`), the "How it works" steps, and the About-page copy are the dataset, not filler. Restyle freely; do not reword, summarise, or drop entries. After any redesign, the rendered text must be byte-identical (extract page text and diff against the previous commit to confirm).
+- **Data layer.** Supabase query shapes, the `status = 'verified'` filter, the Supabase→local field normalisation, and the local-JSON fallback path. Breaking any of these silently empties the map/dashboard.
+- **Coordinate rounding** to 0.05 at render time (privacy — see Key Decisions), and the **`submitter_phone_hash` never rendered** rule.
+
+When in doubt, treat anything under Data Flow, JavaScript Conventions, and Key Decisions below as behaviour to preserve, and confine changes to presentation.
+
 ## Tech Stack
 
 - Plain HTML + vanilla JS (no framework, no build tool)
@@ -41,7 +52,7 @@ There is also an unfinished Next.js app under `web/` that is not deployed. Do no
 ├── about.html          # Built — "What does Koamas mean?", methodology, privacy
 ├── map.html            # Built — full-screen MapLibre map with filter sidebar
 ├── dashboard.html      # Built — stats cards + Chart.js visualisations
-├── submit.html         # Planned — how-to guide + WhatsApp link + QR placeholder
+├── submit.html         # Built — how-to guide + WhatsApp link + QR placeholder
 ├── species.json        # Static species data (edit by hand — see schema below)
 └── assets/
     ├── img/species/    # Species photos (.jpg) used by index.html and map.html
@@ -131,12 +142,20 @@ Helper scripts (run once if needed):
 
 - Brand name: Koamas (use in nav logo, page titles, footer)
 - Fonts: Fraunces (headings, serif) + Outfit (body, sans) — loaded from Google Fonts. **Not Inter.**
-- Palette: deep navy `#0a1628`, sand `#e8dcc8`, coral accent `#c4614a`, background `#f5f0e8`, muted text `#6b7a8d`, rule `#d4c9b4`
-- 3px coral brand bar at top of every page (`<div class="brand-bar">`)
+- Palette ("Tropical Lagoon"): deep teal `#0b3d33`, cetacean grey `#e3e9ea`, tropical green accent `#059669` (hover `#047857`), lagoon blue accent `#5fc7d4`, background `#f7fafa`, text `#1e2d2a`, muted text `#64747c`, rule `#d9e2e4`. Legacy CSS variable names (`--navy`, `--sand`, `--coral`) are retained but now hold these values; `--green` and `--lagoon` are also defined.
+- 3px green→lagoon gradient brand bar at top of every page (`<div class="brand-bar">`)
 - Nav logo: Koamas in italic Fraunces with "Maldives Cetacean Watch" tagline
 - Scientific-publication aesthetic — restrained, editorial, not SaaS-flashy
 - Mobile-first; map sidebar collapses to bottom sheet on small screens
-- Each page shares the same nav and footer markup (no templating — copy manually)
+- Each page shares the same nav and footer markup (no templating — copy manually). A change to nav or footer must be applied to all five built pages by hand, or they drift.
+
+### Interactivity conventions
+
+Animation/interaction styles are defined per-page in each `<style>` block (no shared stylesheet — keep them in sync the same way nav/footer are):
+
+- Nav links use a sliding green→lagoon underline (`::after` scaleX). Map and Dashboard links carry an inline `.nav-ico` SVG (`.nav-ico-map` pin / `.nav-ico-chart` bars) that slides in and animates on hover; the icon also shows on the active page as a "you are here" marker.
+- Buttons and cards lift on hover (`translateY`) with a soft green glow; species cards zoom their photo and tint their border. JS-rendered lists (sightings, species teaser/grid) fade in with a staggered `.reveal` → `.reveal.in` class toggle applied in the render callback.
+- Every page ends its style block with a `prefers-reduced-motion: reduce` guard that neutralises animations and transitions. Any new animation must remain covered by it.
 
 ### Skills
 

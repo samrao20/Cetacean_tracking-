@@ -1,0 +1,467 @@
+/* ============================================================
+   Koamas — shared design system
+   Loaded by every page after the Tailwind CDN script.
+   Source of truth for tokens, nav, footer, buttons, cards,
+   the reveal system, and the reduced-motion guard.
+   No build step — plain CSS.
+   ============================================================ */
+
+:root {
+  /* Tropical Lagoon palette */
+  --teal:       #0b3d33;
+  --teal-2:     #0c4136;
+  --teal-3:     #0d4a3e;
+  --teal-deep:  #082e27;
+  --grey:       #d8efe4;
+  --green:      #059669;
+  --green-dark: #047857;
+  --lagoon:     #5fc7d4;
+  --mint:       #a9eedb;
+  --bg:         #edfaf4;
+  --text:       #1e2d2a;
+  --muted:      #64747c;
+  --rule:       #cbe7da;
+
+  /* Legacy aliases retained so existing inline rules keep working */
+  --navy:  var(--teal);
+  --sand:  var(--grey);
+  --coral: var(--green);
+
+  --grad:       linear-gradient(135deg, var(--green) 0%, var(--lagoon) 100%);
+  --grad-soft:  linear-gradient(135deg, rgba(169,238,219,0.35), rgba(95,199,212,0.16));
+
+  --shadow-sm:  0 1px 2px rgba(11,61,51,0.06), 0 2px 6px rgba(11,61,51,0.05);
+  --shadow-md:  0 6px 18px rgba(11,61,51,0.10), 0 2px 6px rgba(11,61,51,0.06);
+  --shadow-lg:  0 18px 44px rgba(11,61,51,0.16), 0 6px 14px rgba(11,61,51,0.08);
+  --glow-green: 0 8px 26px rgba(5,150,105,0.34);
+
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-h: 3.5rem;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  text-wrap: balance;
+}
+
+::selection { background: rgba(95,199,212,0.32); color: var(--teal); }
+
+/* ── Brand top bar ─────────────────────────────────────────── */
+.brand-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-dark) 0%, var(--green) 40%, var(--lagoon) 70%, var(--green) 100%);
+  background-size: 200% 100%;
+  animation: brandShift 9s linear infinite;
+}
+@keyframes brandShift { to { background-position: 200% 0; } }
+
+/* ── Navigation ────────────────────────────────────────────── */
+/* Nav is fully opaque (no translucency/blur — animated page headers
+   were showing through and flickering). Scroll state adds shadow only.
+   Dark teal surface: with the footer it forms the dark frame around
+   the lagoon-light body. */
+.site-nav {
+  transition: box-shadow 0.3s var(--ease);
+}
+.site-nav.scrolled {
+  box-shadow: 0 1px 0 rgba(8,46,39,0.65), 0 6px 22px rgba(8,46,39,0.30);
+}
+
+.site-nav a { transition: color 0.2s var(--ease); }
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { color: var(--mint); }
+
+/* Fingerprint-dolphin mark beside the wordmark */
+.nav-mark {
+  width: 30px; height: auto;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease);
+}
+a:hover > .nav-mark { transform: rotate(-7deg) scale(1.07); }
+
+/* Brand wordmark — gradient ink on hover */
+.nav-logo {
+  background-image: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 100%;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+/* Promote both wordmark layers to their own compositing layers —
+   opacity transitions on background-clip:text repaint mid-fade and
+   flicker otherwise. */
+.nav-logo, .nav-logo-base {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.nav-logo-wrap { position: relative; display: inline-block; }
+.nav-logo-wrap:hover .nav-logo { opacity: 1; }
+.nav-logo-wrap:hover .nav-logo-base { opacity: 0; }
+.nav-logo-base { transition: opacity 0.25s var(--ease); }
+
+/* Sliding gradient underline for primary nav links */
+.site-nav ul a:not(.nav-cta) { position: relative; }
+.site-nav ul a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -5px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.site-nav ul a:not(.nav-cta):hover::after,
+.site-nav ul a[aria-current="page"]:not(.nav-cta)::after { transform: scaleX(1); }
+
+/* Slide-in animated icons on Map / Dashboard links */
+/* Icon slot is always reserved so hover never shifts the menu layout */
+.nav-ico {
+  display: inline-block;
+  width: 13px; opacity: 0;
+  margin-right: 5px;
+  vertical-align: -2px;
+  color: var(--mint);
+  transform: translateY(3px) scale(0.4);
+  /* Overshoot bezier supplies the playful "bob" on entry; a separate
+     keyframe animation here used to override the transform mid-slide
+     and visibly snap. */
+  transition: opacity 0.2s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.site-nav a:hover .nav-ico,
+.site-nav a[aria-current="page"] .nav-ico { opacity: 1; transform: none; }
+/* Bob only on the active page's pin, where the transform is already
+   settled and the animation can't fight the slide-in transition. */
+.site-nav a[aria-current="page"]:hover .nav-ico-map { animation: pinBob 0.55s ease; }
+@keyframes pinBob {
+  0%, 100% { transform: none; }
+  40% { transform: translateY(-3px); }
+  70% { transform: translateY(1px); }
+}
+.nav-ico-chart line { transform-box: view-box; transform-origin: bottom; }
+.site-nav a:hover .nav-ico-chart line { animation: barRise 0.45s var(--ease) backwards; }
+.site-nav a:hover .nav-ico-chart line:nth-child(2) { animation-delay: 0.08s; }
+.site-nav a:hover .nav-ico-chart line:nth-child(3) { animation-delay: 0.16s; }
+@keyframes barRise { from { transform: scaleY(0.2); } }
+
+/* Submit pill — gradient with sheen + glow */
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(5,150,105,0.25);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform: skewX(-18deg);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: var(--glow-green); color: #fff; }
+/* One-way sheen: an animation (not a transition) so leaving mid-sweep
+   resets it off-screen instead of sweeping visibly backwards. */
+.nav-cta:hover::before { animation: sheenSweep 0.6s var(--ease) forwards; }
+@keyframes sheenSweep { to { left: 130%; } }
+
+/* Mobile menu drop-in */
+#mobile-menu:not(.hidden) { animation: menuDrop 0.28s var(--ease); }
+@keyframes menuDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+#mobile-menu a { transition: color 0.2s var(--ease), padding-left 0.2s var(--ease); }
+#mobile-menu a:hover { color: var(--mint); padding-left: 0.35rem; }
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  box-shadow: 0 4px 14px rgba(5,150,105,0.3);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-18deg);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(5,150,105,0.42); }
+.btn-primary:hover::before { animation: sheenSweepWide 0.6s var(--ease) forwards; }
+@keyframes sheenSweepWide { to { left: 140%; } }
+.btn-primary:active { transform: translateY(0) scale(0.98); box-shadow: 0 3px 10px rgba(5,150,105,0.3); }
+
+.btn-ghost { transition: transform 0.2s var(--ease), background-color 0.2s, border-color 0.2s; }
+.btn-ghost:hover { transform: translateY(-2px); }
+.btn-ghost:active { transform: translateY(0) scale(0.98); }
+
+/* ── Footer link affordance ────────────────────────────────── */
+footer a { transition: color 0.2s var(--ease); }
+
+/* ── Generic content card ──────────────────────────────────── */
+.sighting-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.sighting-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(5,150,105,0.35);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Species card (guide grid) ─────────────────────────────── */
+.species-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.species-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(5,150,105,0.4);
+  box-shadow: var(--shadow-lg);
+}
+.species-card:active { transform: translateY(-2px) scale(0.99); }
+.species-card:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.species-card__media { position: relative; overflow: hidden; }
+.species-card__media img { transition: transform 0.5s var(--ease); will-change: transform; }
+.species-card:hover .species-card__media img { transform: scale(1.08); }
+
+.species-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,46,39,0.92) 0%, rgba(8,46,39,0.78) 28%, rgba(11,61,51,0.30) 62%, transparent 85%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.species-card:hover .species-card__overlay { opacity: 1; }
+
+.species-card__cta {
+  position: absolute;
+  left: 0.7rem; bottom: 0.7rem;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; color: #fff;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.species-card:hover .species-card__cta { opacity: 1; transform: none; }
+
+/* "Did you know?" fun fact, derived from species data, revealed on hover */
+.species-card__fact {
+  position: absolute;
+  left: 0.7rem; right: 0.7rem; bottom: 2.4rem;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s var(--ease) 0.05s, transform 0.35s var(--ease) 0.05s;
+}
+.species-card:hover .species-card__fact { opacity: 1; transform: none; }
+.species-card__fact-label {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--lagoon);
+  margin-bottom: 0.2rem;
+}
+.species-card__fact-text {
+  display: block;
+  font-size: 0.74rem; line-height: 1.35; font-weight: 500;
+  text-shadow: 0 1px 6px rgba(8,46,39,0.7);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.species-card__type {
+  position: absolute;
+  top: 0.6rem; left: 0.6rem;
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  border-radius: 9999px;
+  color: #fff;
+  background: rgba(11,61,51,0.45);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* ── Species avatar (homepage teaser) ──────────────────────── */
+.species-avatar {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--rule);
+  background: var(--grey);
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease), border-color 0.25s, box-shadow 0.3s var(--ease);
+}
+.species-avatar img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s var(--ease); }
+.group:hover .species-avatar { transform: translateY(-4px) scale(1.06); border-color: var(--green); box-shadow: var(--glow-green); }
+.group:hover .species-avatar img { transform: scale(1.1); }
+.species-avatar .initials {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--teal);
+}
+
+/* ── Scroll reveal ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Skip link ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%; left: 1rem;
+  z-index: 999;
+  background: var(--green);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-size: 0.85rem; font-weight: 600;
+  transition: top 0.15s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Deep Field Journal — dive bands, waves, sonar ─────────── */
+
+/* Immersive deep-teal section with caustic light drift */
+.dive-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 70% at 82% 0%, rgba(95,199,212,0.10), transparent 55%),
+    radial-gradient(70% 60% at 8% 100%, rgba(5,150,105,0.12), transparent 60%),
+    linear-gradient(180deg, var(--teal) 0%, #0a3a30 55%, var(--teal-deep) 100%);
+}
+.dive-band::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 30% at 30% 20%, rgba(95,199,212,0.08), transparent 70%),
+    radial-gradient(35% 25% at 70% 60%, rgba(143,214,203,0.06), transparent 70%);
+  animation: caustic 16s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes caustic {
+  from { transform: translate3d(-2%, -1%, 0) scale(1); }
+  to   { transform: translate3d(2%, 2%, 0) scale(1.06); }
+}
+.dive-band > * { position: relative; }
+
+/* Wave divider between light and dive sections */
+.wave-divider { line-height: 0; }
+.wave-divider svg { display: block; width: 100%; height: 44px; }
+.wave-divider.flip svg { transform: rotate(180deg); }
+
+/* Sonar ping dot */
+.sonar-dot {
+  position: relative;
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--lagoon);
+  vertical-align: middle;
+}
+.sonar-dot::before,
+.sonar-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(95,199,212,0.65);
+  animation: sonarPing 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.sonar-dot::after { animation-delay: 1.5s; }
+@keyframes sonarPing {
+  from { transform: scale(1); opacity: 0.8; }
+  to   { transform: scale(4.2); opacity: 0; }
+}
+
+/* Decorative concentric sonar rings with a slow sweep */
+.sonar-rings { position: relative; pointer-events: none; }
+.sonar-rings .sonar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(95,199,212,0.18), transparent 75deg, transparent 360deg);
+  animation: sonarSweep 14s linear infinite;
+}
+@keyframes sonarSweep { to { transform: rotate(360deg); } }
+
+/* Kicker label with gradient dash */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.kicker::before {
+  content: '';
+  width: 1.8rem;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--grad);
+  flex-shrink: 0;
+}
+
+/* Gradient display ink */
+.text-grad {
+  background-image: linear-gradient(100deg, var(--lagoon) 0%, #8fd6cb 50%, var(--green) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* How-it-works step cards (on dive bands) */
+.step-card { transition: transform 0.3s var(--ease); }
+.step-card:hover { transform: translateY(-5px); }
+.step-ico {
+  background: linear-gradient(135deg, rgba(5,150,105,0.20), rgba(95,199,212,0.16));
+  border: 1px solid rgba(95,199,212,0.30) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.step-card:hover .step-ico {
+  transform: translateY(-3px) rotate(-4deg);
+  box-shadow: 0 12px 26px rgba(95,199,212,0.16);
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
