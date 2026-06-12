@@ -90,6 +90,14 @@ h1, h2, h3, h4 {
   position: absolute; inset: 0;
   pointer-events: none;
 }
+/* Promote both wordmark layers to their own compositing layers —
+   opacity transitions on background-clip:text repaint mid-fade and
+   flicker otherwise. */
+.nav-logo, .nav-logo-base {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
 .nav-logo-wrap { position: relative; display: inline-block; }
 .nav-logo-wrap:hover .nav-logo { opacity: 1; }
 .nav-logo-wrap:hover .nav-logo-base { opacity: 0; }
@@ -120,11 +128,16 @@ h1, h2, h3, h4 {
   vertical-align: -2px;
   color: var(--green);
   transform: translateY(3px) scale(0.4);
-  transition: opacity 0.2s, transform 0.28s var(--ease);
+  /* Overshoot bezier supplies the playful "bob" on entry; a separate
+     keyframe animation here used to override the transform mid-slide
+     and visibly snap. */
+  transition: opacity 0.2s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .site-nav a:hover .nav-ico,
 .site-nav a[aria-current="page"] .nav-ico { opacity: 1; transform: none; }
-.site-nav a:hover .nav-ico-map { animation: pinBob 0.55s ease 0.12s; }
+/* Bob only on the active page's pin, where the transform is already
+   settled and the animation can't fight the slide-in transition. */
+.site-nav a[aria-current="page"]:hover .nav-ico-map { animation: pinBob 0.55s ease; }
 @keyframes pinBob {
   0%, 100% { transform: none; }
   40% { transform: translateY(-3px); }
@@ -152,10 +165,12 @@ h1, h2, h3, h4 {
   width: 60%; height: 100%;
   background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
   transform: skewX(-18deg);
-  transition: left 0.6s var(--ease);
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--glow-green); color: #fff; }
-.nav-cta:hover::before { left: 130%; }
+/* One-way sheen: an animation (not a transition) so leaving mid-sweep
+   resets it off-screen instead of sweeping visibly backwards. */
+.nav-cta:hover::before { animation: sheenSweep 0.6s var(--ease) forwards; }
+@keyframes sheenSweep { to { left: 130%; } }
 
 /* Mobile menu drop-in */
 #mobile-menu:not(.hidden) { animation: menuDrop 0.28s var(--ease); }
@@ -180,10 +195,10 @@ h1, h2, h3, h4 {
   width: 55%; height: 100%;
   background: linear-gradient(100deg, transparent, rgba(255,255,255,0.4), transparent);
   transform: skewX(-18deg);
-  transition: left 0.6s var(--ease);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(5,150,105,0.42); }
-.btn-primary:hover::before { left: 140%; }
+.btn-primary:hover::before { animation: sheenSweepWide 0.6s var(--ease) forwards; }
+@keyframes sheenSweepWide { to { left: 140%; } }
 .btn-primary:active { transform: translateY(0) scale(0.98); box-shadow: 0 3px 10px rgba(5,150,105,0.3); }
 
 .btn-ghost { transition: transform 0.2s var(--ease), background-color 0.2s, border-color 0.2s; }
