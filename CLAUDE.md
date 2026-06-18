@@ -55,8 +55,11 @@ There is also an unfinished Next.js app under `web/` that is not deployed. Do no
 ├── map.html            # Built — full-screen MapLibre map with filter sidebar
 ├── dashboard.html      # Built — stats cards + Chart.js visualisations
 ├── submit.html         # Built — how-to guide + WhatsApp link + QR placeholder
+├── guidelines.html     # Built — responsible marine mammal watching guidelines
 ├── species.json        # Static species data (edit by hand — see schema below)
 └── assets/
+    ├── koamas.css      # Shared design system: tokens (:root), nav, footer, buttons, cards, reveal + reduced-motion guard
+    ├── koamas.js       # Shared JS: mobile nav toggle, scroll/reveal helpers
     ├── img/species/    # Species photos (.jpg) used by index.html and map.html
     └── species/        # Species photos (.jpg) used by species.html (separate duplicate tree)
 ```
@@ -92,7 +95,7 @@ Supabase tables:
 - `config.js` must appear before any script that reads `window.SUPABASE_URL`.
 - All Supabase calls are async with explicit empty-state and error handling.
 - Coordinate rounding happens at render time: round lat/lng to the nearest 0.05 before displaying on the map. Never store rounded values.
-- CSS custom properties (`--navy`, `--sand`, `--coral`, `--bg`, `--text`, `--muted`, `--rule`) are defined in each page's `<style>` block and used alongside Tailwind classes.
+- CSS custom properties (`--navy`, `--sand`, `--coral`, `--bg`, `--text`, `--muted`, `--rule`, plus `--teal`, `--green`, `--lagoon`) are defined in `:root` in the shared `assets/koamas.css` and used alongside Tailwind classes.
 
 ### species.json Schema
 
@@ -144,19 +147,19 @@ Helper scripts (run once if needed):
 
 - Brand name: Koamas (use in nav logo, page titles, footer)
 - Fonts: Fraunces (headings, serif) + Outfit (body, sans) — loaded from Google Fonts. **Not Inter.**
-- Palette ("Tropical Lagoon"): deep teal `#0b3d33`, cetacean grey `#e3e9ea`, tropical green accent `#059669` (hover `#047857`), lagoon blue accent `#5fc7d4`, background `#f7fafa`, text `#1e2d2a`, muted text `#64747c`, rule `#d9e2e4`. Legacy CSS variable names (`--navy`, `--sand`, `--coral`) are retained but now hold these values; `--green` and `--lagoon` are also defined.
-- 3px green→lagoon gradient brand bar at top of every page (`<div class="brand-bar">`)
+- Palette ("Abyss" — blue + grey): deep ocean navy `#0b1f33` (nav/footer/hero/headings), cyan-blue accent `#0ea5e9` (hover `#0284c7`), bright lagoon-cyan pop `#38bdf8`, cool light accent / avatar grey `#d8e6f0`, background `#f5f8fb`, text `#0f1c2b`, muted text `#5b6b7d`, rule `#dbe4ec`. Tokens live in `:root` in `assets/koamas.css`; legacy variable names (`--navy`, `--sand`, `--coral`, `--teal`, `--green`, `--lagoon`) are retained but now hold the Abyss values. **Not part of the brand palette — do not recolour:** the IUCN status badges in `species.html` (semantic conservation-status colours) and the map's categorical species-pin colours (a functional rainbow that must stay mutually distinguishable).
+- 3px cyan-blue gradient brand bar at top of every page (`<div class="brand-bar">`)
 - Nav logo: Koamas in italic Fraunces with "Maldives Cetacean Watch" tagline
 - Scientific-publication aesthetic — restrained, editorial, not SaaS-flashy
 - Mobile-first; map sidebar collapses to bottom sheet on small screens
-- Each page shares the same nav and footer markup (no templating — copy manually). A change to nav or footer must be applied to all five built pages by hand, or they drift.
+- Each page shares the same nav and footer markup (no templating — copy manually). A change to nav or footer must be applied to all built pages (index, species, about, map, dashboard, submit, guidelines) by hand, or they drift. Note: `map.html` has no `<footer>` (full-screen map).
 
 ### Interactivity conventions
 
-Animation/interaction styles are defined per-page in each `<style>` block (no shared stylesheet — keep them in sync the same way nav/footer are):
+The shared design system (tokens, nav, footer, buttons, cards, the reveal system, and the reduced-motion guard) lives in `assets/koamas.css`, loaded by every page after the Tailwind CDN script; `assets/koamas.js` handles the mobile nav toggle. Page-specific animation/interaction styles live in each page's own `<style>` block — keep those in sync the same way nav/footer are:
 
-- Nav links use a sliding green→lagoon underline (`::after` scaleX). Map and Dashboard links carry an inline `.nav-ico` SVG (`.nav-ico-map` pin / `.nav-ico-chart` bars) that slides in and animates on hover; the icon also shows on the active page as a "you are here" marker.
-- Buttons and cards lift on hover (`translateY`) with a soft green glow; species cards zoom their photo and tint their border. JS-rendered lists (sightings, species teaser/grid) fade in with a staggered `.reveal` → `.reveal.in` class toggle applied in the render callback.
+- Nav links use a sliding cyan-blue underline (`::after` scaleX). Map and Dashboard links carry an inline `.nav-ico` SVG (`.nav-ico-map` pin / `.nav-ico-chart` bars) that slides in and animates on hover; the icon also shows on the active page as a "you are here" marker.
+- Buttons and cards lift on hover (`translateY`) with a soft cyan glow; species cards zoom their photo and tint their border. JS-rendered lists (sightings, species teaser/grid) fade in with a staggered `.reveal` → `.reveal.in` class toggle applied in the render callback.
 - Every page ends its style block with a `prefers-reduced-motion: reduce` guard that neutralises animations and transitions. Any new animation must remain covered by it.
 
 ### Skills

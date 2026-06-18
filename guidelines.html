@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watching Guidelines — Koamas</title>
+  <meta name="description" content="Koamas responsible marine mammal watching guidelines — international best-practice standards adapted for the Maldives, for safe and respectful dolphin and whale encounters." />
+
+  <link rel="icon" type="image/png" href="assets/img/koamas-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
+
+  <style>
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
+
+    /* ── Prose body text ── */
+    .prose p {
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      max-width: 65ch;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ── Guideline cards ── */
+    .guide-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+    }
+    .guide-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+    .guide-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(14,165,233,0.4);
+      box-shadow: var(--shadow-md);
+    }
+    .guide-ico {
+      width: 3rem; height: 3rem;
+      border-radius: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--green);
+      background: var(--grad-soft);
+      border: 1px solid rgba(56,189,248,0.30);
+      transition: transform 0.3s var(--ease);
+    }
+    .guide-card:hover .guide-ico { transform: translateY(-2px) rotate(-4deg); }
+    .guide-ico svg { width: 1.5rem; height: 1.5rem; }
+    .guide-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 0.4rem;
+    }
+    .guide-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ── Distances panel ── */
+    .dist-row {
+      display: flex; align-items: baseline; gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .dist-row:last-child { border-bottom: 0; }
+    .dist-term {
+      flex: 0 0 11rem;
+      font-weight: 600; color: var(--teal); font-size: 0.92rem;
+    }
+    .dist-val { color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+    .pending-tag {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: #92400e; background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 0.2rem 0.6rem; border-radius: 9999px;
+    }
+
+    /* ── Golden Rule callout ── */
+    .golden-rule p { text-wrap: balance; }
+  </style>
+</head>
+<body>
+
+<!-- Brand bar -->
+<div class="brand-bar" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
+  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
+      <span class="flex flex-col leading-none">
+      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
+        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      </span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
+    </span>
+    </a>
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d6e6f2] items-center" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
+      <li><a href="species.html">Species</a></li>
+      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="guidelines.html" aria-current="page">Guidelines</a></li>
+      <li>
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
+          Submit a sighting
+        </a>
+      </li>
+    </ul>
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
+      <li><a href="index.html" class="block py-1">Home</a></li>
+      <li><a href="map.html" class="block py-1">Map</a></li>
+      <li><a href="species.html" class="block py-1">Species</a></li>
+      <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
+      <li><a href="about.html" class="block py-1">About</a></li>
+      <li><a href="guidelines.html" class="block py-1" aria-current="page">Guidelines</a></li>
+      <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     PAGE HEADER
+══════════════════════════════════════ -->
+<header class="dive-band text-white">
+  <div class="sonar-rings absolute -right-20 -top-24 opacity-60 hidden md:block" aria-hidden="true">
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
+      <circle cx="210" cy="210" r="76"  stroke="rgba(56,189,248,0.28)"/>
+      <circle cx="210" cy="210" r="142" stroke="rgba(56,189,248,0.16)"/>
+      <circle cx="210" cy="210" r="206" stroke="rgba(56,189,248,0.08)"/>
+    </svg>
+    <div class="sonar-sweep"></div>
+  </div>
+  <div class="max-w-3xl mx-auto px-4 py-14 md:py-20">
+    <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Field guidance</p>
+    <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-5">Responsible marine&nbsp;mammal watching</h1>
+    <p class="text-[#9fb3c4] text-base md:text-lg leading-relaxed max-w-xl">
+      International best-practice standards, adapted for the Maldives — so every encounter stays
+      safe and respectful for cetaceans and people alike.
+    </p>
+  </div>
+</header>
+<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<main class="max-w-3xl mx-auto px-4 py-12 md:py-16 space-y-16">
+
+  <!-- ── Why this matters ── -->
+  <section aria-labelledby="intro-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Why this matters</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <h2 id="intro-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
+      Watching with care
+    </h2>
+    <div class="prose">
+      <p>
+        The Maldives is home to a remarkable diversity of dolphins and whales, offering some of the
+        world's most memorable marine wildlife encounters.
+      </p>
+      <p>
+        Currently, there are no national guidelines governing dolphin and whale watching in the Maldives.
+        While most encounters are conducted responsibly, increasing vessel traffic has the potential to
+        impact cetaceans through disturbance, reduced resting opportunities, and vessel strikes.
+      </p>
+      <p>
+        These recommendations have been developed by Koamas — drawing on international best-practice
+        standards and adapted for Maldivian waters — to promote safe, respectful, and sustainable
+        encounters for both marine mammals and people.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── General guidelines ── -->
+  <section aria-labelledby="general-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">For all encounters</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <h2 id="general-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-8">
+      General guidelines
+    </h2>
+
+    <div class="guide-grid">
+
+      <!-- Let the animals choose -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 17c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5"/>
+            <path d="M9 14c1-4 3-6 5.5-7-1 3-1 5 0.5 7"/>
+          </svg>
+        </div>
+        <h3>Let the animals choose</h3>
+        <p>Allow dolphins and whales to approach your vessel on their own terms. Never chase, pursue, or pressure animals into an interaction.</p>
+      </article>
+
+      <!-- Slow down -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 16a8 8 0 0 1 16 0"/>
+            <path d="M12 16l4-3"/>
+            <circle cx="12" cy="16" r="1.3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Slow down</h3>
+        <p>Reduce speed when marine mammals are nearby, and hold a steady, predictable course.</p>
+      </article>
+
+      <!-- Never block their path -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4v5M5 15v5"/>
+            <path d="M19 4v5M19 15v5"/>
+            <path d="M3 12h14"/>
+            <path d="M14 9l3 3-3 3"/>
+          </svg>
+        </div>
+        <h3>Never block their path</h3>
+        <p>Always leave a clear, open route so animals can move freely.</p>
+      </article>
+
+      <!-- Give mothers and calves extra space -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="12" r="3.5"/>
+            <circle cx="17.5" cy="13" r="2"/>
+            <path d="M12 12h2.5"/>
+            <path d="M13 10.8l-1.2 1.2 1.2 1.2"/>
+          </svg>
+        </div>
+        <h3>Give mothers &amp; calves extra space</h3>
+        <p>Avoid close approaches, and never position your vessel between a mother and her calf.</p>
+      </article>
+
+      <!-- Wildlife comes first -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20s-7-4.5-7-9.6A3.6 3.6 0 0 1 12 8a3.6 3.6 0 0 1 7 2.4C19 15.5 12 20 12 20z"/>
+          </svg>
+        </div>
+        <h3>Wildlife comes first</h3>
+        <p>Photographs and close encounters should never come at the expense of animal welfare.</p>
+      </article>
+
+      <!-- Support conservation -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v11"/>
+            <path d="M8 7l4-4 4 4"/>
+            <path d="M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/>
+          </svg>
+        </div>
+        <h3>Support conservation</h3>
+        <p>Share your sightings and photographs with Koamas to help us understand marine mammals in the Maldives.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Additional considerations for whales ── -->
+  <section aria-labelledby="whales-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Extra care</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <h2 id="whales-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
+      Additional considerations for whales
+    </h2>
+    <p class="text-[#5b6b7d] text-sm leading-relaxed mb-8 max-w-2xl">
+      Whales are particularly vulnerable to vessel disturbance and collisions, due to their size,
+      their behaviour, and the time they spend at the surface.
+    </p>
+
+    <div class="guide-grid">
+
+      <!-- Approach with caution -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4 2.5 20h19L12 4z"/>
+            <path d="M12 10v4"/>
+            <circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Approach with caution</h3>
+        <p>Slow down and give whales ample space to continue their natural behaviour.</p>
+      </article>
+
+      <!-- Do not pursue -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.5"/>
+            <path d="M6.2 6.2l11.6 11.6"/>
+          </svg>
+        </div>
+        <h3>Do not pursue</h3>
+        <p>If a whale changes direction, dives repeatedly, or moves away, do not follow.</p>
+      </article>
+
+      <!-- Take extra care around mothers and calves -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4.4c-1-1.1-3-.5-3 1 0 1.4 3 3.1 3 3.1s3-1.7 3-3.1c0-1.5-2-2.1-3-1z"/>
+            <circle cx="9" cy="15" r="3"/>
+            <circle cx="16.5" cy="16" r="1.8"/>
+          </svg>
+        </div>
+        <h3>Take extra care around mothers &amp; calves</h3>
+        <p>Increase your viewing distance and minimise vessel movement around mothers and young calves.</p>
+      </article>
+
+      <!-- Reduce vessel strike risk -->
+      <article class="guide-card">
+        <div class="guide-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14h16l-2.2 4H6.2L4 14z"/>
+            <path d="M12 14V6l5 5"/>
+            <path d="M3 21c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1"/>
+          </svg>
+        </div>
+        <h3>Reduce vessel strike risk</h3>
+        <p>Maintain a slow speed and keep a careful lookout whenever whales are present.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Recommended distances ── -->
+  <section aria-labelledby="distances-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">At a glance</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <div class="flex flex-wrap items-center gap-3 mb-4">
+      <h2 id="distances-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33]">
+        Recommended distances
+      </h2>
+      <span class="pending-tag" title="These figures follow international best practice and are pending confirmation for Maldivian waters.">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 8v5"/><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/></svg>
+        Pending Maldives verification
+      </span>
+    </div>
+    <p class="text-[#5b6b7d] text-sm leading-relaxed mb-6 max-w-2xl">
+      The figures below reflect widely used international standards. They are a starting point for
+      discussion — Koamas will confirm or adjust them for Maldivian conditions before they are
+      adopted as formal recommendations.
+    </p>
+
+    <div class="bg-white border border-[#dbe4ec] rounded-2xl px-6 py-2 shadow-[0_6px_18px_rgba(11,31,51,0.06)]">
+      <div class="dist-row">
+        <div class="dist-term">Whales</div>
+        <div class="dist-val">Keep at least <strong>100 m</strong> away; do not approach head-on or from directly behind.</div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-term">Dolphins</div>
+        <div class="dist-val">Keep at least <strong>50 m</strong> away; let them set the distance.</div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-term">Caution zone</div>
+        <div class="dist-val">Within <strong>100–300 m</strong>, slow to a no-wake speed and hold a steady course.</div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-term">Vessels present</div>
+        <div class="dist-val">No more than <strong>2 boats</strong> with a group at once; others wait their turn or move on.</div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-term">Time with a group</div>
+        <div class="dist-val">Limit close viewing to about <strong>20–30 minutes</strong>, then move away.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The Koamas Golden Rule ── -->
+  <section aria-labelledby="golden-heading" class="golden-rule dive-band rounded-2xl px-8 py-12 md:py-16 text-center shadow-[0_18px_44px_rgba(11,31,51,0.18)]">
+    <p class="text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-5">The Koamas Golden Rule</p>
+    <h2 id="golden-heading" class="font-['Fraunces'] text-2xl md:text-4xl font-semibold italic text-white leading-snug max-w-2xl mx-auto">
+      If the animal chooses to approach, enjoy the encounter. If your presence causes it to change
+      its behaviour, give it more space.
+    </h2>
+  </section>
+
+  <!-- ── Help build the record ── -->
+  <section aria-labelledby="cta-heading" class="text-center">
+    <h2 id="cta-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
+      Seen something? Tell us.
+    </h2>
+    <p class="text-[#5b6b7d] text-base leading-relaxed mb-8 max-w-lg mx-auto">
+      Responsible watching and good science go hand in hand. Every verified sighting helps us
+      understand — and protect — the cetaceans of the Maldives.
+    </p>
+    <a
+      href="submit.html"
+      class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]"
+    >
+      Share a sighting →
+    </a>
+    <p class="text-[#5b6b7d] text-xs leading-relaxed mt-10 max-w-xl mx-auto">
+      Adapted from international responsible-watching standards (the International Whaling Commission,
+      IFAW, and the World Cetacean Alliance) and tailored for the Maldives.
+    </p>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas</p>
+      <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
+        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+        <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
+        <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
+        <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
+        <li><a href="guidelines.html" class="hover:text-white transition-colors">Guidelines</a></li>
+        <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<!-- Mobile nav toggle is handled by the shared assets/koamas.js -->
+
+</body>
+</html>
