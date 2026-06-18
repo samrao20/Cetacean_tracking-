@@ -42,31 +42,32 @@
 <!-- ══════════════════════════════════════
      NAV
 ══════════════════════════════════════ -->
-<nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex items-center gap-2.5">
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#eafef6]">Koamas</span>
+        <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
         <span class="nav-logo" aria-hidden="true">Koamas</span>
       </span>
-      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fd6cb] mt-0.5">Maldives Cetacean Watch</span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
     </span>
     </a>
-    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6] items-center" role="list">
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d6e6f2] items-center" role="list">
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
       <li><a href="species.html">Species</a></li>
       <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
       <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="guidelines.html">Guidelines</a></li>
       <li>
         <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
     </ul>
-    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eafef6]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -74,13 +75,14 @@
       </svg>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d4f43] bg-[#0b3d33]">
-    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d9efe6]" role="list">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
       <li><a href="index.html" class="block py-1">Home</a></li>
       <li><a href="map.html" class="block py-1">Map</a></li>
       <li><a href="species.html" class="block py-1">Species</a></li>
       <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
       <li><a href="about.html" class="block py-1" aria-current="page">About</a></li>
+      <li><a href="guidelines.html" class="block py-1">Guidelines</a></li>
       <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
     </ul>
   </div>
@@ -92,21 +94,21 @@
 <header class="dive-band text-white">
   <div class="sonar-rings absolute -right-20 -top-24 opacity-60 hidden md:block" aria-hidden="true">
     <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
-      <circle cx="210" cy="210" r="76"  stroke="rgba(95,199,212,0.28)"/>
-      <circle cx="210" cy="210" r="142" stroke="rgba(95,199,212,0.16)"/>
-      <circle cx="210" cy="210" r="206" stroke="rgba(95,199,212,0.08)"/>
+      <circle cx="210" cy="210" r="76"  stroke="rgba(56,189,248,0.28)"/>
+      <circle cx="210" cy="210" r="142" stroke="rgba(56,189,248,0.16)"/>
+      <circle cx="210" cy="210" r="206" stroke="rgba(56,189,248,0.08)"/>
     </svg>
     <div class="sonar-sweep"></div>
   </div>
   <div class="max-w-3xl mx-auto px-4 py-14 md:py-20">
-    <p class="kicker text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas</p>
+    <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas</p>
     <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-5">About the project</h1>
-    <p class="text-[#a3bdb6] text-base md:text-lg leading-relaxed max-w-xl">
+    <p class="text-[#9fb3c4] text-base md:text-lg leading-relaxed max-w-xl">
       A citizen science initiative building the first long-term record of cetacean sightings across the Maldivian archipelago.
     </p>
   </div>
 </header>
-<div class="wave-divider flip bg-[#edfaf4]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
+<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
 
 <!-- ══════════════════════════════════════
      MAIN CONTENT
@@ -116,21 +118,21 @@
   <!-- ── What does Koamas mean? ── -->
   <section aria-labelledby="name-heading">
     <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669]">The name</p>
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The name</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
     </div>
 
-    <div class="dive-band rounded-2xl px-8 py-12 text-center mb-8 shadow-[0_18px_44px_rgba(11,61,51,0.18)]">
-      <p class="text-[#a3bdb6] text-xs font-semibold tracking-[0.2em] uppercase mb-3">ދިވެހި</p>
+    <div class="dive-band rounded-2xl px-8 py-12 text-center mb-8 shadow-[0_18px_44px_rgba(11,31,51,0.18)]">
+      <p class="text-[#9fb3c4] text-xs font-semibold tracking-[0.2em] uppercase mb-3">ދިވެހި</p>
       <p class="font-['Fraunces'] text-5xl md:text-6xl italic font-semibold text-white mb-4 tracking-tight">Koamas</p>
-      <p class="text-[#8fd6cb] text-lg font-medium">
+      <p class="text-[#8fc9ec] text-lg font-medium">
         <em>noun</em> &mdash; dolphin
       </p>
-      <p class="text-[#7fa39a] text-sm mt-2">Dhivehi · the language of the Maldives</p>
+      <p class="text-[#7f97a8] text-sm mt-2">Dhivehi · the language of the Maldives</p>
     </div>
 
-    <h2 id="name-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] mb-4">
+    <h2 id="name-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
       What does Koamas mean?
     </h2>
     <div class="prose">
@@ -154,11 +156,11 @@
   <!-- ── The project ── -->
   <section aria-labelledby="project-heading">
     <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669]">The project</p>
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The project</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
     </div>
-    <h2 id="project-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] mb-4">
+    <h2 id="project-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
       What we do
     </h2>
     <div class="prose">
@@ -193,14 +195,14 @@
   <!-- ── Meet the team ── -->
   <section aria-labelledby="team-heading">
     <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669]">The team</p>
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The team</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
     </div>
-    <h2 id="team-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] mb-4">
+    <h2 id="team-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
       Meet the founders
     </h2>
-    <p class="text-[#64747c] text-sm leading-relaxed mb-8">
+    <p class="text-[#5b6b7d] text-sm leading-relaxed mb-8">
       Koamas was founded by three people brought together by a shared connection to the ocean and a goal
       of improving how cetacean sightings are recorded and understood in the Maldives. The initial concept
       was developed by James, building on his cetacean research and fieldwork in the region.
@@ -210,13 +212,13 @@
 
       <!-- James -->
       <article class="group team-card">
-        <div class="border-l-2 border-[#059669] pl-5 py-1">
-          <div class="w-12 h-12 rounded-full bg-[#d8efe4] flex items-center justify-center mb-3" aria-hidden="true">
-            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0b3d33]">J</span>
+        <div class="border-l-2 border-[#0ea5e9] pl-5 py-1">
+          <div class="w-12 h-12 rounded-full bg-[#d8e6f0] flex items-center justify-center mb-3" aria-hidden="true">
+            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0b1f33]">J</span>
           </div>
-          <h3 class="text-base font-bold text-[#0b3d33] mb-0.5">James</h3>
-          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#059669] mb-3">Cetacean Biologist &amp; Founder</p>
-          <p class="text-sm text-[#64747c] leading-relaxed">
+          <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">James</h3>
+          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Cetacean Biologist &amp; Founder</p>
+          <p class="text-sm text-[#5b6b7d] leading-relaxed">
             A cetacean marine biologist and professional underwater photographer based in the Maldives.
             Field experience across the Great Barrier Reef and the Crown-of-Thorns Starfish programme.
             Closely involved in the Maldives Dolphin ID Project.
@@ -226,13 +228,13 @@
 
       <!-- Samay -->
       <article class="group team-card">
-        <div class="border-l-2 border-[#059669] pl-5 py-1">
-          <div class="w-12 h-12 rounded-full bg-[#d8efe4] flex items-center justify-center mb-3" aria-hidden="true">
-            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0b3d33]">S</span>
+        <div class="border-l-2 border-[#0ea5e9] pl-5 py-1">
+          <div class="w-12 h-12 rounded-full bg-[#d8e6f0] flex items-center justify-center mb-3" aria-hidden="true">
+            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0b1f33]">S</span>
           </div>
-          <h3 class="text-base font-bold text-[#0b3d33] mb-0.5">Samay</h3>
-          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#059669] mb-3">Technical Lead</p>
-          <p class="text-sm text-[#64747c] leading-relaxed">
+          <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">Samay</h3>
+          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Technical Lead</p>
+          <p class="text-sm text-[#5b6b7d] leading-relaxed">
             Originally from Mumbai, Samay completed a Master's degree at James Cook University. His interest
             in cetaceans developed during a placement in the Maldives. He leads the technical development of Koamas.
           </p>
@@ -241,13 +243,13 @@
 
       <!-- Jacob -->
       <article class="group team-card">
-        <div class="border-l-2 border-[#059669] pl-5 py-1">
-          <div class="w-12 h-12 rounded-full bg-[#d8efe4] flex items-center justify-center mb-3" aria-hidden="true">
-            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0b3d33]">J</span>
+        <div class="border-l-2 border-[#0ea5e9] pl-5 py-1">
+          <div class="w-12 h-12 rounded-full bg-[#d8e6f0] flex items-center justify-center mb-3" aria-hidden="true">
+            <span class="font-['Fraunces'] text-lg font-semibold italic text-[#0b1f33]">J</span>
           </div>
-          <h3 class="text-base font-bold text-[#0b3d33] mb-0.5">Jacob</h3>
-          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#059669] mb-3">Data &amp; Research</p>
-          <p class="text-sm text-[#64747c] leading-relaxed">
+          <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">Jacob</h3>
+          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Data &amp; Research</p>
+          <p class="text-sm text-[#5b6b7d] leading-relaxed">
             From the United States, Jacob completed his Master's at James Cook University. He supports Koamas
             through data management, ensuring sighting records are accurately maintained and usable for research.
           </p>
@@ -260,11 +262,11 @@
   <!-- ── Methodology ── -->
   <section aria-labelledby="method-heading">
     <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669]">Science</p>
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Science</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
     </div>
-    <h2 id="method-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] mb-4">
+    <h2 id="method-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
       Methodology
     </h2>
     <div class="prose">
@@ -289,11 +291,11 @@
   <!-- ── Privacy ── -->
   <section aria-labelledby="privacy-heading">
     <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#059669]">Privacy</p>
-      <div class="h-px flex-1 bg-[#cbe7da]"></div>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Privacy</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
     </div>
-    <h2 id="privacy-heading" class="text-2xl md:text-3xl font-semibold text-[#0b3d33] mb-4">
+    <h2 id="privacy-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
       Privacy &amp; data
     </h2>
     <div class="prose">
@@ -314,19 +316,19 @@
   </section>
 
   <!-- ── Get involved ── -->
-  <section aria-labelledby="involved-heading" class="dive-band rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,61,51,0.18)]">
-    <p class="text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Get involved</p>
+  <section aria-labelledby="involved-heading" class="dive-band rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,31,51,0.18)]">
+    <p class="text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Get involved</p>
     <h2 id="involved-heading" class="font-['Fraunces'] text-2xl md:text-3xl font-semibold text-white mb-4">
       Every sighting counts
     </h2>
-    <p class="text-[#a3bdb6] text-base leading-relaxed mb-8 max-w-lg mx-auto">
+    <p class="text-[#9fb3c4] text-base leading-relaxed mb-8 max-w-lg mx-auto">
       Whether you're a local fisherman, a resort guest, or a researcher on a survey vessel — if you see a
       dolphin or whale, we want to hear about it.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
         href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
-        class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#059669] text-white font-semibold text-sm hover:bg-[#047857]"
+        class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]"
         target="_blank" rel="noopener"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -348,11 +350,11 @@
 <!-- ══════════════════════════════════════
      FOOTER
 ══════════════════════════════════════ -->
-<footer class="border-t border-[#1d4f43] bg-[#0b3d33] text-[#a3bdb6] text-sm">
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
       <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas</p>
-      <p class="text-xs text-[#5e716c]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+      <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
     </div>
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
@@ -360,6 +362,7 @@
         <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
         <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
         <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
+        <li><a href="guidelines.html" class="hover:text-white transition-colors">Guidelines</a></li>
         <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
       </ul>
     </nav>

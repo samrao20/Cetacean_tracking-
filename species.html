@@ -77,7 +77,7 @@
       color: #fff;
       border-color: transparent;
       background: var(--grad);
-      box-shadow: 0 4px 12px rgba(5,150,105,0.28);
+      box-shadow: 0 4px 12px rgba(14,165,233,0.28);
     }
     .filter-pill:focus-visible {
       outline: 2px solid var(--green);
@@ -89,7 +89,7 @@
     #search-input:focus {
       outline: none;
       border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(5,150,105,0.16);
+      box-shadow: 0 0 0 3px rgba(14,165,233,0.16);
     }
   </style>
 </head>
@@ -99,31 +99,32 @@
 <div class="brand-bar" aria-hidden="true"></div>
 
 <!-- ══ NAVIGATION ══════════════════════════════════════════════════════ -->
-<nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex items-center gap-2.5">
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#eafef6]">Koamas</span>
+        <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
         <span class="nav-logo" aria-hidden="true">Koamas</span>
       </span>
-      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fd6cb] mt-0.5">Maldives Cetacean Watch</span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
     </span>
     </a>
-    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6] items-center" role="list">
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d6e6f2] items-center" role="list">
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
       <li><a href="species.html" aria-current="page">Species</a></li>
       <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="guidelines.html">Guidelines</a></li>
       <li>
         <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
     </ul>
-    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eafef6]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -131,13 +132,14 @@
       </svg>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d4f43] bg-[#0b3d33]">
-    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d9efe6]" role="list">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
       <li><a href="index.html" class="block py-1">Home</a></li>
       <li><a href="map.html" class="block py-1">Map</a></li>
       <li><a href="species.html" class="block py-1" aria-current="page">Species</a></li>
       <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
       <li><a href="about.html" class="block py-1">About</a></li>
+      <li><a href="guidelines.html" class="block py-1">Guidelines</a></li>
       <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
     </ul>
   </div>
@@ -153,25 +155,25 @@
     <header class="dive-band text-white">
       <div class="sonar-rings absolute -right-20 -top-24 opacity-60 hidden md:block" aria-hidden="true">
         <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
-          <circle cx="210" cy="210" r="76"  stroke="rgba(95,199,212,0.28)"/>
-          <circle cx="210" cy="210" r="142" stroke="rgba(95,199,212,0.16)"/>
-          <circle cx="210" cy="210" r="206" stroke="rgba(95,199,212,0.08)"/>
+          <circle cx="210" cy="210" r="76"  stroke="rgba(56,189,248,0.28)"/>
+          <circle cx="210" cy="210" r="142" stroke="rgba(56,189,248,0.16)"/>
+          <circle cx="210" cy="210" r="206" stroke="rgba(56,189,248,0.08)"/>
         </svg>
         <div class="sonar-sweep"></div>
       </div>
       <div class="max-w-6xl mx-auto px-4 py-12 md:py-18">
-        <p class="kicker text-[#8fd6cb] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas · Field Guide</p>
+        <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas · Field Guide</p>
         <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-4">Cetaceans of the Maldives</h1>
-        <p class="text-[#a3bdb6] text-base md:text-lg max-w-2xl">
+        <p class="text-[#9fb3c4] text-base md:text-lg max-w-2xl">
           Twenty-two species of dolphins and whales recorded in Maldivian waters — from the resident spinner
           dolphin to blue whales feeding in the southern atolls.
         </p>
       </div>
     </header>
-    <div class="wave-divider flip bg-[#edfaf4]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#082e27"/></svg></div>
+    <div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
 
     <!-- Filter + search bar -->
-    <section class="sticky top-14 z-30 bg-[#edfaf4] border-b border-[#cbe7da]" aria-label="Filter species">
+    <section class="sticky top-14 z-30 bg-[#f5f8fb] border-b border-[#dbe4ec]" aria-label="Filter species">
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-2 items-center">
         <div class="flex gap-2" role="group" aria-label="Filter by type">
           <button class="filter-pill active text-xs font-semibold px-3 py-1.5 rounded-full" data-filter="all">All</button>
@@ -181,18 +183,18 @@
         <div class="flex-1 min-w-[120px]"></div>
         <div class="relative">
           <label for="search-input" class="sr-only">Search species</label>
-          <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-[#64747c]" width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-[#5b6b7d]" width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
           </svg>
           <input id="search-input" type="search" placeholder="Search species…" aria-label="Search species by name"
-            class="pl-8 pr-3 py-1.5 text-sm border border-[#cbe7da] rounded-full bg-white w-48 focus:w-64 transition-all" />
+            class="pl-8 pr-3 py-1.5 text-sm border border-[#dbe4ec] rounded-full bg-white w-48 focus:w-64 transition-all" />
         </div>
       </div>
     </section>
 
     <!-- Species count -->
     <div class="max-w-6xl mx-auto px-4 pt-6 pb-2">
-      <p id="species-count" class="text-sm text-[#64747c]" aria-live="polite" aria-atomic="true"></p>
+      <p id="species-count" class="text-sm text-[#5b6b7d]" aria-live="polite" aria-atomic="true"></p>
     </div>
 
     <!-- Card grid -->
@@ -201,8 +203,8 @@
         <!-- Populated by JS -->
       </div>
       <div id="empty-state" class="hidden py-20 text-center">
-        <p class="text-[#64747c] text-lg">No species match your search.</p>
-        <button onclick="resetFilters()" class="mt-3 text-[#059669] underline text-sm">Clear filters</button>
+        <p class="text-[#5b6b7d] text-lg">No species match your search.</p>
+        <button onclick="resetFilters()" class="mt-3 text-[#0ea5e9] underline text-sm">Clear filters</button>
       </div>
     </div>
 
@@ -212,9 +214,9 @@
   <!-- ── Detail view ───────────────────────────────────────────────── -->
   <div id="detail-view" class="hidden">
 
-    <div class="border-b border-[#cbe7da] bg-[#edfaf4]">
+    <div class="border-b border-[#dbe4ec] bg-[#f5f8fb]">
       <div class="max-w-4xl mx-auto px-4 py-3">
-        <button id="back-btn" class="inline-flex items-center gap-1.5 text-sm text-[#64747c] hover:text-[#059669] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#059669] rounded">
+        <button id="back-btn" class="inline-flex items-center gap-1.5 text-sm text-[#5b6b7d] hover:text-[#0ea5e9] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0ea5e9] rounded">
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
           </svg>
@@ -230,11 +232,11 @@
 </main>
 
 <!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
-<footer class="border-t border-[#1d4f43] bg-[#0b3d33] text-[#a3bdb6] text-sm">
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
       <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas</p>
-      <p class="text-xs text-[#5e716c]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+      <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
     </div>
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
@@ -242,6 +244,7 @@
         <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
         <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
         <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
+        <li><a href="guidelines.html" class="hover:text-white transition-colors">Guidelines</a></li>
         <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
       </ul>
     </nav>
@@ -341,13 +344,13 @@
         data-slug="${sp.slug}"
         aria-label="${sp.common_name} — ${sp.scientific_name}"
       >
-        <div class="species-card__media aspect-[4/3] bg-[#cbe7da]">
+        <div class="species-card__media aspect-[4/3] bg-[#dbe4ec]">
           <img
             src="${sp.photo}"
             alt="${sp.common_name} (${sp.scientific_name})"
             class="w-full h-full object-cover"
             loading="lazy"
-            onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'absolute inset-0 flex items-center justify-center text-[#64747c] text-xs\'>Photo coming soon</div>')"
+            onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'absolute inset-0 flex items-center justify-center text-[#5b6b7d] text-xs\'>Photo coming soon</div>')"
           />
           <span class="species-card__type">${sp.type === 'whale' ? 'Whale' : 'Dolphin'}</span>
           <div class="species-card__overlay" aria-hidden="true"></div>
@@ -366,15 +369,15 @@
         </div>
         <div class="p-4">
           <div class="flex items-start justify-between gap-2 mb-1">
-            <h2 class="text-base font-bold text-[#0b3d33] leading-tight">${sp.common_name}</h2>
+            <h2 class="text-base font-bold text-[#0b1f33] leading-tight">${sp.common_name}</h2>
             <span class="iucn-${sp.iucn_status} text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0" title="IUCN status: ${sp.iucn_label}">
               ${sp.iucn_status}
             </span>
           </div>
-          <p class="text-xs italic text-[#64747c] mb-3">${sp.scientific_name}</p>
-          <div class="flex items-center gap-3 text-xs text-[#64747c] border-t border-[#e8efee] pt-2.5">
+          <p class="text-xs italic text-[#5b6b7d] mb-3">${sp.scientific_name}</p>
+          <div class="flex items-center gap-3 text-xs text-[#5b6b7d] border-t border-[#e3eaf0] pt-2.5">
             <span title="Typical length"><span aria-hidden="true">↔</span> ${sp.length_m} m</span>
-            <span class="text-[#cbe7da]">|</span>
+            <span class="text-[#dbe4ec]">|</span>
             <span>${sp.type === 'whale' ? 'Whale' : 'Dolphin'}</span>
           </div>
         </div>
@@ -408,67 +411,67 @@
     const monthBar = buildMonthBar(sp.best_months || []);
 
     const behaviourItems = (sp.behaviour || []).map(b =>
-      `<li class="flex gap-2"><span class="text-[#059669] mt-0.5 shrink-0">—</span><span>${b}</span></li>`
+      `<li class="flex gap-2"><span class="text-[#0ea5e9] mt-0.5 shrink-0">—</span><span>${b}</span></li>`
     ).join('');
 
     const similarItems = (sp.similar_species || []).map(s =>
-      `<li class="flex gap-2 text-sm"><span class="text-[#64747c] mt-0.5 shrink-0">·</span><span>${s}</span></li>`
+      `<li class="flex gap-2 text-sm"><span class="text-[#5b6b7d] mt-0.5 shrink-0">·</span><span>${s}</span></li>`
     ).join('');
 
     document.getElementById('detail-content').innerHTML = `
-      <div class="border-b border-[#cbe7da] pb-6 mb-8">
+      <div class="border-b border-[#dbe4ec] pb-6 mb-8">
         <div class="flex flex-wrap items-center gap-3 mb-2">
           <span class="iucn-${sp.iucn_status} text-xs font-bold px-2 py-0.5 rounded" title="IUCN Red List status: ${sp.iucn_label}">
             IUCN ${sp.iucn_status} — ${sp.iucn_label}
           </span>
-          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-[#d8efe4] text-[#64747c] capitalize">${sp.type}</span>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-[#d8e6f0] text-[#5b6b7d] capitalize">${sp.type}</span>
           ${unverified.has('iucn_status') ? '<span class="unverified-flag" title="IUCN status needs verification">verify</span>' : ''}
         </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-[#0b3d33] mb-1">${sp.common_name}</h1>
-        <p class="text-lg italic text-[#64747c]">${sp.scientific_name}</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-[#0b1f33] mb-1">${sp.common_name}</h1>
+        <p class="text-lg italic text-[#5b6b7d]">${sp.scientific_name}</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
 
         <div class="md:col-span-1 space-y-6">
 
-          <figure class="rounded-lg overflow-hidden bg-[#cbe7da]">
+          <figure class="rounded-lg overflow-hidden bg-[#dbe4ec]">
             <div class="aspect-[4/3]">
               <img
                 src="${sp.photo}"
                 alt="${sp.common_name} (${sp.scientific_name})"
                 class="w-full h-full object-cover"
-                onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center text-[#64747c] text-sm p-4 text-center\'>Photo coming soon</div>'"
+                onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center text-[#5b6b7d] text-sm p-4 text-center\'>Photo coming soon</div>'"
               />
             </div>
-            ${sp.photo_credit ? `<figcaption class="text-[10px] text-[#64747c] px-2 py-1 bg-[#edfaf4]">© ${sp.photo_credit}</figcaption>` : ''}
+            ${sp.photo_credit ? `<figcaption class="text-[10px] text-[#5b6b7d] px-2 py-1 bg-[#f5f8fb]">© ${sp.photo_credit}</figcaption>` : ''}
           </figure>
 
-          <div class="bg-white border border-[#cbe7da] rounded-lg p-4 space-y-3 text-sm">
-            <h3 class="font-semibold text-[#0b3d33] text-xs uppercase tracking-wider mb-2">At a glance</h3>
+          <div class="bg-white border border-[#dbe4ec] rounded-lg p-4 space-y-3 text-sm">
+            <h3 class="font-semibold text-[#0b1f33] text-xs uppercase tracking-wider mb-2">At a glance</h3>
             <div class="flex justify-between gap-2">
-              <span class="text-[#64747c]">Length</span>
+              <span class="text-[#5b6b7d]">Length</span>
               <span class="font-medium text-right">${sp.length_m} m</span>
             </div>
             <div class="flex justify-between gap-2">
-              <span class="text-[#64747c]">Weight</span>
+              <span class="text-[#5b6b7d]">Weight</span>
               <span class="font-medium text-right">${sp.weight_kg} kg</span>
             </div>
             <div class="flex justify-between gap-2">
-              <span class="text-[#64747c]">Pod size</span>
+              <span class="text-[#5b6b7d]">Pod size</span>
               <span class="font-medium text-right leading-snug">${sp.pod_size}</span>
             </div>
-            <hr class="border-[#d8efe4]" />
+            <hr class="border-[#d8e6f0]" />
             <div>
-              <p class="text-[#64747c] mb-1.5">Best months ${maybeFlag('best_months')}</p>
+              <p class="text-[#5b6b7d] mb-1.5">Best months ${maybeFlag('best_months')}</p>
               ${monthBar}
-              ${sp.best_months_note ? `<p class="text-xs text-[#64747c] mt-1.5">${sp.best_months_note}</p>` : ''}
+              ${sp.best_months_note ? `<p class="text-xs text-[#5b6b7d] mt-1.5">${sp.best_months_note}</p>` : ''}
             </div>
           </div>
 
           <a
             href="map.html?species=${sp.slug}"
-            class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-[#0b3d33] text-white text-sm font-semibold hover:bg-[#0f5243] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#059669]"
+            class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-[#0b1f33] text-white text-sm font-semibold hover:bg-[#123a55] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0ea5e9]"
           >
             <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
@@ -481,31 +484,31 @@
         <div class="md:col-span-2 space-y-8">
 
           <section aria-labelledby="dist-heading">
-            <h2 id="dist-heading" class="text-lg font-semibold text-[#0b3d33] mb-2">
+            <h2 id="dist-heading" class="text-lg font-semibold text-[#0b1f33] mb-2">
               In the Maldives ${maybeFlag('maldives_distribution')}
             </h2>
-            <p class="text-[#1e2d2a] leading-relaxed">${sp.maldives_distribution}</p>
+            <p class="text-[#0f1c2b] leading-relaxed">${sp.maldives_distribution}</p>
           </section>
 
           <section aria-labelledby="id-heading">
-            <h2 id="id-heading" class="text-lg font-semibold text-[#0b3d33] mb-2">How to identify</h2>
-            <p class="text-[#1e2d2a] leading-relaxed">${sp.distinguishing_features}</p>
+            <h2 id="id-heading" class="text-lg font-semibold text-[#0b1f33] mb-2">How to identify</h2>
+            <p class="text-[#0f1c2b] leading-relaxed">${sp.distinguishing_features}</p>
           </section>
 
           <section aria-labelledby="beh-heading">
-            <h2 id="beh-heading" class="text-lg font-semibold text-[#0b3d33] mb-2">Behaviour</h2>
-            <ul class="space-y-1.5 text-[#1e2d2a]">${behaviourItems}</ul>
+            <h2 id="beh-heading" class="text-lg font-semibold text-[#0b1f33] mb-2">Behaviour</h2>
+            <ul class="space-y-1.5 text-[#0f1c2b]">${behaviourItems}</ul>
           </section>
 
           <section aria-labelledby="diet-heading">
-            <h2 id="diet-heading" class="text-lg font-semibold text-[#0b3d33] mb-2">Diet</h2>
-            <p class="text-[#1e2d2a] leading-relaxed">${sp.diet}</p>
+            <h2 id="diet-heading" class="text-lg font-semibold text-[#0b1f33] mb-2">Diet</h2>
+            <p class="text-[#0f1c2b] leading-relaxed">${sp.diet}</p>
           </section>
 
           ${sp.similar_species && sp.similar_species.length > 0 ? `
-          <section aria-labelledby="sim-heading" class="bg-[#d8efe4]/50 border border-[#cbe7da] rounded-lg p-4">
-            <h2 id="sim-heading" class="text-base font-semibold text-[#0b3d33] mb-3">Telling it apart</h2>
-            <ul class="space-y-2 text-[#1e2d2a]">${similarItems}</ul>
+          <section aria-labelledby="sim-heading" class="bg-[#d8e6f0]/50 border border-[#dbe4ec] rounded-lg p-4">
+            <h2 id="sim-heading" class="text-base font-semibold text-[#0b1f33] mb-3">Telling it apart</h2>
+            <ul class="space-y-2 text-[#0f1c2b]">${similarItems}</ul>
           </section>` : ''}
 
         </div>

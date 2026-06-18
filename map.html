@@ -67,7 +67,7 @@
       transition: background 0.15s;
     }
     .f-ctrl:hover { background: rgba(255,255,255,0.2); }
-    .f-ctrl option { background: #0b3d33; color: white; }
+    .f-ctrl option { background: #0b1f33; color: white; }
 
     .sp-chip {
       padding: 0.22rem 0.6rem;
@@ -117,7 +117,7 @@
       transition: background 0.15s, color 0.15s;
     }
     .bm-btn:hover { color: #fff; }
-    .bm-btn.on { background: #059669; color: #fff; }
+    .bm-btn.on { background: #0ea5e9; color: #fff; }
 
     /* ── Toast (share feedback) ─────────────────────── */
     #toast {
@@ -125,14 +125,14 @@
       bottom: 1.7rem; left: 50%;
       transform: translateX(-50%) translateY(8px);
       z-index: 40;
-      background: rgba(8,46,39,0.92);
-      color: #eafef6;
+      background: rgba(7,22,38,0.92);
+      color: #eaf4fb;
       font-family: 'Outfit', sans-serif;
       font-size: 0.75rem;
       font-weight: 500;
       padding: 0.45rem 0.9rem;
       border-radius: 9999px;
-      border: 1px solid rgba(95,199,212,0.25);
+      border: 1px solid rgba(56,189,248,0.25);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s, transform 0.25s;
@@ -146,7 +146,7 @@
     /* ── Result counter pop ── */
     #result-count.pop { animation: countPop 0.35s var(--ease); }
     @keyframes countPop {
-      50% { transform: scale(1.2); color: #5fc7d4; }
+      50% { transform: scale(1.2); color: #38bdf8; }
     }
   </style>
 </head>
@@ -154,31 +154,32 @@
 <body>
 
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
-<nav class="site-nav sticky top-0 z-40 border-b border-[#1d4f43] bg-[#0b3d33]" aria-label="Site navigation">
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex items-center gap-2.5">
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
       <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#eafef6]">Koamas</span>
+        <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
         <span class="nav-logo" aria-hidden="true">Koamas</span>
       </span>
-      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fd6cb] mt-0.5">Maldives Cetacean Watch</span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
     </span>
     </a>
-    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d9efe6]" role="list">
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d6e6f2]" role="list">
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html" aria-current="page">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
       <li><a href="species.html">Species</a></li>
       <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="guidelines.html">Guidelines</a></li>
       <li>
         <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
         </a>
       </li>
     </ul>
-    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eafef6]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -186,13 +187,14 @@
       </svg>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d4f43] bg-[#0b3d33]">
-    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d9efe6]" role="list">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
       <li><a href="index.html"  class="block py-1">Home</a></li>
       <li><a href="map.html"    class="block py-1" aria-current="page">Map</a></li>
       <li><a href="species.html" class="block py-1">Species</a></li>
       <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
       <li><a href="about.html"  class="block py-1">About</a></li>
+      <li><a href="guidelines.html" class="block py-1">Guidelines</a></li>
       <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
     </ul>
   </div>
@@ -205,7 +207,7 @@
   <div id="map" style="position:absolute;inset:0;"></div>
 
   <!-- Loading -->
-  <div id="loading" style="position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(11,61,51,0.55);">
+  <div id="loading" style="position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(11,31,51,0.55);">
     <div style="text-align:center;color:white;">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.9s linear infinite;margin:0 auto 0.65rem;" aria-hidden="true">
         <path d="M21 12a9 9 0 11-6.219-8.56" stroke-linecap="round"/>
@@ -216,7 +218,7 @@
 
   <!-- Filter bar -->
   <div style="position:absolute;top:1rem;left:1rem;right:1rem;z-index:10;pointer-events:none;">
-    <div id="filter-bar" style="pointer-events:auto;background:rgba(11,61,51,0.88);backdrop-filter:blur(10px);border-radius:0.75rem;padding:0.6rem 0.85rem;display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.22);">
+    <div id="filter-bar" style="pointer-events:auto;background:rgba(11,31,51,0.88);backdrop-filter:blur(10px);border-radius:0.75rem;padding:0.6rem 0.85rem;display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.22);">
       <button id="filter-toggle" class="f-ctrl" aria-expanded="true" aria-controls="filter-bar" style="font-weight:600;display:inline-flex;align-items:center;gap:0.35rem;">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M7 12h10M10 19h4"/></svg>
         Filters
@@ -237,18 +239,18 @@
 
   <!-- Empty state -->
   <div id="empty-state" style="display:none;position:absolute;inset:0;z-index:5;align-items:center;justify-content:center;pointer-events:none;">
-    <div style="background:rgba(8,46,39,0.88);backdrop-filter:blur(10px);border:1px solid rgba(95,199,212,0.22);border-radius:0.85rem;padding:1.4rem 2.2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+    <div style="background:rgba(7,22,38,0.88);backdrop-filter:blur(10px);border:1px solid rgba(56,189,248,0.22);border-radius:0.85rem;padding:1.4rem 2.2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
       <span class="sonar-dot" style="margin-bottom:0.7rem;" aria-hidden="true"></span>
       <p style="font-family:'Fraunces',serif;font-size:1.05rem;color:#fff;margin-bottom:0.2rem;">No sightings match your filters</p>
-      <p style="font-size:0.78rem;color:#a3bdb6;">Try adjusting or clearing the filters above</p>
+      <p style="font-size:0.78rem;color:#9fb3c4;">Try adjusting or clearing the filters above</p>
     </div>
   </div>
 
   <!-- Error state -->
   <div id="error-state" style="display:none;position:absolute;inset:0;z-index:5;align-items:center;justify-content:center;pointer-events:none;">
-    <div style="background:rgba(8,46,39,0.88);backdrop-filter:blur(10px);border:1px solid rgba(95,199,212,0.22);border-radius:0.85rem;padding:1.4rem 2.2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.35);pointer-events:auto;">
+    <div style="background:rgba(7,22,38,0.88);backdrop-filter:blur(10px);border:1px solid rgba(56,189,248,0.22);border-radius:0.85rem;padding:1.4rem 2.2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.35);pointer-events:auto;">
       <p style="font-family:'Fraunces',serif;font-size:1.05rem;color:#fff;margin-bottom:0.2rem;">Could not load sightings</p>
-      <p id="error-msg" style="font-size:0.78rem;color:#a3bdb6;"></p>
+      <p id="error-msg" style="font-size:0.78rem;color:#9fb3c4;"></p>
     </div>
   </div>
 
@@ -256,14 +258,14 @@
   <aside id="side-panel" aria-label="Sighting details">
     <!-- Drag handle (mobile only) -->
     <div style="display:flex;justify-content:center;padding:0.55rem 0 0.1rem;flex-shrink:0;">
-      <div style="width:2.5rem;height:0.22rem;border-radius:9999px;background:#d8efe4;"></div>
+      <div style="width:2.5rem;height:0.22rem;border-radius:9999px;background:#d8e6f0;"></div>
     </div>
 
     <!-- Header -->
     <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:0.9rem 1.2rem 0.7rem;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
       <div>
-        <h2 id="p-common"    style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#0b3d33;line-height:1.3;"></h2>
-        <p  id="p-scientific" style="font-size:0.75rem;font-style:italic;color:#64747c;margin-top:0.15rem;"></p>
+        <h2 id="p-common"    style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#0b1f33;line-height:1.3;"></h2>
+        <p  id="p-scientific" style="font-size:0.75rem;font-style:italic;color:#5b6b7d;margin-top:0.15rem;"></p>
       </div>
       <button onclick="closePanel()" style="margin-left:0.6rem;padding:0.3rem;border-radius:9999px;border:none;background:none;cursor:pointer;color:#9ca3af;flex-shrink:0;" title="Close panel" aria-label="Close panel">
         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -282,7 +284,7 @@
 
     <!-- CTA -->
     <div style="padding:0.6rem 1.2rem 1.1rem;flex-shrink:0;">
-      <a id="p-cta" href="species.html" style="display:flex;align-items:center;justify-content:center;gap:0.35rem;padding:0.6rem;background:#0b3d33;color:white;font-size:0.78rem;font-weight:500;border-radius:0.5rem;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='#15584a'" onmouseout="this.style.background='#0b3d33'">
+      <a id="p-cta" href="species.html" style="display:flex;align-items:center;justify-content:center;gap:0.35rem;padding:0.6rem;background:#0b1f33;color:white;font-size:0.78rem;font-weight:500;border-radius:0.5rem;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='#123a55'" onmouseout="this.style.background='#0b1f33'">
         Learn more
         <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4"/></svg>
       </a>
@@ -290,7 +292,7 @@
   </aside>
 
   <!-- Basemap toggle -->
-  <div id="basemap-toggle" role="group" aria-label="Basemap style" style="position:absolute;left:1rem;bottom:1.6rem;z-index:10;display:flex;background:rgba(11,61,51,0.88);backdrop-filter:blur(10px);border-radius:9999px;padding:0.25rem;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+  <div id="basemap-toggle" role="group" aria-label="Basemap style" style="position:absolute;left:1rem;bottom:1.6rem;z-index:10;display:flex;background:rgba(11,31,51,0.88);backdrop-filter:blur(10px);border-radius:9999px;padding:0.25rem;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
     <button class="bm-btn on" data-style="lagoon">Lagoon</button>
     <button class="bm-btn" data-style="deep">Deep</button>
     <button class="bm-btn" data-style="sat">Satellite</button>
@@ -662,7 +664,7 @@
   function toggleHeatmap() {
     heatmap = !heatmap;
     var btn = document.getElementById('heatmap-btn');
-    btn.style.background = heatmap ? '#059669' : '';
+    btn.style.background = heatmap ? '#0ea5e9' : '';
     btn.style.color      = heatmap ? 'white'   : '';
     refreshLayerVisibility();
     applyFilters();
@@ -721,13 +723,13 @@
   // Side panel
   // ─────────────────────────────────────────────────────────────────────────
   function openPanel(p) {
-    var color = SPECIES_COLORS[p.species] || '#0b3d33';
+    var color = SPECIES_COLORS[p.species] || '#0b1f33';
 
     document.getElementById('p-common').textContent      = p.speciesCommon    || '';
     document.getElementById('p-scientific').textContent  = p.speciesScientific || '';
     // Species photo over the colour band; falls back to the colour if the image is missing
     document.getElementById('p-photo').style.background =
-      'linear-gradient(rgba(8,46,39,0.30), rgba(8,46,39,0.55)), ' +
+      'linear-gradient(rgba(7,22,38,0.30), rgba(7,22,38,0.55)), ' +
       'url("assets/img/species/' + (p.species || '') + '.jpg") center/cover, ' + color;
     document.getElementById('p-photo-label').textContent = p.speciesCommon    || '';
 
@@ -748,8 +750,8 @@
     rows.forEach(function(r) {
       dl.innerHTML +=
         '<div>' +
-        '<dt style="font-size:0.66rem;font-weight:500;color:#64747c;text-transform:uppercase;letter-spacing:0.05em;">' + r[0] + '</dt>' +
-        '<dd style="margin-top:0.12rem;font-size:0.8rem;color:#0b3d33;line-height:1.5;">' + r[1] + '</dd>' +
+        '<dt style="font-size:0.66rem;font-weight:500;color:#5b6b7d;text-transform:uppercase;letter-spacing:0.05em;">' + r[0] + '</dt>' +
+        '<dd style="margin-top:0.12rem;font-size:0.8rem;color:#0b1f33;line-height:1.5;">' + r[1] + '</dd>' +
         '</div>';
     });
 
@@ -793,7 +795,7 @@
           // ocean itself — leave it alone on the light style.
           if (isDark || !hasLandFill) map.setPaintProperty(l.id, 'background-color', landInk);
         } else if (l.type === 'fill' && WATER.test(id)) {
-          if (isDark) map.setPaintProperty(l.id, 'fill-color', '#0b3540');
+          if (isDark) map.setPaintProperty(l.id, 'fill-color', '#0b2a3d');
         } else if (l.type === 'fill' && LAND.test(id)) {
           map.setPaintProperty(l.id, 'fill-color', landInk);
           map.setPaintProperty(l.id, 'fill-outline-color', landInk);
@@ -905,10 +907,10 @@
         'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
         'heatmap-color': [
           'interpolate', ['linear'], ['heatmap-density'],
-          0,    'rgba(11,61,51,0)',
-          0.25, 'rgba(5,150,105,0.55)',
-          0.5,  '#5fc7d4',
-          0.75, '#8fd6cb',
+          0,    'rgba(11,31,51,0)',
+          0.25, 'rgba(14,165,233,0.55)',
+          0.5,  '#38bdf8',
+          0.75, '#8fc9ec',
           1,    '#ffffff',
         ],
         'heatmap-radius':  ['interpolate', ['linear'], ['zoom'], 0, 20, 9, 40],
@@ -936,10 +938,10 @@
       source: 'sightings-cl',
       filter: ['has', 'point_count'],
       paint: {
-        'circle-color':        '#0b3d33',
+        'circle-color':        '#0b1f33',
         'circle-radius':       ['step', ['get', 'point_count'], 14, 10, 18, 25, 23],
         'circle-stroke-width': 2,
-        'circle-stroke-color': '#5fc7d4',
+        'circle-stroke-color': '#38bdf8',
         'circle-opacity':      0.88,
       },
     });
@@ -950,7 +952,7 @@
         source: 'sightings-cl',
         filter: ['has', 'point_count'],
         layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': ['Noto Sans Regular'], 'text-size': 11 },
-        paint:  { 'text-color': '#eafef6' },
+        paint:  { 'text-color': '#eaf4fb' },
       });
     } catch (_) { /* glyphs unavailable — counts are optional */ }
 
@@ -1016,7 +1018,7 @@
             '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>' +
             (p.speciesCommon || '') +
           '</div>' +
-          '<div style="color:#64747c;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll : '') + '</div>'
+          '<div style="color:#5b6b7d;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll : '') + '</div>'
         )
         .addTo(map);
     });
