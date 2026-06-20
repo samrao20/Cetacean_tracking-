@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard — Koamas</title>
+  <title>Dashboard — Koamas by Reefscapers</title>
   <meta name="description" content="Data dashboard for Maldives cetacean sightings. Species counts, seasonal patterns, atoll coverage, and recent notable encounters." />
-  <meta property="og:title" content="Dashboard — Koamas" />
+  <meta property="og:title" content="Dashboard — Koamas by Reefscapers" />
   <meta property="og:description" content="Explore cetacean sighting data from across the Maldivian archipelago." />
   <meta property="og:type" content="website" />
 
@@ -66,9 +66,12 @@
     <a href="index.html" class="flex items-center gap-2.5">
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
-      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
-        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      <span class="flex items-baseline gap-1.5">
+        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+          <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
+          <span class="nav-logo" aria-hidden="true">Koamas</span>
+        </span>
+        <span class="not-italic font-['Outfit'] text-[11px] font-medium tracking-tight text-[#8fc9ec]">by Reefscapers</span>
       </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
     </span>
@@ -111,13 +114,19 @@
      PAGE HEADER
 ═══════════════════════════════════ -->
 <header class="relative overflow-hidden border-b border-white/10" id="main-content">
-  <div class="sonar-rings absolute -right-16 -top-24 opacity-50 hidden md:block" aria-hidden="true">
-    <svg width="360" height="360" viewBox="0 0 360 360" fill="none">
-      <circle cx="180" cy="180" r="66"  stroke="rgba(56,189,248,0.26)"/>
-      <circle cx="180" cy="180" r="124" stroke="rgba(56,189,248,0.14)"/>
-      <circle cx="180" cy="180" r="176" stroke="rgba(56,189,248,0.07)"/>
+  <div class="fingerprint-trace absolute -right-16 -top-24 opacity-50 hidden md:block" aria-hidden="true">
+    <svg width="300" height="375" viewBox="0 0 240 300" fill="none">
+      <path pathLength="1" style="animation-delay:0s"    d="M20 242 C20 58 220 58 220 242"/>
+      <path pathLength="1" style="animation-delay:.12s"  d="M28 238 C28 72 212 72 212 238"/>
+      <path pathLength="1" style="animation-delay:.24s"  d="M38 234 C38 86 202 86 202 234"/>
+      <path pathLength="1" style="animation-delay:.36s"  d="M48 230 C48 100 192 100 192 230"/>
+      <path pathLength="1" style="animation-delay:.48s"  d="M60 225 C60 116 180 116 180 225"/>
+      <path pathLength="1" style="animation-delay:.6s"   d="M72 220 C72 132 168 132 168 220"/>
+      <path pathLength="1" style="animation-delay:.72s"  d="M84 215 C84 150 156 150 156 215"/>
+      <path pathLength="1" style="animation-delay:.84s"  d="M102 188 C98 168 142 168 138 188"/>
+      <path pathLength="1" style="animation-delay:.96s"  d="M109 186 C107 176 133 176 131 186"/>
+      <path pathLength="1" style="animation-delay:1.08s" d="M114 182 C113 178 127 178 126 182"/>
     </svg>
-    <div class="sonar-sweep"></div>
   </div>
   <div class="relative max-w-6xl mx-auto px-4 py-12 md:py-14 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
     <div>
@@ -396,8 +405,11 @@
 <footer class="border-t border-white/10 text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
-      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas</p>
+      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
       <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+      <p class="text-xs text-[#5b6e80] mt-1">In partnership with
+        <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
+        <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
     </div>
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">

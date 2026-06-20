@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koamas — Maldives Cetacean Tracker</title>
+  <title>Koamas by Reefscapers — Maldives Cetacean Tracker</title>
   <meta name="description" content="Track dolphin and whale sightings across the Maldives. Submit a sighting via WhatsApp and help build the first citizen-science cetacean database for the archipelago." />
-  <meta property="og:title" content="Koamas — Maldives Cetacean Tracker" />
+  <meta property="og:title" content="Koamas by Reefscapers — Maldives Cetacean Tracker" />
   <meta property="og:description" content="Citizen science cetacean tracking across the Maldives. Every sighting builds the record." />
   <meta property="og:type" content="website" />
 
@@ -91,9 +91,12 @@
     <a href="index.html" class="flex items-center gap-2.5">
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
-      <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
-        <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
-        <span class="nav-logo" aria-hidden="true">Koamas</span>
+      <span class="flex items-baseline gap-1.5">
+        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+          <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
+          <span class="nav-logo" aria-hidden="true">Koamas</span>
+        </span>
+        <span class="not-italic font-['Outfit'] text-[11px] font-medium tracking-tight text-[#8fc9ec]">by Reefscapers</span>
       </span>
       <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
     </span>
@@ -153,20 +156,24 @@
   <div class="hero-vignette absolute inset-0 z-[2] pointer-events-none" aria-hidden="true"></div>
 
   <!-- Sonar rings -->
-  <div class="sonar-rings absolute -right-28 top-1/2 -translate-y-1/2 z-[2] hidden lg:block opacity-70" aria-hidden="true">
-    <svg width="560" height="560" viewBox="0 0 560 560" fill="none">
-      <circle cx="280" cy="280" r="86"  stroke="rgba(56,189,248,0.30)"/>
-      <circle cx="280" cy="280" r="160" stroke="rgba(56,189,248,0.18)"/>
-      <circle cx="280" cy="280" r="232" stroke="rgba(56,189,248,0.10)"/>
-      <circle cx="280" cy="280" r="276" stroke="rgba(56,189,248,0.05)"/>
-      <circle cx="280" cy="280" r="4" fill="rgba(56,189,248,0.6)"/>
+  <div class="fingerprint-trace absolute -right-28 top-1/2 -translate-y-1/2 z-[2] hidden lg:block opacity-70" aria-hidden="true">
+    <svg width="480" height="600" viewBox="0 0 240 300" fill="none">
+      <path pathLength="1" style="animation-delay:0s"    d="M20 242 C20 58 220 58 220 242"/>
+      <path pathLength="1" style="animation-delay:.12s"  d="M28 238 C28 72 212 72 212 238"/>
+      <path pathLength="1" style="animation-delay:.24s"  d="M38 234 C38 86 202 86 202 234"/>
+      <path pathLength="1" style="animation-delay:.36s"  d="M48 230 C48 100 192 100 192 230"/>
+      <path pathLength="1" style="animation-delay:.48s"  d="M60 225 C60 116 180 116 180 225"/>
+      <path pathLength="1" style="animation-delay:.6s"   d="M72 220 C72 132 168 132 168 220"/>
+      <path pathLength="1" style="animation-delay:.72s"  d="M84 215 C84 150 156 150 156 215"/>
+      <path pathLength="1" style="animation-delay:.84s"  d="M102 188 C98 168 142 168 138 188"/>
+      <path pathLength="1" style="animation-delay:.96s"  d="M109 186 C107 176 133 176 131 186"/>
+      <path pathLength="1" style="animation-delay:1.08s" d="M114 182 C113 178 127 178 126 182"/>
     </svg>
-    <div class="sonar-sweep"></div>
   </div>
 
   <div class="relative z-[3] w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-20 text-center md:text-left">
     <p class="hero-fade-up kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
-      Koamas · Citizen Science
+      Koamas by Reefscapers · Citizen Science
     </p>
     <h1 class="hero-fade-up d1 font-['Fraunces'] text-6xl sm:text-7xl md:text-8xl font-bold text-white leading-[0.98] tracking-tight mb-7 max-w-3xl">
       Every sighting<br />
@@ -363,11 +370,18 @@
 ══════════════════════════════════════ -->
 <div class="wave-divider bg-[#dcebf5]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,36 C260,10 520,52 780,28 C1040,6 1260,48 1440,30 L1440,60 L0,60 Z" fill="#0b1f33"/></svg></div>
 <section class="dive-band py-20 px-4" aria-labelledby="cta-heading">
-  <div class="sonar-rings absolute -left-24 -bottom-24 opacity-50 hidden md:block" aria-hidden="true">
-    <svg width="380" height="380" viewBox="0 0 380 380" fill="none">
-      <circle cx="190" cy="190" r="70"  stroke="rgba(56,189,248,0.26)"/>
-      <circle cx="190" cy="190" r="130" stroke="rgba(56,189,248,0.14)"/>
-      <circle cx="190" cy="190" r="186" stroke="rgba(56,189,248,0.07)"/>
+  <div class="fingerprint-trace absolute -left-24 -bottom-24 opacity-50 hidden md:block" aria-hidden="true">
+    <svg width="320" height="400" viewBox="0 0 240 300" fill="none">
+      <path pathLength="1" style="animation-delay:0s"    d="M20 242 C20 58 220 58 220 242"/>
+      <path pathLength="1" style="animation-delay:.12s"  d="M28 238 C28 72 212 72 212 238"/>
+      <path pathLength="1" style="animation-delay:.24s"  d="M38 234 C38 86 202 86 202 234"/>
+      <path pathLength="1" style="animation-delay:.36s"  d="M48 230 C48 100 192 100 192 230"/>
+      <path pathLength="1" style="animation-delay:.48s"  d="M60 225 C60 116 180 116 180 225"/>
+      <path pathLength="1" style="animation-delay:.6s"   d="M72 220 C72 132 168 132 168 220"/>
+      <path pathLength="1" style="animation-delay:.72s"  d="M84 215 C84 150 156 150 156 215"/>
+      <path pathLength="1" style="animation-delay:.84s"  d="M102 188 C98 168 142 168 138 188"/>
+      <path pathLength="1" style="animation-delay:.96s"  d="M109 186 C107 176 133 176 131 186"/>
+      <path pathLength="1" style="animation-delay:1.08s" d="M114 182 C113 178 127 178 126 182"/>
     </svg>
   </div>
   <div class="max-w-2xl mx-auto text-center">
@@ -424,8 +438,11 @@
 <footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
-      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas</p>
+      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
       <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+      <p class="text-xs text-[#5b6e80] mt-1">In partnership with
+        <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
+        <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
     </div>
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
