@@ -293,9 +293,9 @@
 
   <!-- Basemap toggle -->
   <div id="basemap-toggle" role="group" aria-label="Basemap style" style="position:absolute;left:1rem;bottom:1.6rem;z-index:10;display:flex;background:rgba(11,31,51,0.88);backdrop-filter:blur(10px);border-radius:9999px;padding:0.25rem;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
-    <button class="bm-btn on" data-style="lagoon">Lagoon</button>
+    <button class="bm-btn" data-style="lagoon">Lagoon</button>
     <button class="bm-btn" data-style="deep">Deep</button>
-    <button class="bm-btn" data-style="sat">Satellite</button>
+    <button class="bm-btn on" data-style="sat">Satellite</button>
   </div>
 
   <!-- Toast (share feedback) -->
@@ -390,7 +390,7 @@
   let selAtoll      = '';
   let dateFrom      = '';
   let dateTo        = '';
-  let styleKey      = 'lagoon';   // 'lagoon' | 'deep' | 'sat'
+  let styleKey      = 'sat';      // 'lagoon' | 'deep' | 'sat'
   let islandsGeo    = null;       // local island polygons (data/maldives-islands.geojson)
   let atollsGeo     = null;       // local atoll polygons + names
   let latestId      = null;       // id of the most recent sighting (pulse target)
@@ -522,7 +522,7 @@
     if (selAtoll)           q.set('atoll', selAtoll);
     if (dateFrom)           q.set('from', dateFrom);
     if (dateTo)             q.set('to', dateTo);
-    if (styleKey !== 'lagoon') q.set('view', styleKey);
+    if (styleKey !== 'sat') q.set('view', styleKey);
     var s = q.toString();
     history.replaceState(null, '', s ? '?' + s : location.pathname);
   }
