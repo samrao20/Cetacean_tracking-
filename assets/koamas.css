@@ -409,16 +409,37 @@ footer a { transition: color 0.2s var(--ease); }
   to   { transform: scale(4.2); opacity: 0; }
 }
 
-/* Decorative concentric sonar rings with a slow sweep */
-.sonar-rings { position: relative; pointer-events: none; }
-.sonar-rings .sonar-sweep {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(56,189,248,0.18), transparent 75deg, transparent 360deg);
-  animation: sonarSweep 14s linear infinite;
+/* Decorative fingerprint that draws itself — echoes the Koamas logo
+   (a dolphin traced inside a fingerprint) and the "every sighting is an
+   ID" theme. Replaces the old rotating sonar sweep. */
+.fingerprint-trace { position: relative; pointer-events: none; }
+.fingerprint-trace svg { display: block; overflow: visible; }
+.fingerprint-trace path {
+  fill: none;
+  stroke: rgba(56,189,248,0.55);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;        /* paths carry pathLength="1" → normalised */
+  stroke-dashoffset: 1;
+  animation: fpDraw 7s ease-in-out infinite;
 }
-@keyframes sonarSweep { to { transform: rotate(360deg); } }
+@keyframes fpDraw {
+  0%   { stroke-dashoffset: 1; opacity: 0; }
+  12%  { opacity: 1; }
+  55%  { stroke-dashoffset: 0; opacity: 1; }
+  86%  { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }   /* fade out fully drawn, then redraw */
+}
+/* Reduced motion: show a complete, static fingerprint (the global guard
+   below would otherwise leave it mid-draw / invisible). */
+@media (prefers-reduced-motion: reduce) {
+  .fingerprint-trace path {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    animation: none;
+  }
+}
 
 /* Kicker label with gradient dash */
 .kicker {
