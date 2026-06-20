@@ -417,13 +417,15 @@ footer a { transition: color 0.2s var(--ease); }
 .fingerprint-trace path {
   fill: none;
   stroke: rgba(56,189,248,0.55);
-  stroke-width: 2.4;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;        /* paths carry pathLength="1" → normalised */
   stroke-dashoffset: 1;
   animation: fpDraw 7s ease-in-out infinite;
 }
+/* Dolphin centerpiece — brighter, heavier line so it reads over the ridges */
+.fingerprint-trace .fp-dolphin { stroke: rgba(56,189,248,0.9); stroke-width: 3; }
 @keyframes fpDraw {
   0%   { stroke-dashoffset: 1; opacity: 0; }
   12%  { opacity: 1; }
