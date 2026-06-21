@@ -417,21 +417,35 @@ footer a { transition: color 0.2s var(--ease); }
 .fingerprint-trace path {
   fill: none;
   stroke: rgba(56,189,248,0.55);
-  stroke-width: 2;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;        /* paths carry pathLength="1" → normalised */
   stroke-dashoffset: 1;
   animation: fpDraw 7s ease-in-out infinite;
 }
-/* Dolphin centerpiece — brighter, heavier line so it reads over the ridges */
-.fingerprint-trace .fp-dolphin { stroke: rgba(56,189,248,0.9); stroke-width: 3; }
+/* Dolphin centerpiece — solid translucent silhouette that fades in once the
+   ridges finish tracing, instead of drawing as an outline alongside them. */
+.fingerprint-trace .fp-dolphin {
+  fill: rgba(56,189,248,0.85);
+  stroke: none;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  animation: fpDolphin 7s ease-in-out infinite;
+}
 @keyframes fpDraw {
   0%   { stroke-dashoffset: 1; opacity: 0; }
   12%  { opacity: 1; }
   55%  { stroke-dashoffset: 0; opacity: 1; }
   86%  { stroke-dashoffset: 0; opacity: 1; }
   100% { stroke-dashoffset: 0; opacity: 0; }   /* fade out fully drawn, then redraw */
+}
+@keyframes fpDolphin {
+  0%   { opacity: 0; }
+  50%  { opacity: 0; }
+  65%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 /* Reduced motion: show a complete, static fingerprint (the global guard
    below would otherwise leave it mid-draw / invisible). */
@@ -441,6 +455,7 @@ footer a { transition: color 0.2s var(--ease); }
     opacity: 1;
     animation: none;
   }
+  .fingerprint-trace .fp-dolphin { opacity: 1; animation: none; }
 }
 
 /* Kicker label with gradient dash */
