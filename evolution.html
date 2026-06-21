@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--
+  IMAGES TO ADD (assets/img/evolution/) — the page works fine without them;
+  each slot shows a hand-drawn inline SVG silhouette until a real photo/
+  illustration is dropped in at the path below (same filename swaps it in,
+  no code changes needed).
+
+    assets/img/evolution/pakicetus.jpg        – reconstruction of Pakicetus wading in Tethys shallows
+    assets/img/evolution/indohyus.jpg         – reconstruction of Indohyus, small deer-like, dense-boned
+    assets/img/evolution/ambulocetus.jpg      – reconstruction of Ambulocetus, the "walking whale"
+    assets/img/evolution/basilosaurus.jpg     – reconstruction of Basilosaurus, serpentine open-ocean whale
+    assets/img/evolution/tail-fluke.jpg       – modern whale tail fluke breaking the surface
+    assets/img/evolution/baleen-vs-teeth.jpg  – split composite: baleen plates vs. toothed whale jaw
+    assets/img/evolution/blowhole.jpg         – whale at the surface with blowhole open
+    assets/img/evolution/echolocation.jpg     – sperm whale or dolphin diving/hunting in dark water
+    assets/img/evolution/blubber.jpg          – whale breaching, showing girth/blubber layer
+    assets/img/evolution/blue-whale-scale.jpg – blue whale scale comparison (e.g. beside a boat or diver)
+    assets/img/evolution/maldives-today.jpg   – present-day cetacean sighting in Maldivian waters
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Evolution of Whales — Koamas by Reefscapers</title>
+  <meta name="description" content="A 50-million-year journey from land to the deep ocean, told as a descent through time — beginning in the ancient Tethys Sea and ending in the present-day Maldives, where the story is still being written one sighting at a time." />
+
+  <link rel="icon" type="image/png" href="assets/img/koamas-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
+
+  <style>
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
+
+    /* ══════════════════════════════════════
+       Scroll-driven background (fixed layer behind all content)
+    ══════════════════════════════════════ */
+    .evo-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      --evo-c1: #f1e2bd;
+      --evo-c2: #d6a85f;
+      background: linear-gradient(180deg, var(--evo-c1) 0%, var(--evo-c2) 100%);
+    }
+    .evo-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 60% at 50% 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.16) 100%);
+    }
+
+    /* ══════════════════════════════════════
+       Hero
+    ══════════════════════════════════════ */
+    .evo-hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 1.5rem 4rem;
+    }
+    .evo-hero-inner { max-width: 42rem; margin: 0 auto; }
+    .evo-scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 2.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.65;
+    }
+    .evo-scroll-cue svg { animation: evoBob 1.8s ease-in-out infinite; }
+    @keyframes evoBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ══════════════════════════════════════
+       Timeline spine (decorative, hidden on narrow screens)
+    ══════════════════════════════════════ */
+    .evo-spine {
+      position: fixed;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      height: 54vh;
+      pointer-events: none;
+    }
+    .evo-spine-track {
+      position: relative;
+      width: 3px;
+      flex: 1;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.3);
+      overflow: hidden;
+    }
+    .evo-spine-fill {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 0%;
+      background: var(--grad);
+      border-radius: 2px;
+      will-change: height;
+    }
+    .evo-spine-year {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #eaf4fb;
+      background: rgba(7,22,38,0.65);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 9999px;
+      padding: 0.32rem 0.7rem;
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) { .evo-spine { display: none; } }
+
+    /* ══════════════════════════════════════
+       Era sections
+    ══════════════════════════════════════ */
+    .evo-era { position: relative; padding: 5rem 1.5rem; max-width: 64rem; margin: 0 auto; }
+    .evo-era-intro {
+      max-width: 38rem;
+      margin: 0 auto 3rem;
+      text-align: center;
+      background: rgba(7,22,38,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 1.25rem;
+      padding: 2.25rem 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .evo-era-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7dd3f4;
+      margin-bottom: 0.85rem;
+    }
+    .evo-era-intro h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.9rem;
+      line-height: 1.2;
+    }
+    .evo-era-intro p { color: #cfe3ef; font-size: 0.98rem; line-height: 1.7; }
+    .evo-era-intro p + p { margin-top: 0.85rem; }
+
+    .evo-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .evo-cards.cols-2 { grid-template-columns: 1fr 1fr; } }
+    .evo-cards-solo { max-width: 30rem; margin: 0 auto; }
+    .evo-card-span2 { grid-column: 1 / -1; }
+
+    /* ══════════════════════════════════════
+       Station card — WHAT / HOW / WHY
+    ══════════════════════════════════════ */
+    .evo-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .evo-card:hover { transform: translateY(-4px); border-color: rgba(14,165,233,0.35); box-shadow: var(--shadow-md); }
+    .evo-card-media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, var(--mint), #eaf4fb);
+      overflow: hidden;
+    }
+    .evo-card-media svg { position: absolute; inset: 0; width: 100%; height: 100%; padding: 1.6rem; color: var(--teal); opacity: 0.85; }
+    .evo-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .evo-card-body { padding: 1.5rem 1.6rem 1.75rem; }
+    .evo-card-meta { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .evo-card-name { font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; font-weight: 600; color: var(--text); margin-bottom: 1.1rem; }
+    .evo-row { margin-bottom: 1rem; }
+    .evo-row:last-child { margin-bottom: 0; }
+    .evo-tag { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 0.3rem; }
+    .evo-row p { font-size: 0.92rem; line-height: 1.65; color: var(--text); }
+
+    /* ── Scale-moment stat card ── */
+    .evo-stat-card { display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .evo-stat-card { grid-template-columns: 13rem 1fr; } }
+    .evo-stat-figure { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem; background: var(--grad); text-align: center; }
+    .evo-stat-figure .num { font-family: 'Fraunces', Georgia, serif; font-size: 2.6rem; font-weight: 700; color: #fff; line-height: 1; }
+    .evo-stat-figure .unit { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-top: 0.4rem; }
+
+    /* ── Closing CTA ── */
+    .evo-cta-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.75rem; }
+
+    /* ══════════════════════════════════════
+       Reduced motion: static per-era gradients, scroll-driven layer off
+    ══════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      .evo-bg { display: none; }
+      .evo-hero,
+      .evo-era[data-era="land"]      { background: linear-gradient(180deg, #f1e2bd, #d6a85f); }
+      .evo-era[data-era="water"]     { background: linear-gradient(180deg, #5fe0d6, #19c0c8); }
+      .evo-era[data-era="ocean"]     { background: linear-gradient(180deg, #1f6fa8, #0d3f68); }
+      .evo-era[data-era="deep"]      { background: linear-gradient(180deg, #071423, #01060c); }
+      .evo-era[data-era="resurface"] { background: linear-gradient(180deg, #0ea5e9, #38bdf8); }
+      .evo-scroll-cue svg { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Brand bar -->
+<div class="brand-bar" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
+  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
+      <span class="flex flex-col leading-none">
+      <span class="flex items-baseline gap-1.5">
+        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+          <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
+          <span class="nav-logo" aria-hidden="true">Koamas</span>
+        </span>
+        <span class="not-italic font-['Outfit'] text-[11px] font-medium tracking-tight text-[#8fc9ec]">by Reefscapers</span>
+      </span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
+    </span>
+    </a>
+    <ul class="hidden md:flex gap-6 text-sm font-medium text-[#d6e6f2] items-center" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
+      <li><a href="species.html">Species</a></li>
+      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="evolution.html" aria-current="page">Evolution</a></li>
+      <li><a href="guidelines.html">Guidelines</a></li>
+      <li>
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
+          Submit a sighting
+        </a>
+      </li>
+    </ul>
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
+      <li><a href="index.html" class="block py-1">Home</a></li>
+      <li><a href="map.html" class="block py-1">Map</a></li>
+      <li><a href="species.html" class="block py-1">Species</a></li>
+      <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
+      <li><a href="about.html" class="block py-1">About</a></li>
+      <li><a href="evolution.html" class="block py-1" aria-current="page">Evolution</a></li>
+      <li><a href="guidelines.html" class="block py-1">Guidelines</a></li>
+      <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Scroll-driven background layer -->
+<div class="evo-bg" aria-hidden="true"></div>
+
+<!-- Timeline spine -->
+<aside class="evo-spine" aria-hidden="true">
+  <div class="evo-spine-track"><div class="evo-spine-fill"></div></div>
+  <span class="evo-spine-year" id="evo-year">~50 mya</span>
+</aside>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<header class="evo-hero">
+  <div class="evo-hero-inner">
+    <p class="kicker text-[#0b1f33] text-xs font-semibold tracking-[0.2em] uppercase mb-5">A 50-million-year story</p>
+    <h1 class="font-['Fraunces'] text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight text-[#0b1f33] mb-6">
+      It started<br /><em class="text-grad italic font-normal">right here.</em>
+    </h1>
+    <p class="text-[#16324c] text-base md:text-lg leading-relaxed max-w-xl mb-4">
+      Fifty million years ago, there were no whales — only a warm, shallow sea called the
+      Tethys, lapping at the coast of what's now Pakistan and India.
+    </p>
+    <p class="text-[#16324c] text-base md:text-lg leading-relaxed max-w-xl">
+      On those shallows, an unlikely four-legged mammal was about to start a fifty-million-year
+      journey into open water. It ends here, in the Maldives — and it isn't finished yet.
+    </p>
+    <div class="evo-scroll-cue">
+      Scroll to begin the descent
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════════════════════════════════
+       ERA 1 — LAND / TETHYS SHALLOWS
+  ══════════════════════════════════════ -->
+  <section class="evo-era" data-era="land" aria-labelledby="era-land-heading">
+    <div class="evo-era-intro reveal">
+      <p class="evo-era-label">Era 1 &middot; ~50&ndash;48 million years ago</p>
+      <h2 id="era-land-heading">On land, in the shallows</h2>
+      <p>
+        This is where it begins &mdash; not in the open ocean, but on land, at the water's edge
+        of the ancient Tethys Sea. The earliest whale ancestors weren't swimmers. They were
+        walkers, waders, and hiders, slowly discovering that the water held something worth
+        staying for.
+      </p>
+    </div>
+
+    <div class="evo-cards cols-2">
+      <!-- Station 1: Pakicetus -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="currentColor" aria-hidden="true">
+            <path d="M40 70c0-16 18-28 46-28 22 0 38 8 48 18 10-4 22-4 30 2-6 6-16 8-22 6 4 6 4 14-2 18-10 8-26 10-40 8-22-2-40-10-52-16-5-2-8-5-8-8z"/>
+            <rect x="48" y="78" width="6" height="22" rx="2"/>
+            <rect x="66" y="82" width="6" height="22" rx="2"/>
+            <rect x="98" y="82" width="6" height="22" rx="2"/>
+            <rect x="116" y="78" width="6" height="22" rx="2"/>
+            <path d="M20 70c8-4 16-2 20 4-6 4-14 4-20-4z"/>
+            <line x1="10" y1="104" x2="190" y2="104" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+          </svg>
+          <!-- expects: assets/img/evolution/pakicetus.jpg -->
+          <img src="assets/img/evolution/pakicetus.jpg" alt="Reconstruction of Pakicetus, a wolf-sized four-legged hoofed mammal wading in shallow coastal water" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">~50 million years ago &middot; Pakicetus</p>
+          <h3 class="evo-card-name">Pakicetus</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>A wolf-sized, four-legged, hoofed mammal, wading through the warm coastal shallows of the Tethys Sea.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>It already carried a distinctive set of inner-ear bones — the same anatomical signature every whale alive today still carries.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>The whale story begins on land, in the shallows of this very region. Its closest living land relative today, oddly enough, is the hippo.</p></div>
+        </div>
+      </article>
+
+      <!-- Station 2: Indohyus -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="currentColor" aria-hidden="true">
+            <path d="M55 64c0-12 14-20 34-20 16 0 28 6 36 14 8-2 16 0 20 6-4 4-10 5-15 4 2 5 0 11-6 13-8 6-20 7-30 5-16-2-30-9-39-14-3-2-5-4-5-8z"/>
+            <rect x="60" y="70" width="4" height="26" rx="2"/>
+            <rect x="74" y="74" width="4" height="26" rx="2"/>
+            <rect x="100" y="74" width="4" height="26" rx="2"/>
+            <rect x="114" y="70" width="4" height="26" rx="2"/>
+            <path d="M40 60c-6-6-4-14 2-16 4 6 4 12 0 18z"/>
+            <line x1="10" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+          </svg>
+          <!-- expects: assets/img/evolution/indohyus.jpg -->
+          <img src="assets/img/evolution/indohyus.jpg" alt="Reconstruction of Indohyus, a small deer-like mammal with unusually dense, heavy bones" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">~48 million years ago &middot; Indohyus &middot; Kashmir, India</p>
+          <h3 class="evo-card-name">Indohyus</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>A small, deer-like mammal with unusually dense, heavy bones.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>Those heavy bones worked like a diver's weight belt — extra ballast that made it easier to sink and stay submerged.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Hiding underwater from predators was already worth the trouble. The pull toward the water had begun.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ERA 2 — ENTERING THE WATER
+  ══════════════════════════════════════ -->
+  <section class="evo-era" data-era="water" aria-labelledby="era-water-heading">
+    <div class="evo-era-intro reveal">
+      <p class="evo-era-label">Era 2 &middot; ~49 million years ago</p>
+      <h2 id="era-water-heading">Wading in, then swimming</h2>
+      <p>
+        The water's edge stopped being just a place to hide. It became a place to hunt — and
+        the body started changing to match.
+      </p>
+    </div>
+
+    <div class="evo-cards evo-cards-solo">
+      <!-- Station 3: Ambulocetus -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="currentColor" aria-hidden="true">
+            <path d="M20 78c10-10 28-14 50-12 26 2 60 4 90 0 12-2 20 2 20 8s-10 10-22 10c-10 16-30 22-54 20-30-2-58-8-76-18-6-3-9-5-8-8z"/>
+            <rect x="40" y="90" width="6" height="18" rx="2"/>
+            <rect x="62" y="92" width="6" height="18" rx="2"/>
+            <rect x="120" y="92" width="6" height="18" rx="2"/>
+            <rect x="142" y="90" width="6" height="18" rx="2"/>
+            <path d="M170 80c8-2 16 0 20 6-6 4-14 4-20-2z"/>
+            <line x1="10" y1="110" x2="190" y2="110" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+          </svg>
+          <!-- expects: assets/img/evolution/ambulocetus.jpg -->
+          <img src="assets/img/evolution/ambulocetus.jpg" alt="Reconstruction of Ambulocetus, the crocodile-shaped 'walking whale', hunting at the water's edge" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">~49 million years ago &middot; Ambulocetus, the &ldquo;walking whale&rdquo;</p>
+          <h3 class="evo-card-name">Ambulocetus</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>A crocodile-shaped, amphibious predator that hunted from the water's edge.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>Its powerful limbs could still carry it on land, but in the water it likely ambushed prey the way a crocodile does — lying in wait, then lunging.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Life was shifting from on-land to in-water, and the body was being rebuilt, piece by piece, to hunt in the sea.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ERA 3 — OPEN OCEAN
+  ══════════════════════════════════════ -->
+  <section class="evo-era" data-era="ocean" aria-labelledby="era-ocean-heading">
+    <div class="evo-era-intro reveal">
+      <p class="evo-era-label">Era 3 &middot; ~41&ndash;34 million years ago</p>
+      <h2 id="era-ocean-heading">Into the open ocean</h2>
+      <p>
+        By now there was no going back. The next whales never set foot on land again — and the
+        proof of where they came from is still folded inside their bodies today.
+      </p>
+    </div>
+
+    <div class="evo-cards cols-2">
+      <!-- Station 4: Basilosaurus -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 220 100" fill="currentColor" aria-hidden="true">
+            <path d="M10 55c20-18 40-26 60-22 14 3 18 14 32 12 18-3 26-16 46-14 18 2 30 12 42 8 4 10-4 18-16 18-14 16-36 20-58 14-8 12-24 16-38 10-16-7-26-16-46-16-10 0-18-4-22-10z"/>
+            <ellipse cx="150" cy="62" rx="6" ry="3"/>
+            <path d="M0 50c4-4 10-4 12 0-2 4-8 5-12 0z"/>
+          </svg>
+          <!-- expects: assets/img/evolution/basilosaurus.jpg -->
+          <img src="assets/img/evolution/basilosaurus.jpg" alt="Reconstruction of Basilosaurus, an 18-metre serpentine whale that never left open water" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">~41&ndash;34 million years ago &middot; Basilosaurus</p>
+          <h3 class="evo-card-name">Basilosaurus</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>An 18-metre, serpentine whale that spent its entire life in open water.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>Streamlined and powered by its tail, it had let go of land almost completely — except for one thing: tiny, useless hind legs.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Those leftover legs are the receipt. Modern whales still carry vestigial hip bones inside their bodies — bones for legs they no longer have.</p></div>
+        </div>
+      </article>
+
+      <!-- Station 5: The horizontal tail -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="none" aria-hidden="true">
+            <path d="M20 60c40 0 70-4 90 0" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M110 60c20-26 46-30 64-34-6 18-10 28-8 38-18 6-38 4-56-4z" fill="currentColor"/>
+            <path d="M110 60c20 26 46 30 64 34-6-18-10-28-8-38-18-6-38-4-56 4z" fill="currentColor" opacity="0.55"/>
+            <path d="M150 18v10M150 92v10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <!-- expects: assets/img/evolution/tail-fluke.jpg -->
+          <img src="assets/img/evolution/tail-fluke.jpg" alt="A modern whale's horizontal tail fluke breaking the surface" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">Trait &middot; the horizontal tail</p>
+          <h3 class="evo-card-name">Why whales swim differently to fish</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>Whales swim by beating a horizontal tail fluke up and down. Fish do the opposite — their tails are vertical, sweeping side to side.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>Their running land ancestors had spines that flexed up and down, the same way a galloping dog's does. That motion simply carried straight into the water.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>A whale's swimming stroke is a fossil of its gallop — the horizontal tail is inherited from a life spent running on land.</p></div>
+        </div>
+      </article>
+
+      <!-- Station 6: The great split -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="currentColor" aria-hidden="true">
+            <path d="M10 30c30-14 70-14 90 0v60c-20 14-60 14-90 0z"/>
+            <g opacity="0.9">
+              <rect x="18" y="38" width="64" height="4"/>
+              <rect x="18" y="48" width="64" height="4"/>
+              <rect x="18" y="58" width="64" height="4"/>
+              <rect x="18" y="68" width="64" height="4"/>
+              <rect x="18" y="78" width="64" height="4"/>
+            </g>
+            <path d="M190 30c-30-14-70-14-90 0v60c20 14 60 14 90 0z"/>
+            <g fill="#fff" opacity="0.9">
+              <path d="M114 40l8 14h-16z"/>
+              <path d="M132 40l8 14h-16z"/>
+              <path d="M150 40l8 14h-16z"/>
+              <path d="M168 40l8 14h-16z"/>
+              <path d="M114 80l8-14h-16z"/>
+              <path d="M132 80l8-14h-16z"/>
+              <path d="M150 80l8-14h-16z"/>
+              <path d="M168 80l8-14h-16z"/>
+            </g>
+          </svg>
+          <!-- expects: assets/img/evolution/baleen-vs-teeth.jpg -->
+          <img src="assets/img/evolution/baleen-vs-teeth.jpg" alt="Split comparison of baleen plates next to a toothed whale's jaw" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">~34 million years ago &middot; The great split</p>
+          <h3 class="evo-card-name">Baleen vs. teeth</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>The whale line divides in two: baleen whales and toothed whales.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>One lineage traded its teeth for baleen — keratin plates, the very same material as our fingernails. The other kept its teeth and doubled down on hunting.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Two different bets on how to survive: filter vast clouds of tiny krill, or chase down prey one at a time. Both won.</p></div>
+        </div>
+      </article>
+
+      <!-- Station 7: The blowhole -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="currentColor" aria-hidden="true">
+            <path d="M10 70c20-30 60-40 100-34 30 4 56 18 80 14-6 14-22 20-38 18-4 10-16 16-30 16-34 2-66-2-92-10-10-2-18-2-20-4z"/>
+            <circle cx="92" cy="48" r="5"/>
+            <path d="M92 38c0-10 4-10 4 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M88 30c4-8 8-8 12 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+          <!-- expects: assets/img/evolution/blowhole.jpg -->
+          <img src="assets/img/evolution/blowhole.jpg" alt="A whale at the surface with its blowhole open, breathing" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">Trait &middot; the blowhole</p>
+          <h3 class="evo-card-name">Nostrils on the move</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>Nostrils, relocated to the very top of the head.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>Across the fossil record, the nostrils slowly migrate — from the tip of the snout, all the way up to the crown of the skull.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Now a whale can breathe with barely more than the top of its head breaking the surface, hardly interrupting the swim at all.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ERA 4 — THE DEEP (light fades)
+  ══════════════════════════════════════ -->
+  <section class="evo-era" data-era="deep" aria-labelledby="era-deep-heading">
+    <div class="evo-era-intro reveal">
+      <p class="evo-era-label">Era 4 &middot; the deep</p>
+      <h2 id="era-deep-heading">Where the light runs out</h2>
+      <p>
+        Past about 200 metres, sunlight gives up entirely. Whatever lives down here has had to
+        solve problems that have nothing to do with where it came from — and everything to do
+        with where it's going.
+      </p>
+    </div>
+
+    <div class="evo-cards cols-2">
+      <!-- Station 8: Echolocation -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="none" aria-hidden="true">
+            <path d="M20 70c10-22 36-32 60-28 8-10 22-14 32-8-4 8-10 12-16 14 14 4 24 14 30 14-8 10-22 12-34 8-4 8-14 12-26 12-22 0-40-6-46-12z" fill="currentColor"/>
+            <path d="M100 58c8-6 16-6 22 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M96 48c14-10 28-10 38 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+            <path d="M92 38c20-14 40-14 56 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+          </svg>
+          <!-- expects: assets/img/evolution/echolocation.jpg -->
+          <img src="assets/img/evolution/echolocation.jpg" alt="A sperm whale or dolphin diving and hunting in dark water" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">Trait &middot; echolocation</p>
+          <h3 class="evo-card-name">Seeing with sound</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>Toothed whales &ldquo;see&rdquo; with sound instead of light.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>A fatty organ called the melon, in the forehead, focuses clicks into a tight beam. The returning echoes map the dark in extraordinary detail.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Sound carries for miles in water, even where sunlight can't. The sperm whale's clicks are the loudest sound made by any animal on Earth, and it dives roughly 2,000 metres on a single breath to hunt squid down there.</p></div>
+        </div>
+      </article>
+
+      <!-- Station 9: Blubber -->
+      <article class="evo-card reveal">
+        <div class="evo-card-media">
+          <svg viewBox="0 0 200 120" fill="none" aria-hidden="true">
+            <circle cx="100" cy="60" r="50" fill="currentColor" opacity="0.18"/>
+            <circle cx="100" cy="60" r="50" stroke="currentColor" stroke-width="2"/>
+            <circle cx="100" cy="60" r="34" fill="currentColor" opacity="0.4"/>
+            <circle cx="100" cy="60" r="34" stroke="currentColor" stroke-width="2"/>
+            <circle cx="100" cy="60" r="16" fill="currentColor" opacity="0.85"/>
+          </svg>
+          <!-- expects: assets/img/evolution/blubber.jpg -->
+          <img src="assets/img/evolution/blubber.jpg" alt="A whale breaching, showing the girth of its blubber layer" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">Trait &middot; blubber</p>
+          <h3 class="evo-card-name">Fat, instead of fur</h3>
+          <div class="evo-row"><p class="evo-tag">What</p><p>A thick layer of fat, in place of fur.</p></div>
+          <div class="evo-row"><p class="evo-tag">How</p><p>Fur keeps land mammals warm by trapping air, but that trick fails the moment it's soaked and compressed at depth. Blubber doesn't have that problem.</p></div>
+          <div class="evo-row"><p class="evo-tag">Why</p><p>Water pulls heat from the body roughly 25 times faster than air does. Blubber insulates, stores energy for the leanest months, and even helps a whale float.</p></div>
+        </div>
+      </article>
+
+      <!-- Station 10: Scale moment — the blue whale -->
+      <article class="evo-card evo-card-span2 evo-stat-card reveal">
+        <div class="evo-stat-figure">
+          <span class="num">~180 kg</span>
+          <span class="unit">one heart</span>
+        </div>
+        <div class="evo-card-body">
+          <p class="evo-card-meta">Scale moment &middot; the blue whale</p>
+          <h3 class="evo-card-name">A heart the size of a bumper car</h3>
+          <div class="evo-row"><p>The blue whale's heart weighs about 180 kilograms — roughly the size of a bumper car. It belongs to the largest animal ever known to have lived.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ERA 5 — RESURFACE / PRESENT-DAY MALDIVES
+  ══════════════════════════════════════ -->
+  <section class="evo-era" data-era="resurface" aria-labelledby="era-resurface-heading">
+    <div class="evo-era-intro reveal">
+      <p class="evo-era-label">Era 5 &middot; today</p>
+      <h2 id="era-resurface-heading">Resurfacing in the Maldives</h2>
+      <p>
+        Fifty million years on, around 22 cetacean species move through Maldivian waters — the
+        same ocean where this story started.
+      </p>
+    </div>
+
+    <div class="evo-card reveal" style="max-width:46rem;margin:0 auto 3rem;">
+      <div class="evo-card-media" style="aspect-ratio:21/9;">
+        <svg viewBox="0 0 200 120" fill="currentColor" aria-hidden="true">
+          <path d="M30 90c10-40 40-66 76-70 6-10 18-14 26-10-2 8-8 14-14 16 10 2 18 8 22 16-10 6-20 6-28 2-2 12-12 22-26 28 6 8 6 18-2 24-10-6-14-16-12-26-18 8-34 12-42 20z"/>
+          <path d="M150 40c8-4 16-2 18 4-6 4-14 2-18-4z"/>
+          <circle cx="92" cy="42" r="3"/>
+        </svg>
+        <!-- expects: assets/img/evolution/maldives-today.jpg -->
+        <img src="assets/img/evolution/maldives-today.jpg" alt="A present-day dolphin or whale sighting in Maldivian waters" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+      </div>
+    </div>
+
+    <!-- Closing CTA -->
+    <div class="dive-band reveal rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,31,51,0.18)]" style="max-width:46rem;margin:0 auto;">
+      <p class="text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The story isn't finished</p>
+      <h2 class="font-['Fraunces'] text-2xl md:text-3xl font-semibold text-white mb-4">
+        It's still being written — by you
+      </h2>
+      <p class="text-[#9fb3c4] text-base leading-relaxed mb-2 max-w-lg mx-auto">
+        Every time someone logs a sighting, the record gets a little longer, and a
+        fifty-million-year story gets its next sentence.
+      </p>
+      <div class="evo-cta-buttons">
+        <a
+          href="map.html"
+          class="btn-ghost inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10"
+        >
+          View the live map
+        </a>
+        <a
+          href="submit.html"
+          class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Report a sighting
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
+      <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+      <p class="text-xs text-[#5b6e80] mt-1">In partnership with
+        <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
+        <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
+        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+        <li><a href="evolution.html" class="hover:text-white transition-colors">Evolution</a></li>
+        <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
+        <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
+        <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
+        <li><a href="guidelines.html" class="hover:text-white transition-colors">Guidelines</a></li>
+        <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════ -->
+<script src="config.js" onerror="void 0"></script>
+<script>
+  window.SUPABASE_URL      = window.SUPABASE_URL      || null;
+  window.SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || null;
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Scroll-driven background + timeline spine ──────────────────────────
+  // Era colours interpolate between the actual on-screen position of each
+  // .evo-era section, so the gradient always matches what's currently in
+  // view regardless of how much copy any one era ends up with.
+  var PALETTE = {
+    land:      ['#f1e2bd', '#d6a85f'],
+    water:     ['#5fe0d6', '#19c0c8'],
+    ocean:     ['#1f6fa8', '#0d3f68'],
+    deep:      ['#071423', '#01060c'],
+    resurface: ['#0ea5e9', '#38bdf8']
+  };
+
+  var bg        = document.querySelector('.evo-bg');
+  var spineFill = document.querySelector('.evo-spine-fill');
+  var yearEl    = document.getElementById('evo-year');
+  var eraEls    = Array.prototype.slice.call(document.querySelectorAll('.evo-era'));
+  var boundaries = [];
+
+  function hexToRgb(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function lerpColor(c1, c2, t) {
+    var a = hexToRgb(c1), b = hexToRgb(c2);
+    return 'rgb(' + Math.round(lerp(a[0], b[0], t)) + ',' + Math.round(lerp(a[1], b[1], t)) + ',' + Math.round(lerp(a[2], b[2], t)) + ')';
+  }
+
+  function measure() {
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    boundaries = eraEls.map(function (el) {
+      return { name: el.getAttribute('data-era'), start: docH > 0 ? el.offsetTop / docH : 0 };
+    });
+  }
+
+  function colorsAt(p) {
+    if (!boundaries.length) return PALETTE.land;
+    if (p <= boundaries[0].start) return PALETTE[boundaries[0].name];
+    for (var i = 0; i < boundaries.length - 1; i++) {
+      if (p >= boundaries[i].start && p < boundaries[i + 1].start) {
+        var span = boundaries[i + 1].start - boundaries[i].start;
+        var t = span > 0 ? (p - boundaries[i].start) / span : 1;
+        var c1 = PALETTE[boundaries[i].name], c2 = PALETTE[boundaries[i + 1].name];
+        return [lerpColor(c1[0], c2[0], t), lerpColor(c1[1], c2[1], t)];
+      }
+    }
+    return PALETTE[boundaries[boundaries.length - 1].name];
+  }
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var p = docH > 0 ? Math.min(1, Math.max(0, window.scrollY / docH)) : 0;
+
+    if (bg) {
+      var c = colorsAt(p);
+      bg.style.setProperty('--evo-c1', c[0]);
+      bg.style.setProperty('--evo-c2', c[1]);
+    }
+    if (spineFill) spineFill.style.height = (p * 100) + '%';
+
+    if (yearEl) {
+      var resurfaceStart = boundaries.length ? boundaries[boundaries.length - 1].start : 1;
+      if (resurfaceStart > 0 && p < resurfaceStart) {
+        var year = Math.round(50 - (p / resurfaceStart) * 50);
+        yearEl.textContent = '~' + Math.max(year, 0) + ' mya';
+      } else {
+        yearEl.textContent = 'Today';
+      }
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+
+  function init() {
+    measure();
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { measure(); update(); }, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  // Reveal-on-scroll for .reveal elements is handled globally by assets/koamas.js
+}());
+</script>
+
+</body>
+</html>
