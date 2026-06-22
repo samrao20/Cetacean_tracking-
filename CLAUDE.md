@@ -127,10 +127,18 @@ Fields in `unverified` have uncertain data. Do not remove a field from `unverifi
 
 ### Hero Video
 
-The hero video is hosted on GitHub Releases (not in the repo). Current source:
-https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.2-assets/WhatsApp.Video.2026-05-15.at.10.41.51.mp4
+The hero is a **scroll-to-expand** effect (`index.html`): a drone-dolphin clip is the
+full-bleed background that fades out as you scroll, while a humpback-and-calf clip is a
+centered card that grows to full-screen. The scroll-hijack is vanilla JS in the page
+`<script>` (reduced-motion / no-JS fall back to the fully-expanded resting state).
 
-To replace: upload a new file to a new release tag, then update the `<source src>` in `index.html`.
+Both clips are hosted on GitHub Releases (not in the repo — too large to commit). Current
+sources (release tag `v0.3-hero-videos`):
+- Background (drone dolphins): https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.3-hero-videos/DJI_0683.MP4.mp4
+- Card (humpback + calf): https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.3-hero-videos/GX010908.MP4.mp4
+
+To replace: upload a new file to a new release tag, then update the matching `<source src>`
+in `index.html` (`#hero-bg-video` = background, `#hero-card-video` = card).
 
 Helper scripts (run once if needed):
 - `bash download_species_photos.sh` — downloads species photos from Wikimedia Commons into `assets/img/species/`
