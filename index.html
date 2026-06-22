@@ -47,17 +47,29 @@
       from { transform: translateX(-3%) scale(1.05); opacity: 0.7; }
       to   { transform: translateX(3%)  scale(1.1);  opacity: 1; }
     }
-    .hero-fade-up { opacity: 0; transform: translateY(20px); animation: heroUp 0.9s var(--ease, cubic-bezier(0.16,1,0.3,1)) forwards; }
-    .hero-fade-up.d1 { animation-delay: 0.1s; }
-    .hero-fade-up.d2 { animation-delay: 0.25s; }
-    .hero-fade-up.d3 { animation-delay: 0.4s; }
-    @keyframes heroUp { to { opacity: 1; transform: none; } }
-
     .chevron-bounce { animation: bounce 2s ease-in-out infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); opacity: 0.7; }
       50%       { transform: translateY(8px); opacity: 1; }
     }
+
+    /* ── Scroll-expand hero ──
+       JS drives #hero-card size, #hero-title-a/b transform, and
+       #hero-bg-layer/#hero-kicker opacity every frame (no transition —
+       must track the scroll 1:1). CSS below only supplies the resting
+       state used before JS runs and the reduced-motion/no-JS fallback. */
+    #hero { min-height: 100dvh; }
+    #hero-bg-layer, #hero-kicker { transition: opacity 0.1s linear; }
+    #hero-card {
+      width: min(900px, 92vw);
+      height: min(560px, 78vh);
+      max-width: 95vw;
+      max-height: 85vh;
+      box-shadow: 0 0 50px rgba(0,0,0,0.3);
+    }
+    #hero-title-a, #hero-title-b { transform: none; }
+    #hero-content, #hero-chevron { opacity: 1; transition: opacity 0.5s var(--ease, ease); }
+    #hero-content.is-hidden, #hero-chevron.is-hidden { opacity: 0; pointer-events: none; }
 
     /* ── Partner placeholder ── */
     .partner-box {
@@ -71,8 +83,12 @@
     .partner-box:hover { border-color: var(--lagoon); color: var(--text); }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-fade-up { animation: none; opacity: 1; transform: none; }
       .hero-rays { animation: none; }
+      /* Scroll-jack JS checks the same media query and never runs —
+         this just guarantees the resting (non-hijacked) layout holds
+         even if that check is somehow bypassed. */
+      #hero-bg-layer, #hero-kicker, #hero-card, #hero-title-a, #hero-title-b { transition: none !important; }
+      #hero-content, #hero-chevron { opacity: 1 !important; pointer-events: auto !important; }
     }
   </style>
 </head>
@@ -138,50 +154,73 @@
 </nav>
 
 <!-- ══════════════════════════════════════
-     HERO
+     HERO — scroll to expand
+     Drone-dolphin clip = fading background; humpback-and-calf
+     clip = the centered card that grows full-screen as you scroll.
+     Hijack logic lives in the page <script> below (#hero-* ids).
 ══════════════════════════════════════ -->
-<section class="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden" aria-label="Hero">
+<section id="hero" class="relative flex flex-col items-center justify-center overflow-hidden" aria-label="Hero">
 
-  <div class="hero-bg absolute inset-0 z-0"></div>
+  <div id="hero-bg-layer" class="absolute inset-0 z-0">
+    <div class="hero-bg absolute inset-0"></div>
 
-  <video
-    id="hero-video"
-    class="absolute inset-0 w-full h-full object-cover z-[1] opacity-0 transition-opacity duration-1000"
-    autoplay muted loop playsinline aria-hidden="true"
-  >
-    <source src="https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.2-assets/WhatsApp.Video.2026-05-15.at.10.41.51.mp4" type="video/mp4" />
-  </video>
+    <video
+      id="hero-bg-video"
+      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+      autoplay muted loop playsinline aria-hidden="true"
+    >
+      <source src="assets/video/drone-dolphins.mp4" type="video/mp4" />
+    </video>
 
-  <!-- Light rays -->
-  <div class="hero-rays absolute inset-0 z-[1] pointer-events-none" aria-hidden="true"></div>
-  <!-- Cinematic vignette + gradient depth -->
-  <div class="hero-vignette absolute inset-0 z-[2] pointer-events-none" aria-hidden="true"></div>
+    <!-- Light rays -->
+    <div class="hero-rays absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <!-- Cinematic vignette + gradient depth -->
+    <div class="hero-vignette absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Sonar rings -->
-  <div class="sonar-rings absolute -right-28 top-1/2 -translate-y-1/2 z-[2] hidden lg:block opacity-70" aria-hidden="true">
-    <svg width="560" height="560" viewBox="0 0 560 560" fill="none">
-      <circle cx="280" cy="280" r="86"  stroke="rgba(56,189,248,0.30)"/>
-      <circle cx="280" cy="280" r="160" stroke="rgba(56,189,248,0.18)"/>
-      <circle cx="280" cy="280" r="232" stroke="rgba(56,189,248,0.10)"/>
-      <circle cx="280" cy="280" r="276" stroke="rgba(56,189,248,0.05)"/>
-      <circle cx="280" cy="280" r="4" fill="rgba(56,189,248,0.6)"/>
-    </svg>
-    <div class="sonar-sweep"></div>
+    <!-- Sonar rings -->
+    <div class="sonar-rings absolute -right-28 top-1/2 -translate-y-1/2 hidden lg:block opacity-70" aria-hidden="true">
+      <svg width="560" height="560" viewBox="0 0 560 560" fill="none">
+        <circle cx="280" cy="280" r="86"  stroke="rgba(56,189,248,0.30)"/>
+        <circle cx="280" cy="280" r="160" stroke="rgba(56,189,248,0.18)"/>
+        <circle cx="280" cy="280" r="232" stroke="rgba(56,189,248,0.10)"/>
+        <circle cx="280" cy="280" r="276" stroke="rgba(56,189,248,0.05)"/>
+        <circle cx="280" cy="280" r="4" fill="rgba(56,189,248,0.6)"/>
+      </svg>
+      <div class="sonar-sweep"></div>
+    </div>
   </div>
 
-  <div class="relative z-[3] w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-20 text-center md:text-left">
-    <p class="hero-fade-up kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.25em] uppercase mb-6">
-      Koamas by Reefscapers · Citizen Science
-    </p>
-    <h1 class="hero-fade-up d1 font-['Fraunces'] text-6xl sm:text-7xl md:text-8xl font-bold text-white leading-[0.98] tracking-tight mb-7 max-w-3xl">
-      Every sighting<br />
-      <em class="text-grad italic font-normal">tells a story</em>
-    </h1>
-    <p class="hero-fade-up d2 text-[#bcd2e2] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+  <p id="hero-kicker" class="kicker relative z-[3] text-[#8fc9ec] text-xs font-semibold tracking-[0.25em] uppercase text-center mt-10 mb-6">
+    Koamas by Reefscapers · Citizen Science
+  </p>
+
+  <!-- Expanding media card — humpback whale & calf -->
+  <div id="hero-card" class="relative z-[3] rounded-2xl overflow-hidden">
+    <video
+      id="hero-card-video"
+      class="w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+      autoplay muted loop playsinline aria-hidden="true"
+    >
+      <source src="assets/video/humpback-calf.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black/15" aria-hidden="true"></div>
+  </div>
+
+  <!-- Split title: two decorative spans carry the actual text; the
+       real heading stays as one clean string for assistive tech. -->
+  <h1 class="sr-only">Every sighting tells a story</h1>
+  <div class="relative z-[3] flex flex-wrap items-baseline justify-center gap-3 text-center mt-7 px-6" aria-hidden="true">
+    <span id="hero-title-a" class="font-['Fraunces'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.98] tracking-tight">Every sighting</span>
+    <span id="hero-title-b" class="font-['Fraunces'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl italic font-normal text-grad leading-[0.98] tracking-tight">tells a story</span>
+  </div>
+
+  <!-- Revealed once the card finishes expanding -->
+  <div id="hero-content" class="relative z-[3] flex flex-col items-center text-center px-6 mt-8 max-w-lg">
+    <p class="text-[#bcd2e2] text-lg md:text-xl leading-relaxed mb-10">
       Help us map dolphins and whales across the Maldivian archipelago.
       One WhatsApp message builds the science.
     </p>
-    <div class="hero-fade-up d3 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
         href="https://wa.me/00000000000?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
         class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]"
@@ -204,7 +243,7 @@
     </div>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] chevron-bounce" aria-hidden="true">
+  <div id="hero-chevron" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] chevron-bounce" aria-hidden="true">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
@@ -470,11 +509,137 @@
     (window.Koamas ? window.Koamas.revealIn(parent)
                    : parent.querySelectorAll('.reveal').forEach(el => el.classList.add('in')));
 
-  // ── Hero video fade-in ──────────────────────────────────────
-  const video = document.getElementById('hero-video');
-  if (video) {
-    video.addEventListener('canplay', () => { video.style.opacity = '1'; }, { once: true });
-  }
+  // ── Hero videos fade-in ──────────────────────────────────────
+  ['hero-bg-video', 'hero-card-video'].forEach((id) => {
+    const v = document.getElementById(id);
+    if (v) v.addEventListener('canplay', () => { v.style.opacity = '1'; }, { once: true });
+  });
+
+  // ── Hero scroll-to-expand ────────────────────────────────────
+  // Vanilla-JS port of a scroll-hijack hero: first scroll grows the
+  // card video to full-screen and fades the background before the
+  // page itself is allowed to scroll. Skipped entirely (CSS resting
+  // state stands as the accessible fallback) when the visitor has
+  // asked for reduced motion.
+  (function heroScrollExpand() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const bgLayer  = document.getElementById('hero-bg-layer');
+    const kicker    = document.getElementById('hero-kicker');
+    const card      = document.getElementById('hero-card');
+    const titleA    = document.getElementById('hero-title-a');
+    const titleB    = document.getElementById('hero-title-b');
+    const content   = document.getElementById('hero-content');
+    const chevron   = document.getElementById('hero-chevron');
+
+    let progress = 0;
+    let fullyExpanded = false;
+    let showContent = false;
+    let isMobile = window.innerWidth < 768;
+    let touchStartY = 0;
+    let ticking = false;
+
+    function render() {
+      const cardW = 300 + progress * (isMobile ? 650 : 1250);
+      const cardH = 400 + progress * (isMobile ? 200 : 400);
+      card.style.width  = Math.min(cardW, window.innerWidth  * 0.95) + 'px';
+      card.style.height = Math.min(cardH, window.innerHeight * 0.85) + 'px';
+
+      const textTranslateX = progress * (isMobile ? 180 : 150);
+      titleA.style.transform = 'translateX(' + (-textTranslateX) + 'px)';
+      titleB.style.transform = 'translateX(' + textTranslateX + 'px)';
+
+      const bgOpacity = 1 - progress;
+      bgLayer.style.opacity = String(bgOpacity);
+      kicker.style.opacity = String(bgOpacity);
+
+      content.classList.toggle('is-hidden', !showContent);
+      chevron.classList.toggle('is-hidden', !showContent);
+    }
+
+    function setProgress(next) {
+      progress = Math.max(0, Math.min(1, next));
+      if (progress >= 1) {
+        fullyExpanded = true;
+        showContent = true;
+      } else if (progress < 0.75) {
+        showContent = false;
+      }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => { render(); ticking = false; });
+      }
+    }
+
+    function forceExpand() {
+      fullyExpanded = true;
+      showContent = true;
+      setProgress(1);
+    }
+
+    function onWheel(e) {
+      if (fullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
+        fullyExpanded = false;
+        showContent = false;
+        e.preventDefault();
+        setProgress(0.99);
+        return;
+      }
+      if (!fullyExpanded) {
+        e.preventDefault();
+        setProgress(progress + e.deltaY * 0.0009);
+      }
+    }
+
+    function onScroll() {
+      if (!fullyExpanded) window.scrollTo(0, 0);
+    }
+
+    function onTouchStart(e) {
+      touchStartY = e.touches[0].clientY;
+    }
+
+    function onTouchMove(e) {
+      if (fullyExpanded && window.scrollY <= 5) {
+        const delta = touchStartY - e.touches[0].clientY;
+        if (delta < 0) {
+          e.preventDefault();
+          fullyExpanded = false;
+          showContent = false;
+          setProgress(progress - Math.abs(delta) * 0.008);
+          touchStartY = e.touches[0].clientY;
+        }
+        return;
+      }
+      if (!fullyExpanded) {
+        e.preventDefault();
+        const delta = touchStartY - e.touches[0].clientY;
+        setProgress(progress + delta * 0.005);
+        touchStartY = e.touches[0].clientY;
+      }
+    }
+
+    function onResize() {
+      isMobile = window.innerWidth < 768;
+      render();
+    }
+
+    hero.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    hero.addEventListener('touchstart', onTouchStart, { passive: false });
+    hero.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('resize', onResize);
+
+    // Escape hatches: keyboard users skipping past the hero, or tabbing
+    // into its (initially hidden) CTAs, force the expanded/revealed state.
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) skipLink.addEventListener('click', forceExpand);
+    content.addEventListener('focusin', forceExpand);
+
+    render();
+  }());
 
   // ── Species teaser ──────────────────────────────────────────
   const TEASER_SLUGS = [
