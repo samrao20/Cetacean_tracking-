@@ -142,6 +142,7 @@ in `index.html` (`#hero-bg-video` = background, `#hero-card-video` = card).
 
 Helper scripts (run once if needed):
 - `bash download_species_photos.sh` — downloads species photos from Wikimedia Commons into `assets/img/species/`
+- `bash download_evolution_photos.sh` — downloads the Evolution-page photos from Wikimedia Commons into `assets/img/evolution/` and writes `credits.json` (the CC attribution `evolution.html` renders under each photo). Must run where Wikimedia is reachable; the page falls back to its inline-SVG silhouettes until the images exist.
 - `bash download_hero_video.sh` — downloads a fallback public-domain hero video
 
 ### Key Decisions
