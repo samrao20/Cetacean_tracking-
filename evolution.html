@@ -195,6 +195,11 @@
     .evo-tag { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 0.3rem; }
     .evo-row p { font-size: 0.92rem; line-height: 1.65; color: var(--text); }
 
+    /* ── Photo credit caption (hidden until populated from credits.json) ── */
+    .evo-credit { display: none; margin-top: 1rem; font-size: 0.66rem; line-height: 1.45; color: var(--muted); }
+    .evo-credit a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s var(--ease); }
+    .evo-credit a:hover { color: var(--teal); }
+
     /* ── Scale-moment stat card ── */
     .evo-stat-card { display: grid; grid-template-columns: 1fr; }
     @media (min-width: 640px) { .evo-stat-card { grid-template-columns: 13rem 1fr; } }
@@ -351,6 +356,7 @@
           <div class="evo-row"><p class="evo-tag">What</p><p>A wolf-sized, four-legged, hoofed mammal, wading through the warm coastal shallows of the Tethys Sea.</p></div>
           <div class="evo-row"><p class="evo-tag">How</p><p>It already carried a distinctive set of inner-ear bones — the same anatomical signature every whale alive today still carries.</p></div>
           <div class="evo-row"><p class="evo-tag">Why</p><p>The whale story begins on land, in the shallows of this very region. Its closest living land relative today, oddly enough, is the hippo.</p></div>
+          <p class="evo-credit"></p>
         </div>
       </article>
 
@@ -375,6 +381,7 @@
           <div class="evo-row"><p class="evo-tag">What</p><p>A small, deer-like mammal with unusually dense, heavy bones.</p></div>
           <div class="evo-row"><p class="evo-tag">How</p><p>Those heavy bones worked like a diver's weight belt — extra ballast that made it easier to sink and stay submerged.</p></div>
           <div class="evo-row"><p class="evo-tag">Why</p><p>Hiding underwater from predators was already worth the trouble. The pull toward the water had begun.</p></div>
+          <p class="evo-credit"></p>
         </div>
       </article>
     </div>
@@ -415,6 +422,7 @@
           <div class="evo-row"><p class="evo-tag">What</p><p>A crocodile-shaped, amphibious predator that hunted from the water's edge.</p></div>
           <div class="evo-row"><p class="evo-tag">How</p><p>Its powerful limbs could still carry it on land, but in the water it likely ambushed prey the way a crocodile does — lying in wait, then lunging.</p></div>
           <div class="evo-row"><p class="evo-tag">Why</p><p>Life was shifting from on-land to in-water, and the body was being rebuilt, piece by piece, to hunt in the sea.</p></div>
+          <p class="evo-credit"></p>
         </div>
       </article>
     </div>
@@ -451,6 +459,7 @@
           <div class="evo-row"><p class="evo-tag">What</p><p>An 18-metre, serpentine whale that spent its entire life in open water.</p></div>
           <div class="evo-row"><p class="evo-tag">How</p><p>Streamlined and powered by its tail, it had let go of land almost completely — except for one thing: tiny, useless hind legs.</p></div>
           <div class="evo-row"><p class="evo-tag">Why</p><p>Those leftover legs are the receipt. Modern whales still carry vestigial hip bones inside their bodies — bones for legs they no longer have.</p></div>
+          <p class="evo-credit"></p>
         </div>
       </article>
 
@@ -472,6 +481,7 @@
           <div class="evo-row"><p class="evo-tag">What</p><p>Whales swim by beating a horizontal tail fluke up and down. Fish do the opposite — their tails are vertical, sweeping side to side.</p></div>
           <div class="evo-row"><p class="evo-tag">How</p><p>Their running land ancestors had spines that flexed up and down, the same way a galloping dog's does. That motion simply carried straight into the water.</p></div>
           <div class="evo-row"><p class="evo-tag">Why</p><p>A whale's swimming stroke is a fossil of its gallop — the horizontal tail is inherited from a life spent running on land.</p></div>
+          <p class="evo-credit"></p>
         </div>
       </article>
 
@@ -529,6 +539,7 @@
           <div class="evo-row"><p class="evo-tag">What</p><p>Nostrils, relocated to the very top of the head.</p></div>
           <div class="evo-row"><p class="evo-tag">How</p><p>Across the fossil record, the nostrils slowly migrate — from the tip of the snout, all the way up to the crown of the skull.</p></div>
           <div class="evo-row"><p class="evo-tag">Why</p><p>Now a whale can breathe with barely more than the top of its head breaking the surface, hardly interrupting the swim at all.</p></div>
+          <p class="evo-credit"></p>
         </div>
       </article>
     </div>
@@ -787,10 +798,57 @@
     window.addEventListener('resize', function () { measure(); update(); }, { passive: true });
   }
 
+  // ── Photo credits ─────────────────────────────────────────────────────
+  // Reads assets/img/evolution/credits.json (written by download_evolution_photos.sh)
+  // and reveals the .evo-credit caption under a card only once its real photo has
+  // actually loaded — so a credit never appears beneath an inline-SVG fallback, and
+  // the page looks unchanged until the photos are added. Mirrors the site-wide
+  // fetch().catch() pattern: missing file simply means no captions.
+  function renderCredit(el, c) {
+    el.textContent = '';
+    el.appendChild(document.createTextNode('Image: '));
+    var who = document.createElement(c.source_url ? 'a' : 'span');
+    if (c.source_url) { who.href = c.source_url; who.target = '_blank'; who.rel = 'noopener'; }
+    who.textContent = c.author || 'Unknown';
+    el.appendChild(who);
+    if (c.license) {
+      el.appendChild(document.createTextNode(' · '));
+      var lic = document.createElement(c.license_url ? 'a' : 'span');
+      if (c.license_url) { lic.href = c.license_url; lic.target = '_blank'; lic.rel = 'noopener'; }
+      lic.textContent = c.license;
+      el.appendChild(lic);
+    }
+    el.style.display = 'block';
+  }
+
+  function initCredits() {
+    fetch('assets/img/evolution/credits.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (credits) {
+        if (!credits) return;
+        var imgs = document.querySelectorAll('.evo-card-media img');
+        Array.prototype.forEach.call(imgs, function (img) {
+          var m = (img.getAttribute('src') || '').match(/([^\/]+)\.jpg$/i);
+          if (!m) return;
+          var c = credits[m[1]];
+          if (!c) return;
+          var card = img.closest('.evo-card');
+          var el = card && card.querySelector('.evo-credit');
+          if (!el) return;
+          var show = function () { renderCredit(el, c); };
+          if (img.complete && img.naturalWidth > 0) { show(); }
+          else { img.addEventListener('load', show); }
+        });
+      })
+      .catch(function () { /* credits are an enhancement — the page works without them */ });
+  }
+
+  function boot() { init(); initCredits(); }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    init();
+    boot();
   }
   // Reveal-on-scroll for .reveal elements is handled globally by assets/koamas.js
 }());
