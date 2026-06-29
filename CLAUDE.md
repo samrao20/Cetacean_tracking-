@@ -127,18 +127,17 @@ Fields in `unverified` have uncertain data. Do not remove a field from `unverifi
 
 ### Hero Video
 
-The hero is a **scroll-to-expand** effect (`index.html`): a drone-dolphin clip is the
-full-bleed background that fades out as you scroll, while a humpback-and-calf clip is a
-centered card that grows to full-screen. The scroll-hijack is vanilla JS in the page
-`<script>` (reduced-motion / no-JS fall back to the fully-expanded resting state).
+The hero (`index.html`) is a full-bleed drone clip (`#hero-video`) that plays as the
+background and fades in/out with scroll. The scroll behaviour is vanilla JS in the page
+`<script>` (reduced-motion / no-JS fall back to the fully-visible resting state).
 
-Both clips are hosted on GitHub Releases (not in the repo — too large to commit). Current
-sources (release tag `v0.3-hero-videos`):
-- Background (drone dolphins): https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.3-hero-videos/DJI_0683.MP4.mp4
-- Card (humpback + calf): https://github.com/samrao20/Cetacean_tracking-/releases/download/v0.3-hero-videos/GX010908.MP4.mp4
+The clip is hosted on GitHub Releases (not in the repo — too large to commit). Current
+source (release tag `v.05_hero_release`):
+- https://github.com/samrao20/Cetacean_tracking-/releases/download/v.05_hero_release/dji_fly_20260612_185316_0270_1781935792216_video.mp4
 
-To replace: upload a new file to a new release tag, then update the matching `<source src>`
-in `index.html` (`#hero-bg-video` = background, `#hero-card-video` = card).
+To replace: upload the new file as an asset on a new release tag (use `.mp4` —
+QuickTime `.mov` exports aren't reliably playable inline outside Safari), then update
+the `<source src>` inside `<video id="hero-video">` in `index.html`.
 
 Helper scripts (run once if needed):
 - `bash download_species_photos.sh` — downloads species photos from Wikimedia Commons into `assets/img/species/`
