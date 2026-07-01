@@ -186,7 +186,7 @@
       overflow: hidden;
     }
     .evo-card-media svg { position: absolute; inset: 0; width: 100%; height: 100%; padding: 1.6rem; color: var(--teal); opacity: 0.85; }
-    .evo-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .evo-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
     .evo-card-body { padding: 1.5rem 1.6rem 1.75rem; }
     .evo-card-meta { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
     .evo-card-name { font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; font-weight: 600; color: var(--text); margin-bottom: 1.1rem; }
@@ -348,7 +348,7 @@
             <line x1="10" y1="104" x2="190" y2="104" stroke="currentColor" stroke-width="2" opacity="0.35"/>
           </svg>
           <!-- expects: assets/img/evolution/pakicetus.jpg -->
-          <img src="assets/img/evolution/pakicetus.jpg" alt="Reconstruction of Pakicetus, a wolf-sized four-legged hoofed mammal wading in shallow coastal water" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/pakicetus.jpg" alt="Reconstruction of Pakicetus, a wolf-sized four-legged hoofed mammal wading in shallow coastal water" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">~50 million years ago &middot; Pakicetus</p>
@@ -373,7 +373,7 @@
             <line x1="10" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="2" opacity="0.35"/>
           </svg>
           <!-- expects: assets/img/evolution/indohyus.jpg -->
-          <img src="assets/img/evolution/indohyus.jpg" alt="Reconstruction of Indohyus, a small deer-like mammal with unusually dense, heavy bones" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/indohyus.jpg" alt="Reconstruction of Indohyus, a small deer-like mammal with unusually dense, heavy bones" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">~48 million years ago &middot; Indohyus &middot; Kashmir, India</p>
@@ -414,7 +414,7 @@
             <line x1="10" y1="110" x2="190" y2="110" stroke="currentColor" stroke-width="2" opacity="0.35"/>
           </svg>
           <!-- expects: assets/img/evolution/ambulocetus.jpg -->
-          <img src="assets/img/evolution/ambulocetus.jpg" alt="Reconstruction of Ambulocetus, the crocodile-shaped 'walking whale', hunting at the water's edge" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/ambulocetus.jpg" alt="Reconstruction of Ambulocetus, the crocodile-shaped 'walking whale', hunting at the water's edge" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">~49 million years ago &middot; Ambulocetus, the &ldquo;walking whale&rdquo;</p>
@@ -451,7 +451,7 @@
             <path d="M0 50c4-4 10-4 12 0-2 4-8 5-12 0z"/>
           </svg>
           <!-- expects: assets/img/evolution/basilosaurus.jpg -->
-          <img src="assets/img/evolution/basilosaurus.jpg" alt="Reconstruction of Basilosaurus, an 18-metre serpentine whale that never left open water" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/basilosaurus.jpg" alt="Reconstruction of Basilosaurus, an 18-metre serpentine whale that never left open water" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">~41&ndash;34 million years ago &middot; Basilosaurus</p>
@@ -473,7 +473,7 @@
             <path d="M150 18v10M150 92v10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
           </svg>
           <!-- expects: assets/img/evolution/tail-fluke.jpg -->
-          <img src="assets/img/evolution/tail-fluke.jpg" alt="A modern whale's horizontal tail fluke breaking the surface" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/tail-fluke.jpg" alt="A modern whale's horizontal tail fluke breaking the surface" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">Trait &middot; the horizontal tail</p>
@@ -510,7 +510,7 @@
             </g>
           </svg>
           <!-- expects: assets/img/evolution/baleen-vs-teeth.jpg -->
-          <img src="assets/img/evolution/baleen-vs-teeth.jpg" alt="Split comparison of baleen plates next to a toothed whale's jaw" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/baleen-vs-teeth.jpg" alt="Split comparison of baleen plates next to a toothed whale's jaw" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">~34 million years ago &middot; The great split</p>
@@ -531,7 +531,7 @@
             <path d="M88 30c4-8 8-8 12 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
           </svg>
           <!-- expects: assets/img/evolution/blowhole.jpg -->
-          <img src="assets/img/evolution/blowhole.jpg" alt="A whale at the surface with its blowhole open, breathing" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/blowhole.jpg" alt="A whale at the surface with its blowhole open, breathing" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">Trait &middot; the blowhole</p>
@@ -570,7 +570,7 @@
             <path d="M92 38c20-14 40-14 56 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
           </svg>
           <!-- expects: assets/img/evolution/echolocation.jpg -->
-          <img src="assets/img/evolution/echolocation.jpg" alt="A sperm whale or dolphin diving and hunting in dark water" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/echolocation.jpg" alt="A sperm whale or dolphin diving and hunting in dark water" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">Trait &middot; echolocation</p>
@@ -592,7 +592,7 @@
             <circle cx="100" cy="60" r="16" fill="currentColor" opacity="0.85"/>
           </svg>
           <!-- expects: assets/img/evolution/blubber.jpg -->
-          <img src="assets/img/evolution/blubber.jpg" alt="A whale breaching, showing the girth of its blubber layer" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          <img src="assets/img/evolution/blubber.jpg" alt="A whale breaching, showing the girth of its blubber layer" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
         </div>
         <div class="evo-card-body">
           <p class="evo-card-meta">Trait &middot; blubber</p>
@@ -639,7 +639,7 @@
           <circle cx="92" cy="42" r="3"/>
         </svg>
         <!-- expects: assets/img/evolution/maldives-today.jpg -->
-        <img src="assets/img/evolution/maldives-today.jpg" alt="A present-day dolphin or whale sighting in Maldivian waters" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        <img src="assets/img/evolution/maldives-today.jpg" alt="A present-day dolphin or whale sighting in Maldivian waters" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
       </div>
     </div>
 
