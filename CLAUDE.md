@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 These are safe to restyle but must not change in behaviour. UI/redesign work has full freedom over markup, CSS, and animation, but must leave the following intact:
 
-- **WhatsApp routing.** Every `https://wa.me/...?text=...` link and its pre-filled message. The number is currently the placeholder `00000000000` — preserve it verbatim (do not "fix" or invent a real number); it is swapped in elsewhere when the bot goes live. Sightings are submitted only through this bot, never through a form on this site.
+- **WhatsApp routing.** Every `https://wa.me/...?text=...` link and its pre-filled message. The number is now the live bot number `9607257743` (`+960 7257743`) — preserve it verbatim; do not revert to the old `00000000000` placeholder or substitute a different number without explicit instruction. Sightings are submitted only through this bot, never through a form on this site.
 - **Informational text.** The 22-species guide content (`species.json`), the "How it works" steps, and the About-page copy are the dataset, not filler. Restyle freely; do not reword, summarise, or drop entries. After any redesign, the rendered text must be byte-identical (extract page text and diff against the previous commit to confirm).
 - **Data layer.** Supabase query shapes, the `status = 'verified'` filter, the Supabase→local field normalisation, and the local-JSON fallback path. Breaking any of these silently empties the map/dashboard.
 - **Coordinate rounding** to 0.05 at render time (privacy — see Key Decisions), and the **`submitter_phone_hash` never rendered** rule.
