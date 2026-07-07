@@ -21,16 +21,14 @@
   <style>
     /* Page-unique styles only — shared system lives in assets/koamas.css */
 
-    /* QR placeholder */
+    /* QR code card */
     .qr-box {
-      background:
-        repeating-linear-gradient(0deg, rgba(11,31,51,0.06) 0 8px, transparent 8px 16px),
-        repeating-linear-gradient(90deg, rgba(11,31,51,0.06) 0 8px, transparent 8px 16px),
-        #fff;
-      border: 1px dashed var(--rule);
+      background: #fff;
+      border: 1px solid var(--rule);
       transition: border-color 0.2s;
     }
     .qr-box:hover { border-color: var(--lagoon); }
+    .qr-box img { width: 100%; height: 100%; }
 
     /* Checklist ticks */
     .check-item svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
@@ -205,11 +203,16 @@
       </p>
     </div>
 
-    <!-- QR placeholder -->
+    <!-- QR code -->
     <div class="flex flex-col items-center gap-4">
-      <div class="qr-box rounded-2xl w-56 h-56 flex items-center justify-center text-center p-6">
-        <p class="text-xs text-[#5b6b7d] leading-relaxed">QR code coming soon —<br />scan to open the WhatsApp bot</p>
+      <div class="qr-box rounded-2xl w-56 h-56 flex items-center justify-center p-6">
+        <img
+          src="assets/img/whatsapp-qr.svg"
+          alt="QR code linking to the Koamas WhatsApp bot"
+          width="176" height="176"
+        />
       </div>
+      <p class="text-xs text-[#5b6b7d] leading-relaxed text-center">Scan to open the WhatsApp bot</p>
       <a
         href="https://wa.me/9607257743?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
         class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]"
