@@ -1,0 +1,2 @@
+window.SUPABASE_URL      = "https://doiwctomkpgkrduesgso.supabase.co";
+window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvaXdjdG9ta3Bna3JkdWVzZ3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0NTU1NzQsImV4cCI6MjA5NTAzMTU3NH0.3RzQgwSSiULlRFGkLNhIVr9MZkUAKX17QdPmkDvuu4Y";
