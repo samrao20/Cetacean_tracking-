@@ -500,17 +500,36 @@
     return m ? parseInt(m[1], 10) : 0;
   }
 
+  // Supabase/PostgREST caps each response at the project's max-rows setting
+  // (1000 by default) — without paging through with .range(), any result set
+  // larger than that is silently truncated. Page until a page comes back
+  // short of PAGE_SIZE.
+  async function fetchAllRows(buildQuery) {
+    const PAGE_SIZE = 1000;
+    let rows = [];
+    let from = 0;
+    while (true) {
+      const { data, error } = await buildQuery(from, from + PAGE_SIZE - 1);
+      if (error) throw error;
+      const page = data || [];
+      rows = rows.concat(page);
+      if (page.length < PAGE_SIZE) break;
+      from += PAGE_SIZE;
+    }
+    return rows;
+  }
+
   // ── Load data ──────────────────────────────────────────────
   async function loadData() {
     if (window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
       try {
         const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-        const { data, error } = await client
+        const data = await fetchAllRows((from, to) => client
           .from('sightings')
           .select('id, atoll, count_range, sighting_date, notes, submitter_phone_hash, species:species_id(slug, common_name)')
           .eq('status', 'verified')
-          .order('sighting_date', { ascending: false });
-        if (error) throw error;
+          .order('sighting_date', { ascending: false })
+          .range(from, to));
         return { rows: normaliseSupabase(data), source: 'live' };
       } catch (err) {
         console.warn('Supabase load failed, using local fallback', err);
