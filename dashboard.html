@@ -21,22 +21,19 @@
   <style>
     /* Page-unique styles only — shared system lives in assets/koamas.css */
 
-    /* Dark instrument page — background is the shared .bg-waves.bg-waves--deep
-       texture on <body> (assets/koamas.css); this just sets the text colour. */
-    body { color: var(--grey); }
-
-    .panel-dark {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
+    .panel {
+      background: #fff;
+      border: 1px solid var(--rule);
+      box-shadow: var(--shadow-sm);
     }
-    .lift-card:hover { box-shadow: 0 16px 38px rgba(0,0,0,0.45); }
+    .lift-card:hover { box-shadow: var(--shadow-lg); }
 
     /* Matrix */
     .matrix-table { border-collapse: collapse; }
     .matrix-table td,
-    .matrix-table th { border: 1px solid rgba(255,255,255,0.08); }
-    .matrix-species { background: #0d2840; font-weight: 500; }
-    .matrix-header  { background: #0d2840; }
+    .matrix-table th { border: 1px solid var(--rule); }
+    .matrix-species { background: #eef4f9; font-weight: 500; }
+    .matrix-header  { background: #eef4f9; }
 
     /* Skeleton pulse */
     @keyframes skel-pulse {
@@ -46,7 +43,7 @@
     .skel { animation: skel-pulse 1.8s ease-in-out infinite; }
   </style>
 </head>
-<body class="bg-waves bg-waves--deep">
+<body class="bg-waves">
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 
@@ -110,7 +107,7 @@
 <!-- ═══════════════════════════════════
      PAGE HEADER
 ═══════════════════════════════════ -->
-<header class="relative overflow-hidden border-b border-white/10" id="main-content">
+<header class="dive-band text-white" id="main-content">
   <div class="sonar-rings absolute -right-16 -top-24 opacity-50 hidden md:block" aria-hidden="true">
     <svg width="360" height="360" viewBox="0 0 360 360" fill="none">
       <circle cx="180" cy="180" r="66"  stroke="rgba(56,189,248,0.26)"/>
@@ -145,6 +142,7 @@
     </div>
   </div>
 </header>
+<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
 
 <main>
 
@@ -153,24 +151,24 @@
 ═══════════════════════════════════ -->
 <section aria-labelledby="stats-heading">
   <h2 id="stats-heading" class="sr-only">Key statistics</h2>
-  <div class="border-b border-white/10 bg-white/[0.03]">
+  <div class="border-b border-[#dbe4ec]">
     <div class="max-w-6xl mx-auto px-4">
-      <dl id="stats-strip" class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/10">
+      <dl id="stats-strip" class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#dbe4ec]">
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-14 bg-white/10 rounded mb-2"></div>
-          <div class="h-3 w-28 bg-white/5 rounded"></div>
+          <div class="h-9 w-14 bg-[#dbe4ec] rounded mb-2"></div>
+          <div class="h-3 w-28 bg-[#eef4f9] rounded"></div>
         </div>
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-10 bg-white/10 rounded mb-2"></div>
-          <div class="h-3 w-24 bg-white/5 rounded"></div>
+          <div class="h-9 w-10 bg-[#dbe4ec] rounded mb-2"></div>
+          <div class="h-3 w-24 bg-[#eef4f9] rounded"></div>
         </div>
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-8 bg-white/10 rounded mb-2"></div>
-          <div class="h-3 w-32 bg-white/5 rounded"></div>
+          <div class="h-9 w-8 bg-[#dbe4ec] rounded mb-2"></div>
+          <div class="h-3 w-32 bg-[#eef4f9] rounded"></div>
         </div>
         <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-12 bg-white/10 rounded mb-2"></div>
-          <div class="h-3 w-24 bg-white/5 rounded"></div>
+          <div class="h-9 w-12 bg-[#dbe4ec] rounded mb-2"></div>
+          <div class="h-3 w-24 bg-[#eef4f9] rounded"></div>
         </div>
       </dl>
     </div>
@@ -185,50 +183,50 @@
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
 
     <!-- Species frequency -->
-    <div class="lift-card panel-dark rounded-xl p-6 flex flex-col">
+    <div class="lift-card panel rounded-xl p-6 flex flex-col">
       <div class="mb-5">
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fc9ec] mb-1">By species</p>
-        <h3 class="font-['Fraunces'] text-lg font-semibold text-white">Sightings per species</h3>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">By species</p>
+        <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b1f33]">Sightings per species</h3>
       </div>
       <div id="species-chart-wrap" class="relative flex-1" style="min-height:300px;">
         <!-- skeleton -->
         <div id="species-skel" class="absolute inset-0 flex flex-col justify-end gap-2.5 skel pr-1">
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0 text-right"></div><div class="h-5 bg-white/10 rounded" style="width:82%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:58%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:41%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:22%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:14%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-white/5 rounded shrink-0"></div><div class="h-5 bg-white/10 rounded" style="width:8%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0 text-right"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:82%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:58%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:41%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:22%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:14%"></div></div>
+          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:8%"></div></div>
         </div>
         <canvas id="species-chart" class="hidden" aria-label="Horizontal bar chart of sightings per species"></canvas>
         <div id="species-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
-          <p class="font-['Fraunces'] text-base text-white">No sightings yet</p>
-          <p class="text-xs text-[#9fb3c4]">Data will appear here once sightings are logged.</p>
+          <p class="font-['Fraunces'] text-base text-[#0b1f33]">No sightings yet</p>
+          <p class="text-xs text-[#5b6b7d]">Data will appear here once sightings are logged.</p>
         </div>
       </div>
     </div>
 
     <!-- Monthly trend -->
-    <div class="lift-card panel-dark rounded-xl p-6 flex flex-col">
+    <div class="lift-card panel rounded-xl p-6 flex flex-col">
       <div class="mb-5">
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fc9ec] mb-1">Seasonal pattern</p>
-        <h3 class="font-['Fraunces'] text-lg font-semibold text-white">Sightings by month</h3>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">Seasonal pattern</p>
+        <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b1f33]">Sightings by month</h3>
       </div>
       <div id="monthly-chart-wrap" class="relative flex-1" style="min-height:220px;">
         <!-- skeleton -->
         <div id="monthly-skel" class="absolute inset-0 skel overflow-hidden rounded">
           <svg width="100%" height="100%" viewBox="0 0 300 180" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165 L300 180 L0 180 Z" fill="rgba(255,255,255,0.10)" opacity="0.55"/>
-            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165 L300 180 L0 180 Z" fill="rgba(11,31,51,0.08)" opacity="0.55"/>
+            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165" fill="none" stroke="rgba(11,31,51,0.14)" stroke-width="1.5"/>
           </svg>
         </div>
         <canvas id="monthly-chart" class="hidden" aria-label="Area chart of sightings by month"></canvas>
         <div id="monthly-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
-          <p class="font-['Fraunces'] text-base text-white">Not enough data yet</p>
-          <p class="text-xs text-[#9fb3c4]">Seasonal patterns will emerge as the dataset grows.</p>
+          <p class="font-['Fraunces'] text-base text-[#0b1f33]">Not enough data yet</p>
+          <p class="text-xs text-[#5b6b7d]">Seasonal patterns will emerge as the dataset grows.</p>
         </div>
       </div>
-      <p class="text-xs text-[#9fb3c4] mt-3">All verified sightings bucketed by calendar month across all years.</p>
+      <p class="text-xs text-[#5b6b7d] mt-3">All verified sightings bucketed by calendar month across all years.</p>
     </div>
 
   </div>
@@ -237,37 +235,37 @@
 <!-- ═══════════════════════════════════
      NOTABLE SIGHTINGS
 ═══════════════════════════════════ -->
-<section class="py-12 px-4 border-t border-white/10" aria-labelledby="notable-heading">
+<section class="py-12 px-4 border-t border-[#dbe4ec]" aria-labelledby="notable-heading">
   <div class="max-w-6xl mx-auto">
 
     <div class="mb-6">
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fc9ec] mb-2">Recent notable encounters</p>
-      <h2 id="notable-heading" class="font-['Fraunces'] text-2xl font-semibold text-white mb-1">
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-2">Recent notable encounters</p>
+      <h2 id="notable-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b1f33] mb-1">
         Uncommon species recently logged
       </h2>
-      <p class="text-sm text-[#9fb3c4]">
+      <p class="text-sm text-[#5b6b7d]">
         Sightings of species beyond the three most frequently recorded — the long tail that makes the dataset ecologically interesting.
       </p>
     </div>
 
     <div id="notable-feed" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="panel-dark rounded-xl p-5 skel" aria-hidden="true">
-        <div class="h-4 w-36 bg-white/10 rounded mb-2"></div>
-        <div class="h-3 w-24 bg-white/5 rounded mb-4"></div>
-        <div class="h-3 w-full bg-white/5 rounded mb-1.5"></div>
-        <div class="h-3 w-3/4 bg-white/5 rounded"></div>
+      <div class="panel rounded-xl p-5 skel" aria-hidden="true">
+        <div class="h-4 w-36 bg-[#dbe4ec] rounded mb-2"></div>
+        <div class="h-3 w-24 bg-[#eef4f9] rounded mb-4"></div>
+        <div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div>
+        <div class="h-3 w-3/4 bg-[#eef4f9] rounded"></div>
       </div>
-      <div class="panel-dark rounded-xl p-5 skel" aria-hidden="true">
-        <div class="h-4 w-32 bg-white/10 rounded mb-2"></div>
-        <div class="h-3 w-20 bg-white/5 rounded mb-4"></div>
-        <div class="h-3 w-full bg-white/5 rounded mb-1.5"></div>
-        <div class="h-3 w-2/3 bg-white/5 rounded"></div>
+      <div class="panel rounded-xl p-5 skel" aria-hidden="true">
+        <div class="h-4 w-32 bg-[#dbe4ec] rounded mb-2"></div>
+        <div class="h-3 w-20 bg-[#eef4f9] rounded mb-4"></div>
+        <div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div>
+        <div class="h-3 w-2/3 bg-[#eef4f9] rounded"></div>
       </div>
-      <div class="panel-dark rounded-xl p-5 skel" aria-hidden="true">
-        <div class="h-4 w-40 bg-white/10 rounded mb-2"></div>
-        <div class="h-3 w-28 bg-white/5 rounded mb-4"></div>
-        <div class="h-3 w-full bg-white/5 rounded mb-1.5"></div>
-        <div class="h-3 w-1/2 bg-white/5 rounded"></div>
+      <div class="panel rounded-xl p-5 skel" aria-hidden="true">
+        <div class="h-4 w-40 bg-[#dbe4ec] rounded mb-2"></div>
+        <div class="h-3 w-28 bg-[#eef4f9] rounded mb-4"></div>
+        <div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div>
+        <div class="h-3 w-1/2 bg-[#eef4f9] rounded"></div>
       </div>
     </div>
 
@@ -277,18 +275,18 @@
 <!-- ═══════════════════════════════════
      MAP CTA
 ═══════════════════════════════════ -->
-<div class="px-4 pb-12 border-t border-white/10 pt-0">
+<div class="px-4 pb-12 border-t border-[#dbe4ec] pt-0">
   <div class="max-w-6xl mx-auto">
     <a
       href="map.html"
-      class="flex flex-col sm:flex-row items-center justify-between gap-4 panel-dark rounded-xl px-8 py-6 group hover:border-[#38bdf8]/60 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all mt-0 -mt-px"
+      class="flex flex-col sm:flex-row items-center justify-between gap-4 panel rounded-xl px-8 py-6 group hover:border-[#0ea5e9]/60 hover:bg-[#f5f8fb] hover:-translate-y-0.5 transition-all mt-0 -mt-px"
     >
       <div>
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fc9ec] mb-1">Interactive map</p>
-        <p class="font-['Fraunces'] text-xl font-semibold text-white">Explore all sightings geographically</p>
-        <p class="text-sm text-[#9fb3c4] mt-0.5">Full-screen map with species, atoll, and date filters.</p>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">Interactive map</p>
+        <p class="font-['Fraunces'] text-xl font-semibold text-[#0b1f33]">Explore all sightings geographically</p>
+        <p class="text-sm text-[#5b6b7d] mt-0.5">Full-screen map with species, atoll, and date filters.</p>
       </div>
-      <div class="shrink-0 flex items-center gap-2 text-[#8fc9ec] group-hover:text-white transition-colors text-sm font-medium">
+      <div class="shrink-0 flex items-center gap-2 text-[#0ea5e9] group-hover:text-[#0b1f33] transition-colors text-sm font-medium">
         Open map
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
@@ -301,59 +299,59 @@
 <!-- ═══════════════════════════════════
      SPECIES × ATOLL MATRIX
 ═══════════════════════════════════ -->
-<section class="py-12 px-4 border-t border-white/10" aria-labelledby="matrix-heading">
+<section class="py-12 px-4 border-t border-[#dbe4ec]" aria-labelledby="matrix-heading">
   <div class="max-w-6xl mx-auto">
 
     <div class="mb-6">
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#8fc9ec] mb-2">Coverage matrix</p>
-      <h2 id="matrix-heading" class="font-['Fraunces'] text-2xl font-semibold text-white mb-1">
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-2">Coverage matrix</p>
+      <h2 id="matrix-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b1f33] mb-1">
         Species × atoll
       </h2>
-      <p class="text-sm text-[#9fb3c4] max-w-2xl">
+      <p class="text-sm text-[#5b6b7d] max-w-2xl">
         Verified sighting count per species per atoll. Blank cells are coverage gaps — useful for planning where to direct future survey effort.
       </p>
     </div>
 
     <!-- skeleton -->
-    <div id="matrix-skel" class="panel-dark rounded-xl overflow-hidden skel">
+    <div id="matrix-skel" class="panel rounded-xl overflow-hidden skel">
       <div class="p-5 space-y-3">
-        <div class="flex gap-3 pb-2 border-b border-white/10">
-          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
+        <div class="flex gap-3 pb-2 border-b border-[#dbe4ec]">
+          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
-            <div class="h-3 bg-white/10 rounded flex-1"></div>
-            <div class="h-3 bg-white/10 rounded flex-1"></div>
-            <div class="h-3 bg-white/10 rounded flex-1"></div>
-            <div class="h-3 bg-white/10 rounded flex-1"></div>
-            <div class="h-3 bg-white/10 rounded flex-1"></div>
+            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
+            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
+            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
+            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
+            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
           </div>
         </div>
         <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
+          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
             <div class="h-6 bg-[#0ea5e9] rounded flex-1 opacity-75"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
             <div class="h-6 bg-[#0ea5e9]/60 rounded flex-1"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
             <div class="h-6 bg-[#38bdf8]/30 rounded flex-1"></div>
           </div>
         </div>
         <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
+          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
             <div class="h-6 bg-[#0ea5e9]/60 rounded flex-1 opacity-60"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
             <div class="h-6 bg-[#0ea5e9] rounded flex-1 opacity-50"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
           </div>
         </div>
         <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-white/5 rounded shrink-0"></div>
+          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
           <div class="flex gap-2 flex-1">
             <div class="h-6 bg-[#38bdf8]/30 rounded flex-1"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
-            <div class="h-6 bg-white/5 border border-white/10 rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
+            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
             <div class="h-6 bg-[#0ea5e9]/60 rounded flex-1 opacity-70"></div>
           </div>
         </div>
@@ -363,24 +361,24 @@
     <!-- populated by JS -->
     <div id="matrix-render" class="hidden overflow-x-auto -mx-4 px-4 pb-2"></div>
 
-    <div id="matrix-empty" class="hidden panel-dark rounded-xl p-10 text-center">
-      <p class="font-['Fraunces'] text-base text-white mb-1">No sightings to display</p>
-      <p class="text-xs text-[#9fb3c4]">The matrix will populate as sightings are recorded.</p>
+    <div id="matrix-empty" class="hidden panel rounded-xl p-10 text-center">
+      <p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">No sightings to display</p>
+      <p class="text-xs text-[#5b6b7d]">The matrix will populate as sightings are recorded.</p>
     </div>
 
     <!-- Legend -->
     <div id="matrix-legend" class="hidden mt-4 flex items-center flex-wrap gap-x-5 gap-y-2">
-      <span class="text-xs text-[#9fb3c4] font-medium">Sightings:</span>
-      <span class="flex items-center gap-1.5 text-xs text-[#9fb3c4]">
-        <span class="inline-block w-4 h-4 rounded bg-white/5 border border-white/10"></span> 0
+      <span class="text-xs text-[#5b6b7d] font-medium">Sightings:</span>
+      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
+        <span class="inline-block w-4 h-4 rounded bg-[#f5f8fb] border border-[#dbe4ec]"></span> 0
       </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#9fb3c4]">
+      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
         <span class="inline-block w-4 h-4 rounded bg-[#38bdf8]/30"></span> 1
       </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#9fb3c4]">
+      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
         <span class="inline-block w-4 h-4 rounded bg-[#0ea5e9]/60"></span> 2–4
       </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#9fb3c4]">
+      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
         <span class="inline-block w-4 h-4 rounded bg-[#0ea5e9]"></span> 5+
       </span>
     </div>
@@ -393,7 +391,7 @@
 <!-- ═══════════════════════════════════
      FOOTER
 ═══════════════════════════════════ -->
-<footer class="border-t border-white/10 text-[#9fb3c4] text-sm">
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
       <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
@@ -436,12 +434,12 @@
   const REDUCE_MOTION = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── Chart.js defaults (dark instrument theme) ──────────────
+  // ── Chart.js defaults ────────────────────────────────────────
   Chart.defaults.font.family = "'Outfit', sans-serif";
-  Chart.defaults.color = '#9fb3c4';
+  Chart.defaults.color = '#5b6b7d';
   Chart.defaults.animation = REDUCE_MOTION ? false : { duration: 900, easing: 'easeOutQuart' };
 
-  const RULE_COLOR = 'rgba(255,255,255,0.10)';
+  const RULE_COLOR = 'rgba(11,31,51,0.08)';
   const CORAL      = '#0ea5e9';
   const LAGOON     = '#38bdf8';
 
@@ -582,9 +580,9 @@
     ];
 
     document.getElementById('stats-strip').innerHTML = STATS.map(s => `
-      <div class="px-6 py-8 transition-colors hover:bg-white/5">
-        <dd class="font-['Fraunces'] text-4xl md:text-5xl font-semibold text-white tabular-nums mb-1" data-count="${s.value}">0</dd>
-        <dt class="text-xs font-medium tracking-[0.12em] uppercase text-[#9fb3c4]">${s.label}</dt>
+      <div class="px-6 py-8 transition-colors hover:bg-[#f5f8fb]">
+        <dd class="font-['Fraunces'] text-4xl md:text-5xl font-semibold text-[#0b1f33] tabular-nums mb-1" data-count="${s.value}">0</dd>
+        <dt class="text-xs font-medium tracking-[0.12em] uppercase text-[#5b6b7d]">${s.label}</dt>
       </div>`).join('');
     document.querySelectorAll('#stats-strip [data-count]').forEach(el => countUp(el, +el.dataset.count));
 
@@ -657,7 +655,7 @@
           y: {
             grid: { display: false },
             border: { display: false },
-            ticks: { font: { size: 11 }, color: '#d8e6f0' },
+            ticks: { font: { size: 11 }, color: '#16324c' },
           },
         },
       },
@@ -698,10 +696,10 @@
           tension: 0.4,
           pointRadius: 4,
           pointBackgroundColor: LAGOON,
-          pointBorderColor: '#0b1f33',
+          pointBorderColor: '#ffffff',
           pointBorderWidth: 1.5,
           pointHoverRadius: 6,
-          pointHoverBackgroundColor: '#ffffff',
+          pointHoverBackgroundColor: '#0b1f33',
         }],
       },
       options: {
@@ -738,9 +736,9 @@
 
     if (rows.length === 0) {
       feed.innerHTML = `
-        <div class="col-span-full py-12 text-center border border-dashed border-white/15 rounded-xl">
-          <p class="font-['Fraunces'] text-base text-white mb-1">No sightings yet</p>
-          <p class="text-xs text-[#9fb3c4]">Check back once sightings have been verified.</p>
+        <div class="col-span-full py-12 text-center border border-dashed border-[#dbe4ec] rounded-xl">
+          <p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">No sightings yet</p>
+          <p class="text-xs text-[#5b6b7d]">Check back once sightings have been verified.</p>
         </div>`;
       return;
     }
@@ -755,9 +753,9 @@
 
     if (notable.length === 0) {
       feed.innerHTML = `
-        <div class="col-span-full py-12 text-center border border-dashed border-white/15 rounded-xl">
-          <p class="font-['Fraunces'] text-base text-white mb-1">All recent records are common species</p>
-          <p class="text-xs text-[#9fb3c4]">Notable encounters will appear here as the dataset grows.</p>
+        <div class="col-span-full py-12 text-center border border-dashed border-[#dbe4ec] rounded-xl">
+          <p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">All recent records are common species</p>
+          <p class="text-xs text-[#5b6b7d]">Notable encounters will appear here as the dataset grows.</p>
         </div>`;
       return;
     }
@@ -767,18 +765,18 @@
       const countText = r.count > 0 ? `${r.count} ind.` : null;
       const mapHref   = `map.html?species=${encodeURIComponent(r.species_slug)}`;
       return `
-        <article class="panel-dark rounded-xl p-5 flex flex-col gap-3 hover:border-[#8fc9ec] transition-colors">
+        <article class="panel rounded-xl p-5 flex flex-col gap-3 hover:border-[#0ea5e9]/40 transition-colors">
           <div>
-            <p class="font-semibold text-white text-sm leading-snug">${r.species_name}</p>
-            <div class="flex items-center gap-2 mt-1 text-xs text-[#9fb3c4] flex-wrap">
+            <p class="font-semibold text-[#0b1f33] text-sm leading-snug">${r.species_name}</p>
+            <div class="flex items-center gap-2 mt-1 text-xs text-[#5b6b7d] flex-wrap">
               ${r.atoll  ? `<span>${r.atoll}</span>` : ''}
-              ${r.atoll && r.date ? `<span class="text-white/25">·</span>` : ''}
+              ${r.atoll && r.date ? `<span class="text-[#0b1f33]/25">·</span>` : ''}
               ${r.date   ? `<span>${formatDate(r.date)}</span>` : ''}
-              ${countText ? `<span class="ml-auto bg-white/5 border border-white/10 rounded-full px-2 py-0.5">${countText}</span>` : ''}
+              ${countText ? `<span class="ml-auto bg-[#f5f8fb] border border-[#dbe4ec] rounded-full px-2 py-0.5">${countText}</span>` : ''}
             </div>
           </div>
-          ${snippet ? `<p class="text-xs text-[#9fb3c4] leading-relaxed">${snippet}</p>` : ''}
-          <a href="${mapHref}" class="text-xs font-medium text-[#38bdf8] hover:underline mt-auto">
+          ${snippet ? `<p class="text-xs text-[#5b6b7d] leading-relaxed">${snippet}</p>` : ''}
+          <a href="${mapHref}" class="text-xs font-medium text-[#0ea5e9] hover:underline mt-auto">
             View on map →
           </a>
         </article>`;
@@ -823,17 +821,17 @@
     });
 
     function cellBg(n) {
-      if (!n) return 'rgba(255,255,255,0.03)';
+      if (!n) return 'rgba(11,31,51,0.03)';
       if (n === 1) return 'rgba(56,189,248,0.28)';
       if (n <= 4)  return 'rgba(14,165,233,0.55)';
       return CORAL;
     }
-    function cellFg(n) { return n ? '#ffffff' : 'rgba(227,233,234,0.45)'; }
+    function cellFg(n) { return n ? '#0b1f33' : 'rgba(15,28,43,0.35)'; }
 
-    const thead = `<tr class="border-b border-white/15">
-      <th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#9fb3c4] uppercase tracking-wide whitespace-nowrap">Species</th>
-      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#9fb3c4] text-center whitespace-nowrap${a === UNRECORDED ? ' italic opacity-70' : ''}" ${a === UNRECORDED ? 'title="Sightings with no atoll on file"' : ''}>${a}</th>`).join('')}
-      <th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#9fb3c4] text-center whitespace-nowrap border-l border-white/15">Total</th>
+    const thead = `<tr class="border-b border-[#dbe4ec]">
+      <th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#5b6b7d] uppercase tracking-wide whitespace-nowrap">Species</th>
+      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#5b6b7d] text-center whitespace-nowrap${a === UNRECORDED ? ' italic opacity-70' : ''}" ${a === UNRECORDED ? 'title="Sightings with no atoll on file"' : ''}>${a}</th>`).join('')}
+      <th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#5b6b7d] text-center whitespace-nowrap border-l border-[#dbe4ec]">Total</th>
     </tr>`;
 
     const tbody = speciesList.map(sp => {
@@ -847,15 +845,15 @@
         return { n, html: `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || ''}</td>` };
       });
       const total = cells.reduce((sum, c) => sum + c.n, 0);
-      return `<tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
-        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#d8e6f0] whitespace-nowrap">${sp}</td>
+      return `<tr class="border-b border-[#dbe4ec] hover:bg-[#f5f8fb] transition-colors">
+        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#0f1c2b] whitespace-nowrap">${sp}</td>
         ${cells.map(c => c.html).join('')}
-        <td class="px-3 py-2 text-[0.72rem] font-semibold text-white text-center border-l border-white/15">${total}</td>
+        <td class="px-3 py-2 text-[0.72rem] font-semibold text-[#0b1f33] text-center border-l border-[#dbe4ec]">${total}</td>
       </tr>`;
     }).join('');
 
     renderEl.innerHTML = `
-      <div class="panel-dark rounded-xl overflow-hidden">
+      <div class="panel rounded-xl overflow-hidden">
         <table class="matrix-table w-full text-left" role="grid" aria-label="Species by atoll sighting counts">
           <thead>${thead}</thead>
           <tbody>${tbody}</tbody>
