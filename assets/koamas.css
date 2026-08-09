@@ -49,6 +49,45 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* ── Shared wave background ──────────────────────────────────
+   Ties the light content pages together with one consistent, subtly
+   textured backdrop instead of a flat colour — soft depth gradients in
+   the corners plus a faint repeating wave-line texture (inline SVG data
+   URI, so no extra asset file or HTTP request). Static — no animation,
+   so it needs no reduced-motion guard of its own.
+
+   Applied via an explicit `bg-waves` class on <body>, added by hand per
+   page like nav/footer (no templating on this site). evolution.html
+   (its own scroll-driven colour narrative) and map.html (MapLibre fills
+   the viewport) opt out simply by not carrying the class.
+
+   `bg-waves--deep` gives the dashboard the same texture in the dark
+   ramp it already used, so it reads as kin to the rest of the site
+   instead of an unrelated dark panel — cards/charts are untouched. */
+body.bg-waves {
+  background-color: var(--bg);
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  background-position: 100% 0%, 0% 10%, 15% 100%, 0 0;
+  background-size: 70% 55%, 60% 45%, 75% 50%, 180px 90px;
+  background-image:
+    radial-gradient(closest-side, rgba(56,189,248,0.13), transparent 70%),
+    radial-gradient(closest-side, rgba(14,165,233,0.08), transparent 70%),
+    radial-gradient(closest-side, rgba(56,189,248,0.10), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Cpath d='M0 20 Q50 0 100 20T200 20' fill='none' stroke='%230ea5e9' stroke-width='1.4' opacity='0.10'/%3E%3Cpath d='M0 55 Q50 35 100 55T200 55' fill='none' stroke='%2338bdf8' stroke-width='1.4' opacity='0.08'/%3E%3Cpath d='M0 85 Q50 65 100 85T200 85' fill='none' stroke='%230284c7' stroke-width='1.2' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+body.bg-waves.bg-waves--deep {
+  background-color: var(--teal);
+  background-image:
+    radial-gradient(closest-side, rgba(56,189,248,0.10), transparent 70%),
+    radial-gradient(closest-side, rgba(14,165,233,0.12), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Cpath d='M0 20 Q50 0 100 20T200 20' fill='none' stroke='%2338bdf8' stroke-width='1.4' opacity='0.14'/%3E%3Cpath d='M0 55 Q50 35 100 55T200 55' fill='none' stroke='%2338bdf8' stroke-width='1.4' opacity='0.10'/%3E%3Cpath d='M0 85 Q50 65 100 85T200 85' fill='none' stroke='%2338bdf8' stroke-width='1.2' opacity='0.07'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--teal) 0%, #0a2236 55%, var(--teal-deep) 100%);
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+  background-position: 85% 0%, 6% 100%, 0 0, 0 0;
+  background-size: 65% 55%, 60% 55%, 180px 90px, auto;
+}
+
 h1, h2, h3, h4 {
   font-family: 'Fraunces', Georgia, serif;
   text-wrap: balance;

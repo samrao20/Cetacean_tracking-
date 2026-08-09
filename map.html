@@ -20,10 +20,10 @@
     /* Page-unique styles only — shared system lives in assets/koamas.css */
     body { overflow: hidden; }
 
-    /* Map fills everything below the 3.5rem nav */
+    /* Map fills everything below the 3.5rem nav and the 3px brand bar */
     #map-wrapper {
       position: relative;
-      height: calc(100dvh - 3.5rem);
+      height: calc(100dvh - 3.5rem - 3px);
     }
 
     /* ── Side panel ─────────────────────────────────── */
@@ -153,6 +153,9 @@
 
 <body>
 
+<!-- Brand bar -->
+<div class="brand-bar" aria-hidden="true"></div>
+
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
@@ -231,6 +234,10 @@
       </button>
       <div id="species-chips" style="display:flex;flex-wrap:wrap;gap:0.3rem;"></div>
       <div id="f-div" style="display:none;width:1px;height:1rem;background:rgba(255,255,255,0.18);flex-shrink:0;"></div>
+      <span id="year-pill" style="display:none;align-items:center;gap:0.4rem;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.85);font-family:'Outfit',sans-serif;padding:0.28rem 0.55rem;background:rgba(56,189,248,0.16);border:1px solid rgba(56,189,248,0.35);border-radius:9999px;white-space:nowrap;">
+        <span id="year-pill-label">Showing 2026</span>
+        <button id="year-pill-clear" style="background:none;border:none;color:#38bdf8;font-size:0.7rem;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;">View all years</button>
+      </span>
       <select id="atoll-sel" class="f-ctrl"><option value="">All atolls</option></select>
       <input type="date" id="date-from" class="f-ctrl" title="From date" />
       <input type="date" id="date-to"   class="f-ctrl" title="To date"   />
@@ -283,6 +290,7 @@
     <div id="p-photo" style="height:7.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
       <span id="p-photo-label" style="color:rgba(255,255,255,0.75);font-family:'Fraunces',serif;font-size:0.95rem;"></span>
     </div>
+    <p id="p-photo-credit" style="display:none;padding:0.25rem 1.2rem 0;font-size:0.65rem;color:#5b6b7d;flex-shrink:0;"></p>
 
     <!-- Detail list -->
     <dl id="p-details" style="padding:0.9rem 1.2rem;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:0.8rem;"></dl>
@@ -382,6 +390,9 @@
     'killer-whale':                    '#000000',
     'cuviers-beaked-whale':            '#B5838D',
     'dwarf-sperm-whale':               '#B07156',
+    'longmans-beaked-whale':           '#577590',
+    'blainvilles-beaked-whale':        '#43AA8B',
+    'deraniyagalas-beaked-whale':      '#F94144',
   };
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -395,11 +406,13 @@
   let selAtoll      = '';
   let dateFrom      = '';
   let dateTo        = '';
+  let activeYear    = null;       // set when dateFrom/dateTo represent a single-year default/selection (not a custom range)
   let styleKey      = 'sat';      // 'lagoon' | 'deep' | 'sat'
   let islandsGeo    = null;       // local island polygons (data/maldives-islands.geojson)
   let atollsGeo     = null;       // local atoll polygons + names
   let latestId      = null;       // id of the most recent sighting (pulse target)
   let hoveredAtoll  = null;
+  let speciesLookup = {};         // slug -> {photo, photo_credit, scientific_name, iucn_label} from species.json
 
   // ─────────────────────────────────────────────────────────────────────────
   // Utilities
@@ -417,6 +430,20 @@
         timeZone: 'Indian/Maldives',
       });
     } catch (_) { return iso.slice(0, 10); }
+  }
+
+  // Normalise an atoll string to a canonical bare name (no "Atoll" suffix,
+  // trimmed, title-cased). Supabase free-text and the local fallback
+  // disagree on trailing " Atoll", casing, and stray whitespace — without
+  // this, "Lhaviyani" vs. "Lhaviyani Atoll" show up as two different filter
+  // options. Kept in sync with the identical helper in dashboard.html and
+  // index.html.
+  function normaliseAtoll(raw) {
+    if (!raw) return '';
+    var s = String(raw).normalize('NFC').replace(/\s+/g, ' ').trim();
+    while (/\batoll$/i.test(s)) s = s.replace(/\s*atoll$/i, '').trim();
+    if (!s) return '';
+    return s.toLowerCase().replace(/(^|\s)\S/g, function (c) { return c.toUpperCase(); });
   }
 
   function colorExpr() {
@@ -533,7 +560,7 @@
             date:              s.sighting_date,
             lat:               roundCoord(+s.lat),
             lng:               roundCoord(+s.lng),
-            atoll:             s.atoll || '',
+            atoll:             normaliseAtoll(s.atoll),
             observer:          'Community observer',
             groupSize:         null,
             behaviour:         s.notes || null,
@@ -546,7 +573,8 @@
     // Fallback to mock data
     var res = await fetch('data/sightings.json');
     if (!res.ok) throw new Error('Could not load sightings (' + res.status + ')');
-    return res.json();
+    var rows = await res.json();
+    return rows.map(function (s) { return Object.assign({}, s, { atoll: normaliseAtoll(s.atoll) }); });
   }
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -566,6 +594,50 @@
     return activeSpecies.size > 0 || selAtoll || dateFrom || dateTo || heatmap;
   }
 
+  // ── Default year scoping ────────────────────────────────────────────────
+  // A clean load with no filter params used to show every sighting from
+  // every year at once. Defaulting to the most recent year present in the
+  // data (rather than hard-coding today's calendar year) means the map
+  // always opens showing something, even before this year has any
+  // sightings yet, and it starts reading as the current year the moment
+  // real data for it exists.
+  function yearsInData() {
+    var years = new Set();
+    allSightings.forEach(function (s) {
+      var y = (s.date || '').slice(0, 4);
+      if (/^\d{4}$/.test(y)) years.add(y);
+    });
+    return Array.from(years).sort();
+  }
+
+  function setYear(y) {
+    activeYear = String(y);
+    dateFrom = activeYear + '-01-01';
+    dateTo   = activeYear + '-12-31';
+    document.getElementById('date-from').value = dateFrom;
+    document.getElementById('date-to').value   = dateTo;
+  }
+
+  function viewAllYears() {
+    activeYear = null;
+    dateFrom = ''; dateTo = '';
+    document.getElementById('date-from').value = '';
+    document.getElementById('date-to').value   = '';
+    applyFilters();
+  }
+
+  function updateYearPill() {
+    var pill  = document.getElementById('year-pill');
+    var label = document.getElementById('year-pill-label');
+    if (!pill || !label) return;
+    if (activeYear) {
+      label.textContent = 'Showing ' + activeYear;
+      pill.style.display = 'inline-flex';
+    } else {
+      pill.style.display = 'none';
+    }
+  }
+
   function applyFilters() {
     if (!map || !map.getSource('sightings')) return;
     var f = filtered();
@@ -575,6 +647,7 @@
     document.getElementById('empty-state').style.display = f.length === 0 ? 'flex' : 'none';
     document.getElementById('clear-btn').style.display   = anyFilter()    ? ''      : 'none';
     updateCounter(f.length);
+    updateYearPill();
     syncURL();
     frameSightings(f);
   }
@@ -584,8 +657,20 @@
     var q = new URLSearchParams();
     if (activeSpecies.size) q.set('species', Array.from(activeSpecies).join(','));
     if (selAtoll)           q.set('atoll', selAtoll);
-    if (dateFrom)           q.set('from', dateFrom);
-    if (dateTo)             q.set('to', dateTo);
+    if (activeYear) {
+      // A single-year default/selection round-trips as `year=YYYY` rather
+      // than `from`/`to`, so a shared link still re-applies "most recent
+      // year" behaviour if a newer year of data shows up later.
+      q.set('year', activeYear);
+    } else if (dateFrom || dateTo) {
+      if (dateFrom) q.set('from', dateFrom);
+      if (dateTo)   q.set('to', dateTo);
+    } else {
+      // Explicitly viewing all years — without this marker the link would
+      // be indistinguishable from "no params", which re-defaults to the
+      // most recent year on load.
+      q.set('year', 'all');
+    }
     if (styleKey !== 'sat') q.set('view', styleKey);
     var s = q.toString();
     history.replaceState(null, '', s ? '?' + s : location.pathname);
@@ -602,12 +687,32 @@
       selAtoll = atoll;
       document.getElementById('atoll-sel').value = atoll;
     }
-    var from = q.get('from') || '';
-    var to   = q.get('to')   || '';
-    if (from) { dateFrom = from; document.getElementById('date-from').value = from; }
-    if (to)   { dateTo   = to;   document.getElementById('date-to').value   = to; }
+
+    var from      = q.get('from') || '';
+    var to        = q.get('to')   || '';
+    var yearParam = q.get('year') || '';
+
+    if (from || to) {
+      // An explicit range always wins — links shared before the year
+      // default existed keep behaving exactly as they did.
+      dateFrom = from; dateTo = to; activeYear = null;
+      if (from) document.getElementById('date-from').value = from;
+      if (to)   document.getElementById('date-to').value   = to;
+    } else if (yearParam === 'all') {
+      dateFrom = ''; dateTo = ''; activeYear = null;
+    } else if (/^\d{4}$/.test(yearParam)) {
+      setYear(yearParam);
+    } else {
+      // No date-related params at all — default to the most recent year
+      // present in the data, so the map never opens showing everything
+      // from every year at once.
+      var years = yearsInData();
+      if (years.length) setYear(years[years.length - 1]);
+    }
+
     var view = q.get('view') || '';
     if (view && BASEMAPS[view]) styleKey = view;
+    updateYearPill();
   }
 
   // Animated result counter in the filter bar (visual only)
@@ -675,8 +780,11 @@
     });
     sel.addEventListener('change', function() { selAtoll = this.value; applyFilters(); });
 
-    document.getElementById('date-from').addEventListener('change', function() { dateFrom = this.value; applyFilters(); });
-    document.getElementById('date-to').addEventListener('change',   function() { dateTo   = this.value; applyFilters(); });
+    // A manual edit turns the range into a custom one — it's no longer the
+    // single-year default/selection the pill represents.
+    document.getElementById('date-from').addEventListener('change', function() { dateFrom = this.value; activeYear = null; applyFilters(); });
+    document.getElementById('date-to').addEventListener('change',   function() { dateTo   = this.value; activeYear = null; applyFilters(); });
+    document.getElementById('year-pill-clear').addEventListener('click', viewAllYears);
     document.getElementById('heatmap-btn').addEventListener('click', toggleHeatmap);
     document.getElementById('latest-btn').addEventListener('click',  goLatest);
     document.getElementById('share-btn').addEventListener('click',   shareLink);
@@ -736,7 +844,7 @@
 
   function clearFilters() {
     activeSpecies.clear();
-    selAtoll = ''; dateFrom = ''; dateTo = ''; heatmap = false;
+    selAtoll = ''; dateFrom = ''; dateTo = ''; activeYear = null; heatmap = false;
     document.querySelectorAll('.sp-chip').forEach(function(c) {
       c.classList.remove('on');
       c.style.background = '';
@@ -786,16 +894,36 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Side panel
   // ─────────────────────────────────────────────────────────────────────────
+  // Layered CSS background-image fallback: a failed url() paints nothing,
+  // so each layer only shows if every layer above it failed to load.
+  // Order: species.json's real photo (authoritative) → the legacy
+  // hand-guessed path (covers nothing species.json doesn't already, kept
+  // only in case species.json failed to load) → the shared placeholder
+  // artwork → the solid species colour as the true last resort.
+  function speciesPhotoLayers(slug) {
+    var meta   = speciesLookup[slug] || {};
+    var layers = [];
+    if (meta.photo) layers.push('url("' + meta.photo + '") center/cover');
+    layers.push('url("assets/img/species/' + slug + '.jpg") center/cover');
+    layers.push('url("assets/species/_placeholder.svg") center/cover');
+    return layers.join(', ');
+  }
+
   function openPanel(p) {
     var color = SPECIES_COLORS[p.species] || '#0b1f33';
+    var meta  = speciesLookup[p.species] || {};
 
     document.getElementById('p-common').textContent      = p.speciesCommon    || '';
     document.getElementById('p-scientific').textContent  = p.speciesScientific || '';
     // Species photo over the colour band; falls back to the colour if the image is missing
     document.getElementById('p-photo').style.background =
       'linear-gradient(rgba(7,22,38,0.30), rgba(7,22,38,0.55)), ' +
-      'url("assets/img/species/' + (p.species || '') + '.jpg") center/cover, ' + color;
+      speciesPhotoLayers(p.species || '') + ', ' + color;
     document.getElementById('p-photo-label').textContent = p.speciesCommon    || '';
+
+    var creditEl = document.getElementById('p-photo-credit');
+    creditEl.textContent  = meta.photo_credit ? '© ' + meta.photo_credit : '';
+    creditEl.style.display = meta.photo_credit ? 'block' : 'none';
 
     var cta = document.getElementById('p-cta');
     cta.href        = 'species.html#' + (p.species || '');
@@ -805,7 +933,7 @@
     dl.innerHTML = '';
     var rows = [
       ['Date',        fmtDate(p.date)],
-      ['Atoll',       p.atoll       || '—'],
+      ['Atoll',       p.atoll ? p.atoll + ' Atoll' : '—'],
       ['Coordinates', (+p.lat).toFixed(2) + '° N, ' + (+p.lng).toFixed(2) + '° E'],
       ['Observer',    p.observer    || '—'],
       ['Group size',  p.groupSize != null ? p.groupSize : 'Unknown'],
@@ -904,6 +1032,27 @@
         });
       }
     } catch (_) { /* overlays are an enhancement — the map works without them */ }
+  }
+
+  // species.json gives an authoritative slug → real photo + credit lookup,
+  // richer than the hand-guessed assets/img/species/<slug>.jpg path this
+  // page used to hardcode (which covered only 16 of 22 species). Same
+  // graceful-degradation posture as loadOverlays — a failed fetch just
+  // means popups fall back to their legacy behaviour.
+  async function loadSpeciesLookup() {
+    try {
+      var res = await fetch('species.json');
+      if (!res.ok) return;
+      var data = await res.json();
+      (data.species || []).forEach(function (s) {
+        speciesLookup[s.slug] = {
+          photo:        s.photo || '',
+          photo_credit: s.photo_credit || '',
+          scientific_name: s.scientific_name || '',
+          iucn_label:   s.iucn_label || '',
+        };
+      });
+    } catch (_) { /* species photos are an enhancement — popups still work without them */ }
   }
 
   // Overlay colours tuned per basemap
@@ -1052,11 +1201,23 @@
     map.setStyle(BASEMAPS[key]);  // the 'style.load' handler rebuilds everything
   }
 
-  // Map an overlay atoll name onto the sightings' atoll dropdown values
+  // Map an overlay atoll name onto the sightings' atoll dropdown values.
+  // Dropdown values are normaliseAtoll()'d bare names (no " Atoll" suffix),
+  // matching the geojson's own bare `properties.name`.
   function atollFilterValue(name) {
     var opts = Array.prototype.map.call(document.getElementById('atoll-sel').options, function (o) { return o.value; });
-    if (opts.indexOf(name + ' Atoll') !== -1) return name + ' Atoll';
-    var special = { 'Alif Alif': 'Ari Atoll', 'Alif Dhaalu': 'Ari Atoll' };
+    if (opts.indexOf(name) !== -1) return name;
+    // Overlay polygons don't line up 1:1 with sighting atoll names:
+    // "Alif Alif"/"Alif Dhaalu" are administrative sub-atolls that
+    // sightings record together as "Ari"; "Malé"/"Kaafu" are two
+    // geojson features for the Malé region, which sightings split into
+    // "North Malé"/"South Malé".
+    var special = {
+      'Alif Alif':   'Ari',
+      'Alif Dhaalu': 'Ari',
+      'Malé':        'North Malé',
+      'Kaafu':       'South Malé',
+    };
     if (special[name] && opts.indexOf(special[name]) !== -1) return special[name];
     return '';
   }
@@ -1073,16 +1234,24 @@
     map.on('mouseenter', 'sightings-circles', function (e) {
       map.getCanvas().style.cursor = 'pointer';
       if (!e.features || !e.features.length) return;
-      var p = e.features[0].properties;
+      var p     = e.features[0].properties;
+      var photo = (speciesLookup[p.species] || {}).photo;
+      // Thumbnail when a real species photo is available; otherwise the
+      // original colour dot. onerror swaps back to the dot if the photo
+      // 404s after the <img> is already in the DOM.
+      var mark = photo
+        ? '<img src="' + photo + '" alt="" style="width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);" ' +
+            'onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{style:\'width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + '\'}))" />'
+        : '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>';
       if (activePopup) activePopup.remove();
       activePopup = new maplibregl.Popup({ closeButton: false, offset: 12 })
         .setLngLat(e.lngLat)
         .setHTML(
           '<div style="display:flex;align-items:center;gap:0.4rem;font-weight:600;color:#16324c;font-size:0.8rem;font-family:\'Fraunces\',serif;">' +
-            '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>' +
+            mark +
             (p.speciesCommon || '') +
           '</div>' +
-          '<div style="color:#5b6b7d;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll : '') + '</div>'
+          '<div style="color:#5b6b7d;font-size:0.7rem;margin-top:0.15rem;">' + ((p.date || '').slice(0, 10)) + (p.atoll ? ' · ' + p.atoll + ' Atoll' : '') + '</div>'
         )
         .addTo(map);
     });
@@ -1192,7 +1361,7 @@
   // ─────────────────────────────────────────────────────────────────────────
   (async function () {
     try {
-      var boot = await Promise.all([loadSightings(), loadOverlays(), probeDeepStyle()]);
+      var boot = await Promise.all([loadSightings(), loadOverlays(), probeDeepStyle(), loadSpeciesLookup()]);
       allSightings = boot[0];
       var deepOk   = boot[2];
       latestId = (allSightings.slice().sort(function (a, b) {

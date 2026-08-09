@@ -626,7 +626,7 @@
       <p class="evo-era-label">Era 5 &middot; today</p>
       <h2 id="era-resurface-heading">Resurfacing in the Maldives</h2>
       <p>
-        Fifty million years on, around 22 cetacean species move through Maldivian waters — the
+        Fifty million years on, around <span data-species-count>22</span> cetacean species move through Maldivian waters — the
         same ocean where this story started.
       </p>
     </div>
@@ -843,7 +843,20 @@
       .catch(function () { /* credits are an enhancement — the page works without them */ });
   }
 
-  function boot() { init(); initCredits(); }
+  // Keep the species count in prose in sync with species.json instead of
+  // a hardcoded number that silently goes stale when entries are added.
+  function initSpeciesCount() {
+    fetch('species.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var count = (data.species || []).length;
+        var el    = document.querySelector('[data-species-count]');
+        if (el && count) el.textContent = count;
+      })
+      .catch(function () {});
+  }
+
+  function boot() { init(); initCredits(); initSpeciesCount(); }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);

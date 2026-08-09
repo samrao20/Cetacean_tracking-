@@ -34,7 +34,7 @@
     .team-card:hover > div { transform: translateX(4px); border-color: var(--lagoon); }
   </style>
 </head>
-<body>
+<body class="bg-waves">
 
 <!-- Brand bar -->
 <div class="brand-bar" aria-hidden="true"></div>
@@ -185,7 +185,8 @@
         to the public record.
       </p>
       <p>
-        The Maldives sits at the heart of the Indian Ocean, and its waters are home to at least 22 species
+        The Maldives sits at the heart of the Indian Ocean, and its waters are home to at least
+        <span data-species-count>22</span> species
         of dolphins and whales. Despite this richness, systematic, long-term data on cetacean distribution
         across the atolls has historically been sparse. Koamas is building that record — one sighting at a time.
       </p>
@@ -362,6 +363,22 @@
 </footer>
 
 <!-- Mobile nav toggle is handled by the shared assets/koamas.js -->
+
+<script>
+(function () {
+  'use strict';
+  // Keep the species count in prose in sync with species.json instead of
+  // a hardcoded number that silently goes stale when entries are added.
+  fetch('species.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var count = (data.species || []).length;
+      var el    = document.querySelector('[data-species-count]');
+      if (el && count) el.textContent = count;
+    })
+    .catch(function () {});
+}());
+</script>
 
 </body>
 </html>

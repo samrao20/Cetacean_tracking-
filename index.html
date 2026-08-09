@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koamas by Reefscapers — Maldives Cetacean Tracker</title>
-  <meta name="description" content="Track dolphin and whale sightings across the Maldives. Submit a sighting via WhatsApp and help build the first citizen-science cetacean database for the archipelago." />
-  <meta property="og:title" content="Koamas by Reefscapers — Maldives Cetacean Tracker" />
-  <meta property="og:description" content="Citizen science cetacean tracking across the Maldives. Every sighting builds the record." />
+  <title>Koamas by Reefscapers — Maldives Dolphin &amp; Whale Tracker</title>
+  <meta name="description" content="Track dolphin and whale sightings across the Maldives. Submit a sighting via WhatsApp and help build the first citizen-science dolphin and whale database for the archipelago." />
+  <meta property="og:title" content="Koamas by Reefscapers — Maldives Dolphin &amp; Whale Tracker" />
+  <meta property="og:description" content="Citizen science dolphin and whale tracking across the Maldives. Every sighting builds the record." />
   <meta property="og:type" content="website" />
 
   <link rel="icon" type="image/png" href="assets/img/koamas-favicon.png" />
@@ -76,7 +76,7 @@
     }
   </style>
 </head>
-<body>
+<body class="bg-waves">
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 
@@ -174,7 +174,7 @@
       Koamas by Reefscapers · Citizen Science
     </p>
     <h1 class="hero-fade-up d1 font-['Fraunces'] text-6xl sm:text-7xl md:text-8xl font-bold text-white leading-[0.98] tracking-tight mb-7 max-w-3xl">
-      Every sighting<br />
+      Every dolphin &amp; whale<br />
       <em class="text-grad italic font-normal">tells a story</em>
     </h1>
     <p class="hero-fade-up d2 text-[#bcd2e2] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
@@ -272,7 +272,7 @@
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
         </div>
-        <h3 class="font-['Fraunces'] text-xl font-semibold text-white tracking-tight mb-3">Spot a cetacean</h3>
+        <h3 class="font-['Fraunces'] text-xl font-semibold text-white tracking-tight mb-3">Spot a dolphin or whale</h3>
         <p class="text-sm text-[#9fb3c4] leading-relaxed">
           See a dolphin or whale? Open WhatsApp and send a message to our bot with a photo, your location, and what you saw.
         </p>
@@ -312,7 +312,7 @@
         </div>
         <h3 class="font-['Fraunces'] text-xl font-semibold text-white tracking-tight mb-3">Science grows</h3>
         <p class="text-sm text-[#9fb3c4] leading-relaxed">
-          Your sighting joins the map, the dashboard, and the long-term record — helping researchers understand cetacean distribution across the atolls.
+          Your sighting joins the map, the dashboard, and the long-term record — helping researchers understand where dolphins and whales travel across the atolls.
         </p>
         <div class="mt-6 inline-flex items-center gap-1.5 text-xs text-[#0ea5e9] font-medium">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -343,7 +343,7 @@
     <div class="text-center mb-10">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#0ea5e9] mb-3">Field guide</p>
       <h2 id="species-teaser-heading" class="text-3xl md:text-4xl font-semibold text-[#0b1f33] mb-3">
-        22 species in Maldivian waters
+        <span data-species-count>22</span> species in Maldivian waters
       </h2>
       <p class="text-[#5b6b7d] max-w-md mx-auto text-sm">
         From spinner dolphins to blue whales — the archipelago hosts one of the most diverse cetacean communities in the Indian Ocean.
@@ -482,7 +482,7 @@
     'blue-whale',
     'sperm-whale',
     'short-finned-pilot-whale',
-    'bottlenose-dolphin',
+    'common-bottlenose-dolphin',
     'rissos-dolphin',
   ];
 
@@ -490,6 +490,8 @@
     .then(r => r.json())
     .then(data => {
       const all      = data.species || [];
+      const countEl  = document.querySelector('[data-species-count]');
+      if (countEl && all.length) countEl.textContent = all.length;
       const teaser   = TEASER_SLUGS.map(slug => all.find(s => s.slug === slug)).filter(Boolean);
       const teaserEl = document.getElementById('species-teaser');
       teaserEl.innerHTML = teaser.map(s => {
@@ -517,7 +519,7 @@
     container.innerHTML = `
       <div class="col-span-full text-center py-14 border border-dashed border-[#dbe4ec] rounded-xl">
         <p class="font-['Fraunces'] text-xl text-[#0b1f33] mb-2">No verified sightings yet</p>
-        <p class="text-sm text-[#5b6b7d] mb-6">Be the first to report a cetacean sighting from the Maldives.</p>
+        <p class="text-sm text-[#5b6b7d] mb-6">Be the first to report a dolphin or whale sighting from the Maldives.</p>
         <a href="https://wa.me/9607257743?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0ea5e9] text-white text-sm font-medium hover:bg-[#0284c7] transition-colors"
            target="_blank" rel="noopener">
@@ -536,6 +538,20 @@
   function formatDate(iso) {
     if (!iso) return '';
     return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  // Normalise an atoll string to a canonical bare name (no "Atoll" suffix,
+  // trimmed, title-cased). Supabase free-text and the local fallback
+  // disagree on trailing " Atoll", casing, and stray whitespace — without
+  // this, "Lhaviyani" vs. "Lhaviyani Atoll" render as visibly different
+  // labels and this page's own `${r.atoll} Atoll` suffix can double up.
+  // Kept in sync with the identical helper in dashboard.html and map.html.
+  function normaliseAtoll(raw) {
+    if (!raw) return '';
+    let s = String(raw).normalize('NFC').replace(/\s+/g, ' ').trim();
+    while (/\batoll$/i.test(s)) s = s.replace(/\s*atoll$/i, '').trim();
+    if (!s) return '';
+    return s.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
   }
 
   function renderSightings(rows) {
@@ -565,7 +581,7 @@
           .order('sighting_date', { ascending: false })
           .limit(6);
         if (error) throw error;
-        renderSightings((data || []).map(r => ({ ...r, species_name: r.species?.common_name || null })));
+        renderSightings((data || []).map(r => ({ ...r, species_name: r.species?.common_name || null, atoll: normaliseAtoll(r.atoll) })));
       } catch {
         renderError();
       }
@@ -585,7 +601,7 @@
         .slice(0, 6)
         .map(r => ({
           species_name:  r.speciesCommon || 'Cetacean',
-          atoll:         (r.atoll || '').replace(/ Atoll$/, ''),
+          atoll:         normaliseAtoll(r.atoll),
           count_range:   r.groupSize != null ? String(r.groupSize) : '',
           sighting_date: r.date,
         })));
