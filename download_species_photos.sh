@@ -216,7 +216,8 @@ echo ""
 ls -lh assets/species/*.jpg 2>/dev/null | awk '{print "  "$5, $9}' || echo "  (no .jpg files)"
 echo ""
 TOTAL=$(ls assets/species/*.jpg 2>/dev/null | wc -l || echo 0)
-echo "  $TOTAL / 22 photos downloaded"
+EXPECTED=$(python3 -c "import json; print(len(json.load(open('species.json'))['species']))" 2>/dev/null || echo "?")
+echo "  $TOTAL / $EXPECTED photos downloaded"
 echo ""
 echo "Next steps:"
 echo "  git add assets/species/*.jpg"

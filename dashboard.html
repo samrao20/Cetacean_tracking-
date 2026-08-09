@@ -21,14 +21,9 @@
   <style>
     /* Page-unique styles only — shared system lives in assets/koamas.css */
 
-    /* Dark instrument page */
-    body {
-      background:
-        radial-gradient(80% 50% at 85% 0%, rgba(56,189,248,0.06), transparent 60%),
-        radial-gradient(60% 45% at 8% 100%, rgba(14,165,233,0.08), transparent 60%),
-        linear-gradient(180deg, #0b1f33 0%, #091a2c 50%, #071626 100%);
-      color: var(--grey);
-    }
+    /* Dark instrument page — background is the shared .bg-waves.bg-waves--deep
+       texture on <body> (assets/koamas.css); this just sets the text colour. */
+    body { color: var(--grey); }
 
     .panel-dark {
       background: rgba(255,255,255,0.045);
@@ -51,7 +46,7 @@
     .skel { animation: skel-pulse 1.8s ease-in-out infinite; }
   </style>
 </head>
-<body>
+<body class="bg-waves bg-waves--deep">
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 
@@ -465,6 +460,21 @@
 
   const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+  // ── Normalise an atoll string ──────────────────────────────
+  // Supabase free-text and the local fallback disagree on trailing
+  // " Atoll", casing, and stray whitespace (e.g. "Lhaviyani" vs.
+  // "Lhaviyani Atoll" vs. "lhaviyani Atoll "), which otherwise renders as
+  // duplicate columns in the matrix below. Collapse to one canonical bare
+  // name — Unicode-normalised (NFC, since "Malé" can arrive composed or
+  // decomposed), trimmed, de-suffixed, title-cased.
+  function normaliseAtoll(raw) {
+    if (!raw) return '';
+    let s = String(raw).normalize('NFC').replace(/\s+/g, ' ').trim();
+    while (/\batoll$/i.test(s)) s = s.replace(/\s*atoll$/i, '').trim();
+    if (!s) return '';
+    return s.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
+  }
+
   // ── Normalise: Supabase → common shape ────────────────────
   function normaliseSupabase(rows) {
     return (rows || []).map(r => ({
@@ -472,7 +482,7 @@
       species_slug: r.species?.slug        || '',
       species_name: r.species?.common_name || 'Unknown',
       date:         r.sighting_date        || '',
-      atoll:        r.atoll                || '',
+      atoll:        normaliseAtoll(r.atoll),
       count:        parseCountRange(r.count_range),
       notes:        r.notes                || '',
       contributor:  r.submitter_phone_hash || '',
@@ -486,7 +496,7 @@
       species_slug: r.species        || '',
       species_name: r.speciesCommon  || 'Unknown',
       date:         r.date           || '',
-      atoll:        r.atoll          || '',
+      atoll:        normaliseAtoll(r.atoll),
       count:        typeof r.groupSize === 'number' ? r.groupSize : 0,
       notes:        r.behaviour      || '',
       contributor:  r.observer       || '',
@@ -789,9 +799,16 @@
       return;
     }
 
-    const speciesCountMap = countBy(rows, 'species_name');
-    const speciesList     = Object.entries(speciesCountMap).sort((a, b) => b[1] - a[1]).map(([n]) => n);
-    const atollList       = [...new Set(rows.map(r => r.atoll).filter(Boolean))].sort();
+    const UNRECORDED       = 'Unrecorded';
+    const speciesCountMap  = countBy(rows, 'species_name');
+    const speciesList      = Object.entries(speciesCountMap).sort((a, b) => b[1] - a[1]).map(([n]) => n);
+    // Sightings with no atoll on file get an explicit bucket rather than
+    // being silently dropped — kept last regardless of alphabetical sort.
+    const atollList = [...new Set(rows.map(r => r.atoll || UNRECORDED))].sort((a, b) => {
+      if (a === UNRECORDED) return 1;
+      if (b === UNRECORDED) return -1;
+      return a.localeCompare(b);
+    });
 
     if (speciesList.length === 0 || atollList.length === 0) {
       emptyEl.classList.remove('hidden');
@@ -801,8 +818,7 @@
     // Build cell counts
     const cellMap = {};
     rows.forEach(r => {
-      if (!r.atoll) return;
-      const k = r.species_name + '||' + r.atoll;
+      const k = r.species_name + '||' + (r.atoll || UNRECORDED);
       cellMap[k] = (cellMap[k] || 0) + 1;
     });
 
@@ -814,25 +830,26 @@
     }
     function cellFg(n) { return n ? '#ffffff' : 'rgba(227,233,234,0.45)'; }
 
-    const shortAtoll = a => a.replace(' Atoll', '');
-
     const thead = `<tr class="border-b border-white/15">
       <th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#9fb3c4] uppercase tracking-wide whitespace-nowrap">Species</th>
-      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#9fb3c4] text-center whitespace-nowrap">${shortAtoll(a)}</th>`).join('')}
+      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#9fb3c4] text-center whitespace-nowrap${a === UNRECORDED ? ' italic opacity-70' : ''}" ${a === UNRECORDED ? 'title="Sightings with no atoll on file"' : ''}>${a}</th>`).join('')}
       <th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#9fb3c4] text-center whitespace-nowrap border-l border-white/15">Total</th>
     </tr>`;
 
     const tbody = speciesList.map(sp => {
-      const total = speciesCountMap[sp] || 0;
+      // Sum the row's own visible cells rather than trusting
+      // speciesCountMap directly, so Total always reconciles with what's
+      // on screen (speciesCountMap counted every row regardless of atoll).
       const cells = atollList.map(a => {
         const n  = cellMap[sp + '||' + a] || 0;
         const bg = cellBg(n);
         const fg = cellFg(n);
-        return `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || ''}</td>`;
-      }).join('');
+        return { n, html: `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || ''}</td>` };
+      });
+      const total = cells.reduce((sum, c) => sum + c.n, 0);
       return `<tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
         <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#d8e6f0] whitespace-nowrap">${sp}</td>
-        ${cells}
+        ${cells.map(c => c.html).join('')}
         <td class="px-3 py-2 text-[0.72rem] font-semibold text-white text-center border-l border-white/15">${total}</td>
       </tr>`;
     }).join('');
