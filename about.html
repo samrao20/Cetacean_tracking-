@@ -241,11 +241,10 @@
         they see something — through the app already open on their phone.
       </p>
       <p>
-        The project grew from a small circle of people already spending time in and around
-        Maldivian marine science, working with the Lander and Kudahura teams to turn a shared
-        interest in cetaceans into something structured enough to last: a bot to collect reports,
-        a process to verify them, and a public map and dashboard to make the record useful to
-        researchers, conservationists, and the public alike.
+        Koamas is founded by Samay and James, working in collaboration with Reefscapers and Marine
+        Savers to turn a shared interest in cetaceans into something structured enough to last:
+        a bot to collect reports, a process to verify them, and a public map and dashboard to make
+        the record useful to researchers, conservationists, and the public alike.
       </p>
     </div>
   </section>
@@ -333,6 +332,10 @@
             the &ldquo;coral frame&rdquo; propagation method — over half a million corals transplanted across
             more than 7,000 frames — and also run sea-turtle rescue and rehabilitation, aquaculture, and
             coastal-protection programmes across the archipelago.
+          </p>
+          <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
+            At Kuda Huraa, Koamas works alongside Fin, a dolphin biologist, and Riley, who support the
+            project's fieldwork in the atoll.
           </p>
           <span class="inline-flex items-center gap-1 text-xs font-semibold text-[#0ea5e9]">reefscapers.com →</span>
         </div>
@@ -547,25 +550,13 @@
   fetch('data/team.json')
     .then(function (r) { return r.json(); })
     .then(function (data) {
-      // Founders & team, grouped by org (e.g. "Lander team" / "Kudahura team")
+      // Founders & team
       var members = data.team || [];
-      var groups  = [];
-      members.forEach(function (m) {
-        var g = groups.find(function (g) { return g.org === m.org; });
-        if (!g) { g = { org: m.org, members: [] }; groups.push(g); }
-        g.members.push(m);
-      });
       var groupsEl = document.getElementById('team-groups');
       if (groupsEl) {
-        groupsEl.innerHTML = groups.length ? groups.map(function (g) {
-          return '' +
-            '<div>' +
-              '<h3 class="text-xs font-semibold tracking-[0.14em] uppercase text-[#5b6b7d] mb-4">' + esc(g.org) + '</h3>' +
-              '<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">' +
-                g.members.map(memberCardHTML).join('') +
-              '</div>' +
-            '</div>';
-        }).join('') : '<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';
+        groupsEl.innerHTML = members.length
+          ? '<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">' + members.map(memberCardHTML).join('') + '</div>'
+          : '<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';
       }
 
       // Partner photos on the existing Reefscapers / Marine Savers cards
