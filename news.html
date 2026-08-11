@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News &amp; Events — Koamas by Reefscapers</title>
+  <meta name="description" content="Talks, symposia, field updates and upcoming events from the Koamas Maldives cetacean citizen-science project." />
+  <meta property="og:title" content="News &amp; Events — Koamas by Reefscapers" />
+  <meta property="og:description" content="Talks, symposia, field updates and upcoming events from the Koamas project." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="assets/img/koamas-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
+
+  <style>
+    /* Page-unique styles only — shared system lives in assets/koamas.css */
+
+    /* Entry card: photo panel over a cyan gradient, so a missing image still reads as designed */
+    .news-photo {
+      background:
+        linear-gradient(rgba(7,22,38,0.28), rgba(7,22,38,0.52)),
+        linear-gradient(135deg, #123150, #0ea5e9);
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 16 / 9;
+    }
+    .news-photo.has-image { background-blend-mode: normal; }
+
+    /* Type pill — event vs news */
+    .news-tag {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .news-tag-event { background: #e0f2fe; color: #0369a1; }
+    .news-tag-news  { background: #e8eef4; color: #45586c; }
+
+    /* Muted "awaiting content" note */
+    .news-pending {
+      border-left: 2px solid var(--rule);
+      padding-left: 0.85rem;
+      font-style: italic;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-waves">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- Brand bar -->
+<div class="brand-bar" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
+  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
+      <span class="flex flex-col leading-none">
+      <span class="flex items-baseline gap-1.5">
+        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold tracking-tight">
+          <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
+          <span class="nav-logo" aria-hidden="true">Koamas</span>
+        </span>
+        <span class="not-italic font-['Outfit'] text-[11px] font-medium tracking-tight text-[#8fc9ec]">by Reefscapers</span>
+      </span>
+      <span class="text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-0.5">Maldives Cetacean Watch</span>
+    </span>
+    </a>
+    <ul class="nav-pill hidden md:flex items-center text-sm font-medium" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
+      <li><a href="species.html">Species</a></li>
+      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="news.html" aria-current="page">News</a></li>
+      <li>
+        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
+          Submit a sighting
+        </a>
+      </li>
+    </ul>
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
+    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
+      <li><a href="index.html" class="block py-1">Home</a></li>
+      <li><a href="map.html" class="block py-1">Map</a></li>
+      <li><a href="species.html" class="block py-1">Species</a></li>
+      <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
+      <li><a href="about.html" class="block py-1">About</a></li>
+      <li><a href="news.html" class="block py-1" aria-current="page">News</a></li>
+      <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     PAGE HEADER
+══════════════════════════════════════ -->
+<header class="dive-band text-white">
+  <div class="sonar-rings absolute -right-20 -top-20 opacity-60 hidden md:block" aria-hidden="true">
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
+      <circle cx="210" cy="210" r="76"  stroke="rgba(56,189,248,0.28)"/>
+      <circle cx="210" cy="210" r="142" stroke="rgba(56,189,248,0.16)"/>
+      <circle cx="210" cy="210" r="206" stroke="rgba(56,189,248,0.08)"/>
+    </svg>
+    <div class="sonar-sweep"></div>
+  </div>
+  <div class="max-w-3xl mx-auto px-4 py-14 md:py-20" id="main-content">
+    <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas by Reefscapers · News</p>
+    <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-5">News &amp; events</h1>
+    <p class="text-[#9fb3c4] text-base md:text-lg leading-relaxed max-w-xl">
+      Talks, symposia, field updates and what's coming next for cetacean research in the Maldives.
+    </p>
+  </div>
+</header>
+<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
+
+<!-- ══════════════════════════════════════
+     ENTRIES
+══════════════════════════════════════ -->
+<main class="max-w-5xl mx-auto px-4 py-12 md:py-16 space-y-16">
+
+  <!-- Upcoming -->
+  <section id="upcoming-section" aria-labelledby="upcoming-heading" hidden>
+    <div class="mb-8">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#0ea5e9] mb-3">What's next</p>
+      <h2 id="upcoming-heading" class="text-3xl md:text-4xl font-semibold text-[#0b1f33]">Upcoming</h2>
+    </div>
+    <div id="upcoming-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </section>
+
+  <!-- Past / recent -->
+  <section id="recent-section" aria-labelledby="recent-heading" hidden>
+    <div class="mb-8">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#0ea5e9] mb-3">From the field</p>
+      <h2 id="recent-heading" class="text-3xl md:text-4xl font-semibold text-[#0b1f33]">Recent</h2>
+    </div>
+    <div id="recent-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </section>
+
+  <!-- Empty state -->
+  <section id="empty-state" class="text-center py-16" hidden>
+    <p class="text-lg font-semibold text-[#0b1f33] mb-2">Nothing to report just yet</p>
+    <p class="text-sm text-[#5b6b7d] max-w-md mx-auto">
+      News, talks and events will appear here. In the meantime, you can
+      <a href="submit.html" class="text-[#0ea5e9] font-medium hover:underline">report a sighting</a>
+      or browse the <a href="species.html" class="text-[#0ea5e9] font-medium hover:underline">species guide</a>.
+    </p>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<div class="wave-divider bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
+<section class="dive-band text-white" aria-labelledby="news-cta-heading">
+  <div class="max-w-3xl mx-auto px-4 py-14 md:py-16 text-center">
+    <h2 id="news-cta-heading" class="text-2xl md:text-3xl font-semibold mb-4">Seen something? Tell us.</h2>
+    <p class="text-[#9fb3c4] text-sm md:text-base leading-relaxed mb-8 max-w-xl mx-auto">
+      Every verified sighting helps us understand — and protect — the cetaceans of the Maldives.
+    </p>
+    <a href="submit.html" class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]">
+      Share a sighting &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <p class="font-['Fraunces'] text-lg font-semibold text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
+      <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
+      <p class="text-xs text-[#5b6e80] mt-1">In partnership with
+        <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
+        <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
+        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+        <li><a href="news.html" class="hover:text-white transition-colors">News</a></li>
+        <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
+        <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
+        <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
+        <li><a href="submit.html#koamas-code" class="hover:text-white transition-colors">Watching guidelines</a></li>
+        <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  // "2026-07-01" → "1 July 2026". Falls back to date_note, then to nothing.
+  function formatDate(item) {
+    var raw = item.date || '';
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+    if (m) {
+      return Number(m[3]) + ' ' + MONTHS[Number(m[2]) - 1] + ' ' + m[1];
+    }
+    m = /^(\d{4})-(\d{2})$/.exec(raw);
+    if (m) return MONTHS[Number(m[2]) - 1] + ' ' + m[1];
+    return item.date_note || '';
+  }
+
+  function cardHTML(item) {
+    var tagClass = item.type === 'event' ? 'news-tag-event' : 'news-tag-news';
+    var when     = formatDate(item);
+    var meta     = [when, item.location].filter(Boolean).map(esc).join(' &middot; ');
+
+    var photoStyle = '';
+    var photoClass = 'news-photo rounded-t-xl';
+    if (item.image) {
+      photoStyle = ' style="background-image: linear-gradient(rgba(7,22,38,0.28), rgba(7,22,38,0.52)), url(\'' +
+                   esc(item.image) + '\');"';
+      photoClass += ' has-image';
+    }
+
+    var body = '';
+    if (item.body && item.body.length) {
+      body = item.body.map(function (p) {
+        return '<p class="text-sm text-[#5b6b7d] leading-relaxed mt-3">' + esc(p) + '</p>';
+      }).join('');
+    } else {
+      body = '<p class="news-pending text-xs text-[#5b6b7d] leading-relaxed mt-4">' +
+             (item.status === 'upcoming'
+               ? 'Full details coming soon.'
+               : 'A full write-up is on its way.') +
+             '</p>';
+    }
+
+    var links = '';
+    if (item.links && item.links.length) {
+      links = '<div class="flex flex-wrap gap-x-4 gap-y-1 mt-4">' + item.links.map(function (l) {
+        return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener" ' +
+               'class="text-sm text-[#0ea5e9] font-medium hover:underline">' + esc(l.label) + ' &rarr;</a>';
+      }).join('') + '</div>';
+    }
+
+    var credit = item.image && item.image_credit
+      ? '<p class="text-[10px] text-[#5b6b7d] mt-1.5">&copy; ' + esc(item.image_credit) + '</p>'
+      : '';
+
+    return '' +
+      '<article class="reveal sighting-card rounded-xl overflow-hidden flex flex-col">' +
+        '<div class="' + photoClass + '"' + photoStyle + ' role="img" aria-label="' + esc(item.title) + '"></div>' +
+        '<div class="p-6 flex-1 flex flex-col">' +
+          '<div class="flex items-center gap-2 mb-3">' +
+            '<span class="news-tag ' + tagClass + '">' + esc(item.kicker || item.type || 'News') + '</span>' +
+          '</div>' +
+          '<h3 class="text-lg font-semibold text-[#0b1f33] mb-1.5">' + esc(item.title) + '</h3>' +
+          (meta ? '<p class="text-xs text-[#5b6b7d] mb-3">' + meta + '</p>' : '') +
+          '<p class="text-sm text-[#0f1c2b] leading-relaxed">' + esc(item.summary) + '</p>' +
+          body +
+          links +
+          credit +
+        '</div>' +
+      '</article>';
+  }
+
+  // Upcoming: soonest first, undated last. Past: newest first.
+  function byDate(dir) {
+    return function (a, b) {
+      var da = a.date || '', db = b.date || '';
+      if (!da && !db) return 0;
+      if (!da) return 1;
+      if (!db) return -1;
+      return da < db ? -dir : da > db ? dir : 0;
+    };
+  }
+
+  function render(items) {
+    var upcoming = items.filter(function (i) { return i.status === 'upcoming'; }).sort(byDate(1));
+    var recent   = items.filter(function (i) { return i.status !== 'upcoming'; }).sort(byDate(-1));
+
+    var sections = [
+      { list: upcoming, listEl: 'upcoming-list', sectionEl: 'upcoming-section' },
+      { list: recent,   listEl: 'recent-list',   sectionEl: 'recent-section' }
+    ];
+
+    sections.forEach(function (s) {
+      var section = document.getElementById(s.sectionEl);
+      if (!s.list.length) { section.hidden = true; return; }
+      document.getElementById(s.listEl).innerHTML = s.list.map(cardHTML).join('');
+      section.hidden = false;
+    });
+
+    document.getElementById('empty-state').hidden = (upcoming.length + recent.length) > 0;
+
+    if (window.Koamas && window.Koamas.revealIn) window.Koamas.revealIn(document);
+  }
+
+  fetch('data/news.json')
+    .then(function (r) { return r.ok ? r.json() : { items: [] }; })
+    .then(function (d) { render((d && d.items) || []); })
+    .catch(function () { render([]); });
+})();
+</script>
+
+</body>
+</html>

@@ -741,6 +741,43 @@
         "pod_size",
         "length_m"
       ]
+    },
+    {
+      "slug": "ginkgo-toothed-beaked-whale",
+      "common_name": "Ginkgo-toothed Beaked Whale",
+      "scientific_name": "Mesoplodon ginkgodens",
+      "type": "whale",
+      "family": "Ziphiidae",
+      "iucn_status": "DD",
+      "iucn_label": "Data Deficient",
+      "photo": "assets/species/_placeholder.svg",
+      "photo_credit": "No free-licence photograph available — first confirmed at-sea identifications were made only in 2024",
+      "pod_size": "1–5",
+      "length_m": "4.7–5.3",
+      "weight_kg": "1,500–1,840",
+      "diet": "Deep-water squid — chiefly Gonatidae, Octopoteuthidae and Cranchiidae — with smaller amounts of mesopelagic fish and crustaceans",
+      "behaviour": [
+        "Known almost entirely from strandings; the first confirmed identifications of living animals at sea were made in 2024, off Baja California",
+        "Unusually unscarred for a beaked whale — adult males lack the white linear tooth-rake scratches that cover most Mesoplodon species",
+        "Deep, long-duration foraging dives typical of the family; surfaces briefly and inconspicuously between them"
+      ],
+      "maldives_distribution": "A male tooth collected in the Maldives before 1978 is attributed to this species — the only Maldivian record to date. Ranges through deep tropical and warm-temperate waters of the Indian and Pacific Oceans, with regional records from Sri Lanka and the Seychelles",
+      "best_months": [],
+      "best_months_note": "TODO: verify",
+      "distinguishing_features": "Males carry a single pair of broad, flattened teeth shaped like a ginkgo leaf, erupting near the middle of the lower jaw; body dark grey to black above with a paler underside; pale oval spots on the flanks and belly are cookie-cutter shark bites rather than fighting scars; moderate beak and a gently sloping melon. Females and juveniles are effectively unidentifiable at sea",
+      "similar_species": [
+        "Deraniyagala's beaked whale — treated as the same species until 2014; essentially inseparable at sea, and the more likely of the two in Maldivian waters",
+        "Blainville's beaked whale — strongly arched lower jaw with teeth set on the raised arch; adult males heavily scarred, unlike this species",
+        "Cuvier's beaked whale — shorter goose-like beak, teeth at the tip of the jaw, head whitening with age"
+      ],
+      "unverified": [
+        "iucn_status",
+        "best_months",
+        "maldives_distribution",
+        "pod_size",
+        "length_m",
+        "weight_kg"
+      ]
     }
   ]
 }

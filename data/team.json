@@ -1,0 +1,71 @@
+{
+  "_comment": "Koamas founders, team and partners for about.html. photo/bio empty is fine — the page falls back to an initials avatar and a 'Bio coming soon' note. Partner entries with pending:true stay hidden until confirmed. Team entries are grouped by 'org' on the page (Lander team vs Kudahura team).",
+  "team": [
+    {
+      "name": "Samay",
+      "role": "Co-founder",
+      "org": "Lander team",
+      "location": "Maldives",
+      "bio": "",
+      "photo": "",
+      "email": "",
+      "links": []
+    },
+    {
+      "name": "James",
+      "role": "Co-founder",
+      "org": "Lander team",
+      "location": "Maldives",
+      "bio": "",
+      "photo": "",
+      "email": "",
+      "links": []
+    },
+    {
+      "name": "Fin",
+      "role": "Dolphin biologist",
+      "org": "Kudahura team",
+      "location": "Kudahura",
+      "bio": "",
+      "photo": "",
+      "email": "",
+      "links": []
+    },
+    {
+      "name": "Riley",
+      "role": "Team member",
+      "org": "Kudahura team",
+      "location": "Kudahura",
+      "bio": "",
+      "photo": "",
+      "email": "",
+      "links": []
+    }
+  ],
+  "partners": [
+    {
+      "name": "Reefscapers",
+      "tag": "Marine Consultancy · Coral Reef Restoration",
+      "url": "https://reefscapers.com/",
+      "photo": "",
+      "photo_credit": "",
+      "pending": false
+    },
+    {
+      "name": "Marine Savers",
+      "tag": "Marine Conservation · Turtle Rescue & Rehab",
+      "url": "https://marinesavers.com/",
+      "photo": "",
+      "photo_credit": "",
+      "pending": false
+    },
+    {
+      "name": "MMRI",
+      "tag": "Maldives Marine Research Institute",
+      "url": "",
+      "photo": "",
+      "photo_credit": "",
+      "pending": true
+    }
+  ]
+}
