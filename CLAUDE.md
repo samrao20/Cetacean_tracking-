@@ -54,9 +54,11 @@ There is also an unfinished Next.js app under `web/` that is not deployed. Do no
 ├── about.html          # Built — "What does Koamas mean?", methodology, privacy
 ├── map.html            # Built — full-screen MapLibre map with filter sidebar
 ├── dashboard.html      # Built — stats cards + Chart.js visualisations
-├── submit.html         # Built — how-to guide + WhatsApp link + QR placeholder
-├── guidelines.html     # Built — responsible marine mammal watching guidelines
+├── submit.html         # Built — how-to guide + WhatsApp link + QR code + "Koamas Code" guidelines
+├── guidelines.html     # Redirect stub only — content merged into submit.html#koamas-code
+├── news.html           # Built — News & Events, rendered from data/news.json
 ├── species.json        # Static species data (edit by hand — see schema below)
+├── data/news.json      # News & Events entries (see News & Events section below)
 └── assets/
     ├── koamas.css      # Shared design system: tokens (:root), nav, footer, buttons, cards, reveal + reduced-motion guard
     ├── koamas.js       # Shared JS: mobile nav toggle, scroll/reveal helpers
@@ -141,8 +143,27 @@ the `<source src>` inside `<video id="hero-video">` in `index.html`.
 
 Helper scripts (run once if needed):
 - `bash download_species_photos.sh` — downloads species photos from Wikimedia Commons into `assets/img/species/`
-- `bash download_evolution_photos.sh` — downloads the Evolution-page photos from Wikimedia Commons into `assets/img/evolution/` and writes `credits.json` (the CC attribution `evolution.html` renders under each photo). Must run where Wikimedia is reachable; the page falls back to its inline-SVG silhouettes until the images exist.
 - `bash download_hero_video.sh` — downloads a fallback public-domain hero video
+
+### News & Events
+
+`news.html` replaced the old Evolution page. It renders entirely from `data/news.json`
+(top-level key `"items"`, fetched client-side same as `species.html` does for `species.json`).
+Each item: `slug, title, kicker, type ("event"|"news"), status ("upcoming"|"past"), date (ISO
+or ""), date_note, location, summary, body (string[]), image, image_credit, links[{label,url}]`.
+An empty `body` renders a "coming soon" note instead of breaking; an empty `image` falls back to
+a gradient panel. Upcoming entries render soonest-first, past entries newest-first. Add new
+entries directly to the array — no other file needs to change.
+
+### The Koamas Code
+
+The condensed responsible-watching guidelines live in `submit.html` at `#koamas-code` as five
+cards (Calm, Course, Clearance, Calves, Choice) plus "Contribute" as the bridge into the WhatsApp
+CTA. The full original guidelines text (all rules, the distance table, the Golden Rule) is
+preserved verbatim underneath in a `<details id="full-guidelines">` — do not reword it, per the
+informational-text guardrail above. `guidelines.html` is now only a redirect stub to
+`submit.html#koamas-code`, kept because the URL is linked from elsewhere on the web and GitHub
+Pages has no server-side redirects.
 
 ### Key Decisions
 
@@ -157,10 +178,10 @@ Helper scripts (run once if needed):
 - Fonts: Fraunces (headings, serif) + Outfit (body, sans) — loaded from Google Fonts. **Not Inter.**
 - Palette ("Abyss" — blue + grey): deep ocean navy `#0b1f33` (nav/footer/hero/headings), cyan-blue accent `#0ea5e9` (hover `#0284c7`), bright lagoon-cyan pop `#38bdf8`, cool light accent / avatar grey `#d8e6f0`, background `#f5f8fb`, text `#0f1c2b`, muted text `#5b6b7d`, rule `#dbe4ec`. Tokens live in `:root` in `assets/koamas.css`; legacy variable names (`--navy`, `--sand`, `--coral`, `--teal`, `--green`, `--lagoon`) are retained but now hold the Abyss values. **Not part of the brand palette — do not recolour:** the IUCN status badges in `species.html` (semantic conservation-status colours) and the map's categorical species-pin colours (a functional rainbow that must stay mutually distinguishable).
 - 3px cyan-blue gradient brand bar at top of every page (`<div class="brand-bar">`)
-- Nav logo: Koamas in italic Fraunces with "Maldives Cetacean Watch" tagline
+- Nav logo: Koamas in Fraunces (not italic) with "Maldives Cetacean Watch" tagline
 - Scientific-publication aesthetic — restrained, editorial, not SaaS-flashy
 - Mobile-first; map sidebar collapses to bottom sheet on small screens
-- Each page shares the same nav and footer markup (no templating — copy manually). A change to nav or footer must be applied to all built pages (index, species, about, map, dashboard, submit, guidelines) by hand, or they drift. Note: `map.html` has no `<footer>` (full-screen map).
+- Each page shares the same nav and footer markup (no templating — copy manually). A change to nav or footer must be applied to all built pages (index, species, about, map, dashboard, submit, news) by hand, or they drift. Note: `map.html` has no `<footer>` (full-screen map). `guidelines.html` is a redirect stub only and carries no nav/footer.
 
 ### Interactivity conventions
 

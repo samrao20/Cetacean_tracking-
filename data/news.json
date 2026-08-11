@@ -1,0 +1,35 @@
+{
+  "_comment": "Koamas news & events. Add newest entries anywhere in this array — news.html sorts them. Set status to 'upcoming' or 'past'. Leave body as [] and the page shows a 'coming soon' note instead. Leave image as '' and the page draws a gradient panel.",
+  "items": [
+    {
+      "slug": "tavelli-event",
+      "title": "Koamas at the Tavelli event",
+      "kicker": "Upcoming",
+      "type": "event",
+      "status": "upcoming",
+      "date": "",
+      "date_note": "Date to be confirmed",
+      "location": "Maldives",
+      "summary": "Koamas will be presenting the citizen-science sighting network and the first season of verified records. Full details are being finalised — check back shortly.",
+      "body": [],
+      "image": "",
+      "image_credit": "",
+      "links": []
+    },
+    {
+      "slug": "mmri-symposium-2026",
+      "title": "Koamas at the MMRI symposium",
+      "kicker": "Symposium",
+      "type": "news",
+      "status": "past",
+      "date": "2026-07-01",
+      "date_note": "",
+      "location": "Maldives Marine Research Institute",
+      "summary": "Koamas presented the WhatsApp-based sighting network at the MMRI symposium, setting out how citizen reports are verified and turned into an open record of Maldivian cetaceans.",
+      "body": [],
+      "image": "",
+      "image_credit": "",
+      "links": []
+    }
+  ]
+}

@@ -59,16 +59,14 @@
       50%       { transform: translateY(8px); opacity: 1; }
     }
 
-    /* ── Partner placeholder ── */
-    .partner-box {
-      background: #fff;
-      border: 1px dashed var(--rule);
-      color: var(--muted);
-      font-size: 0.75rem;
-      text-align: center;
-      transition: border-color 0.2s, color 0.2s;
+    /* ── Partner logo strip ── */
+    .partner-logo {
+      max-height: 40px;
+      max-width: 140px;
+      filter: grayscale(1) opacity(0.75);
+      transition: filter 0.2s;
     }
-    .partner-box:hover { border-color: var(--lagoon); color: var(--text); }
+    .partner-logo:hover { filter: grayscale(0) opacity(1); }
 
     @media (prefers-reduced-motion: reduce) {
       .hero-fade-up { animation: none; opacity: 1; transform: none; }
@@ -92,7 +90,7 @@
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
       <span class="flex items-baseline gap-1.5">
-        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold tracking-tight">
           <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
           <span class="nav-logo" aria-hidden="true">Koamas</span>
         </span>
@@ -107,8 +105,7 @@
       <li><a href="species.html">Species</a></li>
       <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="evolution.html">Evolution</a></li>
-      <li><a href="guidelines.html">Guidelines</a></li>
+      <li><a href="news.html">News</a></li>
       <li>
         <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
@@ -130,8 +127,7 @@
       <li><a href="species.html" class="block py-1">Species</a></li>
       <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
       <li><a href="about.html" class="block py-1">About</a></li>
-      <li><a href="evolution.html" class="block py-1">Evolution</a></li>
-      <li><a href="guidelines.html" class="block py-1">Guidelines</a></li>
+      <li><a href="news.html" class="block py-1">News</a></li>
       <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
     </ul>
   </div>
@@ -409,17 +405,12 @@
 <!-- ══════════════════════════════════════
      PARTNERS
 ══════════════════════════════════════ -->
-<section class="py-14 px-4 bg-[#cfe3f1]" aria-labelledby="partners-heading">
+<section id="partners-section" class="py-14 px-4 bg-[#cfe3f1]" aria-labelledby="partners-heading" hidden>
   <div class="max-w-4xl mx-auto text-center">
     <h2 id="partners-heading" class="text-xs font-semibold tracking-[0.18em] uppercase text-[#5b6b7d] mb-8">
       Supported by
     </h2>
-    <div class="flex flex-wrap justify-center gap-6">
-      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
-      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
-      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
-      <div class="partner-box rounded-lg w-32 h-16 flex items-center justify-center">Partner logo</div>
-    </div>
+    <div id="partners-strip" class="flex flex-wrap justify-center items-center gap-8"></div>
   </div>
 </section>
 
@@ -429,7 +420,7 @@
 <footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
-      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
+      <p class="font-['Fraunces'] text-lg font-semibold text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
       <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
       <p class="text-xs text-[#5b6e80] mt-1">In partnership with
         <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
@@ -438,11 +429,11 @@
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
         <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
-        <li><a href="evolution.html" class="hover:text-white transition-colors">Evolution</a></li>
+        <li><a href="news.html" class="hover:text-white transition-colors">News</a></li>
         <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
         <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
         <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
-        <li><a href="guidelines.html" class="hover:text-white transition-colors">Guidelines</a></li>
+        <li><a href="submit.html#koamas-code" class="hover:text-white transition-colors">Watching guidelines</a></li>
         <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
       </ul>
     </nav>
@@ -509,6 +500,22 @@
           </a>`;
       }).join('');
       staggerReveal(teaserEl);
+    })
+    .catch(() => {});
+
+  // ── Partner logos ───────────────────────────────────────────
+  // Only shows logos that actually exist yet; the section stays hidden
+  // entirely rather than showing placeholder boxes on the live site.
+  fetch('data/team.json')
+    .then(r => r.json())
+    .then(data => {
+      const ready = (data.partners || []).filter(p => p.photo && !p.pending);
+      if (!ready.length) return;
+      document.getElementById('partners-strip').innerHTML = ready.map(p => `
+        <a href="${p.url}" target="_blank" rel="noopener" aria-label="${p.name}">
+          <img class="partner-logo" src="${p.photo}" alt="${p.name}" loading="lazy" />
+        </a>`).join('');
+      document.getElementById('partners-section').hidden = false;
     })
     .catch(() => {});
 

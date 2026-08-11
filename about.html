@@ -28,10 +28,69 @@
     .prose p:last-child { margin-bottom: 0; }
 
     /* ── Team cards ── */
-    .team-card > div {
-      transition: transform 0.25s var(--ease), border-color 0.25s;
+    .team-card {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s var(--ease);
     }
-    .team-card:hover > div { transform: translateX(4px); border-color: var(--lagoon); }
+    .team-card:hover { border-color: var(--lagoon); box-shadow: var(--shadow-md); }
+    .team-card > div.border-l-2 {
+      transition: transform 0.25s var(--ease), border-color 0.25s;
+      border-left: none !important;
+    }
+    .team-card:hover > div.border-l-2 { transform: translateX(4px); }
+
+    /* Partner / origin-story photo slots — visible "coming soon" state until real photos land */
+    .partner-photo {
+      height: 140px;
+      background: linear-gradient(135deg, #123150, #0ea5e9);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .partner-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── Founder / team member cards ── */
+    .member-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s var(--ease);
+    }
+    .member-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--lagoon);
+      box-shadow: var(--shadow-md);
+    }
+    .member-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--rule);
+      background: var(--grey);
+      flex-shrink: 0;
+    }
+    .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .member-avatar .initials {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--teal);
+    }
+
+    /* ── Contact section ── */
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
   </style>
 </head>
 <body class="bg-waves">
@@ -48,7 +107,7 @@
       <img src="assets/img/koamas-logo-nav.png" alt="" aria-hidden="true" class="nav-mark" width="22" height="36" />
       <span class="flex flex-col leading-none">
       <span class="flex items-baseline gap-1.5">
-        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold italic tracking-tight">
+        <span class="nav-logo-wrap font-['Fraunces'] text-xl font-semibold tracking-tight">
           <span class="nav-logo-base text-[#eaf4fb]">Koamas</span>
           <span class="nav-logo" aria-hidden="true">Koamas</span>
         </span>
@@ -63,8 +122,7 @@
       <li><a href="species.html">Species</a></li>
       <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
       <li><a href="about.html" aria-current="page">About</a></li>
-      <li><a href="evolution.html">Evolution</a></li>
-      <li><a href="guidelines.html">Guidelines</a></li>
+      <li><a href="news.html">News</a></li>
       <li>
         <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
           Submit a sighting
@@ -86,8 +144,7 @@
       <li><a href="species.html" class="block py-1">Species</a></li>
       <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
       <li><a href="about.html" class="block py-1" aria-current="page">About</a></li>
-      <li><a href="evolution.html" class="block py-1">Evolution</a></li>
-      <li><a href="guidelines.html" class="block py-1">Guidelines</a></li>
+      <li><a href="news.html" class="block py-1">News</a></li>
       <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
     </ul>
   </div>
@@ -158,6 +215,56 @@
     </div>
   </section>
 
+  <!-- ── How it started ──
+       New storytelling section (not part of the original guardrail copy above).
+       Drafted from the founders' account of how the project began; flagged for
+       Samay/James sign-off before this is treated as final. -->
+  <section aria-labelledby="story-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The idea</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <h2 id="story-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
+      How Koamas started
+    </h2>
+    <div class="prose">
+      <p>
+        Dolphins and whales are seen constantly around the Maldives — from dive boats, ferries,
+        liveaboards, and resort jetties. Almost none of those encounters were ever written down.
+        A sighting would happen, get talked about for a day, and then disappear — no record of
+        where, when, or what species, and no way to ask what any of it meant over time.
+      </p>
+      <p>
+        That gap is what Koamas set out to close: not a research survey run for a few weeks a
+        year, but a standing, always-open channel that anyone on the water can use the moment
+        they see something — through the app already open on their phone.
+      </p>
+      <p>
+        The project grew from a small circle of people already spending time in and around
+        Maldivian marine science, working with the Lander and Kudahura teams to turn a shared
+        interest in cetaceans into something structured enough to last: a bot to collect reports,
+        a process to verify them, and a public map and dashboard to make the record useful to
+        researchers, conservationists, and the public alike.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Founders & team ── -->
+  <section aria-labelledby="team-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Who's behind it</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <h2 id="team-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-8">
+      Founders &amp; team
+    </h2>
+    <div id="team-groups" class="space-y-10">
+      <p class="text-sm text-[#5b6b7d]">Loading team…</p>
+    </div>
+  </section>
+
   <!-- ── The project ── -->
   <section aria-labelledby="project-heading">
     <div class="flex items-center gap-3 mb-6">
@@ -213,10 +320,11 @@
       Maldivian marine-science expertise to the project.
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="partner-cards">
 
       <!-- Reefscapers -->
       <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="group team-card">
+        <div class="partner-photo rounded-t-lg" data-partner-photo="Reefscapers"></div>
         <div class="border-l-2 border-[#0ea5e9] pl-5 py-1 h-full">
           <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">Reefscapers</h3>
           <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Marine Consultancy &middot; Coral Reef Restoration</p>
@@ -232,6 +340,7 @@
 
       <!-- Marine Savers -->
       <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="group team-card">
+        <div class="partner-photo rounded-t-lg" data-partner-photo="Marine Savers"></div>
         <div class="border-l-2 border-[#0ea5e9] pl-5 py-1 h-full">
           <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">Marine Savers</h3>
           <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Marine Conservation &middot; Turtle Rescue &amp; Rehab</p>
@@ -304,6 +413,25 @@
     </div>
   </section>
 
+  <!-- ── Contact ── -->
+  <section aria-labelledby="contact-heading">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Get in touch</p>
+      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
+    </div>
+    <h2 id="contact-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
+      Contact
+    </h2>
+    <div class="contact-card max-w-md">
+      <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
+        For partnership, media, or research enquiries, reach the team at:
+      </p>
+      <!-- TODO: replace with James's work email, then with hello@koamas.org at full launch -->
+      <p class="text-base font-semibold text-[#0b1f33]">Email coming soon</p>
+    </div>
+  </section>
+
   <!-- ── Get involved ── -->
   <section aria-labelledby="involved-heading" class="dive-band rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,31,51,0.18)]">
     <p class="text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Get involved</p>
@@ -342,7 +470,7 @@
 <footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
-      <p class="font-['Fraunces'] text-lg font-semibold italic text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
+      <p class="font-['Fraunces'] text-lg font-semibold text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
       <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
       <p class="text-xs text-[#5b6e80] mt-1">In partnership with
         <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
@@ -351,11 +479,11 @@
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
         <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
-        <li><a href="evolution.html" class="hover:text-white transition-colors">Evolution</a></li>
+        <li><a href="news.html" class="hover:text-white transition-colors">News</a></li>
         <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
         <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
         <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
-        <li><a href="guidelines.html" class="hover:text-white transition-colors">Guidelines</a></li>
+        <li><a href="submit.html#koamas-code" class="hover:text-white transition-colors">Watching guidelines</a></li>
         <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
       </ul>
     </nav>
@@ -377,6 +505,105 @@
       if (el && count) el.textContent = count;
     })
     .catch(function () {});
+
+  // ── Team, founders & partner photos ─────────────────────────
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function initials(name) {
+    return name.split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
+  }
+
+  function memberCardHTML(m) {
+    var photo = m.photo
+      ? '<img src="' + esc(m.photo) + '" alt="' + esc(m.name) + '" ' +
+        'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
+        '<div class="initials" style="display:none;">' + esc(initials(m.name)) + '</div>'
+      : '<div class="initials">' + esc(initials(m.name)) + '</div>';
+
+    var bio = m.bio
+      ? '<p class="text-sm text-[#5b6b7d] leading-relaxed mt-2">' + esc(m.bio) + '</p>'
+      : '<p class="text-xs text-[#5b6b7d] italic mt-2">Bio coming soon</p>';
+
+    var email = m.email
+      ? '<a href="mailto:' + esc(m.email) + '" class="text-xs text-[#0ea5e9] font-medium hover:underline mt-2 inline-block">' + esc(m.email) + '</a>'
+      : '';
+
+    return '' +
+      '<div class="member-card">' +
+        '<div class="member-avatar">' + photo + '</div>' +
+        '<div class="min-w-0">' +
+          '<h3 class="text-base font-bold text-[#0b1f33]">' + esc(m.name) + '</h3>' +
+          '<p class="text-xs font-semibold text-[#0ea5e9]">' + esc(m.role) +
+            (m.location ? ' &middot; ' + esc(m.location) : '') + '</p>' +
+          bio + email +
+        '</div>' +
+      '</div>';
+  }
+
+  fetch('data/team.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      // Founders & team, grouped by org (e.g. "Lander team" / "Kudahura team")
+      var members = data.team || [];
+      var groups  = [];
+      members.forEach(function (m) {
+        var g = groups.find(function (g) { return g.org === m.org; });
+        if (!g) { g = { org: m.org, members: [] }; groups.push(g); }
+        g.members.push(m);
+      });
+      var groupsEl = document.getElementById('team-groups');
+      if (groupsEl) {
+        groupsEl.innerHTML = groups.length ? groups.map(function (g) {
+          return '' +
+            '<div>' +
+              '<h3 class="text-xs font-semibold tracking-[0.14em] uppercase text-[#5b6b7d] mb-4">' + esc(g.org) + '</h3>' +
+              '<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">' +
+                g.members.map(memberCardHTML).join('') +
+              '</div>' +
+            '</div>';
+        }).join('') : '<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';
+      }
+
+      // Partner photos on the existing Reefscapers / Marine Savers cards
+      var partners = data.partners || [];
+      document.querySelectorAll('[data-partner-photo]').forEach(function (slot) {
+        var name = slot.getAttribute('data-partner-photo');
+        var p    = partners.find(function (p) { return p.name === name; });
+        if (p && p.photo) {
+          slot.innerHTML = '<img src="' + esc(p.photo) + '" alt="' + esc(name) + '" ' +
+            'onerror="this.parentElement.textContent=\'Photo coming soon\';" />';
+        } else {
+          slot.textContent = 'Photo coming soon';
+        }
+      });
+
+      // MMRI joins the partner grid once confirmed (pending: false and a link is set)
+      var mmri = partners.find(function (p) { return p.name === 'MMRI'; });
+      if (mmri && !mmri.pending && mmri.url) {
+        var photoHTML = mmri.photo
+          ? '<img src="' + esc(mmri.photo) + '" alt="MMRI" onerror="this.parentElement.textContent=\'Photo coming soon\';" />'
+          : 'Photo coming soon';
+        document.getElementById('partner-cards').insertAdjacentHTML('beforeend', '' +
+          '<a href="' + esc(mmri.url) + '" target="_blank" rel="noopener" class="group team-card">' +
+            '<div class="partner-photo rounded-t-lg">' + photoHTML + '</div>' +
+            '<div class="pl-5 py-1 h-full">' +
+              '<h3 class="text-base font-bold text-[#0b1f33] mb-0.5">MMRI</h3>' +
+              '<p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">' + esc(mmri.tag || '') + '</p>' +
+            '</div>' +
+          '</a>');
+      }
+    })
+    .catch(function () {
+      var groupsEl = document.getElementById('team-groups');
+      if (groupsEl) groupsEl.innerHTML = '<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';
+      document.querySelectorAll('[data-partner-photo]').forEach(function (slot) {
+        slot.textContent = 'Photo coming soon';
+      });
+    });
 }());
 </script>
 
