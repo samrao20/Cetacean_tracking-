@@ -1,10 +1,10 @@
 {
-  "_comment": "Koamas founders, team and partners for about.html. photo/bio empty is fine — the page falls back to an initials avatar and a 'Bio coming soon' note. Partner entries with pending:true stay hidden until confirmed. Team entries are grouped by 'org' on the page (Lander team vs Kudahura team).",
+  "_comment": "Koamas founders and partners for about.html. photo/bio empty is fine — the page falls back to an initials avatar and a 'Bio coming soon' note. Partner entries with pending:true stay hidden until confirmed. Fin and Riley (Kudahura team) are mentioned in the Reefscapers partner card copy in about.html, not as separate founder entries here.",
   "team": [
     {
       "name": "Samay",
       "role": "Co-founder",
-      "org": "Lander team",
+      "org": "",
       "location": "Maldives",
       "bio": "",
       "photo": "",
@@ -14,28 +14,8 @@
     {
       "name": "James",
       "role": "Co-founder",
-      "org": "Lander team",
+      "org": "",
       "location": "Maldives",
-      "bio": "",
-      "photo": "",
-      "email": "",
-      "links": []
-    },
-    {
-      "name": "Fin",
-      "role": "Dolphin biologist",
-      "org": "Kudahura team",
-      "location": "Kudahura",
-      "bio": "",
-      "photo": "",
-      "email": "",
-      "links": []
-    },
-    {
-      "name": "Riley",
-      "role": "Team member",
-      "org": "Kudahura team",
-      "location": "Kudahura",
       "bio": "",
       "photo": "",
       "email": "",
