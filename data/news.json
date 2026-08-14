@@ -11,8 +11,11 @@
       "date_note": "17–19 August 2026",
       "location": "The Maldives National University",
       "summary": "Koamas will be at Theveli International Conference 2026, hosted by The Maldives National University, on this year's theme: “Transformative Innovation in the 21st Century: Science, Technology and Society.”",
-      "body": [],
-      "image": "",
+      "body": [
+        "Photo-identification of odontocetes at Kuda Huraa and Landaa Giraavaru, 2017–2026, and the beginning of a national sightings database.",
+        "Presented by James Ray, with co-authors Samay Rao, Rylee Johansen, Edward Hodges, Marie Saleem, and Thomas Le Berre."
+      ],
+      "image": "assets/img/news/theveli-international-conference-2026.jpg",
       "image_credit": "",
       "links": []
     },
@@ -27,8 +30,8 @@
       "location": "Maldives Marine Research Institute",
       "summary": "Koamas presented the WhatsApp-based sighting network at the MMRI symposium, setting out how citizen reports are verified and turned into an open record of Maldivian cetaceans.",
       "body": [],
-      "image": "",
-      "image_credit": "",
+      "image": "assets/img/news/mmri-symposium-2026.jpg",
+      "image_credit": "MMRI",
       "links": []
     }
   ]
