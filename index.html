@@ -588,11 +588,16 @@
           .order('sighting_date', { ascending: false })
           .limit(6);
         if (error) throw error;
-        renderSightings((data || []).map(r => ({ ...r, species_name: r.species?.common_name || null, atoll: normaliseAtoll(r.atoll) })));
+        if (data && data.length) {
+          renderSightings(data.map(r => ({ ...r, species_name: r.species?.common_name || null, atoll: normaliseAtoll(r.atoll) })));
+          return;
+        }
+        // Supabase reachable but nothing verified yet — fall through to the
+        // local snapshot below instead of showing an empty state.
       } catch {
-        renderError();
+        // Supabase unreachable or erroring — fall through to local fallback,
+        // same as map.html and dashboard.html already do.
       }
-      return;
     }
 
     // Local static fallback — same path map.html and dashboard.html use.
