@@ -534,7 +534,7 @@ def supabase_upsert_sightings(base_url, service_key, records):
     for i in range(0, len(payload), CHUNK):
         resp = requests.post(
             f"{base_url}/rest/v1/sightings", headers=headers,
-            json=payload[i:i + CHUNK], params={"on_conflict": "source_key"}, timeout=60,
+            json=payload[i:i + CHUNK], params={"on_conflict": "source,source_key"}, timeout=60,
         )
         resp.raise_for_status()
 
