@@ -14,9 +14,17 @@ alter table sightings
 -- One row per (source, source_key) — lets the importer upsert on conflict
 -- and reconcile (delete rows whose source_key disappeared from the sheet)
 -- without ever touching rows from another source (e.g. the WhatsApp bot).
-create unique index if not exists sightings_source_key_uidx
-  on sightings (source, source_key)
-  where source_key is not null;
+-- Deliberately NOT a partial index (no "where source_key is not null"):
+-- Postgres already allows unlimited rows with source_key = NULL under a
+-- plain unique index (NULL never equals NULL for uniqueness purposes), and
+-- PostgREST's on_conflict upsert can only target a *plain* unique index —
+-- it has no way to pass the matching WHERE predicate a partial index would
+-- require. Drop+recreate rather than "if not exists" so re-running this
+-- migration also repairs a database that already has the old partial
+-- version of this index under the same name.
+drop index if exists sightings_source_key_uidx;
+create unique index sightings_source_key_uidx
+  on sightings (source, source_key);
 
 -- species.slug must be unique for the importer's upsert-by-slug to work.
 create unique index if not exists species_slug_uidx
