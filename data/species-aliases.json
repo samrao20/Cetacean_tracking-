@@ -1,0 +1,13 @@
+{
+  "_comment": "Maps the exact label text from the sheet's 'Species' dropdown to a species.json slug. Edited by hand — see docs/data-pipeline.md. A null value means the label is ambiguous or has no matching species.json entry, so the importer routes it to data/import-review.json instead of guessing. Row content of a null-mapped label may still auto-resolve via a scientific name typed in the sheet's notes column (see resolve_species() in scripts/import_sightings.py) — that is the only guessing this file allows, and it is grounded in the recorder's own annotation, not inferred.",
+
+  "Spinner": "spinner-dolphin",
+  "Pilot": "short-finned-pilot-whale",
+  "Risso": "rissos-dolphin",
+  "Orca": "killer-whale",
+  "Cuviers": "cuviers-beaked-whale",
+
+  "Bottlenose": null,
+  "Unkown Dolphin": null,
+  "Unkown Whale": null
+}

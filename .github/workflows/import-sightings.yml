@@ -1,0 +1,55 @@
+name: Sync sightings from Drive
+
+# Pulls the "Koamas Atoll Sightings" sheet out of the Drive Excel workbook,
+# publishes clean rows to Supabase and data/sightings.json, flags problem
+# rows (unusable coordinates / unresolved species) directly in the
+# workbook, and commits the local mirror if it changed.
+#
+# See scripts/import_sightings.py and docs/data-pipeline.md.
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"  # every 3 hours, offset from the hour
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-sightings
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run importer
+        env:
+          GDRIVE_FILE_ID: ${{ secrets.GDRIVE_FILE_ID }}
+          GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python3 scripts/import_sightings.py
+
+      - name: Commit updated data files
+        run: |
+          git config user.name "koamas-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/sightings.json data/import-review.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          PUBLISHED=$(jq 'length' data/sightings.json)
+          FLAGGED=$(jq 'length' data/import-review.json)
+          git commit -m "data: sync sightings from Drive ($PUBLISHED published, $FLAGGED flagged)"
+          git push

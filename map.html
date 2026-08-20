@@ -545,11 +545,12 @@
         var data = await fetchAllRows(client, function(c, from, to) {
           return c
             .from('sightings')
-            .select('id, lat, lng, atoll, count_range, sighting_date, notes, species!inner(slug, common_name, scientific_name)')
+            .select('id, lat, lng, atoll, count_range, sighting_date, notes, observer, species!inner(slug, common_name, scientific_name)')
             .eq('status', 'verified')
             .range(from, to);
         });
         return data.map(function(s) {
+          var gsMatch = String(s.count_range == null ? '' : s.count_range).match(/\d+/);
           return {
             id:                s.id,
             species:           s.species ? s.species.slug        : 'unknown',
@@ -559,8 +560,8 @@
             lat:               roundCoord(+s.lat),
             lng:               roundCoord(+s.lng),
             atoll:             normaliseAtoll(s.atoll),
-            observer:          'Community observer',
-            groupSize:         null,
+            observer:          s.observer || 'Community observer',
+            groupSize:         gsMatch ? +gsMatch[0] : null,
             behaviour:         s.notes || null,
           };
         });
@@ -572,7 +573,16 @@
     var res = await fetch('data/sightings.json');
     if (!res.ok) throw new Error('Could not load sightings (' + res.status + ')');
     var rows = await res.json();
-    return rows.map(function (s) { return Object.assign({}, s, { atoll: normaliseAtoll(s.atoll) }); });
+    // The local snapshot is already rounded to the 0.05 privacy grid at
+    // generation time, but round again defensively so any hand-edited or
+    // legacy entries in this file never render at full precision.
+    return rows.map(function (s) {
+      return Object.assign({}, s, {
+        atoll: normaliseAtoll(s.atoll),
+        lat:   roundCoord(+s.lat),
+        lng:   roundCoord(+s.lng),
+      });
+    });
   }
 
   // ─────────────────────────────────────────────────────────────────────────
