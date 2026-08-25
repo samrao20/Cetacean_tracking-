@@ -292,7 +292,7 @@
       </p>
       <p>
         The Maldives sits at the heart of the Indian Ocean, and its waters are home to at least
-        <span data-species-count>22</span> species
+        <span data-species-count>23</span> species
         of dolphins and whales. Despite this richness, systematic, long-term data on cetacean distribution
         across the atolls has historically been sparse. Koamas is building that record — one sighting at a time.
       </p>
@@ -503,7 +503,10 @@
   fetch('species.json')
     .then(function (r) { return r.json(); })
     .then(function (data) {
-      var count = (data.species || []).length;
+      // Exclude genus-level grouping entries (rank: "genus", e.g. the
+      // combined bottlenose-dolphin bucket) — an uncertainty bucket, not
+      // an extra species in the count. See species.html.
+      var count = (data.species || []).filter(function (s) { return !s.rank || s.rank === 'species'; }).length;
       var el    = document.querySelector('[data-species-count]');
       if (el && count) el.textContent = count;
     })

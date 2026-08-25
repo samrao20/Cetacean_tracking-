@@ -108,7 +108,22 @@ slug                    string   URL-safe identifier, matches photo filename in 
 common_name             string
 scientific_name         string
 type                    "dolphin" | "whale"
-iucn_status             string   code e.g. "LC", "VU", "DD"
+rank                    string   optional; omitted (or "species") for a real species entry.
+                                  "genus" marks a grouping entry (e.g. bottlenose-dolphin,
+                                  Tursiops sp.) used when field ID can't be resolved to one
+                                  species. Excluded from species-guide counts/grid (see
+                                  species.html) and from the map/dashboard's per-species color —
+                                  those show one combined category via each page's
+                                  SPECIES_GROUPS table instead. Publishing at genus level is not
+                                  a guess: it's the sighting recorded at the precision it was
+                                  actually identified.
+members                 string[] optional; only on a "rank": "genus" entry — the specific
+                                  species.json slugs it groups
+family                  string   taxonomic family, e.g. "Delphinidae"
+iwc_link                string   URL to the IWC Whale & Dolphin Handbook entry
+iucn_status             string   code e.g. "LC", "VU", "DD", "NE" (genus entries use "NE" —
+                                  Not Evaluated, since a genus grouping has no Red List
+                                  assessment of its own)
 iucn_label              string   full label e.g. "Least Concern"
 photo                   string   relative path e.g. "assets/species/spinner-dolphin.jpg"
 photo_credit            string   attribution string

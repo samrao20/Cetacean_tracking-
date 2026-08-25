@@ -339,7 +339,7 @@
     <div class="text-center mb-10">
       <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#0ea5e9] mb-3">Field guide</p>
       <h2 id="species-teaser-heading" class="text-3xl md:text-4xl font-semibold text-[#0b1f33] mb-3">
-        <span data-species-count>22</span> species in Maldivian waters
+        <span data-species-count>23</span> species in Maldivian waters
       </h2>
       <p class="text-[#5b6b7d] max-w-md mx-auto text-sm">
         From spinner dolphins to blue whales — the archipelago hosts one of the most diverse cetacean communities in the Indian Ocean.
@@ -480,7 +480,10 @@
   fetch('species.json')
     .then(r => r.json())
     .then(data => {
-      const all      = data.species || [];
+      // Exclude genus-level grouping entries (rank: "genus", e.g. the
+      // combined bottlenose-dolphin bucket) — they're an uncertainty
+      // bucket, not an extra species in the count. See species.html.
+      const all      = (data.species || []).filter(s => !s.rank || s.rank === 'species');
       const countEl  = document.querySelector('[data-species-count]');
       if (countEl && all.length) countEl.textContent = all.length;
       const teaser   = TEASER_SLUGS.map(slug => all.find(s => s.slug === slug)).filter(Boolean);

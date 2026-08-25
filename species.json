@@ -778,6 +778,43 @@
         "length_m",
         "weight_kg"
       ]
+    },
+    {
+      "slug": "bottlenose-dolphin",
+      "common_name": "Bottlenose Dolphin",
+      "scientific_name": "Tursiops sp.",
+      "type": "dolphin",
+      "rank": "genus",
+      "members": ["indo-pacific-bottlenose-dolphin", "common-bottlenose-dolphin"],
+      "family": "Delphinidae",
+      "iwc_link": "https://wwhandbook.iwc.int/en/species/bottlenose-dolphin",
+      "iucn_status": "NE",
+      "iucn_label": "Not Evaluated",
+      "photo": "assets/species/common-bottlenose-dolphin.jpg",
+      "photo_credit": "NASA / Wikimedia Commons / Public Domain",
+      "pod_size": "2–15 (coastal); occasionally 100+ offshore",
+      "length_m": "1.9–4.0",
+      "weight_kg": "150–650",
+      "diet": "Fish, squid, and crustaceans; opportunistic and adaptable",
+      "behaviour": [
+        "Bow-riding and wake-riding",
+        "Tail-slapping and breaching",
+        "Foraging over reef slopes, in lagoons, and in channels"
+      ],
+      "maldives_distribution": "Recorded throughout the atolls, from lagoons and reef slopes to deeper channels and open ocean.",
+      "best_months": [],
+      "best_months_note": "Year-round",
+      "distinguishing_features": "Two bottlenose species occur in the Maldives — Indo-Pacific (Tursiops aduncus) and Common (Tursiops truncatus) — and they cannot be reliably told apart at sea. Sightings logged simply as bottlenose are recorded here at genus level; records confirmed to one species are published under that species instead.",
+      "similar_species": [
+        "Indo-Pacific bottlenose dolphin — smaller and more slender, adults develop ventral spots, longer rostrum, more coastal habits",
+        "Common bottlenose dolphin — larger and more robust, unspotted, prefers deeper open water"
+      ],
+      "unverified": [
+        "pod_size",
+        "length_m",
+        "weight_kg",
+        "maldives_distribution"
+      ]
     }
   ]
 }

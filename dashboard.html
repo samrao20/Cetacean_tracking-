@@ -471,32 +471,58 @@
     return s.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
   }
 
+  // Species that can't be told apart in the field are shown as one combined
+  // category in the charts below. Declared canonically by the `members`
+  // array on the grouping entry in species.json (slug bottlenose-dolphin,
+  // rank: "genus"); mirrored here as a literal — this page never fetches
+  // species.json, so it also carries the group's own label. Keep in
+  // lockstep with the identical table in map.html and with species.json —
+  // same contract as normaliseAtoll() above.
+  const SPECIES_GROUPS = {
+    'indo-pacific-bottlenose-dolphin': { slug: 'bottlenose-dolphin', name: 'Bottlenose Dolphin' },
+    'common-bottlenose-dolphin':       { slug: 'bottlenose-dolphin', name: 'Bottlenose Dolphin' },
+  };
+
   // ── Normalise: Supabase → common shape ────────────────────
   function normaliseSupabase(rows) {
-    return (rows || []).map(r => ({
-      id:           r.id,
-      species_slug: r.species?.slug        || '',
-      species_name: r.species?.common_name || 'Unknown',
-      date:         r.sighting_date        || '',
-      atoll:        normaliseAtoll(r.atoll),
-      count:        parseCountRange(r.count_range),
-      notes:        r.notes                || '',
-      contributor:  r.submitter_phone_hash || '',
-    }));
+    return (rows || []).map(r => {
+      const slug = r.species?.slug        || '';
+      const name = r.species?.common_name || 'Unknown';
+      const group = SPECIES_GROUPS[slug];
+      return {
+        id:           r.id,
+        species_slug: slug,
+        species_name: name,
+        species_group_slug: group ? group.slug : slug,
+        species_group_name: group ? group.name : name,
+        date:         r.sighting_date        || '',
+        atoll:        normaliseAtoll(r.atoll),
+        count:        parseCountRange(r.count_range),
+        notes:        r.notes                || '',
+        contributor:  r.submitter_phone_hash || '',
+      };
+    });
   }
 
   // ── Normalise: local JSON → common shape ──────────────────
   function normaliseLocal(rows) {
-    return (rows || []).map(r => ({
-      id:           r.id,
-      species_slug: r.species        || '',
-      species_name: r.speciesCommon  || 'Unknown',
-      date:         r.date           || '',
-      atoll:        normaliseAtoll(r.atoll),
-      count:        typeof r.groupSize === 'number' ? r.groupSize : 0,
-      notes:        r.behaviour      || '',
-      contributor:  r.observer       || '',
-    }));
+    return (rows || []).map(r => {
+      const slug = r.species        || '';
+      const name = r.speciesCommon  || 'Unknown';
+      const group = SPECIES_GROUPS[slug];
+      return {
+        id:           r.id,
+        species_slug: slug,
+        species_name: name,
+        species_group_slug: group ? group.slug : slug,
+        species_group_name: group ? group.name : name,
+        date:         r.date           || '',
+        atoll:        normaliseAtoll(r.atoll),
+        count:        typeof r.groupSize === 'number' ? r.groupSize : 0,
+        notes:        r.behaviour      || '',
+        contributor:  r.observer       || '',
+      };
+    });
   }
 
   function parseCountRange(s) {
@@ -566,7 +592,9 @@
   // ── Render: stats strip ────────────────────────────────────
   function renderStats(rows, source) {
     const total        = rows.length;
-    const speciesCount = new Set(rows.map(r => r.species_slug).filter(Boolean)).size;
+    // Grouped, so two field-indistinguishable species (e.g. the two
+    // bottlenose species) count as one distinguishable taxon recorded, not two.
+    const speciesCount = new Set(rows.map(r => r.species_group_slug).filter(Boolean)).size;
     const atollCount   = new Set(rows.map(r => r.atoll).filter(Boolean)).size;
     const contribCount = new Set(rows.map(r => r.contributor).filter(Boolean)).size;
 
@@ -596,7 +624,9 @@
     const emptyEl = document.getElementById('species-empty');
     const wrapEl  = document.getElementById('species-chart-wrap');
 
-    const countMap = countBy(rows, 'species_name');
+    // Grouped by species_group_name — two field-indistinguishable species
+    // (e.g. the two bottlenose species) render as one bar, not two.
+    const countMap = countBy(rows, 'species_group_name');
     const sorted   = Object.entries(countMap).sort((a, b) => b[1] - a[1]);
 
     skelEl.classList.add('hidden');
@@ -741,11 +771,13 @@
       return;
     }
 
-    const countMap = countBy(rows, 'species_slug');
+    // Rarity is judged per distinguishable taxon, not per label — grouped
+    // bottlenose records compete for "common" as one entry, not two.
+    const countMap = countBy(rows, 'species_group_slug');
     const top3 = Object.entries(countMap).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([s]) => s);
 
     const notable = rows
-      .filter(r => !top3.includes(r.species_slug))
+      .filter(r => !top3.includes(r.species_group_slug))
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .slice(0, 6);
 
@@ -761,7 +793,11 @@
     feed.innerHTML = notable.map(r => {
       const snippet   = r.notes ? r.notes.slice(0, 130) + (r.notes.length > 130 ? '…' : '') : null;
       const countText = r.count > 0 ? `${r.count} ind.` : null;
-      const mapHref   = `map.html?species=${encodeURIComponent(r.species_slug)}`;
+      // Round-trips to the combined map chip (map.html groups the two
+      // bottlenose slugs into one), but the card itself keeps the exact
+      // species name — a confirmed sighting naming the precise species is
+      // exactly the notable detail worth showing.
+      const mapHref   = `map.html?species=${encodeURIComponent(r.species_group_slug)}`;
       return `
         <article class="panel rounded-xl p-5 flex flex-col gap-3 hover:border-[#0ea5e9]/40 transition-colors">
           <div>
@@ -796,7 +832,10 @@
     }
 
     const UNRECORDED       = 'Unrecorded';
-    const speciesCountMap  = countBy(rows, 'species_name');
+    // Grouped by species_group_name — one row per distinguishable taxon, so
+    // two field-indistinguishable species (e.g. the two bottlenose species)
+    // don't split the same animal's counts across two rows.
+    const speciesCountMap  = countBy(rows, 'species_group_name');
     const speciesList      = Object.entries(speciesCountMap).sort((a, b) => b[1] - a[1]).map(([n]) => n);
     // Sightings with no atoll on file get an explicit bucket rather than
     // being silently dropped — kept last regardless of alphabetical sort.
@@ -814,7 +853,7 @@
     // Build cell counts
     const cellMap = {};
     rows.forEach(r => {
-      const k = r.species_name + '||' + (r.atoll || UNRECORDED);
+      const k = r.species_group_name + '||' + (r.atoll || UNRECORDED);
       cellMap[k] = (cellMap[k] || 0) + 1;
     });
 

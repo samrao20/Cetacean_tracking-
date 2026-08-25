@@ -97,16 +97,24 @@ The sheet's Species column is a fixed dropdown
 Whale`). `data/species-aliases.json` maps each exact label to a
 `species.json` slug. A label mapped to `null` always goes to review.
 
-`Bottlenose` is deliberately `null` — `species.json` has both
-*Tursiops aduncus* (Indo-Pacific) and *Tursiops truncatus* (Common), and the
-sheet doesn't distinguish them. Two things can resolve an individual
-Bottlenose row without touching this file:
-- The recorder types a scientific name in the notes column (typos are
-  tolerated up to an edit distance of 2 — this is how the two existing
-  `Tursiop Aduncus` / `Tursiops Turcatus` notes already resolve).
-- You decide on a default and change `"Bottlenose": null` to a slug in
-  `data/species-aliases.json` — this immediately releases every
-  currently-flagged Bottlenose row still in review.
+`species.json` has both *Tursiops aduncus* (Indo-Pacific) and
+*Tursiops truncatus* (Common), and the sheet's `Bottlenose` dropdown option
+doesn't distinguish them — they can't reliably be told apart in the field
+either. Rather than flag every such row forever, `"Bottlenose"` maps to
+`bottlenose-dolphin`, a genus-level `species.json` entry
+(`"rank": "genus"`, *Tursiops sp.*) that groups the two. Publishing at genus
+level isn't a guess — it's the recorder's own dropdown choice, published at
+the precision it was made — so it stays consistent with the "ambiguous
+species are flagged, never guessed" rule below. `resolve_species()` in
+`scripts/import_sightings.py` still prefers a specific species over the
+genus bucket when one is available: if the recorder types a scientific name
+in the notes column (typos tolerated up to an edit distance of 2 — this is
+how the two existing `Tursiop Aduncus` / `Tursiops Turcatus` notes resolve
+to their specific species), that wins. Genus-level entries are excluded
+from the species-guide count and grid on the site (see `rank` in the
+`species.json` schema in `CLAUDE.md`) and from the map/dashboard's
+species-color palette, which group both bottlenose slugs into one category
+— see the `SPECIES_GROUPS` table in `map.html` and `dashboard.html`.
 
 `Unkown Dolphin` / `Unkown Whale` have no matching `species.json` entry.
 Either add an "unidentified" species entry, or leave them mapped to `null`
@@ -114,6 +122,12 @@ so they stay out of the public map.
 
 If a genuinely new label appears in the sheet (someone edits the dropdown),
 the importer will flag it as `species:unresolved:<label>` — add it here.
+
+Note: `supabase_upsert_species()` only ever inserts/updates species rows, it
+never deletes any. If a genus-level entry like `bottlenose-dolphin` is ever
+removed from `species.json`, the matching Supabase row (and any sightings
+still pointing at it) would be orphaned rather than cleaned up — delete it
+manually in that case.
 
 ## Rotating the service account
 
