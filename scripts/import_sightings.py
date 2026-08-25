@@ -377,7 +377,7 @@ def assign_source_keys(records):
         n = seen.get(h, 0)
         seen[h] = n + 1
         rec["source_key"] = f"{h}-{n}" if n else h
-        rec["id"] = "x" + rec["source_key"][:10]
+        rec["id"] = "x" + rec["source_key"]
 
 
 # ── output builders ─────────────────────────────────────────────────────
@@ -527,6 +527,7 @@ def supabase_upsert_sightings(base_url, service_key, records):
     payload = []
     for rec in records:
         payload.append({
+            "id": rec["id"],
             "source": "excel",
             "source_key": rec["source_key"],
             "species_id": slug_to_id.get(rec["species"]),
