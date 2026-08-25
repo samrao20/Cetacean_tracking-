@@ -486,6 +486,17 @@ def _supabase_headers(service_key):
     }
 
 
+def _raise_for_status(resp):
+    # requests' own raise_for_status() only reports the HTTP status line —
+    # it discards PostgREST's JSON error body, which is where the actual
+    # reason (bad on_conflict target, RLS denial, constraint violation, ...)
+    # is named. Print it before raising so the Action log shows the real
+    # cause instead of a bare "400 Bad Request".
+    if not resp.ok:
+        print(f"Supabase error {resp.status_code}: {resp.text}", file=sys.stderr)
+    resp.raise_for_status()
+
+
 def supabase_upsert_species(base_url, service_key, species_list):
     import requests
 
@@ -499,7 +510,7 @@ def supabase_upsert_species(base_url, service_key, species_list):
         f"{base_url}/rest/v1/species", headers=headers, json=payload,
         params={"on_conflict": "slug"}, timeout=30,
     )
-    resp.raise_for_status()
+    _raise_for_status(resp)
 
 
 def supabase_upsert_sightings(base_url, service_key, records):
@@ -510,7 +521,7 @@ def supabase_upsert_sightings(base_url, service_key, records):
         f"{base_url}/rest/v1/species", headers=_supabase_headers(service_key),
         params={"select": "id,slug"}, timeout=30,
     )
-    sp_resp.raise_for_status()
+    _raise_for_status(sp_resp)
     slug_to_id = {row["slug"]: row["id"] for row in sp_resp.json()}
 
     payload = []
@@ -536,7 +547,7 @@ def supabase_upsert_sightings(base_url, service_key, records):
             f"{base_url}/rest/v1/sightings", headers=headers,
             json=payload[i:i + CHUNK], params={"on_conflict": "source,source_key"}, timeout=60,
         )
-        resp.raise_for_status()
+        _raise_for_status(resp)
 
 
 def supabase_reconcile(base_url, service_key, current_source_keys):
@@ -550,7 +561,7 @@ def supabase_reconcile(base_url, service_key, current_source_keys):
         f"{base_url}/rest/v1/sightings", headers=headers,
         params={"select": "id,source_key", "source": "eq.excel"}, timeout=30,
     )
-    resp.raise_for_status()
+    _raise_for_status(resp)
     stale_ids = [row["id"] for row in resp.json() if row["source_key"] not in current_source_keys]
 
     for i in range(0, len(stale_ids), 100):
@@ -560,7 +571,7 @@ def supabase_reconcile(base_url, service_key, current_source_keys):
             f"{base_url}/rest/v1/sightings", headers=headers,
             params={"id": f"in.({ids_filter})"}, timeout=30,
         )
-        del_resp.raise_for_status()
+        _raise_for_status(del_resp)
     return len(stale_ids)
 
 
