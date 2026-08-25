@@ -370,8 +370,9 @@
 
   const SPECIES_COLORS = {
     'spinner-dolphin':                 '#FF6B9D',
-    'indo-pacific-bottlenose-dolphin': '#FFD93D',
-    'common-bottlenose-dolphin':       '#F4A261',
+    'indo-pacific-bottlenose-dolphin': '#FFD93D', // grouped into bottlenose-dolphin below
+    'common-bottlenose-dolphin':       '#F4A261', // grouped into bottlenose-dolphin below
+    'bottlenose-dolphin':              '#F4A261', // combined pin category — see SPECIES_GROUPS
     'pantropical-spotted-dolphin':     '#06D6A0',
     'striped-dolphin':                 '#118AB2',
     'rissos-dolphin':                  '#9D8DF1',
@@ -391,7 +392,24 @@
     'longmans-beaked-whale':           '#577590',
     'blainvilles-beaked-whale':        '#43AA8B',
     'deraniyagalas-beaked-whale':      '#F94144',
+    'ginkgo-toothed-beaked-whale':     '#3A5A40',
   };
+
+  // Species that can't be told apart in the field are shown as one group on
+  // the map and dashboard. Declared canonically by the `members` array on
+  // the grouping entry in species.json (slug bottlenose-dolphin, rank:
+  // "genus"); mirrored here as a literal so this page needs no extra fetch.
+  // Keep in lockstep with the identical table in dashboard.html and with
+  // species.json — same contract as normaliseAtoll().
+  const SPECIES_GROUPS = {
+    'indo-pacific-bottlenose-dolphin': 'bottlenose-dolphin',
+    'common-bottlenose-dolphin':       'bottlenose-dolphin',
+  };
+  function groupSlug(slug) { return SPECIES_GROUPS[slug] || slug; }
+  // Slugs that are themselves a combined/genus-level record (as opposed to
+  // a specific species that merely belongs to a group) — used to show an
+  // extra "why is this combined" note in the side panel.
+  const SPECIES_GROUP_TARGETS = new Set(Object.values(SPECIES_GROUPS));
 
   // ─────────────────────────────────────────────────────────────────────────
   // State
@@ -445,7 +463,7 @@
   }
 
   function colorExpr() {
-    var e = ['match', ['get', 'species']];
+    var e = ['match', ['get', 'group']];
     Object.entries(SPECIES_COLORS).forEach(function(kv) { e.push(kv[0], kv[1]); });
     e.push('#888888');
     return e;
@@ -501,6 +519,7 @@
             gs:               gsMatch ? +gsMatch[0] : 3,
             id:               s.id,
             species:          s.species,
+            group:            groupSlug(s.species),
             speciesCommon:    s.speciesCommon,
             speciesScientific: s.speciesScientific,
             date:             s.date,
@@ -590,7 +609,7 @@
   // ─────────────────────────────────────────────────────────────────────────
   function filtered() {
     return allSightings.filter(function(s) {
-      if (activeSpecies.size > 0 && !activeSpecies.has(s.species)) return false;
+      if (activeSpecies.size > 0 && !activeSpecies.has(groupSlug(s.species))) return false;
       if (selAtoll && s.atoll !== selAtoll) return false;
       if (dateFrom && (s.date || '').slice(0, 10) < dateFrom) return false;
       if (dateTo   && (s.date || '').slice(0, 10) > dateTo)   return false;
@@ -686,7 +705,13 @@
 
   function applyParamsFromURL() {
     var q = new URLSearchParams(location.search);
-    (q.get('species') || '').split(',').filter(Boolean).forEach(function (slug) {
+    // Map through groupSlug and de-duplicate via the Set before toggling —
+    // an old shared link naming both bottlenose slugs
+    // (?species=indo-pacific-bottlenose-dolphin,common-bottlenose-dolphin)
+    // must not find the same "Bottlenose Dolphin" chip twice and toggle it
+    // on then straight back off.
+    var wanted = new Set((q.get('species') || '').split(',').filter(Boolean).map(groupSlug));
+    wanted.forEach(function (slug) {
       var btn = document.querySelector('.sp-chip[data-slug="' + (window.CSS && CSS.escape ? CSS.escape(slug) : slug) + '"]');
       if (btn && !activeSpecies.has(slug)) toggleChip(btn);
     });
@@ -754,16 +779,23 @@
   // Filter bar
   // ─────────────────────────────────────────────────────────────────────────
   function buildFilterBar() {
-    // Species counts
+    // Species counts, grouped — two bottlenose species collapse into one
+    // "Bottlenose Dolphin" chip (see SPECIES_GROUPS above).
     var counts = {};
-    allSightings.forEach(function(s) { counts[s.species] = (counts[s.species] || 0) + 1; });
+    allSightings.forEach(function(s) { var g = groupSlug(s.species); counts[g] = (counts[g] || 0) + 1; });
 
     var slugs = Object.keys(counts).sort();
     var chips = document.getElementById('species-chips');
     chips.innerHTML = '';
 
     slugs.forEach(function(slug) {
-      var label  = (allSightings.find(function(s) { return s.species === slug; }) || {}).speciesCommon || slug;
+      // Prefer species.json's own common_name for the group label — a
+      // per-sighting speciesCommon lookup would read "Indo-Pacific
+      // Bottlenose Dolphin" or "Common Bottlenose Dolphin" depending on
+      // which record happened to sort first, instead of the group's own name.
+      var label  = (speciesLookup[slug] || {}).common_name
+                 || (allSightings.find(function(s) { return groupSlug(s.species) === slug; }) || {}).speciesCommon
+                 || slug;
       var color  = SPECIES_COLORS[slug] || '#888888';
       var btn    = document.createElement('button');
       btn.className      = 'sp-chip';
@@ -918,7 +950,7 @@
   }
 
   function openPanel(p) {
-    var color = SPECIES_COLORS[p.species] || '#0b1f33';
+    var color = SPECIES_COLORS[groupSlug(p.species)] || '#0b1f33';
     var meta  = speciesLookup[p.species] || {};
 
     document.getElementById('p-common').textContent      = p.speciesCommon    || '';
@@ -947,6 +979,12 @@
       ['Group size',  p.groupSize != null ? p.groupSize : 'Unknown'],
     ];
     if (p.behaviour) rows.push(['Behaviour', p.behaviour]);
+    // Bucket records (e.g. genus-level "Bottlenose Dolphin") get an extra
+    // note explaining why — sourced from species.json so the wording lives
+    // in one place, not duplicated into this page.
+    if (SPECIES_GROUP_TARGETS.has(p.species) && meta.distinguishing_features) {
+      rows.push(['Identification', meta.distinguishing_features]);
+    }
     rows.forEach(function(r) {
       dl.innerHTML +=
         '<div>' +
@@ -1058,6 +1096,8 @@
           photo_credit: s.photo_credit || '',
           scientific_name: s.scientific_name || '',
           iucn_label:   s.iucn_label || '',
+          common_name:  s.common_name || '',
+          distinguishing_features: s.distinguishing_features || '',
         };
       });
     } catch (_) { /* species photos are an enhancement — popups still work without them */ }
@@ -1249,8 +1289,8 @@
       // 404s after the <img> is already in the DOM.
       var mark = photo
         ? '<img src="' + photo + '" alt="" style="width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);" ' +
-            'onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{style:\'width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + '\'}))" />'
-        : '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.species] || '#888888') + ';"></span>';
+            'onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{style:\'width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.group] || '#888888') + '\'}))" />'
+        : '<span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:' + (SPECIES_COLORS[p.group] || '#888888') + ';"></span>';
       if (activePopup) activePopup.remove();
       activePopup = new maplibregl.Popup({ closeButton: false, offset: 12 })
         .setLngLat(e.lngLat)

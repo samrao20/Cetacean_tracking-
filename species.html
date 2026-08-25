@@ -22,6 +22,7 @@
     .iucn-EN { background: #b91c1c; color: #fff; }
     .iucn-CR { background: #7f1d1d; color: #fff; }
     .iucn-DD { background: #6b7280; color: #fff; }
+    .iucn-NE { background: #6b7280; color: #fff; } /* Not Evaluated — genus-level grouping entries only; same neutral grey as DD */
 
     /* ── Month bar ── */
     .month-cell {
@@ -168,7 +169,7 @@
         <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas by Reefscapers · Field Guide</p>
         <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-4">Cetaceans of the Maldives</h1>
         <p class="text-[#9fb3c4] text-base md:text-lg max-w-2xl">
-          Twenty-two species of dolphins and whales recorded in Maldivian waters — from the resident spinner
+          <span data-species-count>23</span> species of dolphins and whales recorded in Maldivian waters — from the resident spinner
           dolphin to blue whales feeding in the southern atolls.
         </p>
       </div>
@@ -264,12 +265,21 @@
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
   const state = {
-    species:      [],
+    species:      [],   // every species.json entry — used for #slug detail lookups
+    guideSpecies: [],   // real species only (excludes rank:"genus" grouping entries) — used for the grid, search, and counts
     view:         'grid',
     selectedSlug: null,
     search:       '',
     typeFilter:   'all',
   };
+
+  // A species.json entry with no rank, or rank "species", names one real
+  // species. A "genus" (or other non-"species") rank is a grouping bucket
+  // like bottlenose-dolphin (Tursiops sp.) — it gets its own #slug detail
+  // page (linked from the map for an unresolved sighting), but is excluded
+  // from the guide grid, search, and species counts: it's an uncertainty
+  // bucket, not an extra species in the census.
+  function isSpeciesEntry(sp) { return !sp.rank || sp.rank === 'species'; }
 
   // ── Init ────────────────────────────────────────────────────────────
 
@@ -278,13 +288,17 @@
       const res = await fetch('species.json');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
-      state.species = data.species;
+      state.species      = data.species;
+      state.guideSpecies = data.species.filter(isSpeciesEntry);
     } catch (err) {
       console.error('Failed to load species data:', err);
       document.getElementById('species-grid').innerHTML =
         `<p class="col-span-full text-red-600 py-8">Could not load species data. ${err.message}</p>`;
       return;
     }
+
+    const countEl = document.querySelector('[data-species-count]');
+    if (countEl && state.guideSpecies.length) countEl.textContent = state.guideSpecies.length;
 
     const slug = location.hash.replace('#', '');
     if (slug && state.species.find(s => s.slug === slug)) {
@@ -334,7 +348,7 @@
     const emptyEl  = document.getElementById('empty-state');
     const countEl  = document.getElementById('species-count');
 
-    countEl.textContent = `${filtered.length} of ${state.species.length} species`;
+    countEl.textContent = `${filtered.length} of ${state.guideSpecies.length} species`;
 
     if (filtered.length === 0) {
       grid.innerHTML = '';
@@ -528,7 +542,7 @@
 
   function filterSpecies() {
     const q = state.search.trim().toLowerCase();
-    return state.species.filter(sp => {
+    return state.guideSpecies.filter(sp => {
       const matchesType   = state.typeFilter === 'all' || sp.type === state.typeFilter;
       const matchesSearch = !q || sp.common_name.toLowerCase().includes(q) || sp.scientific_name.toLowerCase().includes(q);
       return matchesType && matchesSearch;

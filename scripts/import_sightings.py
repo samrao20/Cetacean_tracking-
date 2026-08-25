@@ -222,29 +222,55 @@ def parse_pod_size(raw):
     return int(m.group(1)) if m else None
 
 
+def _is_bucket(sp):
+    """A species.json entry that groups field-indistinguishable species
+    rather than naming one (see the 'rank' field in the schema) — e.g.
+    'bottlenose-dolphin' / Tursiops sp. covering both Maldivian Tursiops
+    species. Same predicate the site uses to exclude these from the
+    species-guide grid and counts (see species.html)."""
+    return sp.get("rank", "species") != "species"
+
+
+def _match_notes_epithet(notes, species_by_slug, max_dist=2):
+    """Fuzzy match a scientific-name epithet the recorder typed into the
+    notes column (even with a typo, e.g. "Tursiops Turcatus") against every
+    real species.json entry. Bucket entries are excluded from the search:
+    'Tursiops sp.' has no real epithet ('sp.'), and that three-letter
+    string sits within edit distance 2 of almost any short word, which
+    would turn the fuzzy match into noise rather than a real signal."""
+    if not notes:
+        return None
+    words = re.findall(r"[A-Za-z]+", str(notes))
+    best_slug, best_dist = None, 99
+    for slug, sp in species_by_slug.items():
+        if _is_bucket(sp):
+            continue
+        epithet = sp["scientific_name"].split()[-1]
+        for w in words:
+            d = levenshtein(w, epithet)
+            if d < best_dist:
+                best_dist, best_slug = d, slug
+    return best_slug if best_slug and best_dist <= max_dist else None
+
+
 def resolve_species(label, notes, aliases, species_by_slug):
-    """Exact alias lookup first; for the ambiguous 'Bottlenose' label, allow
-    a fuzzy match against species.json scientific-name epithets so a
-    recorder's own annotation (even with a typo, e.g. "Tursiops Turcatus")
-    can resolve it. Everything else is left for a human — see the
-    'Ambiguous species are flagged, never guessed' decision."""
+    """Exact alias lookup. A label that maps to a genus-level bucket (e.g.
+    'Bottlenose' -> bottlenose-dolphin) is ambiguous by construction: prefer
+    a specific species the recorder named in the notes column, and fall
+    back to publishing at genus level only when the notes give nothing —
+    that's not a guess, it's the recorder's own dropdown choice published
+    at the precision it was made. A label mapped to null, or not in the
+    file at all, is still left for a human — see the 'Ambiguous species are
+    flagged, never guessed' decision."""
     key = str(label).strip() if label else ""
     if not key:
         return None, "missing"
-    if key in aliases and aliases[key]:
-        return aliases[key], None
-    if key in aliases and aliases[key] is None and key.lower() == "bottlenose" and notes:
-        words = re.findall(r"[A-Za-z]+", str(notes))
-        best_slug, best_dist = None, 99
-        for slug, sp in species_by_slug.items():
-            epithet = sp["scientific_name"].split()[-1]
-            for w in words:
-                d = levenshtein(w, epithet)
-                if d < best_dist:
-                    best_dist, best_slug = d, slug
-        if best_slug and best_dist <= 2:
-            return best_slug, None
-    return None, f"unresolved:{key}"
+    slug = aliases.get(key)
+    if not slug:
+        return None, f"unresolved:{key}"
+    if _is_bucket(species_by_slug.get(slug, {})):
+        return _match_notes_epithet(notes, species_by_slug) or slug, None
+    return slug, None
 
 
 # ── workbook reading ────────────────────────────────────────────────────
@@ -464,10 +490,13 @@ def apply_legend_sheet(wb):
     ws["A2"] = (
         "The import script auto-highlights rows in the sightings sheets to flag "
         "problems. Fix the row's data and the color clears itself on the next sync "
-        "(every 3 hours) — no need to clear it by hand."
+        "(every 3 hours) — no need to clear it by hand. Note: rows logged as "
+        "Bottlenose are published as a combined Tursiops sp. record and no longer "
+        "flag — put a scientific name in the Notes column if you can confirm which "
+        "species it was."
     )
     ws["A2"].alignment = Alignment(wrap_text=True, vertical="top")
-    ws.row_dimensions[2].height = 45
+    ws.row_dimensions[2].height = 60
 
     headers = ("Color", "Swatch", "Meaning")
     for c, text in enumerate(headers, 1):
