@@ -362,7 +362,7 @@ def process_row(raw, species_by_slug, aliases):
         "groupSize": parse_pod_size(raw["podsize_raw"]),
         "behaviour": notes or None,
         "photoUrl": None,
-        "_status": "verified" if verified else "pending",
+        "_status": "verified" if verified else "unverified",
         "_source_key_basis": source_key_basis,
         "_sheet": raw["sheet"],
         "_row": raw["row"],
