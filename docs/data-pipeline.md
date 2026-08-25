@@ -13,10 +13,12 @@ Action (`.github/workflows/import-sightings.yml`) runs
    the 0.05° privacy grid before being committed).
 3. Flag problem rows **in the workbook itself** — red fill for a row whose
    coordinates can't be trusted, yellow for a row whose species label
-   couldn't be resolved, orange for both — and push that highlighted
-   workbook back to the same Drive file. Highlights are recomputed from
-   scratch every run, so fixing a row in Excel clears its highlight on the
-   next sync automatically.
+   couldn't be resolved, orange for both, purple for a bad/unparseable date
+   — and push that highlighted workbook back to the same Drive file.
+   Highlights are recomputed from scratch every run, so fixing a row in
+   Excel clears its highlight on the next sync automatically. A **"QA
+   Legend"** sheet explaining these colors is rebuilt the same way each run
+   and inserted just before the workbook's last sheet.
 4. Commit `data/sightings.json` / `data/import-review.json` if they changed.
 
 Rows that fail validation are excluded from the site and Supabase entirely —

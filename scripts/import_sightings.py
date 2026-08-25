@@ -18,7 +18,8 @@ Pipeline:
      unusable coordinates, yellow for an unresolved species — then push the
      highlighted workbook back to the same Drive file. Highlights are
      recomputed from scratch each run, so a row fixed by hand loses its
-     highlight on the next sync.
+     highlight on the next sync. A "QA Legend" sheet explaining the colors is
+     rebuilt each run too, inserted just before the workbook's last sheet.
   5. Publish the clean rows: upsert into Supabase (source='excel', keyed by
      a content hash so edits/deletions in the sheet reconcile correctly),
      and write a rounded, privacy-safe data/sightings.json mirror for the
@@ -46,7 +47,7 @@ import datetime as dt
 from pathlib import Path
 
 import openpyxl
-from openpyxl.styles import PatternFill
+from openpyxl.styles import Alignment, Font, PatternFill
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -64,6 +65,15 @@ YELLOW_FILL = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="s
 BOTH_FILL = PatternFill(start_color="FFC299", end_color="FFC299", fill_type="solid")  # coords + species
 DATE_FILL = PatternFill(start_color="D9D2FF", end_color="D9D2FF", fill_type="solid")  # date issue, no coords/species issue
 CLEAR_FILL = PatternFill(fill_type=None)
+
+LEGEND_SHEET_TITLE = "QA Legend"
+LEGEND_ROWS = [
+    (RED_FILL, "Red", "Unusable coordinates: missing, unparseable, or outside the Maldives."),
+    (YELLOW_FILL, "Yellow", "Species couldn't be resolved to a known species."),
+    (BOTH_FILL, "Orange", "Both coordinates and species are bad."),
+    (DATE_FILL, "Purple", "Bad or unparseable date (coordinates and species are otherwise fine)."),
+    (CLEAR_FILL, "No fill", "Row is clean and was published to the site."),
+]
 
 SHEET_NAME_RE = re.compile(r"koamas\s+atoll\s+sightings", re.I)
 
@@ -437,6 +447,46 @@ def apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged):
                 ws.cell(r, c).fill = fill
 
 
+def apply_legend_sheet(wb):
+    """(Re)build the QA legend sheet from scratch each run — same reasoning
+    as apply_highlights() above: recomputing beats letting a hand-edited copy
+    drift out of sync with the actual fill colors. Placed just before the
+    workbook's last sheet (the sightings sheets sort earlier, the photo-ID
+    catalogues are last) so it's easy to find without disturbing tab order."""
+    if LEGEND_SHEET_TITLE in wb.sheetnames:
+        del wb[LEGEND_SHEET_TITLE]
+    index = max(len(wb.sheetnames) - 1, 0)
+    ws = wb.create_sheet(LEGEND_SHEET_TITLE, index)
+
+    ws["A1"] = "Koamas QA Highlight Legend"
+    ws["A1"].font = Font(bold=True, size=14)
+    ws.merge_cells("A2:C2")
+    ws["A2"] = (
+        "The import script auto-highlights rows in the sightings sheets to flag "
+        "problems. Fix the row's data and the color clears itself on the next sync "
+        "(every 3 hours) — no need to clear it by hand."
+    )
+    ws["A2"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws.row_dimensions[2].height = 45
+
+    headers = ("Color", "Swatch", "Meaning")
+    for c, text in enumerate(headers, 1):
+        cell = ws.cell(4, c, text)
+        cell.font = Font(bold=True)
+
+    r = 5
+    for fill, label, meaning in LEGEND_ROWS:
+        ws.cell(r, 1, label)
+        swatch = ws.cell(r, 2)
+        swatch.fill = fill
+        ws.cell(r, 3, meaning).alignment = Alignment(wrap_text=True, vertical="top")
+        r += 1
+
+    ws.column_dimensions["A"].width = 12
+    ws.column_dimensions["B"].width = 10
+    ws.column_dimensions["C"].width = 85
+
+
 # ── Drive (lazy imports — not needed for --xlsx/--dry-run local use) ────
 
 def get_drive_service():
@@ -651,6 +701,7 @@ def main():
             elif reason.startswith("date:"):
                 date_flagged.add(key)
     apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged)
+    apply_legend_sheet(wb)
 
     buf = io.BytesIO()
     wb.save(buf)
