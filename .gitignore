@@ -1,2 +1,4 @@
 # Local runtime/tooling state
 .claude-flow/
+__pycache__/
+*.pyc
