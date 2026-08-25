@@ -1,5 +1,19 @@
 [
   {
+    "id": "x5f5c4265378b10e36ea8",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-11-06T12:55:00Z",
+    "lat": 5.3,
+    "lng": 73.15,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x96c26de2f9801c0cf7d7",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -56,6 +70,20 @@
     "photoUrl": null
   },
   {
+    "id": "x760280e6763605428298",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-09-04T12:15:00Z",
+    "lat": 5.25,
+    "lng": 73.2,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 8,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x80346fc81f3fe3399304",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
@@ -67,6 +95,20 @@
     "observer": "LG",
     "groupSize": 4,
     "behaviour": "Tursiop Aduncus?",
+    "photoUrl": null
+  },
+  {
+    "id": "x17435932724732819b8f",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-08-22T06:55:00Z",
+    "lat": 5.3,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 2,
+    "behaviour": null,
     "photoUrl": null
   },
   {
@@ -266,6 +308,20 @@
     "photoUrl": null
   },
   {
+    "id": "x9e8c68f44a01dc8deec6",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-08-06T12:50:00Z",
+    "lat": 4.3,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 6,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x7c42ae4352f7a016c616",
     "species": "cuviers-beaked-whale",
     "speciesCommon": "Cuvier's Beaked Whale",
@@ -290,6 +346,34 @@
     "atoll": "North Male Atoll",
     "observer": "SH",
     "groupSize": 120,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x71c771bce4db78431456",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-08-03T11:30:00Z",
+    "lat": 5.3,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 10,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xb928cfbecfa7b5ca36c2",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-08-01T12:56:00Z",
+    "lat": 5.3,
+    "lng": 73.15,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 25,
     "behaviour": null,
     "photoUrl": null
   },
@@ -332,6 +416,20 @@
     "atoll": "North Male Atoll",
     "observer": "SH",
     "groupSize": 60,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x0f8ca93fb111e73e8bb9",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-28T06:00:00Z",
+    "lat": 5.25,
+    "lng": 73.2,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 100,
     "behaviour": null,
     "photoUrl": null
   },
@@ -448,6 +546,20 @@
     "photoUrl": null
   },
   {
+    "id": "xc63963c684a5fed8544f",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-19T09:40:00Z",
+    "lat": 5.25,
+    "lng": 73.5,
+    "atoll": "Lhaviyani Atoll",
+    "observer": "Silvio",
+    "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x00d6f99756e191c37e4b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -500,6 +612,20 @@
     "atoll": "Lhaviyani Atoll",
     "observer": "Silvio",
     "groupSize": 50,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x527f283e2acf7080ac7d",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-18T07:00:00Z",
+    "lat": 5.3,
+    "lng": 73.15,
+    "atoll": "Baa Atoll",
+    "observer": "Falvia",
+    "groupSize": 4,
     "behaviour": null,
     "photoUrl": null
   },
@@ -616,6 +742,20 @@
     "photoUrl": null
   },
   {
+    "id": "xa6b303a01f6bb8be5b4e",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-12T06:45:00Z",
+    "lat": 5.3,
+    "lng": 73.15,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 4,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x1d78cbc4fd0ac8ebcc29",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -672,6 +812,20 @@
     "photoUrl": null
   },
   {
+    "id": "xdabe2267f5110f7063ee",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-09T12:52:09Z",
+    "lat": 4.35,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 40,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x789029a619410da8622e",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -700,6 +854,34 @@
     "photoUrl": null
   },
   {
+    "id": "xcf54a65cca3f6a3bf921",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-05T12:30:00Z",
+    "lat": 5.3,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x4a7b57e53acc232a79b1",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-05T12:15:00Z",
+    "lat": 5.3,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 12,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x3ead9dbf65d59f66a97f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -710,6 +892,20 @@
     "atoll": "North Male Atoll",
     "observer": "SH",
     "groupSize": 180,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xa07a2260f4c9f7069ca3",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-07-05T11:35:00Z",
+    "lat": 4.25,
+    "lng": 73.55,
+    "atoll": "North Male Atoll",
+    "observer": "SH",
+    "groupSize": 18,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1134,6 +1330,20 @@
     "photoUrl": null
   },
   {
+    "id": "x0fc6f408ef01a1388e91",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-06-06T13:51:56Z",
+    "lat": 4.3,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 10,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x119c7f8863d70f34338d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -1214,6 +1424,20 @@
     "atoll": "North Male Atoll",
     "observer": "KH",
     "groupSize": 60,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xe1e1009dd60351066ad3",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-05-28T12:30:00Z",
+    "lat": 5.3,
+    "lng": 73.15,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 2,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1358,6 +1582,20 @@
     "photoUrl": null
   },
   {
+    "id": "x78603d0953193fe28336",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-05-05T12:29:50Z",
+    "lat": 4.35,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x085de3d04bdae389da0b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -1386,6 +1624,20 @@
     "photoUrl": null
   },
   {
+    "id": "x020416496adcb3a9eb20",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-05-05T06:00:00Z",
+    "lat": 5.25,
+    "lng": 73.2,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x3c999d1f069331fa1e1e",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -1396,6 +1648,20 @@
     "atoll": "North Male Atoll",
     "observer": "KH",
     "groupSize": 90,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x982d4d9981a32a21fc81",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-05-03T12:13:00Z",
+    "lat": 5.3,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 2,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1480,6 +1746,20 @@
     "atoll": "North Male Atoll",
     "observer": "KH",
     "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xebd709baa65d977b2826",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-04-25T12:52:58Z",
+    "lat": 4.3,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 20,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1694,6 +1974,20 @@
     "photoUrl": null
   },
   {
+    "id": "xa66852f7ea9ff61fb2dd",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-04-04T05:40:00Z",
+    "lat": 5.15,
+    "lng": 73.05,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 2,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x6ccf1b3f1ea1aaee2655",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
@@ -1718,6 +2012,20 @@
     "atoll": "North Male Atoll",
     "observer": "KH",
     "groupSize": 90,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x5df6d6599f9b41cb8df9",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-04-02T12:55:41Z",
+    "lat": 4.25,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 40,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1942,6 +2250,20 @@
     "atoll": "Baa Atoll",
     "observer": "LG",
     "groupSize": 75,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x92010f579bea7e222799",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-03-01T13:03:31Z",
+    "lat": 4.3,
+    "lng": 73.6,
+    "atoll": "North Male Atoll",
+    "observer": "KH",
+    "groupSize": 10,
     "behaviour": null,
     "photoUrl": null
   },

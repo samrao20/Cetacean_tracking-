@@ -1,23 +1,6 @@
 [
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 2,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°17'5.8\"N, 73°7'38.1\"E",
-      "date": "2026-08-01 00:00:00",
-      "time": "17:56:00",
-      "species": "Bottlenose",
-      "pod_size": 25,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 4,
     "reasons": [
       "species:unresolved:Unkown Dolphin"
@@ -69,57 +52,6 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 21,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°17'46.1\"N, 73°6'51.3\"E",
-      "date": "2026-05-03 00:00:00",
-      "time": "17:13:00",
-      "species": "Bottlenose",
-      "pod_size": 2,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 29,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°9'18.2\"N, 73°4'21.9\"E",
-      "date": "2026-04-04 00:00:00",
-      "time": "10:40:00",
-      "species": "Bottlenose",
-      "pod_size": 2,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 30,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°14'45.4\"N, 73°11'16.1\"E",
-      "date": "2026-09-04 00:00:00",
-      "time": "17:15:00",
-      "species": "Bottlenose",
-      "pod_size": 8,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 35,
     "reasons": [
       "coords:missing"
@@ -137,95 +69,9 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 36,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°14'34.7\"N, 73°10'33.7\"E",
-      "date": "2026-05-05 00:00:00",
-      "time": "11:00:00",
-      "species": "Bottlenose",
-      "pod_size": 30,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 37,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°19'12.5\"N, 73°5'5.0\"E",
-      "date": "2026-07-05 00:00:00",
-      "time": "17:30:00",
-      "species": "Bottlenose",
-      "pod_size": 30,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 38,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°18'29.9\"N, 73°5'30.4\"E",
-      "date": "2026-07-05 00:00:00",
-      "time": "17:15:00",
-      "species": "Bottlenose",
-      "pod_size": 12,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 39,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°16'43.8\"N, 73°8'16.7\"E",
-      "date": "2026-05-28 00:00:00",
-      "time": "17:30:00",
-      "species": "Bottlenose",
-      "pod_size": 2,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 42,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°17'11.8\"N, 73°8'31.5\"E",
-      "date": "2026-11-06 00:00:00",
-      "time": "17:55:00",
-      "species": "Bottlenose",
-      "pod_size": 20,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 44,
     "reasons": [
-      "coords:missing",
-      "species:unresolved:Bottlenose"
+      "coords:missing"
     ],
     "raw": {
       "atoll": "Baa",
@@ -292,57 +138,6 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 53,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°16'53.5\"N, 73°7'34.9\"E",
-      "date": "2026-07-12 00:00:00",
-      "time": "11:45:00",
-      "species": "Bottlenose",
-      "pod_size": 4,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 59,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°17'11.9\"N, 73°8'31.5\"E",
-      "date": "2026-07-18 00:00:00",
-      "time": "12:00:00",
-      "species": "Bottlenose",
-      "pod_size": 4,
-      "observer": "Falvia ",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 61,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Lhaviyani",
-      "coordinates": "5°14'25.5\"N, 73°30'51.1\"E",
-      "date": "2026-07-19 00:00:00",
-      "time": "14:40:00",
-      "species": "Bottlenose",
-      "pod_size": 20,
-      "observer": "Silvio ",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 67,
     "reasons": [
       "coords:missing"
@@ -377,108 +172,6 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 147,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°18'3.8\"N, 73°35'13.6\"E",
-      "date": "2026-03-01 00:00:00",
-      "time": "18:03:31",
-      "species": "Bottlenose",
-      "pod_size": 10,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 148,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°15'20.1\"N, 73°34'49.0\"E",
-      "date": "2026-04-02 00:00:00",
-      "time": "17:55:41",
-      "species": "Bottlenose",
-      "pod_size": 40,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 149,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°17'40.4\"N, 73°34'54.9\"E",
-      "date": "2026-04-25 00:00:00",
-      "time": "17:52:58",
-      "species": "Bottlenose",
-      "pod_size": 20,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 150,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°19'33.3\"N, 73°35'23.8\"E",
-      "date": "2026-05-05 00:00:00",
-      "time": "17:29:50",
-      "species": "Bottlenose",
-      "pod_size": 20,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 151,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°18'21.9\"N, 73°34'49.2\"E",
-      "date": "2026-06-06 00:00:00",
-      "time": "18:51:56",
-      "species": "Bottlenose",
-      "pod_size": 10,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 152,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°19'31.4\"N, 73°36'18.9\"E",
-      "date": "2026-07-09 00:00:00",
-      "time": "17:52:09",
-      "species": "Bottlenose",
-      "pod_size": 40,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 161,
     "reasons": [
       "coords:invalid_dms"
@@ -491,57 +184,6 @@
       "species": "Cuviers ",
       "pod_size": 2,
       "observer": "Nauhabrhm",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 163,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°15'59.4\"N 73°10'31.4\"E",
-      "date": "2026-07-28 00:00:00",
-      "time": "11:00:00",
-      "species": "Bottlenose",
-      "pod_size": 100,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 164,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°17'06.1\"N 73°06'51.9\"E",
-      "date": "2026-08-03 00:00:00",
-      "time": "16:30:00",
-      "species": "Bottlenose",
-      "pod_size": 10,
-      "observer": "LG",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 167,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°17'13.2\"N 73°35'35.1\"E",
-      "date": "2026-08-06 00:00:00",
-      "time": "17:50:00",
-      "species": "Bottlenose",
-      "pod_size": 6,
-      "observer": "KH",
       "notes": null
     }
   },
@@ -598,27 +240,9 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 205,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°15'19\" N 73°33'11\" E",
-      "date": "2026-07-05 00:00:00",
-      "time": "16:35:00",
-      "species": "Bottlenose",
-      "pod_size": 18,
-      "observer": "SH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 220,
     "reasons": [
-      "date:implausible_year",
-      "species:unresolved:Bottlenose"
+      "date:implausible_year"
     ],
     "raw": {
       "atoll": "Noonu",
@@ -645,23 +269,6 @@
       "species": "Spinner",
       "pod_size": 75,
       "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 230,
-    "reasons": [
-      "species:unresolved:Bottlenose"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°16'53.6\"N 73°06'56.1\"E",
-      "date": "2026-08-22 00:00:00",
-      "time": "11:55:00",
-      "species": "Bottlenose",
-      "pod_size": 2,
-      "observer": "LG",
       "notes": null
     }
   }
