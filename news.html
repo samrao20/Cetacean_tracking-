@@ -232,8 +232,11 @@
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  // "2026-07-01" → "1 July 2026". Falls back to date_note, then to nothing.
+  // date_note wins when present (it can express a range like "17–19 August
+  // 2026" that a single ISO date can't). Otherwise "2026-07-01" → "1 July
+  // 2026". Falls back to nothing.
   function formatDate(item) {
+    if (item.date_note) return item.date_note;
     var raw = item.date || '';
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
     if (m) {
@@ -241,7 +244,7 @@
     }
     m = /^(\d{4})-(\d{2})$/.exec(raw);
     if (m) return MONTHS[Number(m[2]) - 1] + ' ' + m[1];
-    return item.date_note || '';
+    return '';
   }
 
   function cardHTML(item) {
