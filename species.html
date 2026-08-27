@@ -40,23 +40,6 @@
       font-weight: 600;
     }
 
-    /* ── Unverified flag ── */
-    .unverified-flag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      background: #fef3c7;
-      color: #92400e;
-      border: 1px solid #fde68a;
-      border-radius: 3px;
-      padding: 1px 5px;
-      vertical-align: middle;
-      margin-left: 4px;
-    }
-
     /* ── Detail view transitions ── */
     #detail-view { animation: fadeIn 0.3s var(--ease, ease); }
     @keyframes fadeIn {
@@ -421,14 +404,6 @@
 
     document.title = `${sp.common_name} — Koamas`;
 
-    const unverified = new Set(sp.unverified || []);
-
-    function maybeFlag(field) {
-      return unverified.has(field)
-        ? '<span class="unverified-flag" title="This value needs verification against an authoritative source">verify</span>'
-        : '';
-    }
-
     const monthBar = buildMonthBar(sp.best_months || []);
 
     const behaviourItems = (sp.behaviour || []).map(b =>
@@ -446,7 +421,6 @@
             IUCN ${sp.iucn_status} — ${sp.iucn_label}
           </span>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-[#d8e6f0] text-[#5b6b7d] capitalize">${sp.type}</span>
-          ${unverified.has('iucn_status') ? '<span class="unverified-flag" title="IUCN status needs verification">verify</span>' : ''}
         </div>
         <h1 class="text-3xl md:text-4xl font-bold text-[#0b1f33] mb-1">${sp.common_name}</h1>
         <p class="text-lg italic text-[#5b6b7d]">${sp.scientific_name}</p>
@@ -484,7 +458,7 @@
             </div>
             <hr class="border-[#d8e6f0]" />
             <div>
-              <p class="text-[#5b6b7d] mb-1.5">Best months ${maybeFlag('best_months')}</p>
+              <p class="text-[#5b6b7d] mb-1.5">Best months</p>
               ${monthBar}
               ${sp.best_months_note ? `<p class="text-xs text-[#5b6b7d] mt-1.5">${sp.best_months_note}</p>` : ''}
             </div>
@@ -506,7 +480,7 @@
 
           <section aria-labelledby="dist-heading">
             <h2 id="dist-heading" class="text-lg font-semibold text-[#0b1f33] mb-2">
-              In the Maldives ${maybeFlag('maldives_distribution')}
+              In the Maldives
             </h2>
             <p class="text-[#0f1c2b] leading-relaxed">${sp.maldives_distribution}</p>
           </section>

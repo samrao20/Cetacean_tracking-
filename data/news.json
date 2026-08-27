@@ -4,16 +4,19 @@
     {
       "slug": "theveli-international-conference-2026",
       "title": "Koamas at Theveli International Conference 2026",
-      "kicker": "Upcoming",
+      "kicker": "Conference",
       "type": "event",
-      "status": "upcoming",
+      "status": "past",
       "date": "2026-08-17",
       "date_note": "17–19 August 2026",
       "location": "The Maldives National University",
-      "summary": "Koamas will be at Theveli International Conference 2026, hosted by The Maldives National University, on this year's theme: “Transformative Innovation in the 21st Century: Science, Technology and Society.”",
-      "body": [],
-      "image": "",
-      "image_credit": "",
+      "summary": "Koamas was at Theveli International Conference 2026, hosted by The Maldives National University, on this year's theme: “Transformative Innovation in the 21st Century: Science, Technology and Society.”",
+      "body": [
+        "James Ray presented \"Expanding Cetacean Monitoring Across the Maldives: Photo-Identification of Odontocetes at Kuda Huraa and Landaa Giraavaru, 2017–2026, and the Beginning of a National Sightings Database,\" co-authored with Samay Rao, Rylee Johansen, Edward Hodges, Marie Saleem and Thomas Le Berre.",
+        "The talk traced nine years of dolphin photo-identification work at the Four Seasons Kuda Huraa and Landaa Giraavaru resorts, and set out how that work is now feeding into Koamas — the WhatsApp-based citizen sightings network extending monitoring across the wider Maldivian archipelago."
+      ],
+      "image": "assets/img/news/theveli-2026.jpg",
+      "image_credit": "Reefscapers / Marine Savers",
       "links": []
     },
     {
