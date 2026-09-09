@@ -2954,7 +2954,7 @@
     "photoUrl": null
   },
   {
-    "id": "x69373b474c5ee0730e44",
+    "id": "x6dae6dca673d6ed3301b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
@@ -2963,7 +2963,7 @@
     "lng": 73.55,
     "atoll": "North Male Atoll",
     "observer": "KH",
-    "groupSize": null,
+    "groupSize": 50,
     "behaviour": null,
     "photoUrl": null
   },
