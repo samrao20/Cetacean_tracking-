@@ -11,7 +11,7 @@
       "date": "2026-10-01 00:00:00",
       "time": "14:25:00",
       "species": "Unkown Dolphin",
-      "pod_size": 2,
+      "pod_size": 2.0,
       "observer": "LG",
       "notes": null
     }
@@ -28,7 +28,7 @@
       "date": "2026-10-01 00:00:00",
       "time": "16:05:00",
       "species": "Unkown Dolphin",
-      "pod_size": 1,
+      "pod_size": 1.0,
       "observer": "LG",
       "notes": null
     }
@@ -45,7 +45,7 @@
       "date": "2026-01-19 00:00:00",
       "time": "16:00:00",
       "species": "Unkown Whale",
-      "pod_size": 1,
+      "pod_size": 1.0,
       "observer": "LG",
       "notes": null
     }
@@ -62,7 +62,7 @@
       "date": "2026-02-05 00:00:00",
       "time": "11:00:00",
       "species": "Spinner",
-      "pod_size": 50,
+      "pod_size": 50.0,
       "observer": "LG",
       "notes": null
     }
@@ -79,7 +79,7 @@
       "date": "2026-06-16 00:00:00",
       "time": "11:00:00",
       "species": "Bottlenose",
-      "pod_size": 2,
+      "pod_size": 2.0,
       "observer": "LG",
       "notes": null
     }
@@ -96,7 +96,7 @@
       "date": "2026-06-20 00:00:00",
       "time": "11:20:00",
       "species": "Spinner",
-      "pod_size": 30,
+      "pod_size": 30.0,
       "observer": "LG",
       "notes": null
     }
@@ -131,8 +131,25 @@
       "date": "2026-07-07 00:00:00",
       "time": "None",
       "species": "Risso",
-      "pod_size": 20,
+      "pod_size": 20.0,
       "observer": "LG",
+      "notes": null
+    }
+  },
+  {
+    "sheet": "Koamas Atoll Sightings 2026",
+    "row": 54,
+    "reasons": [
+      "coords:unparsed"
+    ],
+    "raw": {
+      "atoll": "Lhaviyani",
+      "coordinates": "Location\tX\tY\tNumber\nMadhirivaadhoo Outside\t73.173204\t5.294263\t30\nVoavah\t73.083888\t5.317537\t50\nMadhirivaadhoo Outside\t73.179474\t5.276155\t40\nVoavah\t73.085334\t5.315297\t35\nVoavah\t73.086437\t5.315042\t40\nVoavah\t73.084037\t5.322782\t30\nVoavah\t73.080583\t5.33019\t30\nVoavah\t73.0833\t5.319162\t40\nVoavah\t73.08819\t5.312235\t40\nVoavah\t73.084945\t5.314588\t60\nReethi Beach\t73.187935\t5.237739\t20\nReethi Beach\t73.178968\t5.219468\t40\nLandaa\t73.114729\t5.281359\t41\nVoavah\t73.082225\t5.326362\t45\nVoavah\t73.089889\t5.311296\t35\nVoavah\t73.080814\t5.327241\t5\nVoavah\t73.092353\t5.309521\t30\nVoavah\t73.088665\t5.311918\t35\nReethi Beach\t73.186141\t5.224286\t30\nVoavah\t73.07167\t5.345408\t40\nReethi Beach\t73.186778\t5.241408\t40\nReethi Beach\t73.177721\t5.251547\t20\nVoavah\t73.072089\t5.330927\t20\nVoavah\t73.090356\t5.303424\t30\nVoavah\t73.073598\t5.341365\t30\nReethi Beach\t73.160151\t5.247219\t10\nReethi Beach\t73.1771\t5.242734\t25\nReethi Beach\t73.171494\t5.248363\t25\nVovah\t73.10894\t5.304415\t35\nVovah\t73.078165\t5.329691\t35\nVoavah\t73.085158\t5.317194\t45\nVoavah\t73.071075\t5.34506\t45\nVoavah\t73.072663\t5.346743\t20\nVoavah\t73.091572\t5.33582\t60\nVoavah\t73.074653\t5.330389\t25\nVoavah\t73.08647\t5.314282\t10\nVoavah\t73.086666\t5.308622\t50\nVoavah\t73.09256\t5.308702\t40\nVoavah\t73.037898\t5.318479\t25\nBathala\t73.057162\t5.36257\t20\nVoavah\t73.088278\t5.310615\t35\nLandaa\t73.116156\t5.284099\t1\n",
+      "date": "2026-07-13 00:00:00",
+      "time": "17:20:00",
+      "species": "Spinner",
+      "pod_size": 30.0,
+      "observer": "Silvio ",
       "notes": null
     }
   },
@@ -148,7 +165,7 @@
       "date": "2026-01-04 00:00:00",
       "time": "18:01:07",
       "species": "Spinner",
-      "pod_size": 70,
+      "pod_size": 70.0,
       "observer": "KH",
       "notes": null
     }
@@ -165,7 +182,7 @@
       "date": "2026-01-06 00:00:00",
       "time": "17:51:51",
       "species": "Spinner",
-      "pod_size": 120,
+      "pod_size": 120.0,
       "observer": "KH",
       "notes": null
     }
@@ -182,7 +199,7 @@
       "date": "2025-12-04 00:00:00",
       "time": "11:21:00",
       "species": "Cuviers ",
-      "pod_size": 2,
+      "pod_size": 2.0,
       "observer": "Nauhabrhm",
       "notes": null
     }
@@ -199,7 +216,7 @@
       "date": "2026-02-15 00:00:00",
       "time": "16:35:00",
       "species": "Spinner",
-      "pod_size": 180,
+      "pod_size": 180.0,
       "observer": "SH",
       "notes": null
     }
@@ -216,7 +233,7 @@
       "date": "2026-04-14 00:00:00",
       "time": "16:30:00",
       "species": "Spinner",
-      "pod_size": 90,
+      "pod_size": 90.0,
       "observer": "SH",
       "notes": null
     }
@@ -233,7 +250,7 @@
       "date": "2026-05-22 00:00:00",
       "time": "16:30:00",
       "species": "Spinner",
-      "pod_size": 150,
+      "pod_size": 150.0,
       "observer": "SH",
       "notes": null
     }
@@ -250,7 +267,7 @@
       "date": "08/09/0206",
       "time": "19:00:00",
       "species": "Bottlenose",
-      "pod_size": 50,
+      "pod_size": 50.0,
       "observer": "Agne",
       "notes": null
     }
@@ -267,8 +284,25 @@
       "date": "2026-08-14 00:00:00",
       "time": "14:45:00",
       "species": "Spinner",
-      "pod_size": 75,
+      "pod_size": 75.0,
       "observer": "KH",
+      "notes": null
+    }
+  },
+  {
+    "sheet": "Koamas Atoll Sightings 2026",
+    "row": 252,
+    "reasons": [
+      "coords:missing"
+    ],
+    "raw": {
+      "atoll": "Baa",
+      "coordinates": null,
+      "date": "2026-09-18 00:00:00",
+      "time": "16:00:00",
+      "species": "Spinner",
+      "pod_size": null,
+      "observer": "Isi",
       "notes": null
     }
   }
