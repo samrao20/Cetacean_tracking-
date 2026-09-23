@@ -56,6 +56,34 @@
     "photoUrl": null
   },
   {
+    "id": "xeb3ddaca2539da826e77",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-09-23T10:45:00Z",
+    "lat": 5.3,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x09fa872fdb77f193625b",
+    "species": "indo-pacific-bottlenose-dolphin",
+    "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
+    "speciesScientific": "Tursiops aduncus",
+    "date": "2026-09-20T12:00:00Z",
+    "lat": 5.2,
+    "lng": 73.1,
+    "atoll": "Baa Atoll",
+    "observer": "LG",
+    "groupSize": 3,
+    "behaviour": "Tursiop Aduncus",
+    "photoUrl": null
+  },
+  {
     "id": "xc32d8b95971734040b32",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",

@@ -288,22 +288,5 @@
       "observer": "KH",
       "notes": null
     }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 253,
-    "reasons": [
-      "date:implausible_year"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°11'50.0\"N 73°07'29.2\"E",
-      "date": "09/20/0206",
-      "time": "17:00:00",
-      "species": "Bottlenose",
-      "pod_size": 3.0,
-      "observer": "LG",
-      "notes": "Tursiop Aduncus"
-    }
   }
 ]
