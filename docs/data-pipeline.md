@@ -13,12 +13,19 @@ Action (`.github/workflows/import-sightings.yml`) runs
    the 0.05° privacy grid before being committed).
 3. Flag problem rows **in the workbook itself** — red fill for a row whose
    coordinates can't be trusted, yellow for a row whose species label
-   couldn't be resolved, orange for both, purple for a bad/unparseable date
-   — and push that highlighted workbook back to the same Drive file.
-   Highlights are recomputed from scratch every run, so fixing a row in
-   Excel clears its highlight on the next sync automatically. A **"QA
-   Legend"** sheet explaining these colors is rebuilt the same way each run
-   and inserted just before the workbook's last sheet.
+   couldn't be resolved, orange for both, purple for a bad/unparseable date,
+   **blue for a row submitted via the WhatsApp bot that a human hasn't
+   reviewed yet** (see `docs/whatsapp-bot.md`) — and push that highlighted
+   workbook back to the same Drive file. Highlights are recomputed from
+   scratch every run, so fixing a row in Excel clears its highlight on the
+   next sync automatically. A **"QA Legend"** sheet explaining these colors
+   is rebuilt the same way each run and inserted just before the workbook's
+   last sheet.
+3a. Before parsing, also append any pending WhatsApp-bot submissions
+    (`bot_submissions` in Supabase) as new rows in the current year's
+    sheet, tagged `Source = WhatsApp`. See `docs/whatsapp-bot.md` for the
+    full bot pipeline — the bot itself never writes to the workbook, only
+    this importer does.
 4. Commit `data/sightings.json` / `data/import-review.json` if they changed.
 
 Rows that fail validation are excluded from the site and Supabase entirely —
@@ -86,6 +93,11 @@ sheet) for the reason:
 - **`species:unresolved:<label>`** — see below.
 - **`date:*`** — the Date cell isn't a real date Excel could store (e.g. no
   year) or falls outside 2015–2100.
+
+A **blue** row isn't in `data/import-review.json` at all — it parsed fine,
+it's just a WhatsApp submission nobody has checked yet. Look it over and
+set its **Verified** cell to `Yes`; the blue clears and it publishes on the
+next sync, same as any other row. See `docs/whatsapp-bot.md`.
 
 Once fixed, the row publishes and its highlight clears on the next sync —
 no other action needed.
