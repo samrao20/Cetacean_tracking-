@@ -64,6 +64,7 @@ RED_FILL = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="soli
 YELLOW_FILL = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
 BOTH_FILL = PatternFill(start_color="FFC299", end_color="FFC299", fill_type="solid")  # coords + species
 DATE_FILL = PatternFill(start_color="D9D2FF", end_color="D9D2FF", fill_type="solid")  # date issue, no coords/species issue
+BLUE_FILL = PatternFill(start_color="BDD7EE", end_color="BDD7EE", fill_type="solid")  # WhatsApp row awaiting human review
 CLEAR_FILL = PatternFill(fill_type=None)
 
 LEGEND_SHEET_TITLE = "QA Legend"
@@ -72,6 +73,7 @@ LEGEND_ROWS = [
     (YELLOW_FILL, "Yellow", "Species couldn't be resolved to a known species."),
     (BOTH_FILL, "Orange", "Both coordinates and species are bad."),
     (DATE_FILL, "Purple", "Bad or unparseable date (coordinates and species are otherwise fine)."),
+    (BLUE_FILL, "Blue", "Submitted via the WhatsApp bot — set Verified to Yes once a human has checked it."),
     (CLEAR_FILL, "No fill", "Row is clean and was published to the site."),
 ]
 
@@ -90,8 +92,9 @@ COLUMN_KEYWORDS = [
     ("verified", ("verified",)),
     ("photo", ("photo",)),
     ("observer", ("observer",)),
+    ("source", ("source",)),  # only present on sheets the WhatsApp-bot importer has touched — see append_bot_submissions()
 ]
-REQUIRED_HEADER_HITS = 7  # of len(COLUMN_KEYWORDS) == 9
+REQUIRED_HEADER_HITS = 7  # of len(COLUMN_KEYWORDS) == 10; existing sheets pass without a Source column
 
 COORD_RE = re.compile(
     r"(\d+)\s*°\s*(\d+)\s*'\s*([\d.]+)\s*\"?\s*([NS])"
@@ -334,7 +337,159 @@ def iter_raw_rows(ws, header_row, colmap):
             "verified_raw": cell(r, "verified"),
             "observer_raw": cell(r, "observer"),
             "notes_raw": cell(r, "notes"),
+            "source_raw": cell(r, "source"),
         }
+
+
+# ── WhatsApp bot inbox ──────────────────────────────────────────────────
+#
+# The bot (supabase/functions/whatsapp-bot) never touches the Excel/Drive
+# file itself — this importer is the only writer to it (it re-uploads the
+# whole workbook every run, so a second writer would race and drop rows).
+# Instead the bot stages completed reports in the Supabase bot_submissions
+# table, and every run this importer appends any pending ones as new rows
+# in the current year's sheet, tagged Source=WhatsApp, before the normal
+# parse/validate/highlight pass below runs over the whole sheet — so a bad
+# coordinate or unresolved species in a bot row gets exactly the same
+# red/yellow/purple flags as a hand-typed one. A bot row additionally gets
+# BLUE_FILL (see apply_highlights) until a human sets Verified=Yes, which
+# is also what the normal pipeline already requires before any row
+# publishes — see docs/whatsapp-bot.md.
+
+def dms_string(lat, lng):
+    """Inverse of parse_coordinates(): render decimal lat/lng back into the
+    sheet's 'D°M'S"H, D°M'S"H' format so the normal parser reads a bot row
+    identically to a hand-typed one. Works in whole tenths-of-a-second via
+    round() rather than chained float division, so e.g. 73.1° doesn't come
+    out as 73°5'60.0" from accumulated floating-point error."""
+    def part(v, pos, neg):
+        hemi = pos if v >= 0 else neg
+        total_tenths = round(abs(v) * 36000)  # tenths of a second, as an int
+        d, rem = divmod(total_tenths, 36000)
+        m, tenths = divmod(rem, 600)
+        return f"{d}°{m}'{tenths / 10:.1f}\"{hemi}"
+    return f"{part(lat, 'N', 'S')}, {part(lng, 'E', 'W')}"
+
+
+def _parse_iso_date(s):
+    try:
+        return dt.datetime.strptime(str(s), "%Y-%m-%d").date()
+    except (ValueError, TypeError):
+        return s  # leave as-is; parse_date_time will flag it as unparsed
+
+
+def _parse_iso_time(s):
+    for fmt in ("%H:%M:%S", "%H:%M"):
+        try:
+            return dt.datetime.strptime(str(s), fmt).time()
+        except (ValueError, TypeError):
+            continue
+    return s
+
+
+def ensure_column(ws, header_row, colmap, key, header_text, search_terms):
+    """Returns colmap[key], creating the column (appending a new header
+    cell) if a matching header isn't already present. Used for columns
+    (like Source) that only exist on sheets this importer has touched.
+
+    Deliberately doesn't use ws.max_column to find the next free slot:
+    openpyxl's Worksheet.cell() creates a cell on mere access, so
+    find_header_row()'s earlier scan (up to column 12) has already nudged
+    ws.max_column to 12 on a sheet with far fewer real columns — using it
+    here would leave a run of blank orphan columns before the new one."""
+    search_range = max(colmap.values(), default=0) + 4  # a small margin past the last known column
+    for c in range(1, search_range + 1):
+        v = ws.cell(header_row, c).value
+        if v and any(t in str(v).strip().lower() for t in search_terms):
+            colmap[key] = c
+            return c
+    new_col = max(colmap.values(), default=0) + 1
+    ws.cell(header_row, new_col, header_text)
+    colmap[key] = new_col
+    return new_col
+
+
+def target_sightings_sheet(sheets):
+    """The sheet bot submissions get appended to: the one named for the
+    latest year, or the last sightings sheet if none parses as a year."""
+    def year_of(ws):
+        m = re.search(r"(20\d\d)", ws.title)
+        return int(m.group(1)) if m else -1
+    return max(sheets, key=year_of)
+
+
+def fetch_pending_bot_submissions(base_url, service_key):
+    import requests
+
+    resp = requests.get(
+        f"{base_url}/rest/v1/bot_submissions", headers=_supabase_headers(service_key),
+        params={"select": "*", "imported_at": "is.null", "order": "created_at.asc"}, timeout=30,
+    )
+    _raise_for_status(resp)
+    return resp.json()
+
+
+def mark_bot_submissions_imported(base_url, service_key, ids):
+    import requests
+
+    if not ids:
+        return
+    headers = _supabase_headers(service_key)
+    ids_filter = ",".join(ids)
+    resp = requests.patch(
+        f"{base_url}/rest/v1/bot_submissions", headers=headers,
+        params={"id": f"in.({ids_filter})"},
+        json={"imported_at": dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")}, timeout=30,
+    )
+    _raise_for_status(resp)
+
+
+def append_bot_submissions(sheets, submissions):
+    """Appends each pending bot_submissions row to the target sheet and
+    returns the list of (submission_id, sheet_title, row_number) written,
+    so the caller can mark them imported (only after a successful Drive
+    push) and so apply_highlights() can flag them blue."""
+    if not submissions:
+        return []
+
+    ws = target_sightings_sheet(sheets)
+    header_row = find_header_row(ws)
+    if header_row is None:
+        print(f'WARNING: could not find a header row in "{ws.title}" — skipping {len(submissions)} bot submission(s) this run.', file=sys.stderr)
+        return []
+    colmap = build_column_map(ws, header_row)
+    ensure_column(ws, header_row, colmap, "source", "Source", ("source",))
+    ensure_column(ws, header_row, colmap, "photo", "Photos", ("photo",))
+
+    appended = []
+    row = ws.max_row + 1
+    for sub in submissions:
+        def set_cell(key, value):
+            c = colmap.get(key)
+            if c and value is not None:
+                ws.cell(row, c, value)
+
+        set_cell("atoll", sub.get("atoll") or "")
+        if sub.get("lat") is not None and sub.get("lng") is not None:
+            set_cell("coords", dms_string(sub["lat"], sub["lng"]))
+        if sub.get("sighting_date"):
+            set_cell("date", _parse_iso_date(sub["sighting_date"]))
+        if sub.get("sighting_time"):
+            set_cell("time", _parse_iso_time(sub["sighting_time"]))
+        set_cell("species", sub.get("species_label") or "")
+        set_cell("podsize", sub.get("pod_size") or "")
+        set_cell("observer", "WhatsApp bot")
+        set_cell("notes", sub.get("notes") or "")
+        set_cell("source", "WhatsApp")
+        photo_links = sub.get("photo_links") or []
+        if photo_links:
+            set_cell("photo", ", ".join(photo_links))
+
+        appended.append((sub["id"], ws.title, row))
+        row += 1
+
+    print(f"Appended {len(appended)} WhatsApp submission(s) into \"{ws.title}\".")
+    return appended
 
 
 # ── row -> record/review ────────────────────────────────────────────────
@@ -379,6 +534,7 @@ def process_row(raw, species_by_slug, aliases):
     verified = str(raw["verified_raw"]).strip().lower() == "yes" if raw["verified_raw"] else False
     observer = str(raw["observer_raw"]).strip() if raw["observer_raw"] else ""
     notes = str(raw["notes_raw"]).strip() if raw["notes_raw"] else ""
+    source = "whatsapp" if str(raw.get("source_raw") or "").strip().lower() == "whatsapp" else "excel"
 
     source_key_basis = "|".join([
         raw["sheet"], str(raw["atoll_raw"]), str(raw["coords_raw"]),
@@ -398,6 +554,7 @@ def process_row(raw, species_by_slug, aliases):
         "groupSize": parse_pod_size(raw["podsize_raw"]),
         "behaviour": notes or None,
         "photoUrl": None,
+        "source": source,
         "_status": "verified" if verified else "unverified",
         "_source_key_basis": source_key_basis,
         "_sheet": raw["sheet"],
@@ -448,13 +605,15 @@ def build_review(review_records):
 
 # ── highlighting ────────────────────────────────────────────────────────
 
-def apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged):
+def apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged, whatsapp_unreviewed=frozenset()):
     # A row can fail for more than one reason (see process_row). coords/
     # species get dedicated colors (and their combination a third); a
     # date-only failure — no coords or species problem — still needs a
     # visible flag or it would drop off the site with no signal in the
     # sheet explaining why, so it gets its own color rather than falling
-    # through to "looks clean".
+    # through to "looks clean". A WhatsApp-bot row gets its own color too,
+    # but only once it's otherwise clean — a bad coordinate/species/date on
+    # a bot row is still more useful flagged as that specific problem.
     for ws, header_row, last_row, ncols in sheets_meta:
         for r in range(header_row + 1, last_row + 1):
             key = (ws.title, r)
@@ -467,6 +626,8 @@ def apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged):
                 fill = YELLOW_FILL
             elif in_date:
                 fill = DATE_FILL
+            elif key in whatsapp_unreviewed:
+                fill = BLUE_FILL
             else:
                 fill = CLEAR_FILL
             for c in range(1, ncols + 1):
@@ -493,10 +654,11 @@ def apply_legend_sheet(wb):
         "(every 3 hours) — no need to clear it by hand. Note: rows logged as "
         "Bottlenose are published as a combined Tursiops sp. record and no longer "
         "flag — put a scientific name in the Notes column if you can confirm which "
-        "species it was."
+        "species it was. Rows added by the WhatsApp bot (Source = WhatsApp) stay Blue "
+        "until Verified is set to Yes, same as any other row needs to publish."
     )
     ws["A2"].alignment = Alignment(wrap_text=True, vertical="top")
-    ws.row_dimensions[2].height = 60
+    ws.row_dimensions[2].height = 72
 
     headers = ("Color", "Swatch", "Meaning")
     for c, text in enumerate(headers, 1):
@@ -607,7 +769,7 @@ def supabase_upsert_sightings(base_url, service_key, records):
     for rec in records:
         payload.append({
             "id": rec["id"],
-            "source": "excel",
+            "source": rec.get("source", "excel"),
             "source_key": rec["source_key"],
             "species_id": slug_to_id.get(rec["species"]),
             "lat": rec["lat"],
@@ -631,15 +793,17 @@ def supabase_upsert_sightings(base_url, service_key, records):
 
 
 def supabase_reconcile(base_url, service_key, current_source_keys):
-    """Delete excel-sourced rows whose source_key no longer appears in the
-    sheet, so deletions/corrections made in Excel propagate. Never touches
-    rows with a different `source` (e.g. future WhatsApp-bot submissions)."""
+    """Delete rows derived from the sheet (source 'excel' or 'whatsapp' —
+    the latter is a WhatsApp submission this importer appended into the
+    sheet, see append_bot_submissions()) whose source_key no longer appears
+    there, so deletions/corrections made in Excel propagate. Never touches
+    any other source a future pipeline might introduce."""
     import requests
 
     headers = _supabase_headers(service_key)
     resp = requests.get(
         f"{base_url}/rest/v1/sightings", headers=headers,
-        params={"select": "id,source_key", "source": "eq.excel"}, timeout=30,
+        params={"select": "id,source_key", "source": "in.(excel,whatsapp)"}, timeout=30,
     )
     _raise_for_status(resp)
     stale_ids = [row["id"] for row in resp.json() if row["source_key"] not in current_source_keys]
@@ -671,6 +835,11 @@ def main():
     parser.add_argument("--highlighted-out", help="Always write the highlighted workbook to this local path.")
     parser.add_argument("--no-drive-writeback", action="store_true")
     parser.add_argument("--no-supabase", action="store_true")
+    parser.add_argument("--no-bot-import", action="store_true",
+                         help="Skip pulling pending WhatsApp-bot submissions into the sheet this run.")
+    parser.add_argument("--bot-submissions-json",
+                         help="Local JSON file of bot_submissions rows, used instead of querying Supabase "
+                              "(for testing --xlsx/--dry-run without live credentials).")
     args = parser.parse_args()
 
     species_list = json.load(open(args.species_json))["species"]
@@ -691,7 +860,21 @@ def main():
     if not sheets:
         sys.exit('No sheet matching "Koamas Atoll Sightings" found in the workbook.')
 
+    bot_ids_to_mark = []
+    whatsapp_rows = set()
+    if not args.no_bot_import:
+        if args.bot_submissions_json:
+            submissions = json.load(open(args.bot_submissions_json)) if os.path.exists(args.bot_submissions_json) else []
+        else:
+            base_url = os.environ.get("SUPABASE_URL")
+            service_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+            submissions = fetch_pending_bot_submissions(base_url, service_key) if base_url and service_key else []
+        appended = append_bot_submissions(sheets, submissions)
+        bot_ids_to_mark = [sub_id for sub_id, _, _ in appended]
+        whatsapp_rows = {(sheet, row) for _, sheet, row in appended}
+
     all_published, all_review, sheets_meta = [], [], []
+    whatsapp_unreviewed = set()
     for ws in sheets:
         header_row = find_header_row(ws)
         if header_row is None:
@@ -703,7 +886,12 @@ def main():
             last_row = max(last_row, raw["row"])
             record, review = process_row(raw, species_by_slug, aliases)
             (all_published if record else all_review).append(record or review)
-        sheets_meta.append((ws, header_row, last_row, max(colmap.values()) if colmap else 9))
+            key = (raw["sheet"], raw["row"])
+            if key in whatsapp_rows:
+                verified_now = str(raw["verified_raw"]).strip().lower() == "yes" if raw["verified_raw"] else False
+                if not verified_now:
+                    whatsapp_unreviewed.add(key)
+        sheets_meta.append((ws, header_row, last_row, ws.max_column))
 
     assign_source_keys(all_published)
 
@@ -729,7 +917,7 @@ def main():
                 species_flagged.add(key)
             elif reason.startswith("date:"):
                 date_flagged.add(key)
-    apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged)
+    apply_highlights(sheets_meta, coord_flagged, species_flagged, date_flagged, whatsapp_unreviewed)
     apply_legend_sheet(wb)
 
     buf = io.BytesIO()
@@ -745,9 +933,11 @@ def main():
     print(f"Parsed {total} rows across {len(sheets)} sheet(s).")
     print(f"  published : {len(all_published)}  (verified/public: {len(mirror)})")
     print(f"  review    : {len(all_review)}  (coords: {len(coord_flagged)}, species: {len(species_flagged)})")
+    if bot_ids_to_mark:
+        print(f"  whatsapp  : {len(bot_ids_to_mark)} appended this run, {len(whatsapp_unreviewed)} awaiting review (Blue)")
 
     if args.dry_run:
-        print("Dry run — skipping Drive write-back and Supabase sync.")
+        print("Dry run — skipping Drive write-back, Supabase sync, and marking bot submissions imported.")
         return
 
     if not args.no_drive_writeback:
@@ -756,6 +946,15 @@ def main():
                 drive_service = get_drive_service()
             push_workbook_bytes(drive_service, args.file_id, highlighted_bytes)
             print("Pushed highlighted workbook back to Drive.")
+            # Only mark bot_submissions as imported once the rows are
+            # durably in the sheet — if the push above had failed we'd want
+            # next run to append them again rather than lose them.
+            if bot_ids_to_mark:
+                base_url = os.environ.get("SUPABASE_URL")
+                service_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+                if base_url and service_key:
+                    mark_bot_submissions_imported(base_url, service_key, bot_ids_to_mark)
+                    print(f"Marked {len(bot_ids_to_mark)} bot submission(s) as imported.")
         else:
             print("Skipping Drive write-back (no service account / file id configured).")
 
