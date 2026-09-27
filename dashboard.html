@@ -471,6 +471,24 @@
     return s.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
   }
 
+  // Sanity check: a sighting can only be logged after it happens, so a
+  // sighting_date in the future is bad data (e.g. a mistyped year), never
+  // a real upcoming sighting — drop it rather than showing something that
+  // hasn't happened yet. A day of slack absorbs Maldives (UTC+5) vs UTC
+  // date rounding at the day boundary. Kept in sync with the identical
+  // helper in map.html and index.html.
+  function dropFutureDated(rows) {
+    const cutoff = Date.now() + 24 * 60 * 60 * 1000;
+    return (rows || []).filter(r => {
+      const d = r.date ? new Date(r.date) : null;
+      if (d && !isNaN(d) && d.getTime() > cutoff) {
+        console.warn('Koamas: dropping sighting with future date', r.id, r.date);
+        return false;
+      }
+      return true;
+    });
+  }
+
   // Species that can't be told apart in the field are shown as one combined
   // category in the charts below. Declared canonically by the `members`
   // array on the grouping entry in species.json (slug bottlenose-dolphin,
@@ -562,7 +580,7 @@
           .eq('status', 'verified')
           .order('sighting_date', { ascending: false })
           .range(from, to));
-        return { rows: normaliseSupabase(data), source: 'live' };
+        return { rows: dropFutureDated(normaliseSupabase(data)), source: 'live' };
       } catch (err) {
         console.warn('Supabase load failed, using local fallback', err);
       }
@@ -571,7 +589,7 @@
       const res = await fetch('data/sightings.json');
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const arr = await res.json();
-      return { rows: normaliseLocal(arr), source: 'demo' };
+      return { rows: dropFutureDated(normaliseLocal(arr)), source: 'demo' };
     } catch {
       return { rows: [], source: 'none' };
     }
