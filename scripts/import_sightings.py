@@ -71,7 +71,7 @@ LEGEND_ROWS = [
     (RED_FILL, "Red", "Unusable coordinates: missing, unparseable, or outside the Maldives."),
     (YELLOW_FILL, "Yellow", "Species couldn't be resolved to a known species."),
     (BOTH_FILL, "Orange", "Both coordinates and species are bad."),
-    (DATE_FILL, "Purple", "Bad or unparseable date (coordinates and species are otherwise fine)."),
+    (DATE_FILL, "Purple", "Bad, unparseable, or future date — e.g. a mistyped year (coordinates and species are otherwise fine)."),
     (CLEAR_FILL, "No fill", "Row is clean and was published to the site."),
 ]
 
@@ -186,6 +186,14 @@ def parse_date_time(date_val, time_val):
 
     if not (2015 <= date_part.year <= 2100):
         return None, "implausible_year"
+
+    # A sighting can only be logged after it happens — a date later than
+    # today (Maldives local, since that's the sheet's own timezone) is
+    # almost always a mistyped year, not a real future sighting. This is
+    # what caught the 6 Nov 2026 entry from reaching the site.
+    today_local = (dt.datetime.utcnow() + MALDIVES_OFFSET).date()
+    if date_part > today_local:
+        return None, "future"
 
     time_part = dt.time(12, 0)  # default: midday local, if time is blank
     if isinstance(time_val, dt.time):

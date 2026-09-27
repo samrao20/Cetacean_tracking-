@@ -13,7 +13,8 @@ Action (`.github/workflows/import-sightings.yml`) runs
    the 0.05° privacy grid before being committed).
 3. Flag problem rows **in the workbook itself** — red fill for a row whose
    coordinates can't be trusted, yellow for a row whose species label
-   couldn't be resolved, orange for both, purple for a bad/unparseable date
+   couldn't be resolved, orange for both, purple for a bad, unparseable, or
+   future date
    — and push that highlighted workbook back to the same Drive file.
    Highlights are recomputed from scratch every run, so fixing a row in
    Excel clears its highlight on the next sync automatically. A **"QA
@@ -85,7 +86,8 @@ sheet) for the reason:
   (lat −1..8, lng 72..74.5) — likely a swapped digit.
 - **`species:unresolved:<label>`** — see below.
 - **`date:*`** — the Date cell isn't a real date Excel could store (e.g. no
-  year) or falls outside 2015–2100.
+  year), falls outside 2015–2100, or is later than today
+  (`date:future` — almost always a mistyped year; check and fix it).
 
 Once fixed, the row publishes and its highlight clears on the next sync —
 no other action needed.
