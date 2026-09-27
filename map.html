@@ -462,6 +462,24 @@
     return s.toLowerCase().replace(/(^|\s)\S/g, function (c) { return c.toUpperCase(); });
   }
 
+  // Sanity check: a sighting can only be logged after it happens, so a
+  // sighting_date in the future is bad data (e.g. a mistyped year), never
+  // a real upcoming sighting — drop it rather than showing something that
+  // hasn't happened yet. A day of slack absorbs Maldives (UTC+5) vs UTC
+  // date rounding at the day boundary. Kept in sync with the identical
+  // helper in dashboard.html and index.html.
+  function dropFutureDated(rows) {
+    var cutoff = Date.now() + 24 * 60 * 60 * 1000;
+    return (rows || []).filter(function (s) {
+      var d = s.date ? new Date(s.date) : null;
+      if (d && !isNaN(d) && d.getTime() > cutoff) {
+        console.warn('Koamas: dropping sighting with future date', s.id, s.date);
+        return false;
+      }
+      return true;
+    });
+  }
+
   function colorExpr() {
     var e = ['match', ['get', 'group']];
     Object.entries(SPECIES_COLORS).forEach(function(kv) { e.push(kv[0], kv[1]); });
@@ -1410,7 +1428,7 @@
   (async function () {
     try {
       var boot = await Promise.all([loadSightings(), loadOverlays(), probeDeepStyle(), loadSpeciesLookup()]);
-      allSightings = boot[0];
+      allSightings = dropFutureDated(boot[0]);
       var deepOk   = boot[2];
       latestId = (allSightings.slice().sort(function (a, b) {
         return String(b.date || '').localeCompare(String(a.date || ''));
