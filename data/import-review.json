@@ -1,7 +1,7 @@
 [
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 4,
+    "row": 5,
     "reasons": [
       "species:unresolved:Unkown Dolphin"
     ],
@@ -18,7 +18,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 5,
+    "row": 6,
     "reasons": [
       "species:unresolved:Unkown Dolphin"
     ],
@@ -35,7 +35,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 8,
+    "row": 9,
     "reasons": [
       "species:unresolved:Unkown Whale"
     ],
@@ -52,7 +52,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 35,
+    "row": 36,
     "reasons": [
       "coords:missing"
     ],
@@ -69,7 +69,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 44,
+    "row": 45,
     "reasons": [
       "coords:missing"
     ],
@@ -86,7 +86,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 45,
+    "row": 46,
     "reasons": [
       "coords:missing"
     ],
@@ -103,7 +103,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 46,
+    "row": 47,
     "reasons": [
       "coords:missing",
       "species:unresolved:Unkown Dolphin"
@@ -121,7 +121,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 51,
+    "row": 52,
     "reasons": [
       "coords:missing"
     ],
@@ -138,7 +138,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 54,
+    "row": 55,
     "reasons": [
       "coords:unparsed"
     ],
@@ -155,7 +155,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 67,
+    "row": 68,
     "reasons": [
       "coords:missing"
     ],
@@ -172,7 +172,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 68,
+    "row": 69,
     "reasons": [
       "coords:missing"
     ],
@@ -189,7 +189,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 161,
+    "row": 162,
     "reasons": [
       "coords:invalid_dms"
     ],
@@ -206,7 +206,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 178,
+    "row": 179,
     "reasons": [
       "coords:invalid_dms"
     ],
@@ -223,7 +223,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 186,
+    "row": 187,
     "reasons": [
       "coords:invalid_dms"
     ],
@@ -240,7 +240,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 194,
+    "row": 195,
     "reasons": [
       "coords:invalid_dms"
     ],
@@ -257,7 +257,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 222,
+    "row": 223,
     "reasons": [
       "coords:invalid_dms"
     ],
@@ -274,7 +274,7 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 247,
+    "row": 248,
     "reasons": [
       "date:time_unparsed"
     ],

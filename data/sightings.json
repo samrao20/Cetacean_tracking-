@@ -3652,5 +3652,19 @@
     "groupSize": 225,
     "behaviour": null,
     "photoUrl": null
+  },
+  {
+    "id": "xecc1adbab71aff62cede",
+    "species": "killer-whale",
+    "speciesCommon": "Killer Whale",
+    "speciesScientific": "Orcinus orca",
+    "date": "2025-12-18T06:00:00Z",
+    "lat": -0.25,
+    "lng": 73.45,
+    "atoll": "Fuvahmulah Atoll",
+    "observer": "Finn",
+    "groupSize": 6,
+    "behaviour": null,
+    "photoUrl": null
   }
 ]
