@@ -189,23 +189,6 @@
   },
   {
     "sheet": "Koamas Atoll Sightings 2026",
-    "row": 162,
-    "reasons": [
-      "coords:invalid_dms"
-    ],
-    "raw": {
-      "atoll": "Addu",
-      "coordinates": "0°59'95.0\"S 73°11'81.0\"E",
-      "date": "2025-12-04 00:00:00",
-      "time": "11:21:00",
-      "species": "Cuviers",
-      "pod_size": 2.0,
-      "observer": "Nauhabrhm",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
     "row": 179,
     "reasons": [
       "coords:invalid_dms"
@@ -252,40 +235,6 @@
       "species": "Spinner",
       "pod_size": 150.0,
       "observer": "SH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 223,
-    "reasons": [
-      "coords:invalid_dms"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": "4°37'80.1\"N 73°65'78.7\"E",
-      "date": "2026-08-14 00:00:00",
-      "time": "14:45:00",
-      "species": "Spinner",
-      "pod_size": 75.0,
-      "observer": "KH",
-      "notes": null
-    }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 248,
-    "reasons": [
-      "date:time_unparsed"
-    ],
-    "raw": {
-      "atoll": "Baa",
-      "coordinates": "5°06'43.5\"N 73°06'19.0\"E",
-      "date": "2026-09-07 00:00:00",
-      "time": "-",
-      "species": "Pilot",
-      "pod_size": 10.0,
-      "observer": "Dua",
       "notes": null
     }
   }
