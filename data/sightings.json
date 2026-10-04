@@ -1,5 +1,19 @@
 [
   {
+    "id": "x66ff990ef5f1530b67f8",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-10-04T11:43:00Z",
+    "lat": 5.25,
+    "lng": 73.2,
+    "atoll": "Baa Atoll",
+    "observer": "Zoe Manta Trust",
+    "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "xe634155ec079ecf700eb",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
@@ -80,6 +94,20 @@
     "atoll": "North Male Atoll",
     "observer": "Erin ritz Carlton",
     "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xa5e4ef00f6371f2183b5",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-10-01T05:10:00Z",
+    "lat": 5.2,
+    "lng": 73.15,
+    "atoll": "Baa Atoll",
+    "observer": "Beckie Manta Trust",
+    "groupSize": 50,
     "behaviour": null,
     "photoUrl": null
   },
@@ -2324,6 +2352,20 @@
     "photoUrl": null
   },
   {
+    "id": "x5b37222c4ee89e5e41be",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-05-02T08:30:00Z",
+    "lat": 5.85,
+    "lng": 73.2,
+    "atoll": "Noonu Atoll",
+    "observer": "Agne Vela Project",
+    "groupSize": 5,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x1c54d6d27be32239f8db",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -2446,6 +2488,34 @@
     "atoll": "North Male Atoll",
     "observer": "KH",
     "groupSize": 35,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xe37a760f632f443ba06e",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-04-21T04:30:00Z",
+    "lat": 5.85,
+    "lng": 73.2,
+    "atoll": "Noonu Atoll",
+    "observer": "Agne Vela Project",
+    "groupSize": 10,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x152dd47d52a95fdd27b9",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-04-20T05:30:00Z",
+    "lat": 5.85,
+    "lng": 73.2,
+    "atoll": "Noonu Atoll",
+    "observer": "Agne Vela Project",
+    "groupSize": 10,
     "behaviour": null,
     "photoUrl": null
   },
@@ -2614,6 +2684,20 @@
     "atoll": "North Male Atoll",
     "observer": "KH",
     "groupSize": 45,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x00ccf1185ae26c913653",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-04-05T04:30:00Z",
+    "lat": 5.85,
+    "lng": 73.15,
+    "atoll": "Noonu Atoll",
+    "observer": "Agne Vela Project",
+    "groupSize": 25,
     "behaviour": null,
     "photoUrl": null
   },
