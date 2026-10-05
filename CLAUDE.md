@@ -15,7 +15,7 @@ These are safe to restyle but must not change in behaviour. UI/redesign work has
 - **WhatsApp routing.** Every `https://wa.me/...?text=...` link and its pre-filled message. The number is now the live bot number `9607257743` (`+960 7257743`) — preserve it verbatim; do not revert to the old `00000000000` placeholder or substitute a different number without explicit instruction. Sightings are submitted only through this bot, never through a form on this site.
 - **Informational text.** The species guide content (`species.json`; on-page species counts are read from this file's length at render time, not hardcoded — do not hardcode a count anywhere), the "How it works" steps, and the About-page copy are the dataset, not filler. Restyle freely; do not reword, summarise, or drop entries. After any redesign, the rendered text must be byte-identical (extract page text and diff against the previous commit to confirm).
 - **Data layer.** Supabase query shapes, the `status = 'verified'` filter, the Supabase→local field normalisation, and the local-JSON fallback path. Breaking any of these silently empties the map/dashboard.
-- **Coordinate rounding** to 0.05 at render time (privacy — see Key Decisions), and the **`submitter_phone_hash` never rendered** rule.
+- **Exact coordinates, no rounding** (decision: the ~3 hour publication delay is the privacy buffer, and cetaceans move — see Key Decisions), and the **`submitter_phone_hash` never rendered** rule.
 
 When in doubt, treat anything under Data Flow, JavaScript Conventions, and Key Decisions below as behaviour to preserve, and confine changes to presentation.
 
@@ -96,7 +96,7 @@ Supabase tables:
 - No ES modules — all scripts are plain `<script>` tags; globals are used for shared state.
 - `config.js` must appear before any script that reads `window.SUPABASE_URL`.
 - All Supabase calls are async with explicit empty-state and error handling.
-- Coordinate rounding happens at render time: round lat/lng to the nearest 0.05 before displaying on the map. Never store rounded values.
+- Coordinates are NOT rounded: lat/lng are used as stored. Only coincident points get a tiny (~40 m) render-time jitter on the map so they don't stack.
 - CSS custom properties (`--navy`, `--sand`, `--coral`, `--bg`, `--text`, `--muted`, `--rule`, plus `--teal`, `--green`, `--lagoon`) are defined in `:root` in the shared `assets/koamas.css` and used alongside Tailwind classes.
 
 ### species.json Schema
@@ -182,7 +182,7 @@ Pages has no server-side redirects.
 
 ### Key Decisions
 
-- Coordinate precision: Public map pins are rounded to ~0.05 (~5 km) to protect exact cetacean locations. Round at query/render time, never store rounded values.
+- Coordinate precision: Public map pins use exact coordinates. Previously rounded to 0.05 (~5 km); removed because sightings are already published with a ~3 hour delay and cetaceans move, so positions go stale quickly.
 - Privacy: `submitter_phone_hash` is never rendered on the public site.
 - URL params for map filters: Species, date range, and atoll filters must be reflected in URL query string for shareable links.
 - Empty-state friendly: Every page must render gracefully when Supabase returns zero rows or fails entirely.
