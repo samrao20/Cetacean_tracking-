@@ -12,7 +12,7 @@
       "time": "14:25:00",
       "species": "Unkown Dolphin",
       "pod_size": 2.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -29,7 +29,7 @@
       "time": "16:05:00",
       "species": "Unkown Dolphin",
       "pod_size": 1.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -46,7 +46,7 @@
       "time": "16:00:00",
       "species": "Unkown Whale",
       "pod_size": 1.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -63,7 +63,7 @@
       "time": "11:00:00",
       "species": "Spinner",
       "pod_size": 50.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -80,7 +80,7 @@
       "time": "11:00:00",
       "species": "Bottlenose",
       "pod_size": 2.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -97,7 +97,7 @@
       "time": "11:20:00",
       "species": "Spinner",
       "pod_size": 30.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -115,7 +115,7 @@
       "time": "11:oo",
       "species": "Unkown Dolphin",
       "pod_size": "-",
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -132,7 +132,7 @@
       "time": "None",
       "species": "Risso",
       "pod_size": 20.0,
-      "observer": "LG",
+      "observer": "LG Reefscapers",
       "notes": null
     }
   },
@@ -166,7 +166,7 @@
       "time": "18:01:07",
       "species": "Spinner",
       "pod_size": 70.0,
-      "observer": "KH",
+      "observer": "KH Reefscapers",
       "notes": null
     }
   },
@@ -183,7 +183,7 @@
       "time": "17:51:51",
       "species": "Spinner",
       "pod_size": 120.0,
-      "observer": "KH",
+      "observer": "KH Reefscapers",
       "notes": null
     }
   },
@@ -200,7 +200,7 @@
       "time": "16:35:00",
       "species": "Spinner",
       "pod_size": 180.0,
-      "observer": "SH",
+      "observer": "SH Reefscapers",
       "notes": null
     }
   },
@@ -217,7 +217,7 @@
       "time": "16:30:00",
       "species": "Spinner",
       "pod_size": 90.0,
-      "observer": "SH",
+      "observer": "SH Reefscapers",
       "notes": null
     }
   },
@@ -234,7 +234,7 @@
       "time": "16:30:00",
       "species": "Spinner",
       "pod_size": 150.0,
-      "observer": "SH",
+      "observer": "SH Reefscapers",
       "notes": null
     }
   }
