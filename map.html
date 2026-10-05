@@ -357,7 +357,6 @@
   const CENTER       = [73.2207, 3.2028];
   const ZOOM         = 6;
   const INTRO_ZOOM   = 3.4;  // intro "dive" starting zoom
-  const ROUND        = 0.05; // coordinate privacy rounding (~5 km)
   const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   async function probeDeepStyle() {
@@ -433,8 +432,11 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Utilities
   // ─────────────────────────────────────────────────────────────────────────
-  function roundCoord(v) {
-    return Math.round(v / ROUND) * ROUND;
+  // Full stored precision (no toFixed), with hemisphere letters.
+  function fmtCoords(lat, lng) {
+    if (!isFinite(lat) || !isFinite(lng)) return '—';
+    return Math.abs(lat) + '° ' + (lat < 0 ? 'S' : 'N') + ', ' +
+           Math.abs(lng) + '° ' + (lng < 0 ? 'W' : 'E');
   }
 
   function fmtDate(iso) {
@@ -487,13 +489,13 @@
     return e;
   }
 
-  // Many sightings share the exact same rounded (0.05°) coordinate — without
-  // this, they'd render as perfectly stacked circles that never visually
-  // separate no matter how far you zoom. This spreads coincident points into
-  // a small even spiral around their shared coordinate for *rendering only*;
-  // properties.lat/lng (used in popups/side panel) stay the true rounded
-  // value, so no extra precision is displayed or stored anywhere.
-  var JITTER_MAX_DEG = 0.018; // stays well inside the 0.05° grid cell
+  // Coordinates are shown at full precision. Sightings that share the exact
+  // same coordinate would still render as perfectly stacked circles that
+  // never separate no matter how far you zoom, so this spreads coincident
+  // points into a tiny even spiral (~40 m) around their shared coordinate
+  // for *rendering only*; properties.lat/lng (used in popups/side panel)
+  // stay the true value.
+  var JITTER_MAX_DEG = 0.0004;
   var GOLDEN_ANGLE    = 137.508 * Math.PI / 180;
 
   function jitteredCoords(sightings) {
@@ -594,8 +596,8 @@
             speciesCommon:     s.species ? s.species.common_name : 'Unknown',
             speciesScientific: s.species ? s.species.scientific_name : '',
             date:              s.sighting_date,
-            lat:               roundCoord(+s.lat),
-            lng:               roundCoord(+s.lng),
+            lat:               +s.lat,
+            lng:               +s.lng,
             atoll:             normaliseAtoll(s.atoll),
             observer:          s.observer || 'Community observer',
             groupSize:         gsMatch ? +gsMatch[0] : null,
@@ -610,14 +612,11 @@
     var res = await fetch('data/sightings.json');
     if (!res.ok) throw new Error('Could not load sightings (' + res.status + ')');
     var rows = await res.json();
-    // The local snapshot is already rounded to the 0.05 privacy grid at
-    // generation time, but round again defensively so any hand-edited or
-    // legacy entries in this file never render at full precision.
     return rows.map(function (s) {
       return Object.assign({}, s, {
         atoll: normaliseAtoll(s.atoll),
-        lat:   roundCoord(+s.lat),
-        lng:   roundCoord(+s.lng),
+        lat:   +s.lat,
+        lng:   +s.lng,
       });
     });
   }
@@ -992,7 +991,7 @@
     var rows = [
       ['Date',        fmtDate(p.date)],
       ['Atoll',       p.atoll ? p.atoll + ' Atoll' : '—'],
-      ['Coordinates', (+p.lat).toFixed(2) + '° N, ' + (+p.lng).toFixed(2) + '° E'],
+      ['Coordinates', fmtCoords(+p.lat, +p.lng)],
       ['Observer',    p.observer    || '—'],
       ['Group size',  p.groupSize != null ? p.groupSize : 'Unknown'],
     ];

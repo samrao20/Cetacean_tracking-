@@ -9,8 +9,8 @@ Action (`.github/workflows/import-sightings.yml`) runs
 
 1. Parse that sheet, validate coordinates/dates/species.
 2. Publish clean rows to Supabase (`source = 'excel'`) and to
-   `data/sightings.json` (the GitHub Pages fallback — coordinates rounded to
-   the 0.05° privacy grid before being committed).
+   `data/sightings.json` (the GitHub Pages fallback — coordinates are written
+   at full precision; the 3-hour sync delay is the privacy buffer).
 3. Flag problem rows **in the workbook itself** — red fill for a row whose
    coordinates can't be trusted, yellow for a row whose species label
    couldn't be resolved, orange for both, purple for a bad/unparseable date

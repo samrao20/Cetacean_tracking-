@@ -418,10 +418,6 @@ def assign_source_keys(records):
 
 # ── output builders ─────────────────────────────────────────────────────
 
-def round_coord(v, grid=0.05):
-    return round(round(v / grid) * grid, 2)
-
-
 def build_mirror(records):
     out = []
     for rec in sorted(records, key=lambda r: r["date"], reverse=True):
@@ -431,8 +427,8 @@ def build_mirror(records):
             "speciesCommon": rec["speciesCommon"],
             "speciesScientific": rec["speciesScientific"],
             "date": rec["date"],
-            "lat": round_coord(rec["lat"]),
-            "lng": round_coord(rec["lng"]),
+            "lat": rec["lat"],
+            "lng": rec["lng"],
             "atoll": rec["atoll"],
             "observer": rec["observer"],
             "groupSize": rec["groupSize"],
