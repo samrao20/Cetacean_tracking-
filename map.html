@@ -432,6 +432,13 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Utilities
   // ─────────────────────────────────────────────────────────────────────────
+  // Full stored precision (no toFixed), with hemisphere letters.
+  function fmtCoords(lat, lng) {
+    if (!isFinite(lat) || !isFinite(lng)) return '—';
+    return Math.abs(lat) + '° ' + (lat < 0 ? 'S' : 'N') + ', ' +
+           Math.abs(lng) + '° ' + (lng < 0 ? 'W' : 'E');
+  }
+
   function fmtDate(iso) {
     if (!iso) return '—';
     try {
@@ -984,7 +991,7 @@
     var rows = [
       ['Date',        fmtDate(p.date)],
       ['Atoll',       p.atoll ? p.atoll + ' Atoll' : '—'],
-      ['Coordinates', (+p.lat).toFixed(4) + '° N, ' + (+p.lng).toFixed(4) + '° E'],
+      ['Coordinates', fmtCoords(+p.lat, +p.lng)],
       ['Observer',    p.observer    || '—'],
       ['Group size',  p.groupSize != null ? p.groupSize : 'Unknown'],
     ];
