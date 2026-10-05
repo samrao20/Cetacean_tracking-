@@ -391,8 +391,10 @@ def process_row(raw, species_by_slug, aliases):
         "speciesCommon": sp["common_name"],
         "speciesScientific": sp["scientific_name"],
         "date": date_iso,
-        "lat": lat,
-        "lng": lng,
+        # DMS -> decimal conversion leaves float noise (4.225416666666667);
+        # 6 dp is ~0.1 m, far finer than any field GPS reading.
+        "lat": round(lat, 6),
+        "lng": round(lng, 6),
         "atoll": f"{atoll_norm} Atoll" if atoll_norm else "",
         "observer": observer or "Community observer",
         "groupSize": parse_pod_size(raw["podsize_raw"]),
