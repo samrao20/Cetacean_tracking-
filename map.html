@@ -432,11 +432,14 @@
   // ─────────────────────────────────────────────────────────────────────────
   // Utilities
   // ─────────────────────────────────────────────────────────────────────────
-  // Full stored precision (no toFixed), with hemisphere letters.
+  // Up to 5 decimal places (~1 m), trailing zeros dropped, with hemisphere
+  // letters. Deg/min/sec -> decimal conversion leaves float noise such as
+  // 4.225416666666667, so don't print the raw double.
   function fmtCoords(lat, lng) {
     if (!isFinite(lat) || !isFinite(lng)) return '—';
-    return Math.abs(lat) + '° ' + (lat < 0 ? 'S' : 'N') + ', ' +
-           Math.abs(lng) + '° ' + (lng < 0 ? 'W' : 'E');
+    var d = function (v) { return +Math.abs(v).toFixed(5); };
+    return d(lat) + '° ' + (lat < 0 ? 'S' : 'N') + ', ' +
+           d(lng) + '° ' + (lng < 0 ? 'W' : 'E');
   }
 
   function fmtDate(iso) {
