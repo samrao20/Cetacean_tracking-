@@ -242,14 +242,14 @@
     "sheet": "Koamas Atoll Sightings 2026",
     "row": 304,
     "reasons": [
-      "species:unresolved:Beaked Whale"
+      "species:unresolved:Cuviers Beaked Whale"
     ],
     "raw": {
       "atoll": "Noonu",
       "coordinates": "5°40'04.1\"N 73°23'58.2\"E",
       "date": "2026-10-08 00:00:00",
-      "time": "19:19:00",
-      "species": "Beaked Whale",
+      "time": "18:19:00",
+      "species": "Cuviers Beaked Whale",
       "pod_size": 1.0,
       "observer": "Rosie",
       "notes": null
