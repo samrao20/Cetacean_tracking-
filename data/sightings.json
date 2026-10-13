@@ -1,29 +1,43 @@
 [
   {
-    "id": "xd472d5159af813d14cb8",
+    "id": "x2dd008dad2ca59eb5829",
     "species": "common-bottlenose-dolphin",
     "speciesCommon": "Common Bottlenose Dolphin",
     "speciesScientific": "Tursiops truncatus",
-    "date": "2026-10-13T09:30:00Z",
+    "date": "2026-10-13T08:30:00Z",
     "lat": 5.279361,
     "lng": 73.114556,
     "atoll": "Baa Atoll",
-    "observer": "Sofia Reefscapers",
+    "observer": "James Reefscapers",
     "groupSize": 10,
     "behaviour": "Tursiop Truncatus",
     "photoUrl": null
   },
   {
-    "id": "xef0ff25165e89dcaed27",
+    "id": "x37b53c5fc1e1d979bb00",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-10-13T06:30:00Z",
+    "date": "2026-10-13T05:30:00Z",
     "lat": 5.253833,
     "lng": 73.181417,
     "atoll": "Baa Atoll",
     "observer": "James Reefscapers",
     "groupSize": 300,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xdc87a7715f1a8903fb0c",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-10-13T05:15:00Z",
+    "lat": 5.254556,
+    "lng": 73.161444,
+    "atoll": "Baa Atoll",
+    "observer": "James Reefscapers",
+    "groupSize": 3,
     "behaviour": null,
     "photoUrl": null
   },
@@ -42,11 +56,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa0a537bba0c30536db51",
+    "id": "xd0f4497db91782f7d284",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-10-11T06:00:00Z",
+    "date": "2026-10-11T05:00:00Z",
     "lat": 5.252889,
     "lng": 73.171444,
     "atoll": "Baa Atoll",
@@ -84,11 +98,25 @@
     "photoUrl": null
   },
   {
-    "id": "xc0994febc7fe86b15ab3",
+    "id": "x3cd63fc92b3cb9e9c7dc",
+    "species": "cuviers-beaked-whale",
+    "speciesCommon": "Cuvier's Beaked Whale",
+    "speciesScientific": "Ziphius cavirostris",
+    "date": "2026-10-08T12:19:00Z",
+    "lat": 5.667806,
+    "lng": 73.3995,
+    "atoll": "Noonu Atoll",
+    "observer": "Rosie",
+    "groupSize": 1,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xba4b4ae6d8ca38701180",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-10-08T13:15:00Z",
+    "date": "2026-10-08T12:15:00Z",
     "lat": 5.347083,
     "lng": 73.072833,
     "atoll": "Baa Atoll",
@@ -98,11 +126,11 @@
     "photoUrl": null
   },
   {
-    "id": "x93ac98adf3276ab36b0f",
+    "id": "xa76aafcb945c94d0e64e",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
     "speciesScientific": "Tursiops aduncus",
-    "date": "2026-10-08T13:00:00Z",
+    "date": "2026-10-08T12:00:00Z",
     "lat": 5.341,
     "lng": 73.074278,
     "atoll": "Baa Atoll",
@@ -112,11 +140,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf3a7ce03d26269b64c3b",
+    "id": "x1e7ce11586922a1fc669",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
     "speciesScientific": "Tursiops aduncus",
-    "date": "2026-10-08T12:45:00Z",
+    "date": "2026-10-08T11:45:00Z",
     "lat": 5.329611,
     "lng": 73.081028,
     "atoll": "Baa Atoll",
@@ -336,11 +364,11 @@
     "photoUrl": null
   },
   {
-    "id": "x39b8acf87f8efa1e6474",
+    "id": "x5d19a89a7e1e2fce8886",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-26T06:00:00Z",
+    "date": "2026-09-26T05:00:00Z",
     "lat": 5.267361,
     "lng": 73.16,
     "atoll": "Baa Atoll",
@@ -350,11 +378,11 @@
     "photoUrl": null
   },
   {
-    "id": "x388676a373f77f019bc3",
+    "id": "x6db9b34922219874f4d8",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-23T10:45:00Z",
+    "date": "2026-09-23T09:45:00Z",
     "lat": 5.278028,
     "lng": 73.082639,
     "atoll": "Baa Atoll",
@@ -364,11 +392,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7754db130d6dc129957a",
+    "id": "x3b304d3f479388c41b9c",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-22T12:54:00Z",
+    "date": "2026-09-22T11:54:00Z",
     "lat": 4.254444,
     "lng": 73.559472,
     "atoll": "North Male Atoll",
@@ -378,11 +406,11 @@
     "photoUrl": null
   },
   {
-    "id": "x53202407d9d00693d070",
+    "id": "x6bbb625478963c8770c2",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
     "speciesScientific": "Tursiops aduncus",
-    "date": "2026-09-20T12:00:00Z",
+    "date": "2026-09-20T11:00:00Z",
     "lat": 5.197222,
     "lng": 73.124778,
     "atoll": "Baa Atoll",
@@ -392,11 +420,11 @@
     "photoUrl": null
   },
   {
-    "id": "xdf7e72438ad88f3e64ca",
+    "id": "xff95a762de464b1b07e2",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-18T11:00:00Z",
+    "date": "2026-09-18T10:00:00Z",
     "lat": 5.269889,
     "lng": 73.114056,
     "atoll": "Baa Atoll",
@@ -406,39 +434,11 @@
     "photoUrl": null
   },
   {
-    "id": "x8ed44e8b2bc813a16ee7",
-    "species": "bottlenose-dolphin",
-    "speciesCommon": "Bottlenose Dolphin",
-    "speciesScientific": "Tursiops sp.",
-    "date": "2026-09-17T13:30:00Z",
-    "lat": 5.325028,
-    "lng": 73.093639,
-    "atoll": "Baa Atoll",
-    "observer": "Meesam Reefscapers",
-    "groupSize": 15,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
-    "id": "x6c65e33628d721988e39",
-    "species": "bottlenose-dolphin",
-    "speciesCommon": "Bottlenose Dolphin",
-    "speciesScientific": "Tursiops sp.",
-    "date": "2026-09-17T13:10:00Z",
-    "lat": 5.339222,
-    "lng": 73.074889,
-    "atoll": "Baa Atoll",
-    "observer": "Meesam Reefscapers",
-    "groupSize": 3,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
-    "id": "x5201599aec9a85b0944b",
+    "id": "x69a56316d7928dac7853",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-17T07:00:00Z",
+    "date": "2026-09-17T18:00:00Z",
     "lat": 5.25525,
     "lng": 73.176639,
     "atoll": "Baa Atoll",
@@ -448,11 +448,39 @@
     "photoUrl": null
   },
   {
-    "id": "xe4243b3cfa13e9116d71",
+    "id": "x0c8c94b91bf86101d4af",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-09-16T10:00:00Z",
+    "date": "2026-09-17T12:30:00Z",
+    "lat": 5.325028,
+    "lng": 73.093639,
+    "atoll": "Baa Atoll",
+    "observer": "Meesam Reefscapers",
+    "groupSize": 15,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xd341db0d1b991f85ba35",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-09-17T12:10:00Z",
+    "lat": 5.339222,
+    "lng": 73.074889,
+    "atoll": "Baa Atoll",
+    "observer": "Meesam Reefscapers",
+    "groupSize": 3,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x6703b67df0ae2c3b4307",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-09-16T09:00:00Z",
     "lat": 5.284389,
     "lng": 73.1155,
     "atoll": "Baa Atoll",
@@ -462,11 +490,11 @@
     "photoUrl": null
   },
   {
-    "id": "x96cfc7d0160fbc878d17",
+    "id": "xee2b1b3439130595eb66",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-15T13:18:00Z",
+    "date": "2026-09-15T12:18:00Z",
     "lat": 4.346306,
     "lng": 73.627306,
     "atoll": "North Male Atoll",
@@ -476,11 +504,11 @@
     "photoUrl": null
   },
   {
-    "id": "x2b7c6157c719d436cdb4",
+    "id": "xd9682d6e0ffd3f424177",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-08T12:51:00Z",
+    "date": "2026-09-08T11:51:00Z",
     "lat": 4.273167,
     "lng": 73.571528,
     "atoll": "North Male Atoll",
@@ -504,11 +532,11 @@
     "photoUrl": null
   },
   {
-    "id": "x22637c1eb203fe79163b",
+    "id": "xdc649c43ca9477584547",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-08T06:30:00Z",
+    "date": "2026-09-08T05:30:00Z",
     "lat": 5.228639,
     "lng": 73.185167,
     "atoll": "Baa Atoll",
@@ -518,11 +546,11 @@
     "photoUrl": null
   },
   {
-    "id": "xddf1745a20ef6f3e22eb",
+    "id": "x8cfcc7008df072e6a1ec",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-08T06:10:00Z",
+    "date": "2026-09-08T05:10:00Z",
     "lat": 5.311222,
     "lng": 73.08975,
     "atoll": "Baa Atoll",
@@ -532,11 +560,11 @@
     "photoUrl": null
   },
   {
-    "id": "x6e1515e3a04d3c9b75aa",
+    "id": "x8b8febf408dd6bc6a799",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-09-08T05:50:00Z",
+    "date": "2026-09-08T04:50:00Z",
     "lat": 5.278222,
     "lng": 73.130056,
     "atoll": "Baa Atoll",
@@ -560,11 +588,11 @@
     "photoUrl": null
   },
   {
-    "id": "xcd9a765c6538df6d859a",
+    "id": "xa270098dc1094924cbf6",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-06T12:29:00Z",
+    "date": "2026-09-06T11:29:00Z",
     "lat": 4.267611,
     "lng": 73.587778,
     "atoll": "North Male Atoll",
@@ -574,11 +602,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc4cde7a8a442333972a0",
+    "id": "x9de7e6945d375864bf53",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-05T11:47:00Z",
+    "date": "2026-09-05T10:47:00Z",
     "lat": 4.27975,
     "lng": 73.571306,
     "atoll": "North Male Atoll",
@@ -588,11 +616,11 @@
     "photoUrl": null
   },
   {
-    "id": "x4ef0a368bac6792be0f6",
+    "id": "x977e7873c491fe701b04",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-09-05T09:30:00Z",
+    "date": "2026-09-05T08:30:00Z",
     "lat": 5.2905,
     "lng": 73.120028,
     "atoll": "Baa Atoll",
@@ -616,11 +644,11 @@
     "photoUrl": null
   },
   {
-    "id": "x6faddb2c1c025326c7d7",
+    "id": "x033d323cfbce56946437",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-09-01T12:52:00Z",
+    "date": "2026-09-01T11:52:00Z",
     "lat": 4.276667,
     "lng": 73.556639,
     "atoll": "North Male Atoll",
@@ -644,11 +672,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf62f7582ef54c9d09c1f",
+    "id": "xa70180dd8bb3d9dbeada",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-30T12:49:00Z",
+    "date": "2026-08-30T11:48:00Z",
     "lat": 4.270333,
     "lng": 73.562361,
     "atoll": "North Male Atoll",
@@ -658,11 +686,11 @@
     "photoUrl": null
   },
   {
-    "id": "xddde5088c6decc89ce49",
+    "id": "x1e2eedde35074681d589",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-29T12:27:00Z",
+    "date": "2026-08-29T11:27:00Z",
     "lat": 4.319389,
     "lng": 73.586917,
     "atoll": "North Male Atoll",
@@ -672,11 +700,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5ae2b9be3ef1d1c6ef4b",
+    "id": "x5c261f1cd9a7221878c7",
     "species": "rissos-dolphin",
     "speciesCommon": "Risso's Dolphin",
     "speciesScientific": "Grampus griseus",
-    "date": "2026-08-27T09:38:00Z",
+    "date": "2026-08-27T08:38:00Z",
     "lat": 4.215278,
     "lng": 73.557222,
     "atoll": "North Male Atoll",
@@ -686,11 +714,11 @@
     "photoUrl": null
   },
   {
-    "id": "x14b7c8cffb8615ef2b33",
+    "id": "x9b36a1145a6282df54f1",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-26T06:50:00Z",
+    "date": "2026-08-26T05:50:00Z",
     "lat": 5.281833,
     "lng": 73.1145,
     "atoll": "Baa Atoll",
@@ -714,25 +742,11 @@
     "photoUrl": null
   },
   {
-    "id": "x4e4e4d20b1ee3573bc12",
-    "species": "spinner-dolphin",
-    "speciesCommon": "Spinner Dolphin",
-    "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-25T12:57:00Z",
-    "lat": 4.27,
-    "lng": 73.555556,
-    "atoll": "North Male Atoll",
-    "observer": "KH Reefscapers",
-    "groupSize": 90,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
-    "id": "xb91450fb95cb973b92ec",
+    "id": "xa223cdbb7299f5e4ce26",
     "species": "common-bottlenose-dolphin",
     "speciesCommon": "Common Bottlenose Dolphin",
     "speciesScientific": "Tursiops truncatus",
-    "date": "2026-08-25T07:15:00Z",
+    "date": "2026-08-25T18:15:00Z",
     "lat": 5.28575,
     "lng": 73.139111,
     "atoll": "Baa Atoll",
@@ -742,11 +756,25 @@
     "photoUrl": null
   },
   {
-    "id": "x3a90c31789dc778d52a7",
+    "id": "x0ccb1b3cc91c9e3dbf28",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-08-25T11:57:00Z",
+    "lat": 4.27,
+    "lng": 73.555556,
+    "atoll": "North Male Atoll",
+    "observer": "KH Reefscapers",
+    "groupSize": 90,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x10eb3863913c26c3dc08",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
     "speciesScientific": "Tursiops aduncus",
-    "date": "2026-08-25T06:40:00Z",
+    "date": "2026-08-25T05:40:00Z",
     "lat": 5.233722,
     "lng": 73.183722,
     "atoll": "Baa Atoll",
@@ -770,20 +798,6 @@
     "photoUrl": null
   },
   {
-    "id": "xdcbf654776703deefa0a",
-    "species": "spinner-dolphin",
-    "speciesCommon": "Spinner Dolphin",
-    "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-23T12:52:00Z",
-    "lat": 4.268056,
-    "lng": 73.549167,
-    "atoll": "North Male Atoll",
-    "observer": "KH Reefscapers",
-    "groupSize": 90,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
     "id": "x68ca42c5abf6d51d4c89",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -794,6 +808,20 @@
     "atoll": "North Male Atoll",
     "observer": "SH reefscapers",
     "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x2c528e0b55f389178b0b",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-08-23T11:52:00Z",
+    "lat": 4.268056,
+    "lng": 73.549167,
+    "atoll": "North Male Atoll",
+    "observer": "KH Reefscapers",
+    "groupSize": 90,
     "behaviour": null,
     "photoUrl": null
   },
@@ -812,20 +840,6 @@
     "photoUrl": null
   },
   {
-    "id": "xcf2985294b6151ffe11b",
-    "species": "spinner-dolphin",
-    "speciesCommon": "Spinner Dolphin",
-    "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-22T12:45:00Z",
-    "lat": 4.276417,
-    "lng": 73.563306,
-    "atoll": "North Male Atoll",
-    "observer": "KH Reefscapers",
-    "groupSize": 100,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
     "id": "x4e10d2a3bc4160c4ee87",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -840,11 +854,25 @@
     "photoUrl": null
   },
   {
-    "id": "x445d9ba7aeea16e51329",
+    "id": "x66d9db3dae15419dfbf9",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-08-22T11:45:00Z",
+    "lat": 4.276417,
+    "lng": 73.563306,
+    "atoll": "North Male Atoll",
+    "observer": "KH Reefscapers",
+    "groupSize": 100,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xda4efe288191ebf99a77",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
     "speciesScientific": "Tursiops aduncus",
-    "date": "2026-08-22T09:10:00Z",
+    "date": "2026-08-22T08:10:00Z",
     "lat": 5.284694,
     "lng": 73.112,
     "atoll": "Baa Atoll",
@@ -854,11 +882,25 @@
     "photoUrl": null
   },
   {
-    "id": "xd73609a286248eee314c",
+    "id": "xbcf7bbb19df842dd0ed1",
+    "species": "cuviers-beaked-whale",
+    "speciesCommon": "Cuvier's Beaked Whale",
+    "speciesScientific": "Ziphius cavirostris",
+    "date": "2026-08-22T06:10:00Z",
+    "lat": -0.602417,
+    "lng": 73.128194,
+    "atoll": "Addu Atoll",
+    "observer": "Maren",
+    "groupSize": 2,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xb0a195fb43a0abf4136e",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-08-22T06:55:00Z",
+    "date": "2026-08-22T05:55:00Z",
     "lat": 5.281556,
     "lng": 73.115583,
     "atoll": "Baa Atoll",
@@ -868,11 +910,11 @@
     "photoUrl": null
   },
   {
-    "id": "x39c4eb18860c53f474b7",
+    "id": "xffc4c69d9e022c010ca7",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-22T05:55:00Z",
+    "date": "2026-08-22T04:55:00Z",
     "lat": 5.273111,
     "lng": 73.136583,
     "atoll": "Baa Atoll",
@@ -882,11 +924,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7004d6eda523807afe57",
+    "id": "x4b64f5fed42ef6b6ca1b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-20T13:20:00Z",
+    "date": "2026-08-20T12:20:00Z",
     "lat": 5.362889,
     "lng": 73.062944,
     "atoll": "Baa Atoll",
@@ -896,11 +938,11 @@
     "photoUrl": null
   },
   {
-    "id": "x6ac38cb89b4bc450636f",
+    "id": "x843fa8b4966a65f6ad42",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-20T12:58:00Z",
+    "date": "2026-08-20T11:58:00Z",
     "lat": 4.270278,
     "lng": 73.557222,
     "atoll": "North Male Atoll",
@@ -910,11 +952,11 @@
     "photoUrl": null
   },
   {
-    "id": "x20cc70cf9e179bd0ace2",
+    "id": "x7dfbc4902f12e6773cba",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-18T12:55:00Z",
+    "date": "2026-08-18T11:55:00Z",
     "lat": 4.269167,
     "lng": 73.558056,
     "atoll": "North Male Atoll",
@@ -924,11 +966,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc26e37f08c3a016d86d6",
+    "id": "xbfdd572e352dfcdb4561",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-16T13:30:00Z",
+    "date": "2026-08-16T12:30:00Z",
     "lat": 4.266944,
     "lng": 73.552222,
     "atoll": "North Male Atoll",
@@ -938,11 +980,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf472afb826b559e31e6b",
+    "id": "xb0cacb20ccd837e4a3a2",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-16T13:13:00Z",
+    "date": "2026-08-16T12:13:00Z",
     "lat": 4.266944,
     "lng": 73.552222,
     "atoll": "North Male Atoll",
@@ -952,11 +994,11 @@
     "photoUrl": null
   },
   {
-    "id": "x63b5d43802f67c4274b5",
+    "id": "xf9e14a6af6e534c6c214",
     "species": "indo-pacific-bottlenose-dolphin",
     "speciesCommon": "Indo-Pacific Bottlenose Dolphin",
     "speciesScientific": "Tursiops aduncus",
-    "date": "2026-08-16T12:40:00Z",
+    "date": "2026-08-16T11:40:00Z",
     "lat": 4.374028,
     "lng": 73.65725,
     "atoll": "North Male Atoll",
@@ -966,11 +1008,11 @@
     "photoUrl": null
   },
   {
-    "id": "xb3369552892124dbd7dd",
+    "id": "x8ae3da444cb06f18c934",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-08-16T10:20:00Z",
+    "date": "2026-08-16T09:20:00Z",
     "lat": 4.328333,
     "lng": 73.588611,
     "atoll": "North Male Atoll",
@@ -980,11 +1022,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa7ca2e444a7b4e7f69cd",
+    "id": "xad860f1eee9827371921",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-15T13:00:00Z",
+    "date": "2026-08-15T12:00:00Z",
     "lat": 4.246139,
     "lng": 73.570278,
     "atoll": "North Male Atoll",
@@ -994,11 +1036,11 @@
     "photoUrl": null
   },
   {
-    "id": "x1d994a8bba12d5a5d0b2",
+    "id": "x2f3bf6469a6612f4f66c",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-15T12:54:00Z",
+    "date": "2026-08-15T11:54:00Z",
     "lat": 4.256667,
     "lng": 73.568333,
     "atoll": "North Male Atoll",
@@ -1022,11 +1064,11 @@
     "photoUrl": null
   },
   {
-    "id": "x05d662053ec4744a1544",
+    "id": "xa1ce18728a372bfb8d43",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-13T12:51:00Z",
+    "date": "2026-08-13T11:51:00Z",
     "lat": 4.268056,
     "lng": 73.556667,
     "atoll": "North Male Atoll",
@@ -1064,11 +1106,11 @@
     "photoUrl": null
   },
   {
-    "id": "xb1f60dae2d29df2cecda",
+    "id": "x0383667f50b404022b69",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-08-10T09:00:00Z",
+    "date": "2026-08-10T08:00:00Z",
     "lat": 4.194722,
     "lng": 73.553889,
     "atoll": "North Male Atoll",
@@ -1120,34 +1162,6 @@
     "photoUrl": null
   },
   {
-    "id": "x669dae699fda19f812f7",
-    "species": "spinner-dolphin",
-    "speciesCommon": "Spinner Dolphin",
-    "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-09T13:10:00Z",
-    "lat": 4.342083,
-    "lng": 73.622278,
-    "atoll": "North Male Atoll",
-    "observer": "KH Reefscapers",
-    "groupSize": 150,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
-    "id": "xe2997cf74afff88b7358",
-    "species": "killer-whale",
-    "speciesCommon": "Killer Whale",
-    "speciesScientific": "Orcinus orca",
-    "date": "2026-08-09T13:00:00Z",
-    "lat": 3.606667,
-    "lng": 72.967278,
-    "atoll": "South Ari Atoll",
-    "observer": "Rylee Reefscapers",
-    "groupSize": 10,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
     "id": "x3066b738aef6b15ec77a",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
@@ -1176,11 +1190,39 @@
     "photoUrl": null
   },
   {
-    "id": "xb893547cf6045688a7f0",
+    "id": "x9dfe3f6fed4f36ac4375",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-08-09T12:10:00Z",
+    "lat": 4.342083,
+    "lng": 73.622278,
+    "atoll": "North Male Atoll",
+    "observer": "KH Reefscapers",
+    "groupSize": 150,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x01693c4442fc18ee1347",
+    "species": "killer-whale",
+    "speciesCommon": "Killer Whale",
+    "speciesScientific": "Orcinus orca",
+    "date": "2026-08-09T12:00:00Z",
+    "lat": 3.606667,
+    "lng": 72.967278,
+    "atoll": "South Ari Atoll",
+    "observer": "Rylee Reefscapers",
+    "groupSize": 10,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x7d3b7a124d311eebeba1",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-08-09T09:00:00Z",
+    "date": "2026-08-09T08:00:00Z",
     "lat": 4.194806,
     "lng": 73.553806,
     "atoll": "North Male Atoll",
@@ -1190,11 +1232,11 @@
     "photoUrl": null
   },
   {
-    "id": "xd4966a373923827e496d",
+    "id": "x33a8b474108de5d7ba6c",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-08T10:00:00Z",
+    "date": "2026-08-08T09:00:00Z",
     "lat": 4.372583,
     "lng": 73.658528,
     "atoll": "North Male Atoll",
@@ -1204,11 +1246,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa734d619070ad2a7f4af",
+    "id": "x68826b4d84c6143d47a2",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-08-06T12:50:00Z",
+    "date": "2026-08-06T11:50:00Z",
     "lat": 4.369083,
     "lng": 73.653917,
     "atoll": "North Male Atoll",
@@ -1218,16 +1260,30 @@
     "photoUrl": null
   },
   {
-    "id": "x210ad22ac793e5821348",
+    "id": "x0a5a1ff61645092b689a",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-08-06T12:50:00Z",
+    "date": "2026-08-06T11:50:00Z",
     "lat": 4.287,
     "lng": 73.593083,
     "atoll": "North Male Atoll",
     "observer": "KH Reefscapers",
     "groupSize": 6,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x299f854fda5958393ea1",
+    "species": "cuviers-beaked-whale",
+    "speciesCommon": "Cuvier's Beaked Whale",
+    "speciesScientific": "Ziphius cavirostris",
+    "date": "2026-08-04T11:50:00Z",
+    "lat": -0.608528,
+    "lng": 73.121389,
+    "atoll": "Addu Atoll",
+    "observer": "Maren",
+    "groupSize": 1,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1246,11 +1302,11 @@
     "photoUrl": null
   },
   {
-    "id": "xab100c211f42261ba822",
+    "id": "xf9bf425de20a473481d9",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-08-03T11:30:00Z",
+    "date": "2026-08-03T10:30:00Z",
     "lat": 5.285028,
     "lng": 73.114417,
     "atoll": "Baa Atoll",
@@ -1260,11 +1316,11 @@
     "photoUrl": null
   },
   {
-    "id": "x16c34d14a1073847c7ce",
+    "id": "xbd3b5376c8717099f0d5",
     "species": "common-bottlenose-dolphin",
     "speciesCommon": "Common Bottlenose Dolphin",
     "speciesScientific": "Tursiops truncatus",
-    "date": "2026-08-01T05:00:00Z",
+    "date": "2026-08-01T04:00:00Z",
     "lat": 5.264667,
     "lng": 73.172611,
     "atoll": "Baa Atoll",
@@ -1302,11 +1358,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf2d8f40c0a1ed546487b",
+    "id": "x7a2fafaf87c94e66cf63",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-07-28T06:00:00Z",
+    "date": "2026-07-28T05:00:00Z",
     "lat": 5.2665,
     "lng": 73.175389,
     "atoll": "Baa Atoll",
@@ -1330,11 +1386,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf02cdad3f1956738f7aa",
+    "id": "x2bf140c873037638d2fe",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-21T09:29:44Z",
+    "date": "2026-07-21T08:29:44Z",
     "lat": 4.244917,
     "lng": 73.544361,
     "atoll": "North Male Atoll",
@@ -1344,11 +1400,11 @@
     "photoUrl": null
   },
   {
-    "id": "xff00a3f6695c1a77ae3c",
+    "id": "xba4de87e0c51a5317fcd",
     "species": "rissos-dolphin",
     "speciesCommon": "Risso's Dolphin",
     "speciesScientific": "Grampus griseus",
-    "date": "2026-07-21T06:00:00Z",
+    "date": "2026-07-21T05:00:00Z",
     "lat": 5.266444,
     "lng": 73.181361,
     "atoll": "Baa Atoll",
@@ -1358,11 +1414,11 @@
     "photoUrl": null
   },
   {
-    "id": "x230920a9c904c5fa2a9a",
+    "id": "x3ef9f2abd4975fd9f2e5",
     "species": "rissos-dolphin",
     "speciesCommon": "Risso's Dolphin",
     "speciesScientific": "Grampus griseus",
-    "date": "2026-07-21T06:00:00Z",
+    "date": "2026-07-21T05:00:00Z",
     "lat": 5.266306,
     "lng": 73.157806,
     "atoll": "Baa Atoll",
@@ -1372,11 +1428,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf667a633719b4354f036",
+    "id": "x4495c6e20bdfa44053a0",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-19T12:49:04Z",
+    "date": "2026-07-19T11:49:04Z",
     "lat": 4.260028,
     "lng": 73.573972,
     "atoll": "North Male Atoll",
@@ -1414,20 +1470,6 @@
     "photoUrl": null
   },
   {
-    "id": "x8c82d83007534fea7e07",
-    "species": "rissos-dolphin",
-    "speciesCommon": "Risso's Dolphin",
-    "speciesScientific": "Grampus griseus",
-    "date": "2026-07-19T10:00:00Z",
-    "lat": 5.277694,
-    "lng": 73.124278,
-    "atoll": "Baa Atoll",
-    "observer": "LG Reefscapers",
-    "groupSize": 12,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
     "id": "xd1c2e1e6927f35c111dc",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
@@ -1452,6 +1494,20 @@
     "atoll": "Lhaviyani Atoll",
     "observer": "Silvio",
     "groupSize": 40,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xbd5ef649aff659ca6c69",
+    "species": "rissos-dolphin",
+    "speciesCommon": "Risso's Dolphin",
+    "speciesScientific": "Grampus griseus",
+    "date": "2026-07-19T09:00:00Z",
+    "lat": 5.277694,
+    "lng": 73.124278,
+    "atoll": "Baa Atoll",
+    "observer": "LG Reefscapers",
+    "groupSize": 12,
     "behaviour": null,
     "photoUrl": null
   },
@@ -1498,11 +1554,11 @@
     "photoUrl": null
   },
   {
-    "id": "xba886ccd37a9f9a1a033",
+    "id": "x58f625a4a47c1f176a99",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-07-18T07:00:00Z",
+    "date": "2026-07-18T06:00:00Z",
     "lat": 5.286639,
     "lng": 73.142083,
     "atoll": "Baa Atoll",
@@ -1540,11 +1596,11 @@
     "photoUrl": null
   },
   {
-    "id": "xd74202c5190126464275",
+    "id": "x28cc75311da36c17b7ed",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-16T12:41:10Z",
+    "date": "2026-07-16T11:41:10Z",
     "lat": 4.310806,
     "lng": 73.587972,
     "atoll": "North Male Atoll",
@@ -1568,11 +1624,11 @@
     "photoUrl": null
   },
   {
-    "id": "x517aedd711b522afcedd",
+    "id": "x1d587288c0ba36a74e79",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-14T12:48:43Z",
+    "date": "2026-07-14T11:48:43Z",
     "lat": 4.341361,
     "lng": 73.616944,
     "atoll": "North Male Atoll",
@@ -1582,11 +1638,11 @@
     "photoUrl": null
   },
   {
-    "id": "xe1fe7a08812055d3844f",
+    "id": "x2b9f841d5601dca6931f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-12T12:51:22Z",
+    "date": "2026-07-12T11:51:22Z",
     "lat": 4.281306,
     "lng": 73.574306,
     "atoll": "North Male Atoll",
@@ -1610,11 +1666,11 @@
     "photoUrl": null
   },
   {
-    "id": "x8cc049a74336314dc008",
+    "id": "x893e58d11bdae3dc7c67",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-07-12T06:45:00Z",
+    "date": "2026-07-12T04:45:00Z",
     "lat": 5.281528,
     "lng": 73.126361,
     "atoll": "Baa Atoll",
@@ -1624,11 +1680,11 @@
     "photoUrl": null
   },
   {
-    "id": "x52e26cc9fd8c64ba8e8e",
+    "id": "x769ceca89aee3a85bfc9",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-11T13:07:28Z",
+    "date": "2026-07-11T12:07:28Z",
     "lat": 4.275444,
     "lng": 73.558306,
     "atoll": "North Male Atoll",
@@ -1638,11 +1694,11 @@
     "photoUrl": null
   },
   {
-    "id": "x49aca4da8c1391ecd655",
+    "id": "x7e0c5424d4035dd697d6",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-11T12:43:01Z",
+    "date": "2026-07-11T11:43:01Z",
     "lat": 4.327222,
     "lng": 73.592556,
     "atoll": "North Male Atoll",
@@ -1680,11 +1736,11 @@
     "photoUrl": null
   },
   {
-    "id": "xfe523b1a8b6c2773af60",
+    "id": "x8c803ebdd90e1d37dae0",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-07-09T12:52:09Z",
+    "date": "2026-07-09T11:52:09Z",
     "lat": 4.325389,
     "lng": 73.60525,
     "atoll": "North Male Atoll",
@@ -1694,11 +1750,11 @@
     "photoUrl": null
   },
   {
-    "id": "x85003df78fee6b76413d",
+    "id": "x84d06656c04d0ad2ce83",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-09T06:00:00Z",
+    "date": "2026-07-09T04:00:00Z",
     "lat": 5.286528,
     "lng": 73.12725,
     "atoll": "Baa Atoll",
@@ -1708,11 +1764,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc4d4ee6bd6ba3c3fe43e",
+    "id": "x88b5f35959a20387dc26",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-05T12:38:09Z",
+    "date": "2026-07-05T11:38:09Z",
     "lat": 4.315944,
     "lng": 73.588361,
     "atoll": "North Male Atoll",
@@ -1750,11 +1806,11 @@
     "photoUrl": null
   },
   {
-    "id": "x6639d9b2b71d40992df2",
+    "id": "x0da0b7d660012fb982fd",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-04T13:03:08Z",
+    "date": "2026-07-04T12:03:08Z",
     "lat": 4.30925,
     "lng": 73.593778,
     "atoll": "North Male Atoll",
@@ -1764,11 +1820,11 @@
     "photoUrl": null
   },
   {
-    "id": "x555b0aaa43e222b207c0",
+    "id": "x44cdb2015cf63a1bed84",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-07-02T12:51:03Z",
+    "date": "2026-07-02T11:51:03Z",
     "lat": 4.267222,
     "lng": 73.551306,
     "atoll": "North Male Atoll",
@@ -1778,11 +1834,11 @@
     "photoUrl": null
   },
   {
-    "id": "x41e595f62fa8d7f7a378",
+    "id": "x83ba188a549651084b26",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-30T12:38:37Z",
+    "date": "2026-06-30T11:38:37Z",
     "lat": 4.29825,
     "lng": 73.591389,
     "atoll": "North Male Atoll",
@@ -1820,11 +1876,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5581d0c24213c2e12ecd",
+    "id": "x72d3523b334b519ef74f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-29T07:09:08Z",
+    "date": "2026-06-29T06:09:08Z",
     "lat": 4.312528,
     "lng": 73.587806,
     "atoll": "North Male Atoll",
@@ -1848,11 +1904,11 @@
     "photoUrl": null
   },
   {
-    "id": "xb69a867282270aa1febf",
+    "id": "xea6c9bbb4f963973bde9",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-27T13:02:27Z",
+    "date": "2026-06-27T12:02:27Z",
     "lat": 4.254556,
     "lng": 73.570972,
     "atoll": "North Male Atoll",
@@ -1862,11 +1918,11 @@
     "photoUrl": null
   },
   {
-    "id": "x646482dc318266eeda70",
+    "id": "x4ed5fc1c46bb37e59e83",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-27T06:45:00Z",
+    "date": "2026-06-27T05:45:00Z",
     "lat": 5.248278,
     "lng": 73.175667,
     "atoll": "Baa Atoll",
@@ -1876,11 +1932,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7855771c864be0dfef5e",
+    "id": "x5304dcaffd203080855b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-26T12:45:09Z",
+    "date": "2026-06-26T11:45:09Z",
     "lat": 4.268222,
     "lng": 73.558361,
     "atoll": "North Male Atoll",
@@ -1890,11 +1946,11 @@
     "photoUrl": null
   },
   {
-    "id": "x2652a52525a400eb2abc",
+    "id": "xccbced596413f2523905",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-23T12:55:45Z",
+    "date": "2026-06-23T11:55:45Z",
     "lat": 4.26675,
     "lng": 73.553028,
     "atoll": "North Male Atoll",
@@ -1918,11 +1974,11 @@
     "photoUrl": null
   },
   {
-    "id": "x79cee00888c10065c860",
+    "id": "xd97b8681f447d47f37c8",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-23T06:00:00Z",
+    "date": "2026-06-23T05:00:00Z",
     "lat": 5.2525,
     "lng": 73.170611,
     "atoll": "Baa Atoll",
@@ -1932,11 +1988,11 @@
     "photoUrl": null
   },
   {
-    "id": "x84395a3682283c667d03",
+    "id": "x034c30bd191a4c20e1b4",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-21T13:26:48Z",
+    "date": "2026-06-21T12:26:48Z",
     "lat": 4.351361,
     "lng": 73.638056,
     "atoll": "North Male Atoll",
@@ -1946,11 +2002,11 @@
     "photoUrl": null
   },
   {
-    "id": "x65c66f59dd310571fca0",
+    "id": "x23a5752045c3b8059354",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-20T13:03:23Z",
+    "date": "2026-06-20T12:03:23Z",
     "lat": 4.251861,
     "lng": 73.562444,
     "atoll": "North Male Atoll",
@@ -1974,11 +2030,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5cb9c3b0dac9afb32363",
+    "id": "xa3ec3aacd13bfc20168f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-18T12:38:23Z",
+    "date": "2026-06-18T11:38:23Z",
     "lat": 4.318833,
     "lng": 73.588833,
     "atoll": "North Male Atoll",
@@ -1988,11 +2044,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5a8783e35c3313a76f04",
+    "id": "x6af1a33cd53d0dc79fc2",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-16T12:45:20Z",
+    "date": "2026-06-16T11:45:20Z",
     "lat": 4.308889,
     "lng": 73.600972,
     "atoll": "North Male Atoll",
@@ -2002,11 +2058,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5129bc65111bca8edb81",
+    "id": "x7082364bf579a3b161a7",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-14T12:37:56Z",
+    "date": "2026-06-14T11:37:56Z",
     "lat": 4.305389,
     "lng": 73.589222,
     "atoll": "North Male Atoll",
@@ -2030,11 +2086,11 @@
     "photoUrl": null
   },
   {
-    "id": "x52ad60488e0ea14c8127",
+    "id": "x9ca33b4ac2f7bf68eb5d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-13T13:01:57Z",
+    "date": "2026-06-13T12:01:57Z",
     "lat": 4.274639,
     "lng": 73.563889,
     "atoll": "North Male Atoll",
@@ -2044,11 +2100,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa3b5eb383778092e1cbd",
+    "id": "x6fde7ca0d7337ac6c4e0",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-13T05:45:00Z",
+    "date": "2026-06-13T04:45:00Z",
     "lat": 5.279611,
     "lng": 73.129194,
     "atoll": "Baa Atoll",
@@ -2058,11 +2114,11 @@
     "photoUrl": null
   },
   {
-    "id": "x0e5539d6fe1c69cd5110",
+    "id": "x8854d0ac5281294b9fa7",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-11T13:02:29Z",
+    "date": "2026-06-11T12:02:29Z",
     "lat": 4.302833,
     "lng": 73.593972,
     "atoll": "North Male Atoll",
@@ -2072,11 +2128,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa144fc96862dce157073",
+    "id": "xc44d59a35fb51699d1b5",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-06-11T12:55:00Z",
+    "date": "2026-06-11T11:55:00Z",
     "lat": 5.286611,
     "lng": 73.142083,
     "atoll": "Baa Atoll",
@@ -2086,11 +2142,11 @@
     "photoUrl": null
   },
   {
-    "id": "x6f06305cbcafc74eee9f",
+    "id": "xc9180d4dd6a391fabc5a",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-11T12:20:00Z",
+    "date": "2026-06-11T11:20:00Z",
     "lat": 5.286111,
     "lng": 73.128694,
     "atoll": "Baa Atoll",
@@ -2100,11 +2156,11 @@
     "photoUrl": null
   },
   {
-    "id": "x1f2090f401c5bde61562",
+    "id": "xefdeb3ee7eb9a84b6423",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-09T12:49:48Z",
+    "date": "2026-06-09T11:49:48Z",
     "lat": 4.262861,
     "lng": 73.563361,
     "atoll": "North Male Atoll",
@@ -2128,11 +2184,11 @@
     "photoUrl": null
   },
   {
-    "id": "x1a244e620444ae3aa0c3",
+    "id": "x65755e873e9a613c8d9a",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-07T12:51:33Z",
+    "date": "2026-06-07T11:51:33Z",
     "lat": 4.2665,
     "lng": 73.558222,
     "atoll": "North Male Atoll",
@@ -2156,11 +2212,11 @@
     "photoUrl": null
   },
   {
-    "id": "x4a8e73e724b902602c20",
+    "id": "x7bc2dcd3235a6876a7c5",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-06-06T13:51:56Z",
+    "date": "2026-06-06T12:51:56Z",
     "lat": 4.306083,
     "lng": 73.580333,
     "atoll": "North Male Atoll",
@@ -2170,11 +2226,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa42a0cfb09681d11df96",
+    "id": "x89dcb39144a7446f89bd",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-06-06T13:07:15Z",
+    "date": "2026-06-06T12:07:15Z",
     "lat": 4.258444,
     "lng": 73.560278,
     "atoll": "North Male Atoll",
@@ -2184,11 +2240,11 @@
     "photoUrl": null
   },
   {
-    "id": "x10320c2fa39efbe5619d",
+    "id": "xe0d2cbab55387eea0948",
     "species": "rissos-dolphin",
     "speciesCommon": "Risso's Dolphin",
     "speciesScientific": "Grampus griseus",
-    "date": "2026-06-06T06:00:00Z",
+    "date": "2026-06-06T05:00:00Z",
     "lat": 5.276111,
     "lng": 73.157917,
     "atoll": "Baa Atoll",
@@ -2198,11 +2254,11 @@
     "photoUrl": null
   },
   {
-    "id": "x23e15465b73b4c16c5de",
+    "id": "xd15cdf81242f89c4773f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-31T12:52:19Z",
+    "date": "2026-05-31T11:52:19Z",
     "lat": 4.313417,
     "lng": 73.59975,
     "atoll": "North Male Atoll",
@@ -2226,11 +2282,11 @@
     "photoUrl": null
   },
   {
-    "id": "xce76f71b9f888e7f0d1a",
+    "id": "xc7d7eac19eb513668cfc",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-30T12:49:29Z",
+    "date": "2026-05-30T11:49:29Z",
     "lat": 4.26875,
     "lng": 73.566389,
     "atoll": "North Male Atoll",
@@ -2240,11 +2296,11 @@
     "photoUrl": null
   },
   {
-    "id": "x22bdbc97e871dac840b3",
+    "id": "xcb40091a938f8eaf61d8",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-28T12:48:54Z",
+    "date": "2026-05-28T11:48:54Z",
     "lat": 4.315194,
     "lng": 73.603417,
     "atoll": "North Male Atoll",
@@ -2254,11 +2310,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc0ea1af8a5eeb422f4fb",
+    "id": "xe64224cc9d33cbca78e9",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-05-28T12:30:00Z",
+    "date": "2026-05-28T11:30:00Z",
     "lat": 5.278833,
     "lng": 73.137972,
     "atoll": "Baa Atoll",
@@ -2268,11 +2324,11 @@
     "photoUrl": null
   },
   {
-    "id": "x0691afb2c5ed92a60a29",
+    "id": "xb598ea4f871dd6569b78",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-26T12:58:04Z",
+    "date": "2026-05-26T11:58:04Z",
     "lat": 4.267139,
     "lng": 73.557833,
     "atoll": "North Male Atoll",
@@ -2310,11 +2366,11 @@
     "photoUrl": null
   },
   {
-    "id": "x2acb16354a114f160551",
+    "id": "xfab90f5a157cc65a9c0b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-24T12:40:19Z",
+    "date": "2026-05-24T11:40:19Z",
     "lat": 4.239861,
     "lng": 73.564361,
     "atoll": "North Male Atoll",
@@ -2324,11 +2380,11 @@
     "photoUrl": null
   },
   {
-    "id": "x40486ddda8e3d257fe0d",
+    "id": "xb1927d03fb1690502b60",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-23T12:42:32Z",
+    "date": "2026-05-23T11:42:32Z",
     "lat": 4.303333,
     "lng": 73.586417,
     "atoll": "North Male Atoll",
@@ -2366,11 +2422,11 @@
     "photoUrl": null
   },
   {
-    "id": "xca064b6ab68e9d13bf7f",
+    "id": "x0beb0c4c9b8f94d2bf17",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-17T12:52:13Z",
+    "date": "2026-05-17T11:52:13Z",
     "lat": 4.310139,
     "lng": 73.583083,
     "atoll": "North Male Atoll",
@@ -2394,11 +2450,11 @@
     "photoUrl": null
   },
   {
-    "id": "xd46afc0ffcf25a3ed1f4",
+    "id": "x30f8cbf8aca4c1dd4bd4",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-05-07T12:30:00Z",
+    "date": "2026-05-07T11:30:00Z",
     "lat": 5.320139,
     "lng": 73.084722,
     "atoll": "Baa Atoll",
@@ -2408,11 +2464,11 @@
     "photoUrl": null
   },
   {
-    "id": "xd548c9df304bbe46fd6e",
+    "id": "x6cbaf5958d138343940c",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-05-07T12:15:00Z",
+    "date": "2026-05-07T11:15:00Z",
     "lat": 5.308306,
     "lng": 73.091778,
     "atoll": "Baa Atoll",
@@ -2422,30 +2478,16 @@
     "photoUrl": null
   },
   {
-    "id": "x7e07e8c6f0e460ddee30",
+    "id": "x4dbe8770bd0d40953b7b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-05T12:54:16Z",
+    "date": "2026-05-05T11:54:16Z",
     "lat": 4.269611,
     "lng": 73.5605,
     "atoll": "North Male Atoll",
     "observer": "KH Reefscapers",
     "groupSize": 200,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
-    "id": "x443a8e6a058fbc701a10",
-    "species": "bottlenose-dolphin",
-    "speciesCommon": "Bottlenose Dolphin",
-    "speciesScientific": "Tursiops sp.",
-    "date": "2026-05-05T12:29:50Z",
-    "lat": 4.325917,
-    "lng": 73.589944,
-    "atoll": "North Male Atoll",
-    "observer": "KH Reefscapers",
-    "groupSize": 20,
     "behaviour": null,
     "photoUrl": null
   },
@@ -2478,11 +2520,25 @@
     "photoUrl": null
   },
   {
-    "id": "xbec0cfa2fa92dabf38ad",
+    "id": "x9d95303cc1e3a75052d2",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-05-05T06:00:00Z",
+    "date": "2026-05-05T11:29:50Z",
+    "lat": 4.325917,
+    "lng": 73.589944,
+    "atoll": "North Male Atoll",
+    "observer": "KH Reefscapers",
+    "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xbb81e6ee3bb43f241d67",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-05-05T05:00:00Z",
     "lat": 5.242972,
     "lng": 73.176028,
     "atoll": "Baa Atoll",
@@ -2506,11 +2562,25 @@
     "photoUrl": null
   },
   {
-    "id": "x7704a413df38206b6aa2",
+    "id": "x66b69f9905d60bd09ee2",
+    "species": "cuviers-beaked-whale",
+    "speciesCommon": "Cuvier's Beaked Whale",
+    "speciesScientific": "Ziphius cavirostris",
+    "date": "2026-05-04T04:22:00Z",
+    "lat": -0.539778,
+    "lng": 73.212889,
+    "atoll": "Addu Atoll",
+    "observer": "Hassaan Manta Trust",
+    "groupSize": 3,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x1454b21af868fa35f193",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-03T12:26:14Z",
+    "date": "2026-05-03T11:26:14Z",
     "lat": 4.311722,
     "lng": 73.589639,
     "atoll": "North Male Atoll",
@@ -2520,11 +2590,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7423da237bb59243a189",
+    "id": "xfb7bca0acbf6b56fbb42",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-05-02T12:44:13Z",
+    "date": "2026-05-02T11:44:13Z",
     "lat": 4.289417,
     "lng": 73.571417,
     "atoll": "North Male Atoll",
@@ -2548,30 +2618,16 @@
     "photoUrl": null
   },
   {
-    "id": "xfd45092635d5e5b6d86c",
+    "id": "x7041f3c9cd62cfbb99b4",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-28T13:11:23Z",
+    "date": "2026-04-28T12:11:23Z",
     "lat": 4.303889,
     "lng": 73.598917,
     "atoll": "North Male Atoll",
     "observer": "KH Reefscapers",
     "groupSize": 20,
-    "behaviour": null,
-    "photoUrl": null
-  },
-  {
-    "id": "x150461884a265c82b245",
-    "species": "short-finned-pilot-whale",
-    "speciesCommon": "Short-finned Pilot Whale",
-    "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-04-28T12:37:26Z",
-    "lat": 4.303472,
-    "lng": 73.589861,
-    "atoll": "North Male Atoll",
-    "observer": "KH Reefscapers",
-    "groupSize": 30,
     "behaviour": null,
     "photoUrl": null
   },
@@ -2590,11 +2646,25 @@
     "photoUrl": null
   },
   {
-    "id": "xb526ffe917b7e9407ecc",
+    "id": "x3fd8383a8d1b794cf559",
+    "species": "short-finned-pilot-whale",
+    "speciesCommon": "Short-finned Pilot Whale",
+    "speciesScientific": "Globicephala macrorhynchus",
+    "date": "2026-04-28T11:37:26Z",
+    "lat": 4.303472,
+    "lng": 73.589861,
+    "atoll": "North Male Atoll",
+    "observer": "KH Reefscapers",
+    "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x2130377427751101bf09",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-26T12:52:14Z",
+    "date": "2026-04-26T11:52:14Z",
     "lat": 4.285861,
     "lng": 73.575472,
     "atoll": "North Male Atoll",
@@ -2604,11 +2674,11 @@
     "photoUrl": null
   },
   {
-    "id": "xeed42c3f2c4b86c23346",
+    "id": "x6cb201dfd6edc24a5a6e",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-04-25T12:59:50Z",
+    "date": "2026-04-25T11:59:50Z",
     "lat": 4.300389,
     "lng": 73.585806,
     "atoll": "North Male Atoll",
@@ -2618,11 +2688,11 @@
     "photoUrl": null
   },
   {
-    "id": "x94330d4b03cc03cefa76",
+    "id": "x489557d4fdc808fea6b5",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-04-25T12:52:58Z",
+    "date": "2026-04-25T11:52:58Z",
     "lat": 4.294556,
     "lng": 73.581917,
     "atoll": "North Male Atoll",
@@ -2646,11 +2716,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa96c4812a1e3e718b698",
+    "id": "xcf12e2b5b728f082841b",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-04-23T12:45:30Z",
+    "date": "2026-04-23T11:45:30Z",
     "lat": 4.278472,
     "lng": 73.568194,
     "atoll": "North Male Atoll",
@@ -2660,11 +2730,11 @@
     "photoUrl": null
   },
   {
-    "id": "x9af8a2607fa6638bb278",
+    "id": "x2ded52252157f3be4b50",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-21T12:51:29Z",
+    "date": "2026-04-21T11:51:29Z",
     "lat": 4.309861,
     "lng": 73.580389,
     "atoll": "North Male Atoll",
@@ -2702,11 +2772,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc0a188a54f925e1cce9c",
+    "id": "xc46aa510f864feff7018",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-19T12:46:39Z",
+    "date": "2026-04-19T11:46:39Z",
     "lat": 4.277611,
     "lng": 73.56875,
     "atoll": "North Male Atoll",
@@ -2716,11 +2786,11 @@
     "photoUrl": null
   },
   {
-    "id": "xcad5933a78164f156bf1",
+    "id": "xcc9408c3d53e93482a9d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-18T12:45:03Z",
+    "date": "2026-04-18T11:45:03Z",
     "lat": 4.299306,
     "lng": 73.578306,
     "atoll": "North Male Atoll",
@@ -2730,11 +2800,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc3006d71d8221ee78f28",
+    "id": "xe5282b379e4601845137",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-16T12:55:00Z",
+    "date": "2026-04-16T11:55:00Z",
     "lat": 5.317694,
     "lng": 73.085917,
     "atoll": "Baa Atoll",
@@ -2744,11 +2814,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7f2c55651fc25c7e01b2",
+    "id": "x6f7612b223b3b0c237b3",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-16T10:30:00Z",
+    "date": "2026-04-16T09:30:00Z",
     "lat": 5.319694,
     "lng": 73.082278,
     "atoll": "Baa Atoll",
@@ -2758,11 +2828,11 @@
     "photoUrl": null
   },
   {
-    "id": "x59f591a19b2c1c22f3e0",
+    "id": "x53314e2bafa6bfc634a3",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-14T12:55:13Z",
+    "date": "2026-04-14T11:55:13Z",
     "lat": 4.32175,
     "lng": 73.620056,
     "atoll": "North Male Atoll",
@@ -2772,11 +2842,11 @@
     "photoUrl": null
   },
   {
-    "id": "x00da76955dbf140db4d1",
+    "id": "xe3e3be1a42c3c25af8a4",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-12T12:53:29Z",
+    "date": "2026-04-12T11:53:29Z",
     "lat": 4.278417,
     "lng": 73.577833,
     "atoll": "North Male Atoll",
@@ -2786,11 +2856,11 @@
     "photoUrl": null
   },
   {
-    "id": "x3f63881fc8d2ae643b33",
+    "id": "x3341de2eac7abc27352d",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-04-11T12:43:38Z",
+    "date": "2026-04-11T11:43:38Z",
     "lat": 4.290361,
     "lng": 73.574778,
     "atoll": "North Male Atoll",
@@ -2800,11 +2870,11 @@
     "photoUrl": null
   },
   {
-    "id": "xadbc56b31555904f10b6",
+    "id": "x49069537e06785482141",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-11T06:00:00Z",
+    "date": "2026-04-11T05:00:00Z",
     "lat": 5.255806,
     "lng": 73.179167,
     "atoll": "Baa Atoll",
@@ -2814,11 +2884,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa04ac5525fe39740e74c",
+    "id": "xec028b6854351d71e134",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-09T12:35:00Z",
+    "date": "2026-04-09T11:35:00Z",
     "lat": 5.258917,
     "lng": 73.183722,
     "atoll": "Baa Atoll",
@@ -2828,11 +2898,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7d885184c7a9e68f0346",
+    "id": "x49d9a2b2548d0f845699",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-09T12:33:44Z",
+    "date": "2026-04-09T11:33:44Z",
     "lat": 4.308972,
     "lng": 73.593,
     "atoll": "North Male Atoll",
@@ -2842,11 +2912,11 @@
     "photoUrl": null
   },
   {
-    "id": "x82e45f37b8a1ce5c3d8d",
+    "id": "x5c6a7f3c0a38f9a0e9e9",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-04-09T12:15:00Z",
+    "date": "2026-04-09T11:15:00Z",
     "lat": 5.245944,
     "lng": 73.187806,
     "atoll": "Baa Atoll",
@@ -2856,11 +2926,11 @@
     "photoUrl": null
   },
   {
-    "id": "x1f12abf8a05b4c3592a7",
+    "id": "xfdf6f33b0a737eeb78cf",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-05T12:56:13Z",
+    "date": "2026-04-05T11:56:13Z",
     "lat": 4.273083,
     "lng": 73.556778,
     "atoll": "North Male Atoll",
@@ -2884,11 +2954,11 @@
     "photoUrl": null
   },
   {
-    "id": "xb6ea1a47d6d3f5913dfa",
+    "id": "x1ef542c9c21e4b1fee77",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-04T13:01:40Z",
+    "date": "2026-04-04T12:01:40Z",
     "lat": 4.277972,
     "lng": 73.569722,
     "atoll": "North Male Atoll",
@@ -2898,11 +2968,11 @@
     "photoUrl": null
   },
   {
-    "id": "x3550eba166eb23c9b433",
+    "id": "x964c13de1cfe8916f53d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-04T06:10:00Z",
+    "date": "2026-04-04T05:10:00Z",
     "lat": 5.140389,
     "lng": 73.103694,
     "atoll": "Baa Atoll",
@@ -2912,11 +2982,11 @@
     "photoUrl": null
   },
   {
-    "id": "xcd85b71ec88ecb69eb5f",
+    "id": "xa956f033cb00f2662930",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-04-04T05:40:00Z",
+    "date": "2026-04-04T04:40:00Z",
     "lat": 5.155056,
     "lng": 73.07275,
     "atoll": "Baa Atoll",
@@ -2926,11 +2996,11 @@
     "photoUrl": null
   },
   {
-    "id": "xc7efda061a7eeb5cb484",
+    "id": "xf055eb5d282fcc202202",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-04-02T12:55:41Z",
+    "date": "2026-04-02T11:55:41Z",
     "lat": 4.255861,
     "lng": 73.580278,
     "atoll": "North Male Atoll",
@@ -2940,11 +3010,11 @@
     "photoUrl": null
   },
   {
-    "id": "x878f5c911d06fe7e9060",
+    "id": "xc62d80a6ef8b2401bdca",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-04-02T12:55:41Z",
+    "date": "2026-04-02T11:55:41Z",
     "lat": 4.255583,
     "lng": 73.580278,
     "atoll": "North Male Atoll",
@@ -2954,11 +3024,11 @@
     "photoUrl": null
   },
   {
-    "id": "x497ec5bd7016202a138d",
+    "id": "x8e50026ba7e8d3c8e580",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-31T06:30:00Z",
+    "date": "2026-03-31T05:30:00Z",
     "lat": 5.258139,
     "lng": 73.182722,
     "atoll": "Baa Atoll",
@@ -2968,11 +3038,11 @@
     "photoUrl": null
   },
   {
-    "id": "x3de99d91f5a48514a622",
+    "id": "xf14718f92ee14297e69b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-29T06:30:00Z",
+    "date": "2026-03-29T05:30:00Z",
     "lat": 5.245917,
     "lng": 73.181861,
     "atoll": "Baa Atoll",
@@ -2982,11 +3052,11 @@
     "photoUrl": null
   },
   {
-    "id": "xe6eaf275f0150f636bca",
+    "id": "x51112ab6beee04d639ab",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-28T12:45:18Z",
+    "date": "2026-03-28T11:45:18Z",
     "lat": 4.289444,
     "lng": 73.5885,
     "atoll": "North Male Atoll",
@@ -3010,11 +3080,11 @@
     "photoUrl": null
   },
   {
-    "id": "xfcdf5babbd6cf86ab127",
+    "id": "xaf39f2665a314b2df335",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-26T13:47:45Z",
+    "date": "2026-03-26T12:47:45Z",
     "lat": 4.225417,
     "lng": 73.560111,
     "atoll": "North Male Atoll",
@@ -3024,11 +3094,11 @@
     "photoUrl": null
   },
   {
-    "id": "xbb0e32cca9548a60fe2a",
+    "id": "x2e56ad4a92f013e71b4c",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-24T12:46:38Z",
+    "date": "2026-03-24T11:46:38Z",
     "lat": 4.291139,
     "lng": 73.583722,
     "atoll": "North Male Atoll",
@@ -3038,11 +3108,11 @@
     "photoUrl": null
   },
   {
-    "id": "x2cf172928043b2dd5b8d",
+    "id": "x69623a80b018dfb2eccd",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-24T06:26:00Z",
+    "date": "2026-03-24T05:26:00Z",
     "lat": 5.257917,
     "lng": 73.182167,
     "atoll": "Baa Atoll",
@@ -3052,11 +3122,11 @@
     "photoUrl": null
   },
   {
-    "id": "x0047c2060203c5a0443c",
+    "id": "x80aea0e2c2804c326094",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-19T13:08:46Z",
+    "date": "2026-03-19T12:08:46Z",
     "lat": 4.263194,
     "lng": 73.548944,
     "atoll": "North Male Atoll",
@@ -3066,11 +3136,11 @@
     "photoUrl": null
   },
   {
-    "id": "x2bd589b08dca38b0ed5b",
+    "id": "x22a1a7fb3d17078d1e3b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-17T06:40:00Z",
+    "date": "2026-03-17T05:40:00Z",
     "lat": 5.150889,
     "lng": 73.090222,
     "atoll": "Baa Atoll",
@@ -3094,11 +3164,11 @@
     "photoUrl": null
   },
   {
-    "id": "x058a039e0cf55bfd74c9",
+    "id": "xc5307d4954f1fc8d1881",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-14T12:50:44Z",
+    "date": "2026-03-14T11:50:44Z",
     "lat": 4.282194,
     "lng": 73.578333,
     "atoll": "North Male Atoll",
@@ -3122,11 +3192,11 @@
     "photoUrl": null
   },
   {
-    "id": "x037500fa067021b6b3f5",
+    "id": "x99aa435c984de1b1512d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-12T12:40:30Z",
+    "date": "2026-03-12T11:40:30Z",
     "lat": 4.293083,
     "lng": 73.580778,
     "atoll": "North Male Atoll",
@@ -3136,11 +3206,11 @@
     "photoUrl": null
   },
   {
-    "id": "x801fb85ccbb988c11120",
+    "id": "xa97dfee6a8cb8a506363",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-07T13:04:36Z",
+    "date": "2026-03-07T12:04:36Z",
     "lat": 4.277278,
     "lng": 73.561972,
     "atoll": "North Male Atoll",
@@ -3150,11 +3220,11 @@
     "photoUrl": null
   },
   {
-    "id": "x7d747bcafa3cf9c6c1b7",
+    "id": "xeada1c57ab6b57414ef3",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-07T06:35:00Z",
+    "date": "2026-03-07T05:35:00Z",
     "lat": 5.312028,
     "lng": 73.090139,
     "atoll": "Baa Atoll",
@@ -3164,11 +3234,11 @@
     "photoUrl": null
   },
   {
-    "id": "x183dd8317b26eda347a6",
+    "id": "xcf701f3ceb3e34af7c9f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-07T06:09:00Z",
+    "date": "2026-03-07T05:09:00Z",
     "lat": 5.316306,
     "lng": 73.080611,
     "atoll": "Baa Atoll",
@@ -3178,11 +3248,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf6ce812783e223f4a612",
+    "id": "x75fa669940c6be228c36",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-03-05T12:13:00Z",
+    "date": "2026-03-05T11:13:00Z",
     "lat": 5.296139,
     "lng": 73.11425,
     "atoll": "Baa Atoll",
@@ -3192,11 +3262,11 @@
     "photoUrl": null
   },
   {
-    "id": "x601594c2d395b8da19c8",
+    "id": "x7e2cbed576336f865627",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-03T12:53:50Z",
+    "date": "2026-03-03T11:53:50Z",
     "lat": 4.303472,
     "lng": 73.593611,
     "atoll": "North Male Atoll",
@@ -3206,11 +3276,11 @@
     "photoUrl": null
   },
   {
-    "id": "xe3bfba508b1e1ffd0a5f",
+    "id": "xbc1ef266f927075f2a14",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-03-01T13:03:31Z",
+    "date": "2026-03-01T12:03:31Z",
     "lat": 4.301056,
     "lng": 73.587111,
     "atoll": "North Male Atoll",
@@ -3220,11 +3290,11 @@
     "photoUrl": null
   },
   {
-    "id": "xcfab6664656d2911b7a5",
+    "id": "x23a695eb07d35827280b",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-03-01T12:35:09Z",
+    "date": "2026-03-01T11:35:09Z",
     "lat": 4.3205,
     "lng": 73.588194,
     "atoll": "North Male Atoll",
@@ -3234,11 +3304,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa3c44ac06602baebe2df",
+    "id": "x3d16acdf46d60de89441",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-28T12:48:16Z",
+    "date": "2026-02-28T11:48:16Z",
     "lat": 4.3035,
     "lng": 73.584806,
     "atoll": "North Male Atoll",
@@ -3262,11 +3332,11 @@
     "photoUrl": null
   },
   {
-    "id": "x376c2ffe2556d10e41ad",
+    "id": "xdc73fbcf43ae821de684",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-26T12:30:00Z",
+    "date": "2026-02-26T11:30:00Z",
     "lat": 5.284944,
     "lng": 73.108222,
     "atoll": "Baa Atoll",
@@ -3276,11 +3346,11 @@
     "photoUrl": null
   },
   {
-    "id": "xfc423850bb3106f05150",
+    "id": "xaa94436fee989bdbd13f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-24T12:44:35Z",
+    "date": "2026-02-24T11:44:35Z",
     "lat": 4.295361,
     "lng": 73.580806,
     "atoll": "North Male Atoll",
@@ -3304,11 +3374,11 @@
     "photoUrl": null
   },
   {
-    "id": "x4127a3114792dc0319c8",
+    "id": "xdf8587f05872e9150f2d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-24T06:00:00Z",
+    "date": "2026-02-24T05:00:00Z",
     "lat": 5.263472,
     "lng": 73.165306,
     "atoll": "Baa Atoll",
@@ -3318,11 +3388,11 @@
     "photoUrl": null
   },
   {
-    "id": "x4b5b7c88ef4d2b43b184",
+    "id": "xb935b92f912d1471f4d2",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-22T12:51:26Z",
+    "date": "2026-02-22T11:51:26Z",
     "lat": 4.277139,
     "lng": 73.564889,
     "atoll": "North Male Atoll",
@@ -3346,11 +3416,11 @@
     "photoUrl": null
   },
   {
-    "id": "x44944e362789b79e6dbf",
+    "id": "x03f492f4204bbe8dee90",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-21T12:46:02Z",
+    "date": "2026-02-21T11:46:02Z",
     "lat": 4.302694,
     "lng": 73.590583,
     "atoll": "North Male Atoll",
@@ -3360,11 +3430,11 @@
     "photoUrl": null
   },
   {
-    "id": "x10317246f2a0c4748e8a",
+    "id": "x768b78ad1865f93fedaf",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-21T06:09:00Z",
+    "date": "2026-02-21T05:09:00Z",
     "lat": 5.318639,
     "lng": 73.084417,
     "atoll": "Baa Atoll",
@@ -3374,11 +3444,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf4df6b51e9948fc08a96",
+    "id": "x75059f4a77d36cd1ade2",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-19T12:34:00Z",
+    "date": "2026-02-19T11:34:00Z",
     "lat": 5.309611,
     "lng": 73.096167,
     "atoll": "Baa Atoll",
@@ -3388,11 +3458,11 @@
     "photoUrl": null
   },
   {
-    "id": "x83f925f334f8519ef9d8",
+    "id": "x9b9cdc61831cce230c50",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-17T12:50:04Z",
+    "date": "2026-02-17T11:50:04Z",
     "lat": 4.308583,
     "lng": 73.581278,
     "atoll": "North Male Atoll",
@@ -3416,11 +3486,11 @@
     "photoUrl": null
   },
   {
-    "id": "x1e8dac7ba190db4e4119",
+    "id": "xe6aa6168431d3367a746",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-15T12:42:32Z",
+    "date": "2026-02-15T11:42:32Z",
     "lat": 4.316306,
     "lng": 73.588222,
     "atoll": "North Male Atoll",
@@ -3430,11 +3500,11 @@
     "photoUrl": null
   },
   {
-    "id": "xb242cc2c70afb6d2a069",
+    "id": "x4418150da2697b95db0f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-14T06:20:00Z",
+    "date": "2026-02-14T05:20:00Z",
     "lat": 5.247056,
     "lng": 73.183528,
     "atoll": "Baa Atoll",
@@ -3458,11 +3528,11 @@
     "photoUrl": null
   },
   {
-    "id": "x82ca177bb760bf6de53f",
+    "id": "x555f073a3e11865a4352",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-12T12:50:00Z",
+    "date": "2026-02-12T11:50:00Z",
     "lat": 5.212944,
     "lng": 73.184,
     "atoll": "Baa Atoll",
@@ -3472,11 +3542,11 @@
     "photoUrl": null
   },
   {
-    "id": "xbeab81f3d789ec6bf28f",
+    "id": "x4992c161885b884a0875",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-12T12:41:09Z",
+    "date": "2026-02-12T11:41:09Z",
     "lat": 4.317361,
     "lng": 73.588139,
     "atoll": "North Male Atoll",
@@ -3486,11 +3556,11 @@
     "photoUrl": null
   },
   {
-    "id": "x206843166af10f0fa227",
+    "id": "x6d643ce18a5f99fe650e",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-10T12:48:59Z",
+    "date": "2026-02-10T11:48:59Z",
     "lat": 4.28725,
     "lng": 73.596694,
     "atoll": "North Male Atoll",
@@ -3514,11 +3584,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5741597789b40802d00a",
+    "id": "x8c93c30a8f1a3fccf61e",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-08T12:49:00Z",
+    "date": "2026-02-08T11:49:00Z",
     "lat": 4.28225,
     "lng": 73.569722,
     "atoll": "North Male Atoll",
@@ -3542,11 +3612,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5d60c365195496aa1353",
+    "id": "xe83aa1bc2e53abdf89a3",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-07T13:02:41Z",
+    "date": "2026-02-07T12:02:41Z",
     "lat": 4.277278,
     "lng": 73.557389,
     "atoll": "North Male Atoll",
@@ -3556,11 +3626,11 @@
     "photoUrl": null
   },
   {
-    "id": "x35eb1485c1b2df67b711",
+    "id": "x76303586a33633d8caac",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-07T06:30:00Z",
+    "date": "2026-02-07T05:30:00Z",
     "lat": 5.244167,
     "lng": 73.186694,
     "atoll": "Baa Atoll",
@@ -3570,11 +3640,11 @@
     "photoUrl": null
   },
   {
-    "id": "xbf53e501f97f4137024f",
+    "id": "x4879773fcf07f0dba328",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-05T12:39:53Z",
+    "date": "2026-02-05T11:39:53Z",
     "lat": 4.314278,
     "lng": 73.57725,
     "atoll": "North Male Atoll",
@@ -3584,11 +3654,11 @@
     "photoUrl": null
   },
   {
-    "id": "x8fa3820bce7098664ee1",
+    "id": "x0b66cc69677b9b9650e0",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-04T13:41:28Z",
+    "date": "2026-02-04T12:41:28Z",
     "lat": 4.244306,
     "lng": 73.547333,
     "atoll": "North Male Atoll",
@@ -3598,11 +3668,11 @@
     "photoUrl": null
   },
   {
-    "id": "x211dc0dee6b524df5f67",
+    "id": "x9b28aca02f690b68565f",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-02-04T13:10:57Z",
+    "date": "2026-02-04T12:10:57Z",
     "lat": 4.270139,
     "lng": 73.561667,
     "atoll": "North Male Atoll",
@@ -3612,11 +3682,11 @@
     "photoUrl": null
   },
   {
-    "id": "x427662f16ea5bc52f6ec",
+    "id": "xf5b16cf6a240e3eac657",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-03T12:39:33Z",
+    "date": "2026-02-03T11:39:33Z",
     "lat": 4.277278,
     "lng": 73.550694,
     "atoll": "North Male Atoll",
@@ -3626,11 +3696,11 @@
     "photoUrl": null
   },
   {
-    "id": "x10c01e0b9cea4db32439",
+    "id": "x73c9938840de8a2f6aec",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-02-03T06:23:00Z",
+    "date": "2026-02-03T05:23:00Z",
     "lat": 5.247528,
     "lng": 73.184639,
     "atoll": "Baa Atoll",
@@ -3640,11 +3710,11 @@
     "photoUrl": null
   },
   {
-    "id": "xe9ae6b24ceba06705dd4",
+    "id": "x9ac188be5b92f4a1d3eb",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-31T13:05:19Z",
+    "date": "2026-01-31T12:05:19Z",
     "lat": 4.276861,
     "lng": 73.548556,
     "atoll": "North Male Atoll",
@@ -3654,11 +3724,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa7589d0dda35fe93a502",
+    "id": "x00a6c366723cede13a00",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-31T06:24:00Z",
+    "date": "2026-01-31T05:24:00Z",
     "lat": 5.251417,
     "lng": 73.182722,
     "atoll": "Baa Atoll",
@@ -3682,11 +3752,11 @@
     "photoUrl": null
   },
   {
-    "id": "x719cfecdd383048b2afd",
+    "id": "x237a8b65934b07ce5deb",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-30T05:27:00Z",
+    "date": "2026-01-30T04:27:00Z",
     "lat": 5.311333,
     "lng": 73.091278,
     "atoll": "Baa Atoll",
@@ -3696,11 +3766,11 @@
     "photoUrl": null
   },
   {
-    "id": "xe57d8dc0fa624ffdfe68",
+    "id": "xf43c481dc61a96a01a6f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-29T12:45:56Z",
+    "date": "2026-01-29T11:45:56Z",
     "lat": 4.318667,
     "lng": 73.566556,
     "atoll": "North Male Atoll",
@@ -3710,11 +3780,11 @@
     "photoUrl": null
   },
   {
-    "id": "x3a467f6c16003b8452ed",
+    "id": "xf7b37f64f8c291ffed30",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-29T12:25:00Z",
+    "date": "2026-01-29T11:25:00Z",
     "lat": 5.30625,
     "lng": 73.097639,
     "atoll": "Baa Atoll",
@@ -3738,11 +3808,11 @@
     "photoUrl": null
   },
   {
-    "id": "x4248e6e6629e9d16161e",
+    "id": "x21302cbc5c410db63b53",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-27T13:10:41Z",
+    "date": "2026-01-27T12:10:41Z",
     "lat": 4.274889,
     "lng": 73.566167,
     "atoll": "North Male Atoll",
@@ -3752,11 +3822,11 @@
     "photoUrl": null
   },
   {
-    "id": "x1c65d99d5e7c58dc18c0",
+    "id": "x79477e2ba5e12e1542b0",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-24T13:05:58Z",
+    "date": "2026-01-24T12:05:58Z",
     "lat": 4.278278,
     "lng": 73.560806,
     "atoll": "North Male Atoll",
@@ -3780,11 +3850,11 @@
     "photoUrl": null
   },
   {
-    "id": "x0c724dd56862ab6f7f0c",
+    "id": "x2ebecbe4c508503bb59d",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-20T13:14:07Z",
+    "date": "2026-01-20T12:14:07Z",
     "lat": 4.275278,
     "lng": 73.552056,
     "atoll": "North Male Atoll",
@@ -3808,11 +3878,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf24f5d5e9b021e4971b1",
+    "id": "x3190c16f5b7c9e2fa2ad",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-20T06:16:00Z",
+    "date": "2026-01-20T05:16:00Z",
     "lat": 5.259333,
     "lng": 73.181722,
     "atoll": "Baa Atoll",
@@ -3822,11 +3892,11 @@
     "photoUrl": null
   },
   {
-    "id": "x32a43990ab9a2ac91d16",
+    "id": "xafe2a5dbc9a7b4aae3ae",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-17T12:53:50Z",
+    "date": "2026-01-17T11:53:50Z",
     "lat": 4.277417,
     "lng": 73.555083,
     "atoll": "North Male Atoll",
@@ -3836,11 +3906,11 @@
     "photoUrl": null
   },
   {
-    "id": "x451512c5bbaa21f045a7",
+    "id": "xbf8ed4b0cbb45b6a3811",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-17T06:39:00Z",
+    "date": "2026-01-17T05:39:00Z",
     "lat": 5.314611,
     "lng": 73.087583,
     "atoll": "Baa Atoll",
@@ -3850,11 +3920,11 @@
     "photoUrl": null
   },
   {
-    "id": "xb7d03da1dc713c7e183b",
+    "id": "xe4ac74659bfc58eb5719",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-15T12:35:28Z",
+    "date": "2026-01-15T11:35:28Z",
     "lat": 4.307972,
     "lng": 73.586667,
     "atoll": "North Male Atoll",
@@ -3864,11 +3934,11 @@
     "photoUrl": null
   },
   {
-    "id": "xf5783d7d0903df0cc0fb",
+    "id": "xc7f143cf04e0ffca8c70",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-01-13T12:55:37Z",
+    "date": "2026-01-13T11:55:37Z",
     "lat": 4.275833,
     "lng": 73.565222,
     "atoll": "North Male Atoll",
@@ -3892,11 +3962,11 @@
     "photoUrl": null
   },
   {
-    "id": "xa4aaaad79c6a6a673177",
+    "id": "x7380a430808c9858e166",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-13T06:22:00Z",
+    "date": "2026-01-13T05:22:00Z",
     "lat": 5.31075,
     "lng": 73.091694,
     "atoll": "Baa Atoll",
@@ -3920,11 +3990,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5aaad2dd46198701a154",
+    "id": "x363be20b26f1f1a42444",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-11T12:51:22Z",
+    "date": "2026-01-11T11:51:22Z",
     "lat": 4.277833,
     "lng": 73.555444,
     "atoll": "North Male Atoll",
@@ -3948,11 +4018,11 @@
     "photoUrl": null
   },
   {
-    "id": "x99b6b69b427f2d81683a",
+    "id": "x96b75bdcbe8ee2fd8995",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-10T12:38:51Z",
+    "date": "2026-01-10T11:38:51Z",
     "lat": 4.306167,
     "lng": 73.584028,
     "atoll": "North Male Atoll",
@@ -3962,11 +4032,39 @@
     "photoUrl": null
   },
   {
-    "id": "xb01aca049b869ebdf3df",
+    "id": "x72f4301ba89cd191185a",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-01-10T10:05:00Z",
+    "lat": 5.219667,
+    "lng": 73.122639,
+    "atoll": "Baa Atoll",
+    "observer": "LG Reefscapers",
+    "groupSize": 1,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x94762249d79e931f16c3",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-01-10T08:25:00Z",
+    "lat": 5.283361,
+    "lng": 73.116528,
+    "atoll": "Baa Atoll",
+    "observer": "LG Reefscapers",
+    "groupSize": 2,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x4b0bd33b9d056c6e538f",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-10T06:05:00Z",
+    "date": "2026-01-10T05:05:00Z",
     "lat": 5.325833,
     "lng": 73.08225,
     "atoll": "Baa Atoll",
@@ -3976,11 +4074,11 @@
     "photoUrl": null
   },
   {
-    "id": "x63e571718220d64ae633",
+    "id": "xacc3eb9d122cee7ff972",
     "species": "bottlenose-dolphin",
     "speciesCommon": "Bottlenose Dolphin",
     "speciesScientific": "Tursiops sp.",
-    "date": "2026-01-08T12:56:00Z",
+    "date": "2026-01-08T11:56:00Z",
     "lat": 5.284944,
     "lng": 73.12725,
     "atoll": "Baa Atoll",
@@ -3990,11 +4088,11 @@
     "photoUrl": null
   },
   {
-    "id": "x52a4fdc426f16737fae2",
+    "id": "x32a75ba6721539600ebb",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-08T12:44:19Z",
+    "date": "2026-01-08T11:44:19Z",
     "lat": 4.300667,
     "lng": 73.585361,
     "atoll": "North Male Atoll",
@@ -4004,11 +4102,11 @@
     "photoUrl": null
   },
   {
-    "id": "x5dd004cf9652e662bbb2",
+    "id": "x4a4d81fda3fcd92a5eac",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-03T12:52:26Z",
+    "date": "2026-01-03T11:52:26Z",
     "lat": 4.273472,
     "lng": 73.552056,
     "atoll": "North Male Atoll",
@@ -4018,11 +4116,11 @@
     "photoUrl": null
   },
   {
-    "id": "x41a931ae375b7d632401",
+    "id": "x4862f64fed82f4bbd565",
     "species": "short-finned-pilot-whale",
     "speciesCommon": "Short-finned Pilot Whale",
     "speciesScientific": "Globicephala macrorhynchus",
-    "date": "2026-01-03T12:47:26Z",
+    "date": "2026-01-03T11:47:26Z",
     "lat": 4.299667,
     "lng": 73.585361,
     "atoll": "North Male Atoll",
@@ -4032,11 +4130,11 @@
     "photoUrl": null
   },
   {
-    "id": "xe616197f617db3e0e485",
+    "id": "xa844c57472d7a145192a",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
     "speciesScientific": "Stenella longirostris",
-    "date": "2026-01-01T12:49:15Z",
+    "date": "2026-01-01T11:49:15Z",
     "lat": 4.267778,
     "lng": 73.561167,
     "atoll": "North Male Atoll",
@@ -4046,16 +4144,30 @@
     "photoUrl": null
   },
   {
-    "id": "x01450500d74c8ab5bb8d",
+    "id": "x78ffd66865559f4b6bf7",
     "species": "killer-whale",
     "speciesCommon": "Killer Whale",
     "speciesScientific": "Orcinus orca",
-    "date": "2025-12-18T06:00:00Z",
+    "date": "2025-12-18T05:00:00Z",
     "lat": -0.2605,
     "lng": 73.434639,
     "atoll": "Fuvahmulah Atoll",
     "observer": "Finn Reefscapers",
     "groupSize": 6,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x0c690f9d18918d8ba354",
+    "species": "cuviers-beaked-whale",
+    "speciesCommon": "Cuvier's Beaked Whale",
+    "speciesScientific": "Ziphius cavirostris",
+    "date": "2025-12-04T06:21:00Z",
+    "lat": -0.580583,
+    "lng": 73.138111,
+    "atoll": "Addu Atoll",
+    "observer": "Nauhabrhm",
+    "groupSize": 2,
     "behaviour": null,
     "photoUrl": null
   }
