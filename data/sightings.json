@@ -14,6 +14,34 @@
     "photoUrl": null
   },
   {
+    "id": "xd15ebb6f7ea5437f47ea",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-11-10T08:15:00Z",
+    "lat": 5.284806,
+    "lng": 73.111389,
+    "atoll": "Baa Atoll",
+    "observer": "James Reefscapers",
+    "groupSize": 2,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xfe859fef0fbd4182a6e0",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-11-09T09:10:00Z",
+    "lat": 5.281556,
+    "lng": 73.110722,
+    "atoll": "Baa Atoll",
+    "observer": "James Reefscapers",
+    "groupSize": 2,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "xb55ae6128e436f0d7428",
     "species": "spinner-dolphin",
     "speciesCommon": "Spinner Dolphin",
