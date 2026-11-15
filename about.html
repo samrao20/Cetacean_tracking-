@@ -18,6 +18,21 @@
   <style>
     /* Page-unique styles only — shared system lives in assets/koamas.css */
 
+    /* ── Hero image ── */
+    .about-hero {
+      position: relative;
+      background-image:
+        linear-gradient(135deg, rgba(11,31,51,0.74), rgba(11,31,51,0.42)),
+        url('assets/img/about-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .about-hero__content {
+      position: relative;
+      z-index: 1;
+    }
+
     /* ── Prose body text ── */
     .prose p {
       color: var(--text);
@@ -114,7 +129,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
       <li><a href="species.html">Species</a></li>
-      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
+      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18V6M10 18V10M16 18V4M22 18V8"/></svg></a></li>
       <li><a href="about.html" aria-current="page">About</a></li>
       <li><a href="news.html">News</a></li>
       <li>
@@ -147,24 +162,16 @@
 <!-- ══════════════════════════════════════
      PAGE HEADER
 ══════════════════════════════════════ -->
-<header class="dive-band text-white">
-  <div class="sonar-rings absolute -right-20 -top-24 opacity-60 hidden md:block" aria-hidden="true">
-    <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
-      <circle cx="210" cy="210" r="76"  stroke="rgba(56,189,248,0.28)"/>
-      <circle cx="210" cy="210" r="142" stroke="rgba(56,189,248,0.16)"/>
-      <circle cx="210" cy="210" r="206" stroke="rgba(56,189,248,0.08)"/>
-    </svg>
-    <div class="sonar-sweep"></div>
-  </div>
-  <div class="max-w-3xl mx-auto px-4 py-14 md:py-20">
+<header class="about-hero text-white">
+  <div class="about-hero__content max-w-3xl mx-auto px-4 py-14 md:py-20">
     <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas by Reefscapers</p>
     <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-5">About the project</h1>
-    <p class="text-[#9fb3c4] text-base md:text-lg leading-relaxed max-w-xl">
+    <p class="text-[#dfeef8] text-base md:text-lg leading-relaxed max-w-xl">
       A citizen science initiative building the first long-term record of cetacean sightings across the Maldivian archipelago.
     </p>
   </div>
 </header>
-<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
+<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#f5f8fb"/></svg></div>
 
 <!-- ══════════════════════════════════════
      MAIN CONTENT
@@ -209,10 +216,7 @@
     </div>
   </section>
 
-  <!-- ── How it started ──
-       New storytelling section (not part of the original guardrail copy above).
-       Drafted from the founders' account of how the project began; flagged for
-       Samay/James sign-off before this is treated as final. -->
+  <!-- ── How it started ── -->
   <section aria-labelledby="story-heading">
     <div class="flex items-center gap-3 mb-6">
       <div class="h-px flex-1 bg-[#dbe4ec]"></div>
@@ -424,8 +428,7 @@
       <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
         For partnership, media, or research enquiries, reach the team at:
       </p>
-      <!-- TODO: replace with James's work email, then with hello@koamas.org at full launch -->
-      <p class="text-base font-semibold text-[#0b1f33]">Email coming soon</p>
+      <a href="mailto:rayjameswork@gmail.com" class="text-base font-semibold text-[#0b1f33]">rayjameswork@gmail.com</a>
     </div>
   </section>
 
@@ -446,7 +449,7 @@
         target="_blank" rel="noopener"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.64-1.8-2.88-.173-.493-.033-.96.145-1.3.098-.22.197-.31.328-.5.165-.224.211-.37.29-.61.088-.24.045-.452-.024-.627-.08-.204-.43-1.03-.6-1.39-.167-.36-.338-.3-.467-.3h-.4c-.137 0-.287.013-.437.206-.25.33-.95 1.16-.95 2.84 0 1.66.98 3.3 1.12 3.53.14.21 1.91 3.03 4.66 4.23.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.58-.65 1.8-1.28.23-.67.23-1.25.16-1.37-.08-.13-.29-.2-.61-.35-.32-.15-1.9-.94-2.19-1.05-.3-.12-.52-.18-.74.12-.22.3-.86.95-.95 1.14-.09.2-.19.22-.4.07-.2-.15-.85-.31-1.62-.8-.73-.5-1.23-1.12-1.38-1.31-.15-.2-.02-.38.09-.52.1-.13.24-.33.37-.5.12-.17.16-.29.24-.48.08-.2.04-.38-.02-.53-.06-.16-.53-1.28-.73-1.75-.19-.45-.39-.38-.54-.39h-.46c-.17 0-.4.03-.61.28-.2.23-.78.76-.78 1.85 0 1.09.8 2.14.91 2.29.11.15 1.56 2.38 3.77 3.3.53.22.94.35 1.27.45.54.18 1.02.16 1.4.1z"/>
         </svg>
         Report via WhatsApp
       </a>
@@ -463,7 +466,7 @@
 
 <!-- ══════════════════════════════════════
      FOOTER
-══════════════════════════════════════ -->
+═════════════════════════════════════ -->
 <footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
