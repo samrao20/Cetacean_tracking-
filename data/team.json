@@ -1,5 +1,5 @@
 {
-  "_comment": "Koamas founders and partners for about.html. photo/bio empty is fine — the page falls back to an initials avatar and a 'Bio coming soon' note. Partner entries with pending:true stay hidden until confirmed. Fin and Riley (Kudahura team) are mentioned in the Reefscapers partner card copy in about.html, not as separate founder entries here.",
+  "_comment": "Koamas founders and partners for about.html. photo/bio empty is fine — the page falls back to an initials avatar and a 'Bio coming soon' note. Partner entries with pending:true stay out of the public grid until their details are confirmed.",
   "team": [
     {
       "name": "Samay",
@@ -12,11 +12,11 @@
       "links": []
     },
     {
-      "name": "James",
+      "name": "James Ray",
       "role": "Co-founder",
       "org": "",
       "location": "Maldives",
-      "bio": "",
+      "bio": "James Ray is a marine conservationist and researcher based in the Maldives, currently working with Reefscapers on coral reef restoration, marine conservation and cetacean research. He holds a BSc (Hons) in Earth and Ocean Science and is a JNCC-qualified Marine Mammal Observer. His previous experience includes working with Blue Planet Marine on the Crown-of-Thorns Starfish Control Programme. He is also a professional photographer, freediving instructor and Divemaster, combining scientific knowledge with practical experience in marine environments.\n\nAs Co-Founder of Koamas, James is passionate about advancing cetacean research and conservation through citizen science, individual photo-identification and collaborative research. He aims to help build a long-term, locally driven platform connecting researchers, institutions and communities to improve our understanding and protection of whales and dolphins across the Maldives and, ultimately, the wider Indian Ocean.",
       "photo": "",
       "email": "",
       "links": []

@@ -19,7 +19,20 @@
   <script src="assets/koamas.js" defer></script>
 
   <style>
-    /* Page-unique styles only — shared system lives in assets/koamas.css */
+    .dashboard-hero {
+      position: relative;
+      overflow: hidden;
+      background-image:
+        linear-gradient(135deg, rgba(11,31,51,0.72), rgba(11,31,51,0.42)),
+        url('assets/img/dashboard-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .dashboard-hero__content {
+      position: relative;
+      z-index: 1;
+    }
 
     .panel {
       background: #fff;
@@ -28,17 +41,15 @@
     }
     .lift-card:hover { box-shadow: var(--shadow-lg); }
 
-    /* Matrix */
     .matrix-table { border-collapse: collapse; }
     .matrix-table td,
     .matrix-table th { border: 1px solid var(--rule); }
     .matrix-species { background: #eef4f9; font-weight: 500; }
     .matrix-header  { background: #eef4f9; }
 
-    /* Skeleton pulse */
     @keyframes skel-pulse {
       0%, 100% { opacity: 1; }
-      50%       { opacity: 0.45; }
+      50%      { opacity: 0.45; }
     }
     .skel { animation: skel-pulse 1.8s ease-in-out infinite; }
   </style>
@@ -46,13 +57,8 @@
 <body class="bg-waves">
 
 <a href="#main-content" class="skip-link">Skip to content</a>
-
-<!-- Brand bar -->
 <div class="brand-bar" aria-hidden="true"></div>
 
-<!-- ═══════════════════════════════════
-     NAV
-═══════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     <a href="index.html" class="flex items-center gap-3" aria-label="Koamas — Maldives Cetacean Research, home">
@@ -66,7 +72,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
       <li><a href="species.html">Species</a></li>
-      <li><a href="dashboard.html" aria-current="page">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="14"/></svg></a></li>
+      <li><a href="dashboard.html" aria-current="page">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18V6M10 18V10M16 18V4M22 18V8"/></svg></a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="news.html">News</a></li>
       <li>
@@ -96,33 +102,22 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════
-     PAGE HEADER
-═══════════════════════════════════ -->
-<header class="dive-band text-white" id="main-content">
-  <div class="sonar-rings absolute -right-16 -top-24 opacity-50 hidden md:block" aria-hidden="true">
-    <svg width="360" height="360" viewBox="0 0 360 360" fill="none">
-      <circle cx="180" cy="180" r="66"  stroke="rgba(56,189,248,0.26)"/>
-      <circle cx="180" cy="180" r="124" stroke="rgba(56,189,248,0.14)"/>
-      <circle cx="180" cy="180" r="176" stroke="rgba(56,189,248,0.07)"/>
-    </svg>
-    <div class="sonar-sweep"></div>
-  </div>
-  <div class="relative max-w-6xl mx-auto px-4 py-12 md:py-14 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<header class="dashboard-hero text-white" id="main-content">
+  <div class="dashboard-hero__content max-w-6xl mx-auto px-4 py-12 md:py-14 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
     <div>
       <p class="kicker text-xs font-semibold tracking-[0.18em] uppercase text-[#8fc9ec] mb-3">Data overview</p>
       <h1 class="font-['Fraunces'] text-4xl md:text-5xl font-semibold text-white tracking-tight mb-2">
         Maldives cetacean sightings
       </h1>
-      <p class="text-sm text-[#9fb3c4]" id="last-updated-text">All verified sightings on record</p>
+      <p class="text-sm text-[#dfeef8]" id="last-updated-text">All verified sightings on record</p>
     </div>
     <div class="flex items-center gap-3 shrink-0">
-      <span id="demo-badge" class="hidden text-[11px] text-[#9fb3c4] border border-white/20 rounded-full px-3 py-1">
+      <span id="demo-badge" class="hidden text-[11px] text-[#dfeef8] border border-white/20 rounded-full px-3 py-1">
         Sample data — connect Supabase for live figures
       </span>
       <button
         id="csv-btn"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-sm font-medium text-[#d8e6f0] hover:border-[#38bdf8] hover:text-[#38bdf8] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-sm font-medium text-[#d8e6f0] hover:border-[#38bdf8] hover:text-[#38bdf8] transition-colors"
         disabled
         aria-label="Download sightings as CSV"
       >
@@ -134,263 +129,139 @@
     </div>
   </div>
 </header>
-<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#071626"/></svg></div>
+<div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#f5f8fb"/></svg></div>
 
 <main>
-
-<!-- ═══════════════════════════════════
-     STATS STRIP
-═══════════════════════════════════ -->
-<section aria-labelledby="stats-heading">
-  <h2 id="stats-heading" class="sr-only">Key statistics</h2>
-  <div class="border-b border-[#dbe4ec]">
-    <div class="max-w-6xl mx-auto px-4">
-      <dl id="stats-strip" class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#dbe4ec]">
-        <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-14 bg-[#dbe4ec] rounded mb-2"></div>
-          <div class="h-3 w-28 bg-[#eef4f9] rounded"></div>
-        </div>
-        <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-10 bg-[#dbe4ec] rounded mb-2"></div>
-          <div class="h-3 w-24 bg-[#eef4f9] rounded"></div>
-        </div>
-        <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-8 bg-[#dbe4ec] rounded mb-2"></div>
-          <div class="h-3 w-32 bg-[#eef4f9] rounded"></div>
-        </div>
-        <div class="px-6 py-8 skel" aria-hidden="true">
-          <div class="h-9 w-12 bg-[#dbe4ec] rounded mb-2"></div>
-          <div class="h-3 w-24 bg-[#eef4f9] rounded"></div>
-        </div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════
-     CHARTS ROW
-═══════════════════════════════════ -->
-<section class="py-12 px-4" aria-labelledby="charts-heading">
-  <h2 id="charts-heading" class="sr-only">Sighting charts</h2>
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
-
-    <!-- Species frequency -->
-    <div class="lift-card panel rounded-xl p-6 flex flex-col">
-      <div class="mb-5">
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">By species</p>
-        <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b1f33]">Sightings per species</h3>
-      </div>
-      <div id="species-chart-wrap" class="relative flex-1" style="min-height:300px;">
-        <!-- skeleton -->
-        <div id="species-skel" class="absolute inset-0 flex flex-col justify-end gap-2.5 skel pr-1">
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0 text-right"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:82%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:58%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:41%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:22%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:14%"></div></div>
-          <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:8%"></div></div>
-        </div>
-        <canvas id="species-chart" class="hidden" aria-label="Horizontal bar chart of sightings per species"></canvas>
-        <div id="species-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
-          <p class="font-['Fraunces'] text-base text-[#0b1f33]">No sightings yet</p>
-          <p class="text-xs text-[#5b6b7d]">Data will appear here once sightings are logged.</p>
-        </div>
+  <section aria-labelledby="stats-heading">
+    <h2 id="stats-heading" class="sr-only">Key statistics</h2>
+    <div class="border-b border-[#dbe4ec]">
+      <div class="max-w-6xl mx-auto px-4">
+        <dl id="stats-strip" class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#dbe4ec]">
+          <div class="px-6 py-8 skel" aria-hidden="true"><div class="h-9 w-14 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-28 bg-[#eef4f9] rounded"></div></div>
+          <div class="px-6 py-8 skel" aria-hidden="true"><div class="h-9 w-10 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-24 bg-[#eef4f9] rounded"></div></div>
+          <div class="px-6 py-8 skel" aria-hidden="true"><div class="h-9 w-8 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-32 bg-[#eef4f9] rounded"></div></div>
+          <div class="px-6 py-8 skel" aria-hidden="true"><div class="h-9 w-12 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-24 bg-[#eef4f9] rounded"></div></div>
+        </dl>
       </div>
     </div>
+  </section>
 
-    <!-- Monthly trend -->
-    <div class="lift-card panel rounded-xl p-6 flex flex-col">
-      <div class="mb-5">
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">Seasonal pattern</p>
-        <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b1f33]">Sightings by month</h3>
-      </div>
-      <div id="monthly-chart-wrap" class="relative flex-1" style="min-height:220px;">
-        <!-- skeleton -->
-        <div id="monthly-skel" class="absolute inset-0 skel overflow-hidden rounded">
-          <svg width="100%" height="100%" viewBox="0 0 300 180" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165 L300 180 L0 180 Z" fill="rgba(11,31,51,0.08)" opacity="0.55"/>
-            <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165" fill="none" stroke="rgba(11,31,51,0.14)" stroke-width="1.5"/>
-          </svg>
+  <section class="py-12 px-4" aria-labelledby="charts-heading">
+    <h2 id="charts-heading" class="sr-only">Sighting charts</h2>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
+      <div class="lift-card panel rounded-xl p-6 flex flex-col">
+        <div class="mb-5">
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">By species</p>
+          <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b1f33]">Sightings per species</h3>
         </div>
-        <canvas id="monthly-chart" class="hidden" aria-label="Area chart of sightings by month"></canvas>
-        <div id="monthly-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
-          <p class="font-['Fraunces'] text-base text-[#0b1f33]">Not enough data yet</p>
-          <p class="text-xs text-[#5b6b7d]">Seasonal patterns will emerge as the dataset grows.</p>
-        </div>
-      </div>
-      <p class="text-xs text-[#5b6b7d] mt-3">All verified sightings bucketed by calendar month across all years.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════
-     NOTABLE SIGHTINGS
-═══════════════════════════════════ -->
-<section class="py-12 px-4 border-t border-[#dbe4ec]" aria-labelledby="notable-heading">
-  <div class="max-w-6xl mx-auto">
-
-    <div class="mb-6">
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-2">Recent notable encounters</p>
-      <h2 id="notable-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b1f33] mb-1">
-        Uncommon species recently logged
-      </h2>
-      <p class="text-sm text-[#5b6b7d]">
-        Sightings of species beyond the three most frequently recorded — the long tail that makes the dataset ecologically interesting.
-      </p>
-    </div>
-
-    <div id="notable-feed" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="panel rounded-xl p-5 skel" aria-hidden="true">
-        <div class="h-4 w-36 bg-[#dbe4ec] rounded mb-2"></div>
-        <div class="h-3 w-24 bg-[#eef4f9] rounded mb-4"></div>
-        <div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div>
-        <div class="h-3 w-3/4 bg-[#eef4f9] rounded"></div>
-      </div>
-      <div class="panel rounded-xl p-5 skel" aria-hidden="true">
-        <div class="h-4 w-32 bg-[#dbe4ec] rounded mb-2"></div>
-        <div class="h-3 w-20 bg-[#eef4f9] rounded mb-4"></div>
-        <div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div>
-        <div class="h-3 w-2/3 bg-[#eef4f9] rounded"></div>
-      </div>
-      <div class="panel rounded-xl p-5 skel" aria-hidden="true">
-        <div class="h-4 w-40 bg-[#dbe4ec] rounded mb-2"></div>
-        <div class="h-3 w-28 bg-[#eef4f9] rounded mb-4"></div>
-        <div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div>
-        <div class="h-3 w-1/2 bg-[#eef4f9] rounded"></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════
-     MAP CTA
-═══════════════════════════════════ -->
-<div class="px-4 pb-12 border-t border-[#dbe4ec] pt-0">
-  <div class="max-w-6xl mx-auto">
-    <a
-      href="map.html"
-      class="flex flex-col sm:flex-row items-center justify-between gap-4 panel rounded-xl px-8 py-6 group hover:border-[#0ea5e9]/60 hover:bg-[#f5f8fb] hover:-translate-y-0.5 transition-all mt-0 -mt-px"
-    >
-      <div>
-        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">Interactive map</p>
-        <p class="font-['Fraunces'] text-xl font-semibold text-[#0b1f33]">Explore all sightings geographically</p>
-        <p class="text-sm text-[#5b6b7d] mt-0.5">Full-screen map with species, atoll, and date filters.</p>
-      </div>
-      <div class="shrink-0 flex items-center gap-2 text-[#0ea5e9] group-hover:text-[#0b1f33] transition-colors text-sm font-medium">
-        Open map
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-        </svg>
-      </div>
-    </a>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════
-     SPECIES × ATOLL MATRIX
-═══════════════════════════════════ -->
-<section class="py-12 px-4 border-t border-[#dbe4ec]" aria-labelledby="matrix-heading">
-  <div class="max-w-6xl mx-auto">
-
-    <div class="mb-6">
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-2">Coverage matrix</p>
-      <h2 id="matrix-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b1f33] mb-1">
-        Species × atoll
-      </h2>
-      <p class="text-sm text-[#5b6b7d] max-w-2xl">
-        Verified sighting count per species per atoll. Blank cells are coverage gaps — useful for planning where to direct future survey effort.
-      </p>
-    </div>
-
-    <!-- skeleton -->
-    <div id="matrix-skel" class="panel rounded-xl overflow-hidden skel">
-      <div class="p-5 space-y-3">
-        <div class="flex gap-3 pb-2 border-b border-[#dbe4ec]">
-          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
-          <div class="flex gap-2 flex-1">
-            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-3 bg-[#dbe4ec] rounded flex-1"></div>
+        <div id="species-chart-wrap" class="relative flex-1" style="min-height:300px;">
+          <div id="species-skel" class="absolute inset-0 flex flex-col justify-end gap-2.5 skel pr-1">
+            <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0 text-right"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:82%"></div></div>
+            <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:58%"></div></div>
+            <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:41%"></div></div>
+            <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:22%"></div></div>
+            <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:14%"></div></div>
+            <div class="flex items-center gap-3"><div class="h-3 w-28 bg-[#eef4f9] rounded shrink-0"></div><div class="h-5 bg-[#dbe4ec] rounded" style="width:8%"></div></div>
           </div>
-        </div>
-        <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
-          <div class="flex gap-2 flex-1">
-            <div class="h-6 bg-[#0ea5e9] rounded flex-1 opacity-75"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#0ea5e9]/60 rounded flex-1"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#38bdf8]/30 rounded flex-1"></div>
-          </div>
-        </div>
-        <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
-          <div class="flex gap-2 flex-1">
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#0ea5e9]/60 rounded flex-1 opacity-60"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#0ea5e9] rounded flex-1 opacity-50"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-          </div>
-        </div>
-        <div class="flex gap-3 items-center">
-          <div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div>
-          <div class="flex gap-2 flex-1">
-            <div class="h-6 bg-[#38bdf8]/30 rounded flex-1"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div>
-            <div class="h-6 bg-[#0ea5e9]/60 rounded flex-1 opacity-70"></div>
+          <canvas id="species-chart" class="hidden" aria-label="Horizontal bar chart of sightings per species"></canvas>
+          <div id="species-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
+            <p class="font-['Fraunces'] text-base text-[#0b1f33]">No sightings yet</p>
+            <p class="text-xs text-[#5b6b7d]">Data will appear here once sightings are logged.</p>
           </div>
         </div>
       </div>
+
+      <div class="lift-card panel rounded-xl p-6 flex flex-col">
+        <div class="mb-5">
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">Seasonal pattern</p>
+          <h3 class="font-['Fraunces'] text-lg font-semibold text-[#0b1f33]">Sightings by month</h3>
+        </div>
+        <div id="monthly-chart-wrap" class="relative flex-1" style="min-height:220px;">
+          <div id="monthly-skel" class="absolute inset-0 skel overflow-hidden rounded">
+            <svg width="100%" height="100%" viewBox="0 0 300 180" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165 L300 180 L0 180 Z" fill="rgba(11,31,51,0.08)" opacity="0.55"/>
+              <path d="M0 170 C25 160, 50 140, 75 110 C100 80, 125 65, 150 60 C175 55, 200 80, 225 110 C250 140, 275 155, 300 165" fill="none" stroke="rgba(11,31,51,0.14)" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <canvas id="monthly-chart" class="hidden" aria-label="Area chart of sightings by month"></canvas>
+          <div id="monthly-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center gap-1">
+            <p class="font-['Fraunces'] text-base text-[#0b1f33]">Not enough data yet</p>
+            <p class="text-xs text-[#5b6b7d]">Seasonal patterns will emerge as the dataset grows.</p>
+          </div>
+        </div>
+        <p class="text-xs text-[#5b6b7d] mt-3">All verified sightings bucketed by calendar month across all years.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- populated by JS -->
-    <div id="matrix-render" class="hidden overflow-x-auto -mx-4 px-4 pb-2"></div>
-
-    <div id="matrix-empty" class="hidden panel rounded-xl p-10 text-center">
-      <p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">No sightings to display</p>
-      <p class="text-xs text-[#5b6b7d]">The matrix will populate as sightings are recorded.</p>
+  <section class="py-12 px-4 border-t border-[#dbe4ec]" aria-labelledby="notable-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-6">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-2">Recent notable encounters</p>
+        <h2 id="notable-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b1f33] mb-1">Uncommon species recently logged</h2>
+        <p class="text-sm text-[#5b6b7d]">Sightings of species beyond the three most frequently recorded — the long tail that makes the dataset ecologically interesting.</p>
+      </div>
+      <div id="notable-feed" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="panel rounded-xl p-5 skel" aria-hidden="true"><div class="h-4 w-36 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-24 bg-[#eef4f9] rounded mb-4"></div><div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div><div class="h-3 w-3/4 bg-[#eef4f9] rounded"></div></div>
+        <div class="panel rounded-xl p-5 skel" aria-hidden="true"><div class="h-4 w-32 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-20 bg-[#eef4f9] rounded mb-4"></div><div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div><div class="h-3 w-2/3 bg-[#eef4f9] rounded"></div></div>
+        <div class="panel rounded-xl p-5 skel" aria-hidden="true"><div class="h-4 w-40 bg-[#dbe4ec] rounded mb-2"></div><div class="h-3 w-28 bg-[#eef4f9] rounded mb-4"></div><div class="h-3 w-full bg-[#eef4f9] rounded mb-1.5"></div><div class="h-3 w-1/2 bg-[#eef4f9] rounded"></div></div>
+      </div>
     </div>
+  </section>
 
-    <!-- Legend -->
-    <div id="matrix-legend" class="hidden mt-4 flex items-center flex-wrap gap-x-5 gap-y-2">
-      <span class="text-xs text-[#5b6b7d] font-medium">Sightings:</span>
-      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
-        <span class="inline-block w-4 h-4 rounded bg-[#f5f8fb] border border-[#dbe4ec]"></span> 0
-      </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
-        <span class="inline-block w-4 h-4 rounded bg-[#38bdf8]/30"></span> 1
-      </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
-        <span class="inline-block w-4 h-4 rounded bg-[#0ea5e9]/60"></span> 2–4
-      </span>
-      <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]">
-        <span class="inline-block w-4 h-4 rounded bg-[#0ea5e9]"></span> 5+
-      </span>
+  <div class="px-4 pb-12 border-t border-[#dbe4ec] pt-0">
+    <div class="max-w-6xl mx-auto">
+      <a href="map.html" class="flex flex-col sm:flex-row items-center justify-between gap-4 panel rounded-xl px-8 py-6 group hover:border-[#0ea5e9]/60 hover:bg-[#f5f8fb] hover:-translate-y-0.5 transition-all mt-0">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-1">Interactive map</p>
+          <p class="font-['Fraunces'] text-xl font-semibold text-[#0b1f33]">Explore all sightings geographically</p>
+          <p class="text-sm text-[#5b6b7d] mt-0.5">Full-screen map with species, atoll, and date filters.</p>
+        </div>
+        <div class="shrink-0 flex items-center gap-2 text-[#0ea5e9] group-hover:text-[#0b1f33] transition-colors text-sm font-medium">
+          Open map
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" clip-rule="evenodd"/></svg>
+        </div>
+      </a>
     </div>
-
   </div>
-</section>
 
+  <section class="py-12 px-4 border-t border-[#dbe4ec]" aria-labelledby="matrix-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-6">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9] mb-2">Coverage matrix</p>
+        <h2 id="matrix-heading" class="font-['Fraunces'] text-2xl font-semibold text-[#0b1f33] mb-1">Species × atoll</h2>
+        <p class="text-sm text-[#5b6b7d] max-w-2xl">Verified sighting count per species per atoll. Blank cells are coverage gaps — useful for planning where to direct future survey effort.</p>
+      </div>
+
+      <div id="matrix-skel" class="panel rounded-xl overflow-hidden skel">
+        <div class="p-5 space-y-3">
+          <div class="flex gap-3 pb-2 border-b border-[#dbe4ec]"><div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div><div class="flex gap-2 flex-1"><div class="h-3 bg-[#dbe4ec] rounded flex-1"></div><div class="h-3 bg-[#dbe4ec] rounded flex-1"></div><div class="h-3 bg-[#dbe4ec] rounded flex-1"></div><div class="h-3 bg-[#dbe4ec] rounded flex-1"></div><div class="h-3 bg-[#dbe4ec] rounded flex-1"></div></div></div>
+          <div class="flex gap-3 items-center"><div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div><div class="flex gap-2 flex-1"><div class="h-6 bg-[#0ea5e9] rounded flex-1 opacity-75"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#0ea5e9]/60 rounded flex-1"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#38bdf8]/30 rounded flex-1"></div></div></div>
+          <div class="flex gap-3 items-center"><div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div><div class="flex gap-2 flex-1"><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#0ea5e9]/60 rounded flex-1 opacity-60"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#0ea5e9] rounded flex-1 opacity-50"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div></div></div>
+          <div class="flex gap-3 items-center"><div class="h-3 w-32 bg-[#eef4f9] rounded shrink-0"></div><div class="flex gap-2 flex-1"><div class="h-6 bg-[#38bdf8]/30 rounded flex-1"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#f5f8fb] border border-[#dbe4ec] rounded flex-1"></div><div class="h-6 bg-[#0ea5e9]/60 rounded flex-1 opacity-70"></div></div></div>
+        </div>
+      </div>
+
+      <div id="matrix-render" class="hidden overflow-x-auto -mx-4 px-4 pb-2"></div>
+      <div id="matrix-empty" class="hidden panel rounded-xl p-10 text-center"><p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">No sightings to display</p><p class="text-xs text-[#5b6b7d]">The matrix will populate as sightings are recorded.</p></div>
+
+      <div id="matrix-legend" class="hidden mt-4 flex items-center flex-wrap gap-x-5 gap-y-2">
+        <span class="text-xs text-[#5b6b7d] font-medium">Sightings:</span>
+        <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]"><span class="inline-block w-4 h-4 rounded bg-[#f5f8fb] border border-[#dbe4ec]"></span> 0</span>
+        <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]"><span class="inline-block w-4 h-4 rounded bg-[#38bdf8]/30"></span> 1</span>
+        <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]"><span class="inline-block w-4 h-4 rounded bg-[#0ea5e9]/60"></span> 2–4</span>
+        <span class="flex items-center gap-1.5 text-xs text-[#5b6b7d]"><span class="inline-block w-4 h-4 rounded bg-[#0ea5e9]"></span> 5+</span>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- ═══════════════════════════════════
-     FOOTER
-═══════════════════════════════════ -->
 <footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
   <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
     <div>
       <p class="font-['Fraunces'] text-lg font-semibold text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
       <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
-      <p class="text-xs text-[#5b6e80] mt-1">In partnership with
-        <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
-        <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
+      <p class="text-xs text-[#5b6e80] mt-1">In partnership with <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot; <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
     </div>
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
@@ -406,12 +277,9 @@
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════ -->
 <script src="config.js" onerror="void 0"></script>
 <script>
-  window.SUPABASE_URL      = window.SUPABASE_URL      || null;
+  window.SUPABASE_URL = window.SUPABASE_URL || null;
   window.SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || null;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -420,22 +288,16 @@
 <script>
 (function () {
   'use strict';
-
-  // Mobile nav toggle is handled by the shared assets/koamas.js.
-
-  const REDUCE_MOTION = window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ── Chart.js defaults ────────────────────────────────────────
+  const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   Chart.defaults.font.family = "'Outfit', sans-serif";
   Chart.defaults.color = '#5b6b7d';
   Chart.defaults.animation = REDUCE_MOTION ? false : { duration: 900, easing: 'easeOutQuart' };
 
   const RULE_COLOR = 'rgba(11,31,51,0.08)';
-  const CORAL      = '#0ea5e9';
-  const LAGOON     = '#38bdf8';
+  const CORAL = '#0ea5e9';
+  const LAGOON = '#38bdf8';
+  const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  // Animated count-up for the stat numbers (visual only)
   function countUp(el, target) {
     if (REDUCE_MOTION || !target) { el.textContent = target; return; }
     const t0 = performance.now(), dur = 1100;
@@ -448,15 +310,6 @@
     requestAnimationFrame(step);
   }
 
-  const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-  // ── Normalise an atoll string ──────────────────────────────
-  // Supabase free-text and the local fallback disagree on trailing
-  // " Atoll", casing, and stray whitespace (e.g. "Lhaviyani" vs.
-  // "Lhaviyani Atoll" vs. "lhaviyani Atoll "), which otherwise renders as
-  // duplicate columns in the matrix below. Collapse to one canonical bare
-  // name — Unicode-normalised (NFC, since "Malé" can arrive composed or
-  // decomposed), trimmed, de-suffixed, title-cased.
   function normaliseAtoll(raw) {
     if (!raw) return '';
     let s = String(raw).normalize('NFC').replace(/\s+/g, ' ').trim();
@@ -465,12 +318,6 @@
     return s.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
   }
 
-  // Sanity check: a sighting can only be logged after it happens, so a
-  // sighting_date in the future is bad data (e.g. a mistyped year), never
-  // a real upcoming sighting — drop it rather than showing something that
-  // hasn't happened yet. A day of slack absorbs Maldives (UTC+5) vs UTC
-  // date rounding at the day boundary. Kept in sync with the identical
-  // helper in map.html and index.html.
   function dropFutureDated(rows) {
     const cutoff = Date.now() + 24 * 60 * 60 * 1000;
     return (rows || []).filter(r => {
@@ -483,59 +330,10 @@
     });
   }
 
-  // Species that can't be told apart in the field are shown as one combined
-  // category in the charts below. Declared canonically by the `members`
-  // array on the grouping entry in species.json (slug bottlenose-dolphin,
-  // rank: "genus"); mirrored here as a literal — this page never fetches
-  // species.json, so it also carries the group's own label. Keep in
-  // lockstep with the identical table in map.html and with species.json —
-  // same contract as normaliseAtoll() above.
   const SPECIES_GROUPS = {
     'indo-pacific-bottlenose-dolphin': { slug: 'bottlenose-dolphin', name: 'Bottlenose Dolphin' },
-    'common-bottlenose-dolphin':       { slug: 'bottlenose-dolphin', name: 'Bottlenose Dolphin' },
+    'common-bottlenose-dolphin': { slug: 'bottlenose-dolphin', name: 'Bottlenose Dolphin' },
   };
-
-  // ── Normalise: Supabase → common shape ────────────────────
-  function normaliseSupabase(rows) {
-    return (rows || []).map(r => {
-      const slug = r.species?.slug        || '';
-      const name = r.species?.common_name || 'Unknown';
-      const group = SPECIES_GROUPS[slug];
-      return {
-        id:           r.id,
-        species_slug: slug,
-        species_name: name,
-        species_group_slug: group ? group.slug : slug,
-        species_group_name: group ? group.name : name,
-        date:         r.sighting_date        || '',
-        atoll:        normaliseAtoll(r.atoll),
-        count:        parseCountRange(r.count_range),
-        notes:        r.notes                || '',
-        contributor:  r.submitter_phone_hash || '',
-      };
-    });
-  }
-
-  // ── Normalise: local JSON → common shape ──────────────────
-  function normaliseLocal(rows) {
-    return (rows || []).map(r => {
-      const slug = r.species        || '';
-      const name = r.speciesCommon  || 'Unknown';
-      const group = SPECIES_GROUPS[slug];
-      return {
-        id:           r.id,
-        species_slug: slug,
-        species_name: name,
-        species_group_slug: group ? group.slug : slug,
-        species_group_name: group ? group.name : name,
-        date:         r.date           || '',
-        atoll:        normaliseAtoll(r.atoll),
-        count:        typeof r.groupSize === 'number' ? r.groupSize : 0,
-        notes:        r.behaviour      || '',
-        contributor:  r.observer       || '',
-      };
-    });
-  }
 
   function parseCountRange(s) {
     if (!s) return 0;
@@ -544,10 +342,46 @@
     return m ? parseInt(m[1], 10) : 0;
   }
 
-  // Supabase/PostgREST caps each response at the project's max-rows setting
-  // (1000 by default) — without paging through with .range(), any result set
-  // larger than that is silently truncated. Page until a page comes back
-  // short of PAGE_SIZE.
+  function normaliseSupabase(rows) {
+    return (rows || []).map(r => {
+      const slug = r.species?.slug || '';
+      const name = r.species?.common_name || 'Unknown';
+      const group = SPECIES_GROUPS[slug];
+      return {
+        id: r.id,
+        species_slug: slug,
+        species_name: name,
+        species_group_slug: group ? group.slug : slug,
+        species_group_name: group ? group.name : name,
+        date: r.sighting_date || '',
+        atoll: normaliseAtoll(r.atoll),
+        count: parseCountRange(r.count_range),
+        notes: r.notes || '',
+        contributor: r.submitter_phone_hash || '',
+      };
+    });
+  }
+
+  function normaliseLocal(rows) {
+    return (rows || []).map(r => {
+      const slug = r.species || '';
+      const name = r.speciesCommon || 'Unknown';
+      const group = SPECIES_GROUPS[slug];
+      return {
+        id: r.id,
+        species_slug: slug,
+        species_name: name,
+        species_group_slug: group ? group.slug : slug,
+        species_group_name: group ? group.name : name,
+        date: r.date || '',
+        atoll: normaliseAtoll(r.atoll),
+        count: typeof r.groupSize === 'number' ? r.groupSize : 0,
+        notes: r.behaviour || '',
+        contributor: r.observer || '',
+      };
+    });
+  }
+
   async function fetchAllRows(buildQuery) {
     const PAGE_SIZE = 1000;
     let rows = [];
@@ -563,7 +397,6 @@
     return rows;
   }
 
-  // ── Load data ──────────────────────────────────────────────
   async function loadData() {
     if (window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
       try {
@@ -589,7 +422,6 @@
     }
   }
 
-  // ── Helpers ────────────────────────────────────────────────
   function countBy(rows, key) {
     const map = {};
     rows.forEach(r => { map[r[key]] = (map[r[key]] || 0) + 1; });
@@ -601,19 +433,16 @@
     return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
-  // ── Render: stats strip ────────────────────────────────────
   function renderStats(rows, source) {
-    const total        = rows.length;
-    // Grouped, so two field-indistinguishable species (e.g. the two
-    // bottlenose species) count as one distinguishable taxon recorded, not two.
+    const total = rows.length;
     const speciesCount = new Set(rows.map(r => r.species_group_slug).filter(Boolean)).size;
-    const atollCount   = new Set(rows.map(r => r.atoll).filter(Boolean)).size;
+    const atollCount = new Set(rows.map(r => r.atoll).filter(Boolean)).size;
     const contribCount = new Set(rows.map(r => r.contributor).filter(Boolean)).size;
 
     const STATS = [
-      { value: total,        label: 'Verified sightings' },
+      { value: total, label: 'Verified sightings' },
       { value: speciesCount, label: 'Species recorded' },
-      { value: atollCount,   label: 'Atolls with data' },
+      { value: atollCount, label: 'Atolls with data' },
       { value: contribCount, label: 'Contributors' },
     ];
 
@@ -629,18 +458,14 @@
     }
   }
 
-  // ── Render: species frequency chart ───────────────────────
   function renderSpeciesChart(rows) {
-    const skelEl  = document.getElementById('species-skel');
-    const canvas  = document.getElementById('species-chart');
+    const skelEl = document.getElementById('species-skel');
+    const canvas = document.getElementById('species-chart');
     const emptyEl = document.getElementById('species-empty');
-    const wrapEl  = document.getElementById('species-chart-wrap');
+    const wrapEl = document.getElementById('species-chart-wrap');
 
-    // Grouped by species_group_name — two field-indistinguishable species
-    // (e.g. the two bottlenose species) render as one bar, not two.
     const countMap = countBy(rows, 'species_group_name');
-    const sorted   = Object.entries(countMap).sort((a, b) => b[1] - a[1]);
-
+    const sorted = Object.entries(countMap).sort((a, b) => b[1] - a[1]);
     skelEl.classList.add('hidden');
 
     if (sorted.length < 2) {
@@ -648,66 +473,38 @@
       return;
     }
 
-    // Dynamically size container so bars aren't cramped
     const h = Math.max(280, sorted.length * 34);
     wrapEl.style.minHeight = h + 'px';
 
     const labels = sorted.map(([name]) => name);
     const values = sorted.map(([, n]) => n);
     const maxVal = values[0] || 1;
-
-    const bgs = values.map(v => {
-      const a = (0.5 + 0.5 * (v / maxVal)).toFixed(2);
-      return `rgba(14,165,233,${a})`;
-    });
+    const bgs = values.map(v => `rgba(14,165,233,${(0.5 + 0.5 * (v / maxVal)).toFixed(2)})`);
 
     canvas.classList.remove('hidden');
     new Chart(canvas, {
       type: 'bar',
       data: {
         labels,
-        datasets: [{
-          data: values,
-          backgroundColor: bgs,
-          hoverBackgroundColor: LAGOON,
-          borderRadius: 3,
-          borderSkipped: false,
-        }],
+        datasets: [{ data: values, backgroundColor: bgs, hoverBackgroundColor: LAGOON, borderRadius: 3, borderSkipped: false }],
       },
       options: {
         indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => `  ${ctx.parsed.x} sighting${ctx.parsed.x !== 1 ? 's' : ''}`,
-            },
-          },
-        },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `  ${ctx.parsed.x} sighting${ctx.parsed.x !== 1 ? 's' : ''}` } } },
         scales: {
-          x: {
-            grid: { color: RULE_COLOR, lineWidth: 0.5 },
-            border: { display: false },
-            ticks: { font: { size: 11 }, precision: 0 },
-          },
-          y: {
-            grid: { display: false },
-            border: { display: false },
-            ticks: { font: { size: 11 }, color: '#16324c' },
-          },
+          x: { grid: { color: RULE_COLOR, lineWidth: 0.5 }, border: { display: false }, ticks: { font: { size: 11 }, precision: 0 } },
+          y: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11 }, color: '#16324c' } },
         },
       },
     });
   }
 
-  // ── Render: monthly trend chart ────────────────────────────
   function renderMonthlyChart(rows) {
-    const skelEl  = document.getElementById('monthly-skel');
-    const canvas  = document.getElementById('monthly-chart');
+    const skelEl = document.getElementById('monthly-skel');
+    const canvas = document.getElementById('monthly-chart');
     const emptyEl = document.getElementById('monthly-empty');
-
     skelEl.classList.add('hidden');
 
     const monthly = Array(12).fill(0);
@@ -745,97 +542,57 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => `  ${ctx.parsed.y} sighting${ctx.parsed.y !== 1 ? 's' : ''}`,
-            },
-          },
-        },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `  ${ctx.parsed.y} sighting${ctx.parsed.y !== 1 ? 's' : ''}` } } },
         scales: {
-          x: {
-            grid: { display: false },
-            border: { display: false },
-            ticks: { font: { size: 11 } },
-          },
-          y: {
-            grid: { color: RULE_COLOR, lineWidth: 0.5 },
-            border: { display: false },
-            beginAtZero: true,
-            ticks: { font: { size: 11 }, precision: 0, stepSize: 1 },
-          },
+          x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11 } } },
+          y: { grid: { color: RULE_COLOR, lineWidth: 0.5 }, border: { display: false }, beginAtZero: true, ticks: { font: { size: 11 }, precision: 0, stepSize: 1 } },
         },
       },
     });
   }
 
-  // ── Render: notable sightings feed ─────────────────────────
   function renderNotable(rows) {
     const feed = document.getElementById('notable-feed');
-
     if (rows.length === 0) {
-      feed.innerHTML = `
-        <div class="col-span-full py-12 text-center border border-dashed border-[#dbe4ec] rounded-xl">
-          <p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">No sightings yet</p>
-          <p class="text-xs text-[#5b6b7d]">Check back once sightings have been verified.</p>
-        </div>`;
+      feed.innerHTML = `<div class="col-span-full py-12 text-center border border-dashed border-[#dbe4ec] rounded-xl"><p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">No sightings yet</p><p class="text-xs text-[#5b6b7d]">Check back once sightings have been verified.</p></div>`;
       return;
     }
 
-    // Rarity is judged per distinguishable taxon, not per label — grouped
-    // bottlenose records compete for "common" as one entry, not two.
     const countMap = countBy(rows, 'species_group_slug');
     const top3 = Object.entries(countMap).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([s]) => s);
-
-    const notable = rows
-      .filter(r => !top3.includes(r.species_group_slug))
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 6);
+    const notable = rows.filter(r => !top3.includes(r.species_group_slug)).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6);
 
     if (notable.length === 0) {
-      feed.innerHTML = `
-        <div class="col-span-full py-12 text-center border border-dashed border-[#dbe4ec] rounded-xl">
-          <p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">All recent records are common species</p>
-          <p class="text-xs text-[#5b6b7d]">Notable encounters will appear here as the dataset grows.</p>
-        </div>`;
+      feed.innerHTML = `<div class="col-span-full py-12 text-center border border-dashed border-[#dbe4ec] rounded-xl"><p class="font-['Fraunces'] text-base text-[#0b1f33] mb-1">All recent records are common species</p><p class="text-xs text-[#5b6b7d]">Notable encounters will appear here as the dataset grows.</p></div>`;
       return;
     }
 
     feed.innerHTML = notable.map(r => {
-      const snippet   = r.notes ? r.notes.slice(0, 130) + (r.notes.length > 130 ? '…' : '') : null;
+      const snippet = r.notes ? r.notes.slice(0, 130) + (r.notes.length > 130 ? '…' : '') : null;
       const countText = r.count > 0 ? `${r.count} ind.` : null;
-      // Round-trips to the combined map chip (map.html groups the two
-      // bottlenose slugs into one), but the card itself keeps the exact
-      // species name — a confirmed sighting naming the precise species is
-      // exactly the notable detail worth showing.
-      const mapHref   = `map.html?species=${encodeURIComponent(r.species_group_slug)}`;
+      const mapHref = `map.html?species=${encodeURIComponent(r.species_group_slug)}`;
       return `
         <article class="panel rounded-xl p-5 flex flex-col gap-3 hover:border-[#0ea5e9]/40 transition-colors">
           <div>
             <p class="font-semibold text-[#0b1f33] text-sm leading-snug">${r.species_name}</p>
             <div class="flex items-center gap-2 mt-1 text-xs text-[#5b6b7d] flex-wrap">
-              ${r.atoll  ? `<span>${r.atoll}</span>` : ''}
+              ${r.atoll ? `<span>${r.atoll}</span>` : ''}
               ${r.atoll && r.date ? `<span class="text-[#0b1f33]/25">·</span>` : ''}
-              ${r.date   ? `<span>${formatDate(r.date)}</span>` : ''}
+              ${r.date ? `<span>${formatDate(r.date)}</span>` : ''}
               ${countText ? `<span class="ml-auto bg-[#f5f8fb] border border-[#dbe4ec] rounded-full px-2 py-0.5">${countText}</span>` : ''}
             </div>
           </div>
           ${snippet ? `<p class="text-xs text-[#5b6b7d] leading-relaxed">${snippet}</p>` : ''}
-          <a href="${mapHref}" class="text-xs font-medium text-[#0ea5e9] hover:underline mt-auto">
-            View on map →
-          </a>
+          <a href="${mapHref}" class="text-xs font-medium text-[#0ea5e9] hover:underline mt-auto">View on map →</a>
         </article>`;
     }).join('');
   }
 
-  // ── Render: species × atoll matrix ────────────────────────
   function renderMatrix(rows) {
-    const skelEl   = document.getElementById('matrix-skel');
+    const skelEl = document.getElementById('matrix-skel');
     const renderEl = document.getElementById('matrix-render');
-    const emptyEl  = document.getElementById('matrix-empty');
+    const emptyEl = document.getElementById('matrix-empty');
     const legendEl = document.getElementById('matrix-legend');
-
     skelEl.classList.add('hidden');
 
     if (rows.length === 0) {
@@ -843,14 +600,9 @@
       return;
     }
 
-    const UNRECORDED       = 'Unrecorded';
-    // Grouped by species_group_name — one row per distinguishable taxon, so
-    // two field-indistinguishable species (e.g. the two bottlenose species)
-    // don't split the same animal's counts across two rows.
-    const speciesCountMap  = countBy(rows, 'species_group_name');
-    const speciesList      = Object.entries(speciesCountMap).sort((a, b) => b[1] - a[1]).map(([n]) => n);
-    // Sightings with no atoll on file get an explicit bucket rather than
-    // being silently dropped — kept last regardless of alphabetical sort.
+    const UNRECORDED = 'Unrecorded';
+    const speciesCountMap = countBy(rows, 'species_group_name');
+    const speciesList = Object.entries(speciesCountMap).sort((a, b) => b[1] - a[1]).map(([n]) => n);
     const atollList = [...new Set(rows.map(r => r.atoll || UNRECORDED))].sort((a, b) => {
       if (a === UNRECORDED) return 1;
       if (b === UNRECORDED) return -1;
@@ -862,7 +614,6 @@
       return;
     }
 
-    // Build cell counts
     const cellMap = {};
     rows.forEach(r => {
       const k = r.species_group_name + '||' + (r.atoll || UNRECORDED);
@@ -872,54 +623,35 @@
     function cellBg(n) {
       if (!n) return 'rgba(11,31,51,0.03)';
       if (n === 1) return 'rgba(56,189,248,0.28)';
-      if (n <= 4)  return 'rgba(14,165,233,0.55)';
+      if (n <= 4) return 'rgba(14,165,233,0.55)';
       return CORAL;
     }
     function cellFg(n) { return n ? '#0b1f33' : 'rgba(15,28,43,0.35)'; }
 
-    const thead = `<tr class="border-b border-[#dbe4ec]">
-      <th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#5b6b7d] uppercase tracking-wide whitespace-nowrap">Species</th>
-      ${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#5b6b7d] text-center whitespace-nowrap${a === UNRECORDED ? ' italic opacity-70' : ''}" ${a === UNRECORDED ? 'title="Sightings with no atoll on file"' : ''}>${a}</th>`).join('')}
-      <th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#5b6b7d] text-center whitespace-nowrap border-l border-[#dbe4ec]">Total</th>
-    </tr>`;
+    const thead = `<tr class="border-b border-[#dbe4ec]"><th scope="col" class="matrix-header matrix-species sticky left-0 pr-4 py-2.5 text-left text-[0.65rem] font-semibold text-[#5b6b7d] uppercase tracking-wide whitespace-nowrap">Species</th>${atollList.map(a => `<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#5b6b7d] text-center whitespace-nowrap${a === UNRECORDED ? ' italic opacity-70' : ''}">${a}</th>`).join('')}<th scope="col" class="matrix-header px-3 py-2.5 text-[0.65rem] font-semibold text-[#5b6b7d] text-center whitespace-nowrap border-l border-[#dbe4ec]">Total</th></tr>`;
 
     const tbody = speciesList.map(sp => {
-      // Sum the row's own visible cells rather than trusting
-      // speciesCountMap directly, so Total always reconciles with what's
-      // on screen (speciesCountMap counted every row regardless of atoll).
       const cells = atollList.map(a => {
-        const n  = cellMap[sp + '||' + a] || 0;
+        const n = cellMap[sp + '||' + a] || 0;
         const bg = cellBg(n);
         const fg = cellFg(n);
-        return { n, html: `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || ''}</td>` };
+        return { n, html: `<td style="background:${bg};color:${fg}" class="px-3 py-2 text-[0.72rem] font-medium text-center whitespace-nowrap" title="${sp} — ${a}: ${n} sighting${n !== 1 ? 's' : ''}">${n || '—'}</td>` };
       });
       const total = cells.reduce((sum, c) => sum + c.n, 0);
-      return `<tr class="border-b border-[#dbe4ec] hover:bg-[#f5f8fb] transition-colors">
-        <td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#0f1c2b] whitespace-nowrap">${sp}</td>
-        ${cells.map(c => c.html).join('')}
-        <td class="px-3 py-2 text-[0.72rem] font-semibold text-[#0b1f33] text-center border-l border-[#dbe4ec]">${total}</td>
-      </tr>`;
+      return `<tr class="border-b border-[#dbe4ec] hover:bg-[#f5f8fb] transition-colors"><td class="matrix-species sticky left-0 pr-4 py-2 text-[0.72rem] text-[#0f1c2b] whitespace-nowrap">${sp}</td>${cells.map(c => c.html).join('')}<td class="px-3 py-2 text-[0.72rem] font-semibold text-[#0b1f33] text-center border-l border-[#dbe4ec]">${total}</td></tr>`;
     }).join('');
 
-    renderEl.innerHTML = `
-      <div class="panel rounded-xl overflow-hidden">
-        <table class="matrix-table w-full text-left" role="grid" aria-label="Species by atoll sighting counts">
-          <thead>${thead}</thead>
-          <tbody>${tbody}</tbody>
-        </table>
-      </div>`;
-
+    renderEl.innerHTML = `<div class="panel rounded-xl overflow-hidden"><table class="matrix-table w-full text-left" role="grid" aria-label="Species by atoll sighting counts"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`;
     renderEl.classList.remove('hidden');
     legendEl.classList.remove('hidden');
   }
 
-  // ── CSV export ─────────────────────────────────────────────
   function enableCSV(rows) {
     const btn = document.getElementById('csv-btn');
     btn.disabled = false;
     btn.addEventListener('click', () => {
       const header = 'species,atoll,date,count,notes';
-      const lines  = rows.map(r => [
+      const lines = rows.map(r => [
         `"${r.species_name}"`,
         `"${r.atoll}"`,
         r.date,
@@ -927,11 +659,8 @@
         `"${(r.notes || '').replace(/"/g, '""')}"`,
       ].join(','));
       const blob = new Blob([[header, ...lines].join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const url  = URL.createObjectURL(blob);
-      const a    = Object.assign(document.createElement('a'), {
-        href: url,
-        download: 'koamas-sightings.csv',
-      });
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: 'koamas-sightings.csv' });
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -939,19 +668,16 @@
     });
   }
 
-  // ── Last updated ───────────────────────────────────────────
   function updateLastUpdatedText(rows) {
-    const el     = document.getElementById('last-updated-text');
+    const el = document.getElementById('last-updated-text');
     const sorted = rows.filter(r => r.date).sort((a, b) => new Date(b.date) - new Date(a.date));
     if (sorted.length > 0) {
       el.textContent = `Most recent sighting: ${formatDate(sorted[0].date)}`;
     }
   }
 
-  // ── Init ───────────────────────────────────────────────────
   async function init() {
     const { rows, source } = await loadData();
-
     renderStats(rows, source);
     renderSpeciesChart(rows);
     renderMonthlyChart(rows);
@@ -964,6 +690,5 @@
   init();
 })();
 </script>
-
 </body>
 </html>
