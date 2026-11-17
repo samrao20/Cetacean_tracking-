@@ -1,13 +1,26 @@
 {
-  "_comment": "Maps the exact label text from the sheet's 'Species' dropdown to a species.json slug. Edited by hand — see docs/data-pipeline.md. A null value means the label is ambiguous or has no matching species.json entry, so the importer routes it to data/import-review.json instead of guessing. A label may instead map to a genus-level 'rank: genus' entry (e.g. 'Bottlenose' -> bottlenose-dolphin, Tursiops sp.) when the dropdown can't distinguish species that are indistinguishable in the field — that is not a guess, it publishes the row at the precision the recorder actually chose. resolve_species() in scripts/import_sightings.py still prefers a specific scientific name typed in the sheet's notes column over the genus bucket, and still refuses to guess for a null-mapped label.",
-
   "Spinner": "spinner-dolphin",
-  "Pilot": "short-finned-pilot-whale",
-  "Risso": "rissos-dolphin",
-  "Orca": "killer-whale",
-  "Cuviers": "cuviers-beaked-whale",
   "Bottlenose": "bottlenose-dolphin",
-
-  "Unkown Dolphin": null,
-  "Unkown Whale": null
+  "Risso": "rissos-dolphin",
+  "Pilot": "short-finned-pilot-whale",
+  "Orca": "killer-whale",
+  "Cuvier’s": "cuviers-beaked-whale",
+  "Blue Whale": "blue-whale",
+  "Bryde’s Whale": "brydes-whale",
+  "Humpback Whale": "humpback-whale",
+  "Sperm Whale": "sperm-whale",
+  "Dwarf Sperm Whale": "dwarf-sperm-whale",
+  "False Killer Whale": "false-killer-whale",
+  "Melon-headed whale": "melon-headed-whale",
+  "Pygmy killer whale": "pygmy-killer-whale",
+  "Fraser’s dolphin": "frasers-dolphin",
+  "Rough-toothed dolphin": "rough-toothed-dolphin",
+  "Pantropical spotted dolphin": "pantropical-spotted-dolphin",
+  "Striped dolphin": "striped-dolphin",
+  "Longman’s beaked whale": "longmans-beaked-whale",
+  "Blainville’s beaked whale": "blainvilles-beaked-whale",
+  "Deraniyagala’s beaked whale": "deraniyagalas-beaked-whale",
+  "Ginkgo-toothed beaked whale": "ginkgo-toothed-beaked-whale",
+  "Unknown Dolphin": null,
+  "Unknown Whale": null
 }
