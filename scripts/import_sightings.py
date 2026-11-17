@@ -156,6 +156,9 @@ def parse_coordinates(raw):
     return (lat, lng), None
 
 
+TIME_PLACEHOLDERS = {"-", "–", "—", "?", "unk", "unknown", "n/a", "na", "nil", "none"}
+
+
 def _repair_time_text(s):
     # Observed typo: "11:oo" (letter O in place of zero).
     return re.sub(r"[oO]", "0", s.strip())
@@ -194,16 +197,21 @@ def parse_date_time(date_val, time_val):
         time_part = time_val.time()
     elif isinstance(time_val, str) and time_val.strip():
         s = _repair_time_text(time_val)
-        parsed = None
-        for fmt in ("%H:%M:%S", "%H:%M"):
-            try:
-                parsed = dt.datetime.strptime(s, fmt).time()
-                break
-            except ValueError:
-                continue
-        if parsed is None:
-            return None, "time_unparsed"
-        time_part = parsed
+        if s.lower() in TIME_PLACEHOLDERS:
+            # "-", "unk", "?" etc. mean "time not recorded" — same as a blank
+            # cell, so keep the midday default rather than dropping the row.
+            pass
+        else:
+            parsed = None
+            for fmt in ("%H:%M:%S", "%H:%M"):
+                try:
+                    parsed = dt.datetime.strptime(s, fmt).time()
+                    break
+                except ValueError:
+                    continue
+            if parsed is None:
+                return None, "time_unparsed"
+            time_part = parsed
 
     local_dt = dt.datetime.combine(date_part, time_part)
     utc_dt = local_dt - MALDIVES_OFFSET
@@ -253,6 +261,19 @@ def _match_notes_epithet(notes, species_by_slug, max_dist=2):
     return best_slug if best_slug and best_dist <= max_dist else None
 
 
+def _alias_key(text):
+    t = str(text).replace("\u2019", "'").replace("\u2018", "'").replace("`", "'")
+    return re.sub(r"\s+", " ", t).strip().lower()
+
+
+def _alias_lookup(key, aliases):
+    wanted = _alias_key(key)
+    for k, v in aliases.items():
+        if _alias_key(k) == wanted:
+            return v
+    return None
+
+
 def resolve_species(label, notes, aliases, species_by_slug):
     """Exact alias lookup. A label that maps to a genus-level bucket (e.g.
     'Bottlenose' -> bottlenose-dolphin) is ambiguous by construction: prefer
@@ -266,6 +287,10 @@ def resolve_species(label, notes, aliases, species_by_slug):
     if not key:
         return None, "missing"
     slug = aliases.get(key)
+    if slug is None and key not in aliases:
+        # Tolerate typographic differences between the sheet and the alias
+        # file: straight vs curly apostrophes, case, and doubled spaces.
+        slug = _alias_lookup(key, aliases)
     if not slug:
         return None, f"unresolved:{key}"
     if _is_bucket(species_by_slug.get(slug, {})):
