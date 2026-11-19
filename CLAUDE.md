@@ -91,6 +91,8 @@ Supabase tables:
 
 `data/sightings.json` is the local static fallback. Its schema differs from Supabase: it uses `species` (slug string), `speciesCommon`, `date`, `groupSize`, `behaviour`, `observer` rather than the Supabase column names. Normalise at load time.
 
+Two feeder pipelines populate Supabase/the fallback JSON, both outside this static site (site code never talks to either directly): the Excel importer (`scripts/import_sightings.py`, see `docs/data-pipeline.md`) and, staging into that same importer, the WhatsApp bot (`supabase/functions/whatsapp-bot/`, see `docs/whatsapp-bot.md`). Every row still passes through the importer's validate/flag/publish pass — a WhatsApp submission additionally needs a human to set Verified=Yes (flagged Blue in the sheet until then) before it publishes.
+
 ### JavaScript Conventions
 
 - No ES modules — all scripts are plain `<script>` tags; globals are used for shared state.
