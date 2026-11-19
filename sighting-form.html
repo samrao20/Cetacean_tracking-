@@ -15,14 +15,17 @@
   <script src="assets/koamas.js" defer></script>
   <style>
     .report-card { background:#fff; border:1px solid var(--rule); border-radius:1rem; box-shadow:var(--shadow-sm); }
-    #submission-map { height:380px; border-radius:.85rem; overflow:hidden; background:#d8e6f0; }
+    #submission-map { height:480px; border-radius:.85rem; overflow:hidden; background:#0b1f33; border:1px solid #cbd8e3; }
     .field-label { display:block; font-size:.82rem; font-weight:600; color:#0b1f33; margin-bottom:.4rem; }
     .field-control { display:block; width:100%; border:1px solid #cbd8e3; border-radius:.6rem; padding:.7rem .8rem; color:#0f1c2b; background:white; font:inherit; font-size:.9rem; }
     .field-control:focus { outline:2px solid #38bdf8; outline-offset:1px; border-color:#0ea5e9; }
-    .map-hint { background:rgba(11,31,51,.9); color:#eaf4fb; border:1px solid rgba(56,189,248,.25); }
-    .pin-marker { width:26px; height:26px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#0ea5e9; border:3px solid white; box-shadow:0 2px 10px #0b1f3380; cursor:grab; }
+    .map-hint { background:rgba(7,22,38,.94); color:#fff; border:1px solid rgba(255,255,255,.3); box-shadow:0 3px 14px #07162670; }
+    .pin-marker { width:36px; height:36px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#ffd43b; border:3px solid #071626; box-shadow:0 2px 12px #000b; cursor:grab; position:relative; }
+    .pin-marker::after { content:''; position:absolute; width:11px; height:11px; left:9px; top:9px; border-radius:50%; background:#071626; }
     .pin-marker:active { cursor:grabbing; }
-    @media(max-width:640px){ #submission-map {height:300px;} }
+    #map-load-error { display:none; }
+    @media(max-width:640px){ #submission-map {height:390px;} }
+    @media(prefers-reduced-motion:reduce){ #submission-map {scroll-behavior:auto;} }
   </style>
 </head>
 <body class="bg-waves">
@@ -42,8 +45,9 @@
 <main id="main-content" class="max-w-4xl mx-auto px-4 py-10 md:py-14 space-y-8">
   <section class="report-card p-5 md:p-7" aria-labelledby="map-heading">
     <h2 id="map-heading" class="text-2xl font-semibold text-[#0b1f33] mb-2">Pin the sighting location</h2>
-    <p class="text-sm text-[#5b6b7d] mb-4">Click the map to place the pin, or drag it to the exact spot. This map is separate from the public sightings map.</p>
-    <div class="relative"><div id="submission-map" role="application" aria-label="Submission location map. Click to set a pin or drag the marker."></div><div class="map-hint absolute top-3 left-3 z-10 rounded-lg px-3 py-2 text-xs">Click or drag to place the pin</div></div>
+    <p class="text-sm text-[#5b6b7d] mb-4">Satellite imagery is shown by default. Zoom in with the +/− controls or your mouse wheel; atoll outlines and names appear as you zoom closer. Click to place the pin, then drag it to refine the location.</p>
+    <div class="relative"><div id="submission-map" role="application" aria-label="Satellite location map. Zoom with the map controls, click to set a pin, or drag the marker."></div><div class="map-hint absolute top-3 left-3 z-10 rounded-lg px-3 py-2 text-xs">SATELLITE · zoom in for atoll names</div></div>
+    <p id="map-load-error" class="mt-3 text-sm text-red-700" role="alert">The map or atoll labels could not load. Please refresh the page and try again.</p>
     <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
       <p class="rounded-lg bg-[#f5f8fb] p-3"><span class="font-semibold text-[#0b1f33]">Coordinates:</span> <span id="coordinate-label" class="text-[#5b6b7d]">No pin selected</span></p>
       <p class="rounded-lg bg-[#f5f8fb] p-3"><span class="font-semibold text-[#0b1f33]">Detected atoll:</span> <span id="atoll-label" class="text-[#5b6b7d]">Place a pin on an atoll</span></p>
@@ -73,114 +77,102 @@
 <script>
 (function () {
   'use strict';
-  // Match the sightings map's ocean basemap and center. This map is an
-  // independent instance and has no sightings source or write access.
-  var MAPTILER_KEY = 'GMdyZmw23vuGhFSwySuP';
   var map = new maplibregl.Map({
     container: 'submission-map',
-    style: 'https://api.maptiler.com/maps/ocean/style.json?key=' + MAPTILER_KEY,
-    center: [73.2207, 3.2028], zoom: 5.2,
-    attributionControl: { compact: true }
+    style: {
+      version: 8,
+      glyphs: 'https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=GMdyZmw23vuGhFSwySuP',
+      sources: { esriImagery: { type:'raster', tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], tileSize:256, maxzoom:18, attribution:'Imagery © Esri, Maxar, Earthstar Geographics' } },
+      layers: [{ id:'satellite-imagery', type:'raster', source:'esriImagery' }]
+    },
+    center:[73.2207,3.2028], zoom:4.7, minZoom:3, maxZoom:18,
+    attributionControl:{ compact:false }
   });
-  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
-  var marker = new maplibregl.Marker({ element: makePin(), draggable: true });
-  var pin = null;
-  var atolls = null;
-  var geoReady = fetch('data/maldives-atolls.geojson').then(function (r) { if (!r.ok) throw new Error('Atoll data unavailable'); return r.json(); }).then(function (d) { atolls = d; return d; }).catch(function () { return null; });
-  function makePin() { var e = document.createElement('div'); e.className = 'pin-marker'; e.setAttribute('role','img'); e.setAttribute('aria-label','Draggable sighting location pin'); return e; }
+  map.addControl(new maplibregl.NavigationControl({ showCompass:false, visualizePitch:false }), 'bottom-right');
+  var marker = new maplibregl.Marker({ element: makePin(), draggable:true });
+  var pin = null, atolls = null;
+
+  function makePin() {
+    var el=document.createElement('div'); el.className='pin-marker'; el.setAttribute('role','img'); el.setAttribute('aria-label','Draggable sighting location pin'); return el;
+  }
   function insideRing(point, ring) {
-    var x = point[0], y = point[1], inside = false;
-    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-      var xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
-      var crosses = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / ((yj - yi) || Number.EPSILON) + xi);
-      if (crosses) inside = !inside;
+    var x=point[0], y=point[1], inside=false;
+    for (var i=0,j=ring.length-1;i<ring.length;j=i++) {
+      var xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];
+      if (((yi>y)!==(yj>y)) && (x<(xj-xi)*(y-yi)/((yj-yi)||Number.EPSILON)+xi)) inside=!inside;
     }
     return inside;
   }
   function geometryContains(point, geometry) {
     if (!geometry) return false;
-    var polys = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.type === 'MultiPolygon' ? geometry.coordinates : [];
-    return polys.some(function (poly) { return poly.length && insideRing(point, poly[0]) && !poly.slice(1).some(function (hole) { return insideRing(point, hole); }); });
+    var polys=geometry.type==='Polygon'?[geometry.coordinates]:geometry.type==='MultiPolygon'?geometry.coordinates:[];
+    return polys.some(function(poly){return poly.length && insideRing(point,poly[0]) && !poly.slice(1).some(function(hole){return insideRing(point,hole);});});
   }
   function findAtoll(point) {
     if (!atolls) return '';
-    var feature = (atolls.features || []).find(function (f) { return geometryContains(point, f.geometry); });
-    return feature && feature.properties && feature.properties.name ? feature.properties.name : '';
+    var feature=(atolls.features||[]).find(function(f){return geometryContains(point,f.geometry);});
+    return feature&&feature.properties&&feature.properties.name?feature.properties.name:'';
   }
-  function updatePin(lngLat) {
-    pin = { lat: +lngLat.lat, lng: +lngLat.lng };
+  function setPin(lngLat) {
+    pin={lat:+lngLat.lat,lng:+lngLat.lng};
+    if (!marker._map) marker.addTo(map);
     marker.setLngLat(lngLat);
-    var point = [pin.lng, pin.lat];
-    document.getElementById('coordinate-label').textContent = pin.lat.toFixed(6) + ', ' + pin.lng.toFixed(6);
-    document.getElementById('atoll-label').textContent = findAtoll(point) || 'Atoll not detected — add a nearby island/location below';
+    document.getElementById('coordinate-label').textContent=pin.lat.toFixed(6)+', '+pin.lng.toFixed(6);
+    document.getElementById('atoll-label').textContent=findAtoll([pin.lng,pin.lat])||'Atoll not detected — add a nearby island/location below';
   }
-  marker.on('dragend', function () { updatePin(marker.getLngLat()); });
-  map.on('click', function (e) { if (!marker._map) marker.addTo(map); updatePin(e.lngLat); });
-  map.on('load', function () { map.resize(); });
-  window.addEventListener('resize', function () { map.resize(); });
-
-  var speciesSelect = document.getElementById('species');
-  fetch('species.json').then(function (r) { if (!r.ok) throw new Error('Species list unavailable'); return r.json(); }).then(function (d) {
-    (d.species || []).filter(function (s) { return !s.rank || s.rank === 'species'; }).forEach(function (s) {
-      var option = document.createElement('option'); option.value = s.common_name; option.textContent = s.common_name; speciesSelect.appendChild(option);
-    });
-    var unknown = document.createElement('option'); unknown.value = 'Unknown cetacean'; unknown.textContent = 'Unknown cetacean'; speciesSelect.appendChild(unknown);
-  }).catch(function () { speciesSelect.insertAdjacentHTML('beforeend','<option value="Unknown cetacean">Unknown cetacean</option>'); });
-
-  var dateEl = document.getElementById('sighting-date');
-  var timeEl = document.getElementById('sighting-time');
-  var now = new Date();
-  dateEl.value = new Intl.DateTimeFormat('en-CA', { timeZone:'Indian/Maldives', year:'numeric', month:'2-digit', day:'2-digit' }).format(now);
-  timeEl.value = new Intl.DateTimeFormat('en-GB', { timeZone:'Indian/Maldives', hour:'2-digit', minute:'2-digit', hourCycle:'h23' }).format(now);
-
-  var photoInput = document.getElementById('photo');
-  photoInput.addEventListener('change', function () {
-    var file = photoInput.files && photoInput.files[0];
-    document.getElementById('photo-preview').textContent = file ? file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)' : '';
+  marker.on('dragend',function(){setPin(marker.getLngLat());});
+  map.on('click',function(e){setPin(e.lngLat);});
+  map.on('load',function(){
+    map.resize();
+    fetch('data/maldives-atolls.geojson').then(function(r){if(!r.ok)throw new Error('Atoll data unavailable');return r.json();}).then(function(data){
+      atolls=data;
+      map.addSource('submission-atolls',{type:'geojson',data:data});
+      map.addLayer({id:'submission-atoll-lines',type:'line',source:'submission-atolls',minzoom:4.5,paint:{'line-color':'#fff4a3','line-width':['interpolate',['linear'],['zoom'],4.5,1.2,8,2.4,12,3.2],'line-opacity':0.9}});
+      var labels={type:'FeatureCollection',features:(data.features||[]).map(function(f){
+        var coords=f.geometry&&f.geometry.coordinates, points=[];
+        if(f.geometry.type==='Polygon') coords=[coords];
+        (coords||[]).forEach(function(poly){if(poly[0])poly[0].forEach(function(p){points.push(p);});});
+        if(!points.length)return null;
+        var sum=points.reduce(function(a,p){a[0]+=p[0];a[1]+=p[1];return a;},[0,0]);
+        return {type:'Feature',geometry:{type:'Point',coordinates:[sum[0]/points.length,sum[1]/points.length]},properties:{name:(f.properties&&f.properties.name)||''}};
+      }).filter(Boolean)};
+      map.addSource('submission-atoll-labels',{type:'geojson',data:labels});
+      map.addLayer({id:'submission-atoll-names',type:'symbol',source:'submission-atoll-labels',minzoom:5.5,layout:{'text-field':['get','name'],'text-font':['Open Sans Regular','Arial Unicode MS Regular'],'text-size':['interpolate',['linear'],['zoom'],5.5,12,8,16,12,19],'text-max-width':10,'text-allow-overlap':false,'text-ignore-placement':false},paint:{'text-color':'#fff','text-halo-color':'#071626','text-halo-width':2.2,'text-halo-blur':0.3}});
+    }).catch(function(err){console.warn('Koamas: atoll overlay could not load',err);});
   });
+  map.on('error',function(e){if(e&&e.sourceId==='esriImagery')document.getElementById('map-load-error').style.display='block';});
+  window.addEventListener('resize',function(){map.resize();});
 
-  function fileToDataUrl(file) {
-    return new Promise(function (resolve, reject) { var reader = new FileReader(); reader.onload = function () { resolve(reader.result); }; reader.onerror = reject; reader.readAsDataURL(file); });
-  }
-  var form = document.getElementById('sighting-form');
-  form.addEventListener('submit', async function (event) {
-    event.preventDefault();
-    var status = document.getElementById('form-status');
-    var button = document.getElementById('submit-button');
-    if (document.getElementById('website').value) return;
-    if (!pin) { status.textContent = 'Please place a pin on the map first.'; document.getElementById('submission-map').scrollIntoView({ behavior:'smooth', block:'center' }); return; }
-    if (!form.reportValidity()) return;
-    var file = photoInput.files[0];
-    if (!file || !/^image\/(jpeg|png|webp)$/.test(file.type)) { status.textContent = 'Please select a JPEG, PNG, or WebP image.'; return; }
-    if (file.size > 5 * 1024 * 1024) { status.textContent = 'The photo must be 5 MB or smaller.'; return; }
-    button.disabled = true; button.textContent = 'Sending…'; status.textContent = 'Uploading your report and photo…';
-    try {
-      var atoll = findAtoll([pin.lng, pin.lat]);
-      var photoDataUrl = await fileToDataUrl(file);
-      var payload = {
-        date: dateEl.value, time: timeEl.value, timeZone: 'Indian/Maldives',
-        atollLocation: [atoll ? atoll + ' Atoll' : '', document.getElementById('location-note').value.trim()].filter(Boolean).join(' — ') || 'Atoll not identified',
-        coordinates: pin.lat + ', ' + pin.lng, latitude: pin.lat, longitude: pin.lng,
-        species: speciesSelect.value, podSize: document.getElementById('pod-size').value.trim(),
-        verified: 'no', photo: 'yes', photoName: file.name, photoMimeType: file.type,
-        photoData: photoDataUrl, observer: document.getElementById('observer').value.trim(),
-        notes: document.getElementById('notes').value.trim(), website: ''
-      };
-      // Apps Script does not provide browser CORS headers. text/plain avoids
-      // preflight; opaque response means the browser cannot confirm the write.
-      await fetch('https://script.google.com/macros/s/AKfycbzsjdds20h03E59RoS0SuQCgvezRqwUx03d-qM9TZAyI2j1Qw5ygKbcvyqfQ92YbP5x5g/exec', {
-        method:'POST', mode:'no-cors', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body:JSON.stringify(payload)
-      });
-      status.textContent = 'Your report was sent. The browser cannot confirm the Google Sheets response, so please contact the Koamas team if you do not receive confirmation.';
-      form.reset(); pin = null; marker.remove();
-      document.getElementById('coordinate-label').textContent = 'No pin selected';
-      document.getElementById('atoll-label').textContent = 'Place a pin on an atoll';
-      document.getElementById('photo-preview').textContent = '';
-      dateEl.value = new Intl.DateTimeFormat('en-CA', { timeZone:'Indian/Maldives', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
-      timeEl.value = new Intl.DateTimeFormat('en-GB', { timeZone:'Indian/Maldives', hour:'2-digit', minute:'2-digit', hourCycle:'h23' }).format(new Date());
-    } catch (error) {
-      status.textContent = 'We could not send the report. Please try again or use the WhatsApp reporting option on the Submit page.';
-    } finally { button.disabled = false; button.textContent = 'Send sighting for review'; }
+  var speciesSelect=document.getElementById('species');
+  fetch('species.json').then(function(r){if(!r.ok)throw new Error('Species list unavailable');return r.json();}).then(function(d){
+    (d.species||[]).filter(function(s){return !s.rank||s.rank==='species';}).forEach(function(s){var o=document.createElement('option');o.value=s.common_name;o.textContent=s.common_name;speciesSelect.appendChild(o);});
+    var unknown=document.createElement('option');unknown.value='Unknown cetacean';unknown.textContent='Unknown cetacean';speciesSelect.appendChild(unknown);
+  }).catch(function(){speciesSelect.insertAdjacentHTML('beforeend','<option value="Unknown cetacean">Unknown cetacean</option>');});
+
+  var dateEl=document.getElementById('sighting-date'), timeEl=document.getElementById('sighting-time');
+  function setCurrentMaldivesTime(){var now=new Date();dateEl.value=new Intl.DateTimeFormat('en-CA',{timeZone:'Indian/Maldives',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);timeEl.value=new Intl.DateTimeFormat('en-GB',{timeZone:'Indian/Maldives',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(now);}
+  setCurrentMaldivesTime();
+  var photoInput=document.getElementById('photo');
+  photoInput.addEventListener('change',function(){var file=photoInput.files&&photoInput.files[0];document.getElementById('photo-preview').textContent=file?file.name+' ('+(file.size/1024/1024).toFixed(2)+' MB)':'';});
+  function fileToDataUrl(file){return new Promise(function(resolve,reject){var reader=new FileReader();reader.onload=function(){resolve(reader.result);};reader.onerror=reject;reader.readAsDataURL(file);});}
+  var form=document.getElementById('sighting-form');
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();var status=document.getElementById('form-status'),button=document.getElementById('submit-button');
+    if(document.getElementById('website').value)return;
+    if(!pin){status.textContent='Please place a pin on the map first.';document.getElementById('submission-map').scrollIntoView({behavior:'smooth',block:'center'});return;}
+    if(!form.reportValidity())return;
+    var file=photoInput.files[0];
+    if(!file||!/^image\/(jpeg|png|webp)$/.test(file.type)){status.textContent='Please select a JPEG, PNG, or WebP image.';return;}
+    if(file.size>5*1024*1024){status.textContent='The photo must be 5 MB or smaller.';return;}
+    button.disabled=true;button.textContent='Sending…';status.textContent='Uploading your report and photo…';
+    try{
+      var atoll=findAtoll([pin.lng,pin.lat]);
+      var payload={date:dateEl.value,time:timeEl.value,timeZone:'Indian/Maldives',atollLocation:[atoll?atoll+' Atoll':'',document.getElementById('location-note').value.trim()].filter(Boolean).join(' — ')||'Atoll not identified',coordinates:pin.lat+', '+pin.lng,latitude:pin.lat,longitude:pin.lng,species:speciesSelect.value,podSize:document.getElementById('pod-size').value.trim(),verified:'no',photo:'yes',photoName:file.name,photoMimeType:file.type,photoData:await fileToDataUrl(file),observer:document.getElementById('observer').value.trim(),notes:document.getElementById('notes').value.trim(),website:''};
+      await fetch('https://script.google.com/macros/s/AKfycbzsjdds20h03E59RoS0SuQCgvezRqwUx03d-qM9TZAyI2j1Qw5ygKbcvyqfQ92YbP5x5g/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+      status.textContent='Your report was sent. The browser cannot confirm the Google Sheets response, so please contact the Koamas team if you do not receive confirmation.';
+      form.reset();pin=null;marker.remove();document.getElementById('coordinate-label').textContent='No pin selected';document.getElementById('atoll-label').textContent='Place a pin on an atoll';document.getElementById('photo-preview').textContent='';setCurrentMaldivesTime();
+    }catch(error){status.textContent='We could not send the report. Please try again or use the WhatsApp reporting option on the Submit page.';}
+    finally{button.disabled=false;button.textContent='Send sighting for review';}
   });
 }());
 </script>
