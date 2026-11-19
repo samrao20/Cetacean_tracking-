@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report a Sighting — Koamas by Reefscapers</title>
+  <meta name="description" content="Submit a cetacean sighting from the Maldives to the Koamas research team." />
+  <link rel="icon" type="image/png" href="assets/img/koamas-favicon-v2.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="assets/koamas.css" />
+  <script src="assets/koamas.js" defer></script>
+  <style>
+    .report-card { background:#fff; border:1px solid var(--rule); border-radius:1rem; box-shadow:var(--shadow-sm); }
+    #submission-map { height:380px; border-radius:.85rem; overflow:hidden; background:#d8e6f0; }
+    .field-label { display:block; font-size:.82rem; font-weight:600; color:#0b1f33; margin-bottom:.4rem; }
+    .field-control { display:block; width:100%; border:1px solid #cbd8e3; border-radius:.6rem; padding:.7rem .8rem; color:#0f1c2b; background:white; font:inherit; font-size:.9rem; }
+    .field-control:focus { outline:2px solid #38bdf8; outline-offset:1px; border-color:#0ea5e9; }
+    .map-hint { background:rgba(11,31,51,.9); color:#eaf4fb; border:1px solid rgba(56,189,248,.25); }
+    .pin-marker { width:26px; height:26px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#0ea5e9; border:3px solid white; box-shadow:0 2px 10px #0b1f3380; cursor:grab; }
+    .pin-marker:active { cursor:grabbing; }
+    @media(max-width:640px){ #submission-map {height:300px;} }
+  </style>
+</head>
+<body class="bg-waves">
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="brand-bar" aria-hidden="true"></div>
+<nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
+  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+    <a href="index.html" class="flex items-center gap-3" aria-label="Koamas home"><img src="assets/img/koamas-logo-lockup.png" alt="Koamas" class="nav-mark" width="131" height="40" /><span class="text-[11px] font-medium text-[#8fc9ec]">by Reefscapers</span></a>
+    <ul class="nav-pill hidden md:flex items-center text-sm font-medium" role="list">
+      <li><a href="index.html">Home</a></li><li><a href="map.html">Map</a></li><li><a href="species.html">Species</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="about.html">About</a></li><li><a href="news.html">News</a></li><li><a href="submit.html" aria-current="page">Submit</a></li>
+    </ul>
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg></button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]"><ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list"><li><a href="index.html" class="block py-1">Home</a></li><li><a href="map.html" class="block py-1">Map</a></li><li><a href="species.html" class="block py-1">Species</a></li><li><a href="dashboard.html" class="block py-1">Dashboard</a></li><li><a href="about.html" class="block py-1">About</a></li><li><a href="news.html" class="block py-1">News</a></li><li><a href="submit.html" class="block py-1">Submit</a></li></ul></div>
+</nav>
+<header class="dive-band text-white"><div class="max-w-3xl mx-auto px-4 py-12 md:py-16"><p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas by Reefscapers · Citizen science</p><h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Report a sighting</h1><p class="text-[#c7d9e7] leading-relaxed max-w-2xl">Use the separate map below to pin the sighting location, then tell us what you saw. Reports are submitted for review and do not appear on the public sightings map automatically.</p></div></header>
+<main id="main-content" class="max-w-4xl mx-auto px-4 py-10 md:py-14 space-y-8">
+  <section class="report-card p-5 md:p-7" aria-labelledby="map-heading">
+    <h2 id="map-heading" class="text-2xl font-semibold text-[#0b1f33] mb-2">Pin the sighting location</h2>
+    <p class="text-sm text-[#5b6b7d] mb-4">Click the map to place the pin, or drag it to the exact spot. This map is separate from the public sightings map.</p>
+    <div class="relative"><div id="submission-map" role="application" aria-label="Submission location map. Click to set a pin or drag the marker."></div><div class="map-hint absolute top-3 left-3 z-10 rounded-lg px-3 py-2 text-xs">Click or drag to place the pin</div></div>
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+      <p class="rounded-lg bg-[#f5f8fb] p-3"><span class="font-semibold text-[#0b1f33]">Coordinates:</span> <span id="coordinate-label" class="text-[#5b6b7d]">No pin selected</span></p>
+      <p class="rounded-lg bg-[#f5f8fb] p-3"><span class="font-semibold text-[#0b1f33]">Detected atoll:</span> <span id="atoll-label" class="text-[#5b6b7d]">Place a pin on an atoll</span></p>
+    </div>
+  </section>
+
+  <form id="sighting-form" class="report-card p-5 md:p-7 space-y-6" novalidate>
+    <h2 class="text-2xl font-semibold text-[#0b1f33]">Sighting details</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div><label class="field-label" for="location-note">Island / location <span class="text-[#5b6b7d] font-normal">(optional detail)</span></label><input id="location-note" name="locationNote" class="field-control" maxlength="120" placeholder="Island, reef, channel, or nearby landmark" /></div>
+      <div><label class="field-label" for="species">Species</label><select id="species" name="species" class="field-control" required><option value="">Choose your best guess</option></select></div>
+      <div><label class="field-label" for="sighting-date">Date</label><input id="sighting-date" name="date" type="date" class="field-control" required /></div>
+      <div><label class="field-label" for="sighting-time">Time (Maldives time, UTC+5)</label><input id="sighting-time" name="time" type="time" class="field-control" required /></div>
+      <div><label class="field-label" for="pod-size">Pod size estimate</label><input id="pod-size" name="podSize" class="field-control" maxlength="80" placeholder="e.g. 10–20" required /></div>
+      <div><label class="field-label" for="observer">Observer</label><input id="observer" name="observer" class="field-control" maxlength="120" placeholder="Your name or organisation" required /></div>
+    </div>
+    <div><label class="field-label" for="photo">Photo <span class="text-[#b42318]">required</span></label><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" class="field-control" required /><p class="text-xs text-[#5b6b7d] mt-2">JPEG, PNG, or WebP; maximum 5 MB. The original photo will be stored in the Koamas Drive folder.</p><div id="photo-preview" class="mt-3 text-sm text-[#5b6b7d]" aria-live="polite"></div></div>
+    <div><label class="field-label" for="notes">Notes <span class="text-[#5b6b7d] font-normal">(optional)</span></label><textarea id="notes" name="notes" class="field-control" rows="4" maxlength="2000" placeholder="Behaviour, direction of travel, weather, or other helpful details"></textarea></div>
+    <div class="hidden" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
+    <p id="form-status" role="status" aria-live="polite" class="text-sm text-[#5b6b7d]"></p>
+    <button id="submit-button" type="submit" class="btn-primary inline-flex items-center justify-center px-7 py-3 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]">Send sighting for review</button>
+    <p class="text-xs text-[#5b6b7d]">Your report is marked unverified and reviewed by the Koamas team before any publication. Please avoid sharing sensitive personal information in notes.</p>
+  </form>
+</main>
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm"><div class="max-w-6xl mx-auto px-4 py-8 flex justify-between gap-4 flex-wrap"><span>Koamas by Reefscapers · Maldives Cetacean Citizen Science</span><a href="submit.html" class="hover:text-white">Watching guidelines</a></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4/dist/maplibre-gl.js"></script>
+<script>
+(function () {
+  'use strict';
+  // Match the sightings map's ocean basemap and center. This map is an
+  // independent instance and has no sightings source or write access.
+  var MAPTILER_KEY = 'GMdyZmw23vuGhFSwySuP';
+  var map = new maplibregl.Map({
+    container: 'submission-map',
+    style: 'https://api.maptiler.com/maps/ocean/style.json?key=' + MAPTILER_KEY,
+    center: [73.2207, 3.2028], zoom: 5.2,
+    attributionControl: { compact: true }
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+  var marker = new maplibregl.Marker({ element: makePin(), draggable: true });
+  var pin = null;
+  var atolls = null;
+  var geoReady = fetch('data/maldives-atolls.geojson').then(function (r) { if (!r.ok) throw new Error('Atoll data unavailable'); return r.json(); }).then(function (d) { atolls = d; return d; }).catch(function () { return null; });
+  function makePin() { var e = document.createElement('div'); e.className = 'pin-marker'; e.setAttribute('role','img'); e.setAttribute('aria-label','Draggable sighting location pin'); return e; }
+  function insideRing(point, ring) {
+    var x = point[0], y = point[1], inside = false;
+    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      var xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
+      var crosses = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / ((yj - yi) || Number.EPSILON) + xi);
+      if (crosses) inside = !inside;
+    }
+    return inside;
+  }
+  function geometryContains(point, geometry) {
+    if (!geometry) return false;
+    var polys = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.type === 'MultiPolygon' ? geometry.coordinates : [];
+    return polys.some(function (poly) { return poly.length && insideRing(point, poly[0]) && !poly.slice(1).some(function (hole) { return insideRing(point, hole); }); });
+  }
+  function findAtoll(point) {
+    if (!atolls) return '';
+    var feature = (atolls.features || []).find(function (f) { return geometryContains(point, f.geometry); });
+    return feature && feature.properties && feature.properties.name ? feature.properties.name : '';
+  }
+  function updatePin(lngLat) {
+    pin = { lat: +lngLat.lat, lng: +lngLat.lng };
+    marker.setLngLat(lngLat);
+    var point = [pin.lng, pin.lat];
+    document.getElementById('coordinate-label').textContent = pin.lat.toFixed(6) + ', ' + pin.lng.toFixed(6);
+    document.getElementById('atoll-label').textContent = findAtoll(point) || 'Atoll not detected — add a nearby island/location below';
+  }
+  marker.on('dragend', function () { updatePin(marker.getLngLat()); });
+  map.on('click', function (e) { if (!marker._map) marker.addTo(map); updatePin(e.lngLat); });
+  map.on('load', function () { map.resize(); });
+  window.addEventListener('resize', function () { map.resize(); });
+
+  var speciesSelect = document.getElementById('species');
+  fetch('species.json').then(function (r) { if (!r.ok) throw new Error('Species list unavailable'); return r.json(); }).then(function (d) {
+    (d.species || []).filter(function (s) { return !s.rank || s.rank === 'species'; }).forEach(function (s) {
+      var option = document.createElement('option'); option.value = s.common_name; option.textContent = s.common_name; speciesSelect.appendChild(option);
+    });
+    var unknown = document.createElement('option'); unknown.value = 'Unknown cetacean'; unknown.textContent = 'Unknown cetacean'; speciesSelect.appendChild(unknown);
+  }).catch(function () { speciesSelect.insertAdjacentHTML('beforeend','<option value="Unknown cetacean">Unknown cetacean</option>'); });
+
+  var dateEl = document.getElementById('sighting-date');
+  var timeEl = document.getElementById('sighting-time');
+  var now = new Date();
+  dateEl.value = new Intl.DateTimeFormat('en-CA', { timeZone:'Indian/Maldives', year:'numeric', month:'2-digit', day:'2-digit' }).format(now);
+  timeEl.value = new Intl.DateTimeFormat('en-GB', { timeZone:'Indian/Maldives', hour:'2-digit', minute:'2-digit', hourCycle:'h23' }).format(now);
+
+  var photoInput = document.getElementById('photo');
+  photoInput.addEventListener('change', function () {
+    var file = photoInput.files && photoInput.files[0];
+    document.getElementById('photo-preview').textContent = file ? file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)' : '';
+  });
+
+  function fileToDataUrl(file) {
+    return new Promise(function (resolve, reject) { var reader = new FileReader(); reader.onload = function () { resolve(reader.result); }; reader.onerror = reject; reader.readAsDataURL(file); });
+  }
+  var form = document.getElementById('sighting-form');
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    var status = document.getElementById('form-status');
+    var button = document.getElementById('submit-button');
+    if (document.getElementById('website').value) return;
+    if (!pin) { status.textContent = 'Please place a pin on the map first.'; document.getElementById('submission-map').scrollIntoView({ behavior:'smooth', block:'center' }); return; }
+    if (!form.reportValidity()) return;
+    var file = photoInput.files[0];
+    if (!file || !/^image\/(jpeg|png|webp)$/.test(file.type)) { status.textContent = 'Please select a JPEG, PNG, or WebP image.'; return; }
+    if (file.size > 5 * 1024 * 1024) { status.textContent = 'The photo must be 5 MB or smaller.'; return; }
+    button.disabled = true; button.textContent = 'Sending…'; status.textContent = 'Uploading your report and photo…';
+    try {
+      var atoll = findAtoll([pin.lng, pin.lat]);
+      var photoDataUrl = await fileToDataUrl(file);
+      var payload = {
+        date: dateEl.value, time: timeEl.value, timeZone: 'Indian/Maldives',
+        atollLocation: [atoll ? atoll + ' Atoll' : '', document.getElementById('location-note').value.trim()].filter(Boolean).join(' — ') || 'Atoll not identified',
+        coordinates: pin.lat + ', ' + pin.lng, latitude: pin.lat, longitude: pin.lng,
+        species: speciesSelect.value, podSize: document.getElementById('pod-size').value.trim(),
+        verified: 'no', photo: 'yes', photoName: file.name, photoMimeType: file.type,
+        photoData: photoDataUrl, observer: document.getElementById('observer').value.trim(),
+        notes: document.getElementById('notes').value.trim(), website: ''
+      };
+      // Apps Script does not provide browser CORS headers. text/plain avoids
+      // preflight; opaque response means the browser cannot confirm the write.
+      await fetch('https://script.google.com/macros/s/AKfycbzsjdds20h03E59RoS0SuQCgvezRqwUx03d-qM9TZAyI2j1Qw5ygKbcvyqfQ92YbP5x5g/exec', {
+        method:'POST', mode:'no-cors', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body:JSON.stringify(payload)
+      });
+      status.textContent = 'Your report was sent. The browser cannot confirm the Google Sheets response, so please contact the Koamas team if you do not receive confirmation.';
+      form.reset(); pin = null; marker.remove();
+      document.getElementById('coordinate-label').textContent = 'No pin selected';
+      document.getElementById('atoll-label').textContent = 'Place a pin on an atoll';
+      document.getElementById('photo-preview').textContent = '';
+      dateEl.value = new Intl.DateTimeFormat('en-CA', { timeZone:'Indian/Maldives', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
+      timeEl.value = new Intl.DateTimeFormat('en-GB', { timeZone:'Indian/Maldives', hour:'2-digit', minute:'2-digit', hourCycle:'h23' }).format(new Date());
+    } catch (error) {
+      status.textContent = 'We could not send the report. Please try again or use the WhatsApp reporting option on the Submit page.';
+    } finally { button.disabled = false; button.textContent = 'Send sighting for review'; }
+  });
+}());
+</script>
+</body>
+</html>
