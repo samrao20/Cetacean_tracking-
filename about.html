@@ -5,598 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Koamas by Reefscapers</title>
   <meta name="description" content="Koamas is a citizen science project tracking dolphin and whale sightings across the Maldives. Learn what Koamas means, how we work, and how to get involved." />
-
   <link rel="icon" type="image/png" href="assets/img/koamas-favicon-v2.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/koamas.css" />
   <script src="assets/koamas.js" defer></script>
-
   <style>
-    /* Page-unique styles only — shared system lives in assets/koamas.css */
-
-    /* ── Hero image ── */
     .about-hero {
       position: relative;
       background-image:
         linear-gradient(135deg, rgba(11,31,51,0.74), rgba(11,31,51,0.42)),
-        url('assets/img/about-hero.jpg');
+        url('assets/img/about-hero.JPG');
       background-size: cover;
       background-position: center;
       border-bottom: 1px solid rgba(255,255,255,0.12);
     }
-    .about-hero__content {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── Prose body text ── */
-    .prose p {
-      color: var(--text);
-      line-height: 1.75;
-      margin-bottom: 1rem;
-      max-width: 65ch;
-    }
-    .prose p:last-child { margin-bottom: 0; }
-
-    /* ── Team cards ── */
-    .team-card {
-      display: block;
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 1rem;
-      overflow: hidden;
-      transition: border-color 0.25s, box-shadow 0.25s var(--ease);
-    }
-    .team-card:hover { border-color: var(--lagoon); box-shadow: var(--shadow-md); }
-    .team-card > div.border-l-2 {
-      transition: transform 0.25s var(--ease), border-color 0.25s;
-      border-left: none !important;
-    }
-    .team-card:hover > div.border-l-2 { transform: translateX(4px); }
-
-    /* Partner / origin-story photo slots — visible "coming soon" state until real photos land */
-    .partner-photo {
-      height: 140px;
-      background: linear-gradient(135deg, #123150, #0ea5e9);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.75);
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-    .partner-photo img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* ── Founder / team member cards ── */
-    .member-card {
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      display: flex;
-      gap: 1rem;
-      transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s var(--ease);
-    }
-    .member-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--lagoon);
-      box-shadow: var(--shadow-md);
-    }
-    .member-avatar {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid var(--rule);
-      background: var(--grey);
-      flex-shrink: 0;
-    }
-    .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .member-avatar .initials {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--teal);
-    }
-
-    /* ── Contact section ── */
-    .contact-card {
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 1rem;
-      padding: 1.5rem;
-    }
+    .about-hero__content { position:relative; z-index:1; }
+    .prose p { color:var(--text); line-height:1.75; margin-bottom:1rem; max-width:65ch; }
+    .prose p:last-child { margin-bottom:0; }
+    .team-card { display:block; background:#fff; border:1px solid var(--rule); border-radius:1rem; overflow:hidden; transition:border-color .25s,box-shadow .25s var(--ease); }
+    .team-card:hover { border-color:var(--lagoon); box-shadow:var(--shadow-md); }
+    .partner-photo { height:140px; background:linear-gradient(135deg,#123150,#0ea5e9); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.75); font-size:.75rem; font-weight:500; }
+    .partner-photo img { width:100%; height:100%; object-fit:cover; }
+    .member-card { background:#fff; border:1px solid var(--rule); border-radius:1rem; padding:1.5rem; display:flex; gap:1rem; }
+    .member-avatar { width:64px; height:64px; border-radius:50%; overflow:hidden; border:2px solid var(--rule); background:var(--grey); flex-shrink:0; }
+    .member-avatar img { width:100%; height:100%; object-fit:cover; }
+    .member-avatar .initials { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; color:var(--teal); }
+    .contact-card { background:#fff; border:1px solid var(--rule); border-radius:1rem; padding:1.5rem; }
   </style>
 </head>
 <body class="bg-waves">
-
-<!-- Brand bar -->
+<a href="#main-content" class="skip-link">Skip to content</a>
 <div class="brand-bar" aria-hidden="true"></div>
-
-<!-- ══════════════════════════════════════
-     NAV
-══════════════════════════════════════ -->
 <nav class="site-nav sticky top-0 z-40 border-b border-[#1d3a55] bg-[#0b1f33]" aria-label="Site navigation">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    <a href="index.html" class="flex items-center gap-3" aria-label="Koamas — Maldives Cetacean Research, home">
-      <img src="assets/img/koamas-logo-lockup.png" alt="Koamas" class="nav-mark" width="131" height="40" />
-      <span class="flex flex-col leading-none">
-        <span class="not-italic font-['Outfit'] text-[11px] font-medium tracking-tight text-[#8fc9ec]">by Reefscapers</span>
-        <span class="hidden sm:inline text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-1">Maldives Cetacean Research</span>
-      </span>
-    </a>
-    <ul class="nav-pill hidden md:flex items-center text-sm font-medium" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="map.html">Map<svg class="nav-ico nav-ico-map" width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></a></li>
-      <li><a href="species.html">Species</a></li>
-      <li><a href="dashboard.html">Dashboard<svg class="nav-ico nav-ico-chart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18V6M10 18V10M16 18V4M22 18V8"/></svg></a></li>
-      <li><a href="about.html" aria-current="page">About</a></li>
-      <li><a href="news.html">News</a></li>
-      <li>
-        <a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">
-          Submit a sighting
-        </a>
-      </li>
-    </ul>
-    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <rect y="3" width="20" height="2" rx="1"/>
-        <rect y="9" width="20" height="2" rx="1"/>
-        <rect y="15" width="20" height="2" rx="1"/>
-      </svg>
-    </button>
+    <a href="index.html" class="flex items-center gap-3" aria-label="Koamas — Maldives Cetacean Research, home"><img src="assets/img/koamas-logo-lockup.png" alt="Koamas" class="nav-mark" width="131" height="40" /><span class="flex flex-col leading-none"><span class="text-[11px] font-medium text-[#8fc9ec]">by Reefscapers</span><span class="hidden sm:inline text-[10px] font-medium tracking-[0.12em] uppercase text-[#8fc9ec] mt-1">Maldives Cetacean Research</span></span></a>
+    <ul class="nav-pill hidden md:flex items-center text-sm font-medium" role="list"><li><a href="index.html">Home</a></li><li><a href="map.html">Map</a></li><li><a href="species.html">Species</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a href="news.html">News</a></li><li><a href="submit.html" class="nav-cta px-4 py-1.5 rounded-full text-xs font-semibold">Submit a sighting</a></li></ul>
+    <button id="nav-toggle" class="md:hidden p-2 rounded text-[#eaf4fb]" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg></button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]">
-    <ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list">
-      <li><a href="index.html" class="block py-1">Home</a></li>
-      <li><a href="map.html" class="block py-1">Map</a></li>
-      <li><a href="species.html" class="block py-1">Species</a></li>
-      <li><a href="dashboard.html" class="block py-1">Dashboard</a></li>
-      <li><a href="about.html" class="block py-1" aria-current="page">About</a></li>
-      <li><a href="news.html" class="block py-1">News</a></li>
-      <li><a href="submit.html" class="block py-1">Submit a sighting</a></li>
-    </ul>
-  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#1d3a55] bg-[#0b1f33]"><ul class="px-4 py-3 flex flex-col gap-3 text-sm font-medium text-[#d6e6f2]" role="list"><li><a href="index.html">Home</a></li><li><a href="map.html">Map</a></li><li><a href="species.html">Species</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a href="news.html">News</a></li><li><a href="submit.html">Submit a sighting</a></li></ul></div>
 </nav>
 
-<!-- ══════════════════════════════════════
-     PAGE HEADER
-══════════════════════════════════════ -->
-<header class="about-hero text-white">
+<header class="about-hero text-white" id="main-content">
   <div class="about-hero__content max-w-3xl mx-auto px-4 py-14 md:py-20">
     <p class="kicker text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Koamas by Reefscapers</p>
     <h1 class="text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight mb-5">About the project</h1>
-    <p class="text-[#dfeef8] text-base md:text-lg leading-relaxed max-w-xl">
-      A citizen science initiative building the first long-term record of cetacean sightings across the Maldivian archipelago.
-    </p>
+    <p class="text-[#dfeef8] text-base md:text-lg leading-relaxed max-w-xl">A citizen science initiative building the first long-term record of cetacean sightings across the Maldivian archipelago.</p>
   </div>
 </header>
 <div class="wave-divider flip bg-[#f5f8fb]" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,56 480,8 720,26 C960,44 1200,12 1440,36 L1440,60 L0,60 Z" fill="#f5f8fb"/></svg></div>
 
-<!-- ══════════════════════════════════════
-     MAIN CONTENT
-══════════════════════════════════════ -->
 <main class="max-w-3xl mx-auto px-4 py-12 md:py-16 space-y-16">
-
-  <!-- ── What does Koamas mean? ── -->
   <section aria-labelledby="name-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The name</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-
-    <div class="dive-band rounded-2xl px-8 py-12 text-center mb-8 shadow-[0_18px_44px_rgba(11,31,51,0.18)]">
-      <p class="text-[#9fb3c4] text-xs font-semibold tracking-[0.2em] uppercase mb-3">ދިވެހި</p>
-      <p class="font-['Fraunces'] text-5xl md:text-6xl italic font-semibold text-white mb-4 tracking-tight">Koamas</p>
-      <p class="text-[#8fc9ec] text-lg font-medium">
-        <em>noun</em> &mdash; dolphin
-      </p>
-      <p class="text-[#7f97a8] text-sm mt-2">Dhivehi · the language of the Maldives</p>
-    </div>
-
-    <h2 id="name-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      What does Koamas mean?
-    </h2>
-    <div class="prose">
-      <p>
-        <strong>Koamas</strong> (ކޯމަސް) is the Dhivehi word for dolphin. Dhivehi is the official language of the Maldives,
-        spoken by the approximately 500,000 people who call this Indian Ocean archipelago home.
-      </p>
-      <p>
-        We chose the name because it roots the project firmly in the Maldivian community. These waters and the
-        animals in them have been part of island life for centuries — long before modern science arrived. The name
-        is a reminder that local knowledge and local stewardship are at the heart of what we do.
-      </p>
-      <p>
-        Dolphins are among the most frequently spotted cetaceans in the atolls. For many Maldivians and visitors
-        alike, a koamas encounter is a defining memory of the islands. Koamas the project exists to turn those
-        moments into lasting data.
-      </p>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The name</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <div class="dive-band rounded-2xl px-8 py-12 text-center mb-8 shadow-[0_18px_44px_rgba(11,31,51,0.18)]"><p class="text-[#9fb3c4] text-xs font-semibold tracking-[0.2em] uppercase mb-3">ދިވެހި</p><p class="font-['Fraunces'] text-5xl md:text-6xl italic font-semibold text-white mb-4 tracking-tight">Koamas</p><p class="text-[#8fc9ec] text-lg font-medium"><em>noun</em> — dolphin</p><p class="text-[#7f97a8] text-sm mt-2">Dhivehi · the language of the Maldives</p></div>
+    <h2 id="name-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">What does Koamas mean?</h2>
+    <div class="prose"><p><strong>Koamas</strong> (ކޯމަސް) is the Dhivehi word for dolphin. Dhivehi is the official language of the Maldives, spoken by the approximately 500,000 people who call this Indian Ocean archipelago home.</p><p>We chose the name because it roots the project firmly in the Maldivian community. These waters and the animals in them have been part of island life for centuries — long before modern science arrived.</p><p>Dolphins are among the most frequently spotted cetaceans in the atolls. For many Maldivians and visitors alike, a koamas encounter is a defining memory of the islands.</p></div>
   </section>
 
-  <!-- ── How it started ── -->
   <section aria-labelledby="story-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The idea</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="story-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      How Koamas started
-    </h2>
-    <div class="prose">
-      <p>
-        Dolphins and whales are seen constantly around the Maldives — from dive boats, ferries,
-        liveaboards, and resort jetties. Almost none of those encounters were ever written down.
-        A sighting would happen, get talked about for a day, and then disappear — no record of
-        where, when, or what species, and no way to ask what any of it meant over time.
-      </p>
-      <p>
-        That gap is what Koamas set out to close: not a research survey run for a few weeks a
-        year, but a standing, always-open channel that anyone on the water can use the moment
-        they see something — through the app already open on their phone.
-      </p>
-      <p>
-        Koamas is founded by Samay and James, working in collaboration with Reefscapers and Marine
-        Savers to turn a shared interest in cetaceans into something structured enough to last:
-        a bot to collect reports, a process to verify them, and a public map and dashboard to make
-        the record useful to researchers, conservationists, and the public alike.
-      </p>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The idea</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="story-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">How Koamas started</h2>
+    <div class="prose"><p>Dolphins and whales are seen constantly around the Maldives — from dive boats, ferries, liveaboards, and resort jetties. Almost none of those encounters were ever written down.</p><p>That gap is what Koamas set out to close: not a research survey run for a few weeks a year, but a standing, always-open channel that anyone on the water can use the moment they see something.</p><p>Koamas is founded by Samay and James, working in collaboration with Reefscapers and Marine Savers to turn a shared interest in cetaceans into a structured, lasting citizen science project.</p></div>
   </section>
 
-  <!-- ── Founders & team ── -->
   <section aria-labelledby="team-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Who's behind it</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="team-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-8">
-      Founders &amp; team
-    </h2>
-    <div id="team-groups" class="space-y-10">
-      <p class="text-sm text-[#5b6b7d]">Loading team…</p>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Who's behind it</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="team-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-8">Founders &amp; team</h2>
+    <div id="team-groups" class="space-y-10"><p class="text-sm text-[#5b6b7d]">Loading team…</p></div>
   </section>
 
-  <!-- ── The project ── -->
   <section aria-labelledby="project-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The project</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="project-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      What we do
-    </h2>
-    <div class="prose">
-      <p>
-        Koamas began in the Maldives, brought to life by a shared fascination with cetaceans and a
-        deep respect for the ocean that connects these islands.
-      </p>
-      <p>
-        The idea began in response to a simple gap: dolphin sightings in the Maldives are frequent,
-        but the information is often fragmented, unrecorded, or lost after a single encounter. Koamas
-        was created to change that — to bring structure, continuity, and meaning to these moments at sea.
-      </p>
-      <p>
-        Koamas is a citizen science platform that collects, verifies, and publishes cetacean sighting data
-        from across the Maldivian archipelago. Anyone who sees a dolphin or whale can report it in seconds
-        via WhatsApp. Our team then reviews each report, confirms the species identification, and adds it
-        to the public record.
-      </p>
-      <p>
-        The Maldives sits at the heart of the Indian Ocean, and its waters are home to at least
-        <span data-species-count>23</span> species
-        of dolphins and whales. Despite this richness, systematic, long-term data on cetacean distribution
-        across the atolls has historically been sparse. Koamas is building that record — one sighting at a time.
-      </p>
-      <p>
-        All verified sightings are visible on the public map and contribute to the dashboard statistics.
-        The data is available to researchers, conservation organisations, and policymakers working to protect
-        these species and their habitat.
-      </p>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">The project</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="project-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">What we do</h2>
+    <div class="prose"><p>Koamas is a citizen science platform that collects, verifies, and publishes cetacean sighting data from across the Maldivian archipelago. Anyone who sees a dolphin or whale can report it through WhatsApp or the web form.</p><p>Our team reviews each report, confirms the species identification where possible, and adds verified sightings to the public record.</p><p>The Maldives sits at the heart of the Indian Ocean, and its waters are home to at least <span data-species-count>23</span> species of dolphins and whales.</p></div>
   </section>
 
-  <!-- ── Collaboration ── -->
   <section aria-labelledby="partners-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Collaboration</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="partners-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      In collaboration with
-    </h2>
-    <p class="text-[#5b6b7d] text-sm leading-relaxed mb-8 max-w-2xl">
-      Koamas is developed in collaboration with Reefscapers and Marine Savers, bringing established
-      Maldivian marine-science expertise to the project.
-    </p>
-
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Collaboration</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="partners-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">In collaboration with</h2>
+    <p class="text-[#5b6b7d] text-sm leading-relaxed mb-8 max-w-2xl">Koamas is developed in collaboration with Reefscapers and Marine Savers.</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="partner-cards">
-
-      <!-- Reefscapers -->
-      <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="group team-card">
-        <div class="partner-photo rounded-t-lg" data-partner-photo="Reefscapers"></div>
-        <div class="border-l-2 border-[#0ea5e9] pl-5 py-1 h-full">
-          <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">Reefscapers</h3>
-          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Marine Consultancy &middot; Coral Reef Restoration</p>
-          <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
-            A Maldivian marine consultancy restoring coral reefs since 2005. Its marine biologists pioneered
-            the &ldquo;coral frame&rdquo; propagation method — over half a million corals transplanted across
-            more than 7,000 frames — and also run sea-turtle rescue and rehabilitation, aquaculture, and
-            coastal-protection programmes across the archipelago.
-          </p>
-          <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
-            At Kuda Huraa, Koamas works alongside Fin, a dolphin biologist, and Riley, who support the
-            project's fieldwork in the atoll.
-          </p>
-          <span class="inline-flex items-center gap-1 text-xs font-semibold text-[#0ea5e9]">reefscapers.com →</span>
-        </div>
-      </a>
-
-      <!-- Marine Savers -->
-      <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="group team-card">
-        <div class="partner-photo rounded-t-lg" data-partner-photo="Marine Savers"></div>
-        <div class="border-l-2 border-[#0ea5e9] pl-5 py-1 h-full">
-          <h3 class="text-base font-bold text-[#0b1f33] mb-0.5">Marine Savers</h3>
-          <p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Marine Conservation &middot; Turtle Rescue &amp; Rehab</p>
-          <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
-            The conservation programme run by the Reefscapers marine-biology team at Four Seasons Resorts
-            Maldives, operating from two Marine Centres at Kuda Huraa and Landaa Giraavaru. Its work spans
-            coral propagation, sea-turtle rescue and rehabilitation — including the first sea-turtle rescue
-            centre in the Maldives (2011) — and marine education.
-          </p>
-          <span class="inline-flex items-center gap-1 text-xs font-semibold text-[#0ea5e9]">marinesavers.com →</span>
-        </div>
-      </a>
-
+      <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="group team-card"><div class="partner-photo rounded-t-lg" data-partner-photo="Reefscapers"></div><div class="pl-5 pr-5 py-5"><h3 class="text-base font-bold text-[#0b1f33] mb-1">Reefscapers</h3><p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Marine Consultancy · Coral Reef Restoration</p><p class="text-sm text-[#5b6b7d] leading-relaxed">A Maldivian marine consultancy restoring coral reefs since 2005, with expertise in marine biology and conservation.</p></div></a>
+      <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="group team-card"><div class="partner-photo rounded-t-lg" data-partner-photo="Marine Savers"></div><div class="pl-5 pr-5 py-5"><h3 class="text-base font-bold text-[#0b1f33] mb-1">Marine Savers</h3><p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">Marine Conservation · Turtle Rescue &amp; Rehab</p><p class="text-sm text-[#5b6b7d] leading-relaxed">The Reefscapers conservation programme operating across Four Seasons Maldives resorts.</p></div></a>
     </div>
   </section>
 
-  <!-- ── Methodology ── -->
   <section aria-labelledby="method-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Science</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="method-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      Methodology
-    </h2>
-    <div class="prose">
-      <p>
-        Sightings are submitted through a WhatsApp bot. Each report captures species (as identified by the observer),
-        approximate location, date and time, group size range, and an optional photo. Reports are logged immediately
-        but are not published until reviewed.
-      </p>
-      <p>
-        Our verification team checks each submission against field guide criteria, photo evidence where available,
-        and known distribution data. Uncertain identifications are flagged or downgraded to genus or family level.
-        Only sightings that meet our verification standard receive <em>verified</em> status and appear on the map.
-      </p>
-      <p>
-        Sightings appear on the public map at their reported position, and only after a delay of about three hours.
-        Because cetaceans travel widely, a sighting's position quickly goes out of date, which limits the risk of
-        targeted boat traffic disturbing animals at known aggregation sites.
-      </p>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Science</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="method-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">Methodology</h2>
+    <div class="prose"><p>Sightings are submitted through WhatsApp or the web form. Reports capture species, approximate location, date and time, group size, and an optional photo.</p><p>Our verification team checks each submission against field guide criteria, photo evidence where available, and known distribution data.</p></div>
   </section>
 
-  <!-- ── Privacy ── -->
   <section aria-labelledby="privacy-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Privacy</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="privacy-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      Privacy &amp; data
-    </h2>
-    <div class="prose">
-      <p>
-        Reporter identity is protected. Phone numbers used to submit sightings are stored only as a one-way hash —
-        we cannot recover the original number, and it is never displayed anywhere on the public site.
-      </p>
-      <p>
-        Sighting data (species, approximate location, date, group size) is published openly once verified.
-        Photos submitted with a sighting may be used internally for verification; they are not published without
-        explicit permission from the submitter.
-      </p>
-      <p>
-        We do not sell, share, or otherwise transfer personal data to third parties. The only data shared
-        externally is anonymised, aggregated sighting records for research and conservation purposes.
-      </p>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Privacy</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="privacy-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">Privacy &amp; data</h2>
+    <div class="prose"><p>Reporter identity is protected. Personal identifiers are not displayed on the public site, and sighting positions may be delayed or approximate.</p><p>Sighting data is published openly once verified. Photos are not published without permission.</p></div>
   </section>
 
-  <!-- ── Contact ── -->
   <section aria-labelledby="contact-heading">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Get in touch</p>
-      <div class="h-px flex-1 bg-[#dbe4ec]"></div>
-    </div>
-    <h2 id="contact-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">
-      Contact
-    </h2>
-    <div class="contact-card max-w-md">
-      <p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">
-        For partnership, media, or research enquiries, reach the team at:
-      </p>
-      <a href="mailto:rayjameswork@gmail.com" class="text-base font-semibold text-[#0b1f33]">rayjameswork@gmail.com</a>
-    </div>
+    <div class="flex items-center gap-3 mb-6"><div class="h-px flex-1 bg-[#dbe4ec]"></div><p class="text-xs font-semibold tracking-[0.18em] uppercase text-[#0ea5e9]">Get in touch</p><div class="h-px flex-1 bg-[#dbe4ec]"></div></div>
+    <h2 id="contact-heading" class="text-2xl md:text-3xl font-semibold text-[#0b1f33] mb-4">Contact</h2>
+    <div class="contact-card max-w-md"><p class="text-sm text-[#5b6b7d] leading-relaxed mb-3">For partnership, media, or research enquiries, reach the team at:</p><a href="mailto:rayjameswork@gmail.com" class="text-base font-semibold text-[#0b1f33]">rayjameswork@gmail.com</a></div>
   </section>
 
-  <!-- ── Get involved ── -->
-  <section aria-labelledby="involved-heading" class="dive-band rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,31,51,0.18)]">
-    <p class="text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Get involved</p>
-    <h2 id="involved-heading" class="font-['Fraunces'] text-2xl md:text-3xl font-semibold text-white mb-4">
-      Every sighting counts
-    </h2>
-    <p class="text-[#9fb3c4] text-base leading-relaxed mb-8 max-w-lg mx-auto">
-      Whether you're a local fisherman, a resort guest, or a researcher on a survey vessel — if you see a
-      dolphin or whale, we want to hear about it.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="https://wa.me/9607257743?text=Hi%2C%20I%27d%20like%20to%20report%20a%20cetacean%20sighting"
-        class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm hover:bg-[#0284c7]"
-        target="_blank" rel="noopener"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.64-1.8-2.88-.173-.493-.033-.96.145-1.3.098-.22.197-.31.328-.5.165-.224.211-.37.29-.61.088-.24.045-.452-.024-.627-.08-.204-.43-1.03-.6-1.39-.167-.36-.338-.3-.467-.3h-.4c-.137 0-.287.013-.437.206-.25.33-.95 1.16-.95 2.84 0 1.66.98 3.3 1.12 3.53.14.21 1.91 3.03 4.66 4.23.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.58-.65 1.8-1.28.23-.67.23-1.25.16-1.37-.08-.13-.29-.2-.61-.35-.32-.15-1.9-.94-2.19-1.05-.3-.12-.52-.18-.74.12-.22.3-.86.95-.95 1.14-.09.2-.19.22-.4.07-.2-.15-.85-.31-1.62-.8-.73-.5-1.23-1.12-1.38-1.31-.15-.2-.02-.38.09-.52.1-.13.24-.33.37-.5.12-.17.16-.29.24-.48.08-.2.04-.38-.02-.53-.06-.16-.53-1.28-.73-1.75-.19-.45-.39-.38-.54-.39h-.46c-.17 0-.4.03-.61.28-.2.23-.78.76-.78 1.85 0 1.09.8 2.14.91 2.29.11.15 1.56 2.38 3.77 3.3.53.22.94.35 1.27.45.54.18 1.02.16 1.4.1z"/>
-        </svg>
-        Report via WhatsApp
-      </a>
-      <a
-        href="submit.html"
-        class="btn-ghost inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10"
-      >
-        How to submit →
-      </a>
-    </div>
-  </section>
-
+  <section aria-labelledby="involved-heading" class="dive-band rounded-2xl p-8 md:p-12 text-center shadow-[0_18px_44px_rgba(11,31,51,0.18)]"><p class="text-[#8fc9ec] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Get involved</p><h2 id="involved-heading" class="font-['Fraunces'] text-2xl md:text-3xl font-semibold text-white mb-4">Every sighting counts</h2><p class="text-[#9fb3c4] text-base leading-relaxed mb-8 max-w-lg mx-auto">Whether you're a local fisherman, resort guest, or researcher — if you see a dolphin or whale, we want to hear about it.</p><div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="submit.html" class="btn-primary inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[#0ea5e9] text-white font-semibold text-sm">Submit a sighting</a></div></section>
 </main>
 
-<!-- ══════════════════════════════════════
-     FOOTER
-═════════════════════════════════════ -->
-<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm">
-  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
-    <div>
-      <p class="font-['Fraunces'] text-lg font-semibold text-white mb-1">Koamas <span class="not-italic font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p>
-      <p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science &middot; &copy; 2026</p>
-      <p class="text-xs text-[#5b6e80] mt-1">In partnership with
-        <a href="https://reefscapers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Reefscapers</a> &middot;
-        <a href="https://marinesavers.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Marine Savers</a></p>
-    </div>
-    <nav aria-label="Footer navigation">
-      <ul class="flex flex-wrap gap-x-5 gap-y-2" role="list">
-        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
-        <li><a href="news.html" class="hover:text-white transition-colors">News</a></li>
-        <li><a href="species.html" class="hover:text-white transition-colors">Species</a></li>
-        <li><a href="map.html" class="hover:text-white transition-colors">Map</a></li>
-        <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
-        <li><a href="submit.html#koamas-code" class="hover:text-white transition-colors">Watching guidelines</a></li>
-        <li><a href="submit.html" class="hover:text-white transition-colors">Submit</a></li>
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-<!-- Mobile nav toggle is handled by the shared assets/koamas.js -->
+<footer class="border-t border-[#1d3a55] bg-[#0b1f33] text-[#9fb3c4] text-sm"><div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start"><div><p class="font-['Fraunces'] text-lg font-semibold text-white mb-1">Koamas <span class="font-['Outfit'] text-sm font-medium text-[#8fc9ec]">by Reefscapers</span></p><p class="text-xs text-[#5b6e80]">Maldives Cetacean Citizen Science · © 2026</p></div><nav aria-label="Footer navigation"><ul class="flex flex-wrap gap-x-5 gap-y-2" role="list"><li><a href="about.html">About</a></li><li><a href="news.html">News</a></li><li><a href="species.html">Species</a></li><li><a href="map.html">Map</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="submit.html">Submit</a></li></ul></nav></div></footer>
 
 <script>
-(function () {
+(function(){
   'use strict';
-  // Keep the species count in prose in sync with species.json instead of
-  // a hardcoded number that silently goes stale when entries are added.
-  fetch('species.json')
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      // Exclude genus-level grouping entries (rank: "genus", e.g. the
-      // combined bottlenose-dolphin bucket) — an uncertainty bucket, not
-      // an extra species in the count. See species.html.
-      var count = (data.species || []).filter(function (s) { return !s.rank || s.rank === 'species'; }).length;
-      var el    = document.querySelector('[data-species-count]');
-      if (el && count) el.textContent = count;
-    })
-    .catch(function () {});
-
-  // ── Team, founders & partner photos ─────────────────────────
-  function esc(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function initials(name) {
-    return name.split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
-  }
-
-  function memberCardHTML(m) {
-    var photo = m.photo
-      ? '<img src="' + esc(m.photo) + '" alt="' + esc(m.name) + '" ' +
-        'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
-        '<div class="initials" style="display:none;">' + esc(initials(m.name)) + '</div>'
-      : '<div class="initials">' + esc(initials(m.name)) + '</div>';
-
-    var bio = m.bio
-      ? '<p class="text-sm text-[#5b6b7d] leading-relaxed mt-2">' + esc(m.bio) + '</p>'
-      : '<p class="text-xs text-[#5b6b7d] italic mt-2">Bio coming soon</p>';
-
-    var email = m.email
-      ? '<a href="mailto:' + esc(m.email) + '" class="text-xs text-[#0ea5e9] font-medium hover:underline mt-2 inline-block">' + esc(m.email) + '</a>'
-      : '';
-
-    return '' +
-      '<div class="member-card">' +
-        '<div class="member-avatar">' + photo + '</div>' +
-        '<div class="min-w-0">' +
-          '<h3 class="text-base font-bold text-[#0b1f33]">' + esc(m.name) + '</h3>' +
-          '<p class="text-xs font-semibold text-[#0ea5e9]">' + esc(m.role) +
-            (m.location ? ' &middot; ' + esc(m.location) : '') + '</p>' +
-          bio + email +
-        '</div>' +
-      '</div>';
-  }
-
-  fetch('data/team.json')
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      // Founders & team
-      var members = data.team || [];
-      var groupsEl = document.getElementById('team-groups');
-      if (groupsEl) {
-        groupsEl.innerHTML = members.length
-          ? '<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">' + members.map(memberCardHTML).join('') + '</div>'
-          : '<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';
-      }
-
-      // Partner photos on the existing Reefscapers / Marine Savers cards
-      var partners = data.partners || [];
-      document.querySelectorAll('[data-partner-photo]').forEach(function (slot) {
-        var name = slot.getAttribute('data-partner-photo');
-        var p    = partners.find(function (p) { return p.name === name; });
-        if (p && p.photo) {
-          slot.innerHTML = '<img src="' + esc(p.photo) + '" alt="' + esc(name) + '" ' +
-            'onerror="this.parentElement.textContent=\'Photo coming soon\';" />';
-        } else {
-          slot.textContent = 'Photo coming soon';
-        }
-      });
-
-      // MMRI joins the partner grid once confirmed (pending: false and a link is set)
-      var mmri = partners.find(function (p) { return p.name === 'MMRI'; });
-      if (mmri && !mmri.pending && mmri.url) {
-        var photoHTML = mmri.photo
-          ? '<img src="' + esc(mmri.photo) + '" alt="MMRI" onerror="this.parentElement.textContent=\'Photo coming soon\';" />'
-          : 'Photo coming soon';
-        document.getElementById('partner-cards').insertAdjacentHTML('beforeend', '' +
-          '<a href="' + esc(mmri.url) + '" target="_blank" rel="noopener" class="group team-card">' +
-            '<div class="partner-photo rounded-t-lg">' + photoHTML + '</div>' +
-            '<div class="pl-5 py-1 h-full">' +
-              '<h3 class="text-base font-bold text-[#0b1f33] mb-0.5">MMRI</h3>' +
-              '<p class="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#0ea5e9] mb-3">' + esc(mmri.tag || '') + '</p>' +
-            '</div>' +
-          '</a>');
-      }
-    })
-    .catch(function () {
-      var groupsEl = document.getElementById('team-groups');
-      if (groupsEl) groupsEl.innerHTML = '<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';
-      document.querySelectorAll('[data-partner-photo]').forEach(function (slot) {
-        slot.textContent = 'Photo coming soon';
-      });
-    });
+  fetch('species.json').then(function(r){return r.json();}).then(function(data){var count=(data.species||[]).filter(function(s){return !s.rank||s.rank==='species';}).length;var el=document.querySelector('[data-species-count]');if(el&&count)el.textContent=count;}).catch(function(){});
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  function initials(name){return name.split(/\s+/).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();}
+  function memberCardHTML(m){var photo=m.photo?' <img src="'+esc(m.photo)+'" alt="'+esc(m.name)+'" />':'<div class="initials">'+esc(initials(m.name))+'</div>';var bio=m.bio?'<p class="text-sm text-[#5b6b7d] leading-relaxed mt-2">'+esc(m.bio)+'</p>':'<p class="text-xs text-[#5b6b7d] italic mt-2">Bio coming soon</p>';return '<div class="member-card"><div class="member-avatar">'+photo+'</div><div class="min-w-0"><h3 class="text-base font-bold text-[#0b1f33]">'+esc(m.name)+'</h3><p class="text-xs font-semibold text-[#0ea5e9]">'+esc(m.role)+(m.location?' · '+esc(m.location):'')+'</p>'+bio+(m.email?' <a href="mailto:'+esc(m.email)+'" class="text-xs text-[#0ea5e9]">'+esc(m.email)+'</a>':'')+'</div></div>';}
+  fetch('data/team.json').then(function(r){return r.json();}).then(function(data){var members=data.team||[];var groups=document.getElementById('team-groups');if(groups)groups.innerHTML=members.length?' <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">'+members.map(memberCardHTML).join('')+'</div>':'<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';var partners=data.partners||[];document.querySelectorAll('[data-partner-photo]').forEach(function(slot){var name=slot.getAttribute('data-partner-photo');var p=partners.find(function(p){return p.name===name;});if(p&&p.photo)slot.innerHTML='<img src="'+esc(p.photo)+'" alt="'+esc(name)+'" />';else slot.textContent='Photo coming soon';});}).catch(function(){var groups=document.getElementById('team-groups');if(groups)groups.innerHTML='<p class="text-sm text-[#5b6b7d]">Team details coming soon.</p>';});
 }());
 </script>
-
 </body>
 </html>
