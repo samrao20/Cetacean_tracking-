@@ -203,24 +203,5 @@
       "observer": "Ayu Jie (Maldives Cetaceans Facebook Group)",
       "notes": null
     }
-  },
-  {
-    "sheet": "Koamas Atoll Sightings 2026",
-    "row": 396,
-    "reasons": [
-      "coords:missing",
-      "date:missing",
-      "species:missing"
-    ],
-    "raw": {
-      "atoll": "North Male",
-      "coordinates": null,
-      "date": "None",
-      "time": "None",
-      "species": null,
-      "pod_size": null,
-      "observer": null,
-      "notes": null
-    }
   }
 ]

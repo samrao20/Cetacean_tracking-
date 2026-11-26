@@ -1,5 +1,47 @@
 [
   {
+    "id": "x6aaeb6a302e2a743a34a",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-11-26T06:00:00Z",
+    "lat": 5.284111,
+    "lng": 73.114361,
+    "atoll": "Baa Atoll",
+    "observer": "James Reefscapers",
+    "groupSize": 30,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x46f978c8175edd85aced",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-11-26T06:00:00Z",
+    "lat": 5.284417,
+    "lng": 73.116083,
+    "atoll": "Baa Atoll",
+    "observer": "James Reefscapers",
+    "groupSize": 20,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "xcaef9bca43d959d06f71",
+    "species": "bottlenose-dolphin",
+    "speciesCommon": "Bottlenose Dolphin",
+    "speciesScientific": "Tursiops sp.",
+    "date": "2026-11-26T05:30:00Z",
+    "lat": 4.643167,
+    "lng": 73.516639,
+    "atoll": "North Male Atoll",
+    "observer": "Erin Ritz Carlton",
+    "groupSize": 4,
+    "behaviour": null,
+    "photoUrl": null
+  },
+  {
     "id": "x08d4e3dfaca2b052eaf7",
     "species": "longmans-beaked-whale",
     "speciesCommon": "Longman's Beaked Whale",
@@ -11,6 +53,20 @@
     "observer": "James Reefscapers",
     "groupSize": 3,
     "behaviour": "3 bottlenose, maybe indo pacific as they seemed smaller, but hard to ID. One calf present",
+    "photoUrl": null
+  },
+  {
+    "id": "xb91e7011d80e375fbb8e",
+    "species": "spinner-dolphin",
+    "speciesCommon": "Spinner Dolphin",
+    "speciesScientific": "Stenella longirostris",
+    "date": "2026-11-23T08:20:00Z",
+    "lat": 4.374694,
+    "lng": 73.657333,
+    "atoll": "North Male Atoll",
+    "observer": "Andy Reefscapers",
+    "groupSize": 40,
+    "behaviour": "were in the same spot for over 3 hours and were very active spinning",
     "photoUrl": null
   },
   {
@@ -5345,6 +5401,20 @@
     "observer": "Whale Shark Reseach Program",
     "groupSize": 1,
     "behaviour": null,
+    "photoUrl": null
+  },
+  {
+    "id": "x354e3c8cd769b48a54da",
+    "species": "sperm-whale",
+    "speciesCommon": "Sperm Whale",
+    "speciesScientific": "Physeter macrocephalus",
+    "date": "2018-10-18T13:00:00Z",
+    "lat": 5.256306,
+    "lng": 73.22475,
+    "atoll": "Baa Atoll",
+    "observer": "Reefscapers",
+    "groupSize": 22,
+    "behaviour": "Seen travelling edge of the atoll",
     "photoUrl": null
   }
 ]
