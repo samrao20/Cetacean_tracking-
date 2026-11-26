@@ -21,6 +21,17 @@
     });
   }
 
+  /* ── Remove the partner byline beside the logo ──────────── */
+  function removeLogoByline() {
+    document.querySelectorAll('.site-nav .nav-mark').forEach(function (logo) {
+      var link = logo.closest('a');
+      if (!link) return;
+      link.querySelectorAll('span').forEach(function (span) {
+        if (span.textContent.trim() === 'by Reefscapers') span.remove();
+      });
+    });
+  }
+
   /* ── Scroll-aware sticky header ─────────────────────────── */
   function initScrolledHeader() {
     var nav = document.querySelector('.site-nav');
@@ -69,6 +80,7 @@
   }
 
   function init() {
+    removeLogoByline();
     initNavToggle();
     initScrolledHeader();
     revealIn(document);
